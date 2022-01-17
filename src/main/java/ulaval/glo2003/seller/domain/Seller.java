@@ -1,12 +1,16 @@
 package ulaval.glo2003.seller.domain;
 
+import lombok.EqualsAndHashCode;
+
 import java.time.LocalDate;
 import java.time.Period;
 
+@EqualsAndHashCode
 public class Seller {
   private final String name;
   private final String bio;
   private final LocalDate birthDate;
+  private final static int MAJOR_AGE = 18;
 
   public Seller(String name, String bio, LocalDate birthDate) {
     this.name = name;
@@ -21,6 +25,6 @@ public class Seller {
   }
 
   public boolean isMajor() {
-    return this.getAge() >= 18;
+    return this.getAge() >= MAJOR_AGE;
   }
 }

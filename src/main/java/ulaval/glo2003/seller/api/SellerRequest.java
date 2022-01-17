@@ -1,16 +1,19 @@
 package ulaval.glo2003.seller.api;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SellerRequest {
-  @NotBlank
-  public String name;
+  public final String name;
+  public final String bio;
+  public final String birthDate;
 
-  @NotBlank
-  public String bio;
+  public SellerRequest(@JsonProperty(value = "name", required = true) String name,
+                       @JsonProperty(value = "bio", required = true) String bio,
+                       @JsonProperty(value = "birthDate", required = true) String birthDate
+  ) {
 
-  @NotNull
-  public String birthDate;
+    this.name = name;
+    this.bio = bio;
+    this.birthDate = birthDate;
+  }
 }
