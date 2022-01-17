@@ -4,6 +4,11 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import ulaval.glo2003.health.api.HealthResource;
+import ulaval.glo2003.seller.api.SellerAssembler;
+import ulaval.glo2003.seller.api.SellerResource;
+import ulaval.glo2003.seller.domain.SellerRepository;
+import ulaval.glo2003.seller.infrastructure.inMemory.InMemorySellerRepository;
+import ulaval.glo2003.seller.service.SellerService;
 
 import java.io.IOException;
 import java.net.URI;
@@ -14,12 +19,22 @@ public class ApplicationMain {
     private static final String PACKAGE = "ulaval.glo2003";
 
     public static void main(String[] args) throws IOException {
-        HealthResource healthResource = new HealthResource();
-        ResourceConfig resourceConfig = new ResourceConfig()
-                .packages(PACKAGE).register(healthResource);
+        ResourceConfig resourceConfig = setupResources();
         URI uri = URI.create(URL);
 
         HttpServer server = GrizzlyHttpServerFactory.createHttpServer(uri, resourceConfig);
         server.start();
+    }
+
+    private static ResourceConfig setupResources() {
+        HealthResource healthResource = new HealthResource();
+        SellerAssembler sellerAssembler = new SellerAssembler();
+        SellerRepository sellerRepository = new InMemorySellerRepository();
+        SellerService sellerService = new SellerService(sellerRepository);
+
+        SellerResource sellerResource = new SellerResource(sellerAssembler, sellerService);
+
+        return new ResourceConfig()
+                .packages(PACKAGE).register(healthResource).register(sellerResource);
     }
 }
