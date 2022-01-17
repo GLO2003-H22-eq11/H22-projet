@@ -22,7 +22,7 @@ public class SellerResourceTest {
     private SellerRequest sellerRequest;
 
     @Mock
-    private SellerAssembler sellerAssembler;
+    private SellerFactory sellerFactory;
 
     @Mock
     private SellerService sellerService;
@@ -31,12 +31,12 @@ public class SellerResourceTest {
 
     @BeforeEach
     public void setUp() {
-        this.sellerResource = new SellerResource(this.sellerAssembler, this.sellerService);
+        this.sellerResource = new SellerResource(this.sellerFactory, this.sellerService);
     }
 
     @Test
     public void givenASellerRequest_whenAddSeller_thenShouldCreateSeller() {
-        given(this.sellerAssembler.assembleToInternal(sellerRequest)).willReturn(this.seller);
+        given(this.sellerFactory.create(sellerRequest)).willReturn(this.seller);
 
         this.sellerResource.createSeller(this.sellerRequest);
 

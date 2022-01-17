@@ -4,7 +4,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import ulaval.glo2003.health.api.HealthResource;
-import ulaval.glo2003.seller.api.SellerAssembler;
+import ulaval.glo2003.seller.api.SellerFactory;
 import ulaval.glo2003.seller.api.SellerResource;
 import ulaval.glo2003.seller.domain.SellerRepository;
 import ulaval.glo2003.seller.infrastructure.inMemory.InMemorySellerRepository;
@@ -28,11 +28,11 @@ public class ApplicationMain {
 
     private static ResourceConfig setupResources() {
         HealthResource healthResource = new HealthResource();
-        SellerAssembler sellerAssembler = new SellerAssembler();
+        SellerFactory sellerFactory = new SellerFactory();
         SellerRepository sellerRepository = new InMemorySellerRepository();
         SellerService sellerService = new SellerService(sellerRepository);
 
-        SellerResource sellerResource = new SellerResource(sellerAssembler, sellerService);
+        SellerResource sellerResource = new SellerResource(sellerFactory, sellerService);
 
         return new ResourceConfig()
                 .packages(PACKAGE).register(healthResource).register(sellerResource);
