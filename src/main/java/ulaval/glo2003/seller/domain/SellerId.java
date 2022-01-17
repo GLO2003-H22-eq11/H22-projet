@@ -4,10 +4,10 @@ import ulaval.glo2003.util.UUIDGenerator;
 
 import java.util.UUID;
 
-public class SellerIdentifier {
+public class SellerId {
   private final UUID id;
 
-  public SellerIdentifier() {
+  public SellerId() {
     this.id = UUIDGenerator.generate();
   }
 

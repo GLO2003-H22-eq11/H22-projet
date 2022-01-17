@@ -29,7 +29,7 @@ public class SellerResource {
 
     this.sellerService.addSeller(seller);
 
-    URI uri = URI.create( sellerEndpoint + "/" + seller.getSellerIdentifier().toString());
+    URI uri = URI.create(sellerEndpoint + "/" + seller.getSellerId().toString());
     return Response.created(uri).build();
   }
 }

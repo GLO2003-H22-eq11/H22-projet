@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SellerTest {
   private static final String A_NAME = "Bobby";
-  private static final SellerIdentifier A_SELLER_ID = new SellerIdentifier();
+  private static final SellerId A_SELLER_ID = new SellerId();
   private static final LocalDateTime A_CREATION_DATE = LocalDateTime.now();
   private static final String A_BIO = "Bobby aime les chiens";
 

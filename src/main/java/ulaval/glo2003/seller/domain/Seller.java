@@ -8,23 +8,23 @@ import java.time.Period;
 
 @EqualsAndHashCode
 public class Seller {
-  private final SellerIdentifier sellerIdentifier;
+  private final SellerId sellerId;
   private final String name;
   private final String bio;
   private final LocalDate birthDate;
   private final LocalDateTime createdAt;
   private final static int MAJOR_AGE = 18;
 
-  public Seller(SellerIdentifier sellerIdentifier, String name, String bio, LocalDate birthDate, LocalDateTime createdAt) {
-    this.sellerIdentifier = sellerIdentifier;
+  public Seller(SellerId sellerId, String name, String bio, LocalDate birthDate, LocalDateTime createdAt) {
+    this.sellerId = sellerId;
     this.name = name;
     this.bio = bio;
     this.birthDate = birthDate;
     this.createdAt = createdAt;
   }
 
-  public SellerIdentifier getSellerIdentifier() {
-    return this.sellerIdentifier;
+  public SellerId getSellerId() {
+    return this.sellerId;
   }
 
   private int getAge() {

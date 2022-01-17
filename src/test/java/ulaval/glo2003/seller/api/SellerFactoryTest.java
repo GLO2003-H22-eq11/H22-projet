@@ -2,7 +2,7 @@ package ulaval.glo2003.seller.api;
 
 import org.junit.jupiter.api.Test;
 import ulaval.glo2003.seller.domain.Seller;
-import ulaval.glo2003.seller.domain.SellerIdentifier;
+import ulaval.glo2003.seller.domain.SellerId;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,9 +23,8 @@ class SellerFactoryTest {
     aSellerRequest.name = aName;
     aSellerRequest.birthDate = aBirthdate;
     LocalDate birthDate = LocalDate.of(2000, 6, 10);
-    SellerIdentifier aSellerId = new SellerIdentifier();
+    SellerId aSellerId = new SellerId();
     LocalDateTime aCreationDate = LocalDateTime.now();
-
     Seller expectedSeller = new Seller(aSellerId, aName, aBio, birthDate, aCreationDate);
 
     Seller actualSeller = this.sellerFactory.create(aSellerRequest);
