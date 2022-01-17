@@ -6,7 +6,7 @@ import ulaval.glo2003.util.DateParser;
 
 public class SellerAssembler {
 
-  public Seller assembletoInternal(SellerRequest sellerRequest) {
+  public Seller assembleToInternal(SellerRequest sellerRequest) {
     return new Seller(
             sellerRequest.name,
             sellerRequest.bio,

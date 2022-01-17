@@ -22,7 +22,7 @@ public class SellerResource {
 
   @POST
   public Response createSeller(SellerRequest sellerRequest) {
-    Seller seller = sellerAssembler.assembletoInternal(sellerRequest);
+    Seller seller = sellerAssembler.assembleToInternal(sellerRequest);
 
     this.sellerService.addSeller(seller);
 

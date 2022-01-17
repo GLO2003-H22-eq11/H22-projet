@@ -20,7 +20,7 @@ class SellerAssemblerTest {
     LocalDate birthDate = LocalDate.of(2000, 6, 10);
     Seller expectedSeller = new Seller(aName, aBio, birthDate);
 
-    Seller actualSeller = this.sellerAssembler.assembletoInternal(aSellerRequest);
+    Seller actualSeller = this.sellerAssembler.assembleToInternal(aSellerRequest);
 
     assertEquals(expectedSeller, actualSeller);
   }
