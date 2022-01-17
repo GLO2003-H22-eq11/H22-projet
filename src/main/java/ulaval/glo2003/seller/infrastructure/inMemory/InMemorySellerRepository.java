@@ -13,4 +13,9 @@ public class InMemorySellerRepository implements SellerRepository {
   public void save(Seller seller) {
     this.sellers.put(seller.getSellerId(), seller);
   }
+
+  @Override
+  public Seller findById(SellerId id) {
+    return this.sellers.get(id);
+  }
 }

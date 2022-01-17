@@ -43,4 +43,16 @@ public class Seller {
       throw new SellerIsMinorException();
     }
   }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public LocalDateTime getCreatedAt() {
+    return this.createdAt;
+  }
+
+  public String getBio() {
+    return this.getBio();
+  }
 }

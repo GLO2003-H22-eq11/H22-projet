@@ -36,7 +36,7 @@ public class SellerResourceTest {
 
     @BeforeEach
     public void setUp() {
-        this.sellerResource = new SellerResource(this.sellerFactory, this.sellerService, this.constraintsValidator);
+        this.sellerResource = new SellerResource(this.sellerFactory, this.sellerService, this.constraintsValidator, this.sellerAssembler);
     }
 
     @Test

@@ -11,6 +11,10 @@ public class SellerId {
     this.id = UUIDGenerator.generate();
   }
 
+  public SellerId(String sellerId){
+    this.id = UUID.fromString(sellerId);
+  }
+
   public String toString() {
     return this.id.toString();
   }
