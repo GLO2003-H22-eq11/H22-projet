@@ -69,7 +69,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>ulaval.glo2003.Main</mainClass>
+                    <mainClass>ulaval.glo2003.ApplicationMain</mainClass>
                 </configuration>
             </plugin>
         </plugins>
