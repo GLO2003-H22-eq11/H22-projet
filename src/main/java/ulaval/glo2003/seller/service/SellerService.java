@@ -2,6 +2,7 @@ package ulaval.glo2003.seller.service;
 
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerRepository;
+import ulaval.glo2003.exception.GenericException;
 
 public class SellerService {
   private final SellerRepository sellerRepository;
@@ -10,9 +11,8 @@ public class SellerService {
     this.sellerRepository = sellerRepository;
   }
 
-  public void addSeller(Seller seller) {
-    if (seller.isMajor()) {
-      this.sellerRepository.save(seller);
-    }
+  public void addSeller(Seller seller) throws GenericException {
+    seller.verifyIfSellerIsMajor();
+    this.sellerRepository.save(seller);
   }
 }

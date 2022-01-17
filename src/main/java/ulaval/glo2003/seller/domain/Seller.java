@@ -1,6 +1,7 @@
 package ulaval.glo2003.seller.domain;
 
 import lombok.EqualsAndHashCode;
+import ulaval.glo2003.exception.GenericException;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -24,7 +25,9 @@ public class Seller {
     return period.getYears();
   }
 
-  public boolean isMajor() {
-    return this.getAge() >= MAJOR_AGE;
+  public void verifyIfSellerIsMajor() throws GenericException {
+    if (!(this.getAge() >= MAJOR_AGE)) {
+      throw new SellerIsMinorException();
+    }
   }
 }

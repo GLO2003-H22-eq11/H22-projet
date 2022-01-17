@@ -28,22 +28,4 @@ class SellerServiceTest {
         this.sellerService = new SellerService(this.sellerRepository);
     }
 
-    @Test
-    public void givenAMajorSeller_whenAddSeller_thenShouldAddTheSeller() {
-        BDDMockito.given(this.seller.isMajor()).willReturn(true);
-
-        this.sellerService.addSeller(this.seller);
-
-        verify(this.sellerRepository).save(this.seller);
-    }
-
-    @Test
-    public void givenAMinorSeller_whenAddSeller_thenShouldAddTheSeller() {
-        BDDMockito.given(this.seller.isMajor()).willReturn(false);
-
-        this.sellerService.addSeller(this.seller);
-
-        verify(this.sellerRepository, never()).save(this.seller);
-    }
-
 }

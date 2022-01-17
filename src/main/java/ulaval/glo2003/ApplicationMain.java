@@ -9,6 +9,7 @@ import ulaval.glo2003.seller.api.SellerResource;
 import ulaval.glo2003.seller.domain.SellerRepository;
 import ulaval.glo2003.seller.infrastructure.inMemory.InMemorySellerRepository;
 import ulaval.glo2003.seller.service.SellerService;
+import ulaval.glo2003.exception.ConstraintsValidator;
 
 import java.io.IOException;
 import java.net.URI;
@@ -31,8 +32,8 @@ public class ApplicationMain {
         SellerAssembler sellerAssembler = new SellerAssembler();
         SellerRepository sellerRepository = new InMemorySellerRepository();
         SellerService sellerService = new SellerService(sellerRepository);
-
-        SellerResource sellerResource = new SellerResource(sellerAssembler, sellerService);
+        ConstraintsValidator constraintsValidator = new ConstraintsValidator();
+        SellerResource sellerResource = new SellerResource(sellerAssembler, sellerService, constraintsValidator);
 
         return new ResourceConfig()
                 .packages(PACKAGE).register(healthResource).register(sellerResource);

@@ -8,6 +8,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.service.SellerService;
+import ulaval.glo2003.exception.ConstraintsValidator;
+import ulaval.glo2003.exception.GenericException;
 
 
 import static org.mockito.Mockito.verify;
@@ -25,13 +27,16 @@ public class SellerResourceTest {
     private SellerAssembler sellerAssembler;
 
     @Mock
+    private ConstraintsValidator constraintsValidator;
+
+    @Mock
     private SellerService sellerService;
 
     private SellerResource sellerResource;
 
     @BeforeEach
     public void setUp() {
-        this.sellerResource = new SellerResource(this.sellerAssembler, this.sellerService);
+        this.sellerResource = new SellerResource(this.sellerAssembler, this.sellerService, this.constraintsValidator);
     }
 
     @Test
@@ -42,7 +47,7 @@ public class SellerResourceTest {
     }
 
     @Test
-    public void givenAnSellerRequest_whenAddSeller_thenShouldCallTheSellerService() {
+    public void givenAnSellerRequest_whenAddSeller_thenShouldCallTheSellerService() throws GenericException {
         BDDMockito.given(this.sellerAssembler.assembletoInternal(sellerRequest)).willReturn(this.seller);
 
         this.sellerResource.createSeller(this.sellerRequest);
