@@ -38,12 +38,12 @@ public class SellerResourceTest {
     public void givenAnSellerRequest_whenAddSeller_thenShouldCallTheAssembler() {
         this.sellerResource.createSeller(this.sellerRequest);
 
-        verify(this.sellerAssembler).toInternal(this.sellerRequest);
+        verify(this.sellerAssembler).assembletoInternal(this.sellerRequest);
     }
 
     @Test
     public void givenAnSellerRequest_whenAddSeller_thenShouldCallTheSellerService() {
-        BDDMockito.given(this.sellerAssembler.toInternal(sellerRequest)).willReturn(this.seller);
+        BDDMockito.given(this.sellerAssembler.assembletoInternal(sellerRequest)).willReturn(this.seller);
 
         this.sellerResource.createSeller(this.sellerRequest);
 
