@@ -1,5 +1,8 @@
 package ulaval.glo2003.seller.api;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public class SellerResponse {
     private final String id;
     private final String name;

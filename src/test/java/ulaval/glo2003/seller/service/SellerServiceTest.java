@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.seller.domain.Seller;
+import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
 
 import static org.mockito.Mockito.verify;
@@ -39,6 +40,15 @@ class SellerServiceTest {
         this.sellerService.addSeller(this.seller);
 
         verify(this.seller).verifyIsMajor();
+    }
+
+    @Test
+    public void givenASellerId_whenGetSellerById_thenShouldFindById(){
+        SellerId aSellerId = new SellerId();
+
+        this.sellerService.getSellerById(aSellerId);
+
+        verify(this.sellerRepository).findById(aSellerId);
     }
 
 }

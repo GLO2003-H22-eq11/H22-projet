@@ -53,6 +53,6 @@ public class Seller {
   }
 
   public String getBio() {
-    return this.getBio();
+    return this.bio;
   }
 }
