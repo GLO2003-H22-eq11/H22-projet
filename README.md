@@ -21,6 +21,9 @@ mvn clean install
 mvn exec:java
 ```
 
+ <br />
+<hr />
+
 ### Notre équipe de développement ###
 
 
@@ -31,6 +34,9 @@ mvn exec:java
   Marin Beauchesne  | marinoboi
   Charles-Émile Robitaille | Charlem33
   Vincent Fournier | GoalCaufield
+
+ <br />
+<hr />
 
 ### Information sur les technologies et les techniques ###
 
@@ -43,6 +49,8 @@ mvn exec:java
 <summary> CI  </summary>
 <p> Github action Java CI with Maven </p>
 </details>
+ <br />
+<hr />
 
 ### Nos règles d'équipes ###
 
@@ -53,6 +61,9 @@ mvn exec:java
 * Nom de convetion des branches
   1. Pour les features : feat-(nom de l'issue)-(courte description)
   2. Pour les corrections : bugfix-(description)
+
+  <br />
+<hr />
 
 
 
