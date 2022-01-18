@@ -5,11 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerRepository;
 
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,21 +28,17 @@ class SellerServiceTest {
     }
 
     @Test
-    public void givenAMajorSeller_whenAddSeller_thenShouldAddTheSeller() {
-        given(this.seller.isMajor()).willReturn(true);
-
+    public void givenAMajorSeller_whenAddSeller_thenShouldAddTheSeller() throws GenericException {
         this.sellerService.addSeller(this.seller);
 
         verify(this.sellerRepository).save(this.seller);
     }
 
     @Test
-    public void givenAMinorSeller_whenAddSeller_thenShouldAddTheSeller() {
-        given(this.seller.isMajor()).willReturn(false);
-
+    public void givenAMinorSeller_whenAddSeller_thenShouldAddTheSeller() throws GenericException {
         this.sellerService.addSeller(this.seller);
 
-        verify(this.sellerRepository, never()).save(this.seller);
+        verify(this.seller).verifyIsMajor();
     }
 
 }

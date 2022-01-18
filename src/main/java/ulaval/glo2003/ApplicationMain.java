@@ -3,6 +3,7 @@ package ulaval.glo2003;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+import ulaval.glo2003.exception.ConstraintsValidator;
 import ulaval.glo2003.health.api.HealthResource;
 import ulaval.glo2003.seller.api.SellerFactory;
 import ulaval.glo2003.seller.api.SellerResource;
@@ -28,13 +29,18 @@ public class ApplicationMain {
 
     private static ResourceConfig setupResources() {
         HealthResource healthResource = new HealthResource();
-        SellerFactory sellerFactory = new SellerFactory();
-        SellerRepository sellerRepository = new InMemorySellerRepository();
-        SellerService sellerService = new SellerService(sellerRepository);
-
-        SellerResource sellerResource = new SellerResource(sellerFactory, sellerService);
+        SellerResource sellerResource = createSellerResource();
 
         return new ResourceConfig()
                 .packages(PACKAGE).register(healthResource).register(sellerResource);
+    }
+
+    private static SellerResource createSellerResource() {
+        SellerFactory sellerFactory = new SellerFactory();
+        SellerRepository sellerRepository = new InMemorySellerRepository();
+        SellerService sellerService = new SellerService(sellerRepository);
+        ConstraintsValidator constraintsValidator = new ConstraintsValidator();
+
+        return new SellerResource(sellerFactory, sellerService, constraintsValidator);
     }
 }

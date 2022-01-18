@@ -52,6 +52,35 @@
         </dependency>
 
         <dependency>
+            <artifactId>jackson-datatype-jdk8</artifactId>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <version>2.9.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>7.0.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator-cdi</artifactId>
+            <version>7.0.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.el</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>lombok</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <scope>provided</scope>
+            <version>1.18.20</version>
+        </dependency>
+
+        <dependency>
             <artifactId>lombok</artifactId>
             <groupId>org.projectlombok</groupId>
             <scope>provided</scope>

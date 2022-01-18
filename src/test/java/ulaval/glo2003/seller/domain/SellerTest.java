@@ -14,27 +14,27 @@ class SellerTest {
   private static final String A_BIO = "Bobby aime les chiens";
 
   @Test
-  public void givenASellerWithAgeOf18_whenGettingIsMajor_thenShouldReturnTrue() {
+  public void givenASellerWithAgeOf18_whenGettingIsMajor_thenShouldNotThrow() {
     LocalDate aBirthDateOfA18YearsOld = LocalDate.of(2004, 1, 2);
 
     Seller seller = new Seller(A_SELLER_ID, A_NAME, A_BIO, aBirthDateOfA18YearsOld, A_CREATION_DATE);
 
-    assertTrue(seller.isMajor());
+    assertDoesNotThrow(() -> seller.verifyIsMajor());
   }
 
   @Test
-  public void givenASellerWithAgeOf22_whenGettingIsMajor_thenShouldReturnTrue() {
+  public void givenASellerWithAgeOf22_whenGettingIsMajor_thenShouldNotThrow() {
     LocalDate aBirthDateOfA22YearsOld = LocalDate.of(2000, 1, 2);
     Seller seller = new Seller(A_SELLER_ID, A_NAME, A_BIO, aBirthDateOfA22YearsOld, A_CREATION_DATE);
 
-    assertTrue(seller.isMajor());
+    assertDoesNotThrow(() -> seller.verifyIsMajor());
   }
 
   @Test
-  public void givenASellerWithAgeOf17_whenGettingIsMajor_thenShouldReturnFalse() {
+  public void givenASellerWithAgeOf17_whenGettingIsMajor_thenShouldThrow() {
     LocalDate aBirthDateOfA17YearsOld = LocalDate.of(2005, 1, 2);
     Seller seller = new Seller(A_SELLER_ID, A_NAME, A_BIO, aBirthDateOfA17YearsOld, A_CREATION_DATE);
 
-    assertFalse(seller.isMajor());
+    assertThrows(SellerIsMinorException.class, () -> seller.verifyIsMajor());
   }
 }
