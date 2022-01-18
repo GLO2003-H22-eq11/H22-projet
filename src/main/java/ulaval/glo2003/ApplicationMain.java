@@ -43,6 +43,6 @@ public class ApplicationMain {
         ConstraintsValidator constraintsValidator = new ConstraintsValidator();
         SellerAssembler sellerAssembler = new SellerAssembler();
 
-        return new SellerResource(sellerFactory, sellerService, constraintsValidator);
+        return new SellerResource(sellerFactory, sellerService, sellerAssembler, constraintsValidator);
     }
 }
