@@ -6,6 +6,8 @@ import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerBuilder;
 import ulaval.glo2003.seller.domain.SellerId;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class InMemorySellerRepositoryTest {
@@ -21,8 +23,8 @@ class InMemorySellerRepositoryTest {
 
     @Test
     public void givenASellerAndAnId_whenFindById_thenShouldFindTheSeller(){
-        Seller actualSeller = this.inMemorySellerRepository.findById(A_SELLER_ID);
+        Optional<Seller> actualSeller = this.inMemorySellerRepository.findById(A_SELLER_ID);
 
-        assertEquals(A_SELLER, actualSeller);
+        assertEquals(A_SELLER, actualSeller.get());
     }
 }

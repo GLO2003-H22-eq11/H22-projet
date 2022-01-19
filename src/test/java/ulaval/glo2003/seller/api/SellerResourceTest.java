@@ -1,5 +1,6 @@
 package ulaval.glo2003.seller.api;
 
+import jakarta.ws.rs.core.Response;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -8,14 +9,15 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.ConstraintsValidator;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.seller.domain.Seller;
+import ulaval.glo2003.seller.domain.SellerBuilder;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerIdFactory;
+import ulaval.glo2003.seller.service.SellerNotFoundException;
 import ulaval.glo2003.seller.service.SellerService;
 
 
-import java.time.LocalDateTime;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -78,9 +80,15 @@ public class SellerResourceTest {
         verify(this.constraintsValidator).validate(this.sellerRequest);
     }
 
+    @Test
+    public void givenASellerId_whenGetSellerById_thenShouldCreateSellerId() throws GenericException {
+        this.sellerResource.getSellerById(A_SELLER_STRING_ID);
+
+        verify(this.sellerIdFactory).create(A_SELLER_STRING_ID);
+    }
 
     @Test
-    public void givenASellerId_whenGetSellerById_thenShouldGetSellerById() {
+    public void givenASellerId_whenGetSellerById_thenShouldGetSellerById() throws GenericException {
         givenASellerId();
 
         this.sellerResource.getSellerById(A_SELLER_STRING_ID);
@@ -89,22 +97,27 @@ public class SellerResourceTest {
     }
 
     @Test
-    public void givenASellerId_whenGetSellerById_thenShouldReturnSellerResponse() {
+    public void givenASellerId_whenGetSellerById_thenShouldReturnSellerResponseWithEntity() throws GenericException {
         givenASellerId();
-        SellerResponse expectedSellerResponse = getASellerResponse();
-        given(this.sellerService.getSellerById(A_SELLER_ID)).willReturn(this.seller);
-        given(this.sellerAssembler.toResponse(this.seller)).willReturn(expectedSellerResponse);
+        Seller aSeller = givenASeller();
+        SellerResponse aSellerResponse = givenASellerResponse(aSeller);
 
-        SellerResponse actualSellerResponse = this.sellerResource.getSellerById(A_SELLER_STRING_ID);
+        Response expectedResponse = Response.ok().entity(aSellerResponse).build();
+        Response actualResponse = this.sellerResource.getSellerById(A_SELLER_STRING_ID);
 
-        assertEquals(expectedSellerResponse, actualSellerResponse);
+        assertEquals(expectedResponse.getEntity(), actualResponse.getEntity());
     }
 
-    private SellerResponse getASellerResponse() {
-        String aName = "Captain Barbosa";
-        String aBio = "a biography";
-        LocalDateTime aCreatedDate = LocalDateTime.now();
-        return new SellerResponse(A_SELLER_STRING_ID, aName, aBio,aCreatedDate.toString());
+    private SellerResponse givenASellerResponse(Seller aSeller) {
+        SellerResponse aSellerResponse = new SellerResponse(A_SELLER_STRING_ID, "allo", "created", "bio");
+        given(this.sellerAssembler.toResponse(aSeller)).willReturn(aSellerResponse);
+        return aSellerResponse;
+    }
+
+    private Seller givenASeller() throws SellerNotFoundException {
+        Seller aSeller = new SellerBuilder().build();
+        given(this.sellerService.getSellerById(A_SELLER_ID)).willReturn(aSeller);
+        return aSeller;
     }
 
     private void givenASellerId() {

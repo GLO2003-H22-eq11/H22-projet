@@ -6,7 +6,7 @@ import ulaval.glo2003.exception.GenericException;
 
 public class SellerIsMinorException extends GenericException {
 
-    private ErrorCode errorCode = ErrorCode.INVALID_PARAM;
+    private final ErrorCode errorCode = ErrorCode.INVALID_PARAM;
 
     public ErrorResponse getErrorResponse() {
         return this.errorCode.toErrorResponse();

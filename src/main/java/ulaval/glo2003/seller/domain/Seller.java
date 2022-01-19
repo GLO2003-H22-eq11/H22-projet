@@ -42,7 +42,7 @@ public class Seller {
     return period.getYears();
   }
 
-  public void verifyIsMajor() throws GenericException {
+  public void verifyIfMajor() throws GenericException {
     if (!(this.getAge() >= MAJOR_AGE)) {
       throw new SellerIsMinorException();
     }

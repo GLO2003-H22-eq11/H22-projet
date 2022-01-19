@@ -5,9 +5,10 @@ import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 public class InMemorySellerRepository implements SellerRepository {
-  private HashMap<SellerId, Seller> sellers = new HashMap<>();
+  private final HashMap<SellerId, Seller> sellers = new HashMap<>();
 
   @Override
   public void save(Seller seller) {
@@ -15,7 +16,7 @@ public class InMemorySellerRepository implements SellerRepository {
   }
 
   @Override
-  public Seller findById(SellerId id) {
-    return this.sellers.get(id);
+  public Optional<Seller> findById(SellerId id) {
+    return Optional.of(this.sellers.get(id));
   }
 }

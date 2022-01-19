@@ -1,8 +1,10 @@
 package ulaval.glo2003.seller.domain;
 
+import java.util.Optional;
+
 public interface SellerRepository {
   void save(Seller seller);
 
-  Seller findById(SellerId id);
+  Optional<Seller> findById(SellerId id);
 
 }

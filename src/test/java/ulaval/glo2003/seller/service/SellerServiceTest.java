@@ -7,9 +7,15 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.seller.domain.Seller;
+import ulaval.glo2003.seller.domain.SellerBuilder;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
 
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -39,11 +45,11 @@ class SellerServiceTest {
     public void givenAMinorSeller_whenAddSeller_thenShouldAddTheSeller() throws GenericException {
         this.sellerService.addSeller(this.seller);
 
-        verify(this.seller).verifyIsMajor();
+        verify(this.seller).verifyIfMajor();
     }
 
     @Test
-    public void givenASellerId_whenGetSellerById_thenShouldFindById(){
+    public void givenASellerId_whenGetSellerById_thenShouldFindById() throws GenericException {
         SellerId aSellerId = new SellerId();
 
         this.sellerService.getSellerById(aSellerId);
@@ -51,4 +57,20 @@ class SellerServiceTest {
         verify(this.sellerRepository).findById(aSellerId);
     }
 
+    @Test
+    public void givenAnExistentSellerId_whenGetSellerById_thenShouldNotThrow() {
+        SellerId aSellerId = new SellerId();
+        Seller aSeller = new SellerBuilder().build();
+        given(this.sellerRepository.findById(aSellerId)).willReturn(Optional.of(aSeller));
+
+        assertDoesNotThrow(() -> this.sellerService.getSellerById(aSellerId));
+    }
+
+    @Test
+    public void givenANonExistentSellerId_whenGetSellerById_thenShouldThrowSellerNotFoundException() {
+        SellerId aSellerId = new SellerId();
+        given(this.sellerRepository.findById(aSellerId)).willReturn(Optional.empty());
+
+        assertThrows(SellerNotFoundException.class, () -> this.sellerService.getSellerById(aSellerId));
+    }
 }
