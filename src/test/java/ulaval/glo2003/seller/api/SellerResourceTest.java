@@ -9,6 +9,7 @@ import ulaval.glo2003.exception.ConstraintsValidator;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerId;
+import ulaval.glo2003.seller.domain.SellerIdFactory;
 import ulaval.glo2003.seller.service.SellerService;
 
 
@@ -39,15 +40,24 @@ public class SellerResourceTest {
     @Mock
     private SellerAssembler sellerAssembler;
 
+    @Mock
+    private SellerIdFactory sellerIdFactory;
 
     private SellerResource sellerResource;
-    private final static String aStringSellerId = "5a3e3b0b-19a6-46cd-a0fe-bf16f42ba492";
-    private final static SellerId aSellerId = new SellerId(aStringSellerId);
+
+    private final static String A_SELLER_STRING_ID = "5a3e3b0b-19a6-46cd-a0fe-bf16f42ba492";
+    private final static SellerId A_SELLER_ID = new SellerId(A_SELLER_STRING_ID);
 
 
     @BeforeEach
     public void setUp() {
-        this.sellerResource = new SellerResource(this.sellerFactory, this.sellerService, this.sellerAssembler, this.constraintsValidator );
+        this.sellerResource = new SellerResource(
+                this.sellerFactory,
+                this.sellerService,
+                this.sellerAssembler,
+                this.constraintsValidator,
+                this.sellerIdFactory
+        );
     }
 
     @Test
@@ -71,23 +81,33 @@ public class SellerResourceTest {
 
     @Test
     public void givenASellerId_whenGetSellerById_thenShouldGetSellerById() {
+        givenASellerId();
 
-        this.sellerResource.getSellerById(aStringSellerId);
+        this.sellerResource.getSellerById(A_SELLER_STRING_ID);
 
-        verify(this.sellerService).getSellerById(aSellerId);
+        verify(this.sellerService).getSellerById(A_SELLER_ID);
     }
 
     @Test
     public void givenASellerId_whenGetSellerById_thenShouldReturnSellerResponse() {
+        givenASellerId();
+        SellerResponse expectedSellerResponse = getASellerResponse();
+        given(this.sellerService.getSellerById(A_SELLER_ID)).willReturn(this.seller);
+        given(this.sellerAssembler.toResponse(this.seller)).willReturn(expectedSellerResponse);
+
+        SellerResponse actualSellerResponse = this.sellerResource.getSellerById(A_SELLER_STRING_ID);
+
+        assertEquals(expectedSellerResponse, actualSellerResponse);
+    }
+
+    private SellerResponse getASellerResponse() {
         String aName = "Captain Barbosa";
         String aBio = "a biography";
         LocalDateTime aCreatedDate = LocalDateTime.now();
-        SellerResponse expectedSellerResponse = new SellerResponse(aStringSellerId, aName, aBio,aCreatedDate.toString());
-        given(this.sellerService.getSellerById(aSellerId)).willReturn(this.seller);
-        given(this.sellerAssembler.toResponse(this.seller)).willReturn(expectedSellerResponse);
+        return new SellerResponse(A_SELLER_STRING_ID, aName, aBio,aCreatedDate.toString());
+    }
 
-        SellerResponse actualSellerResponse = this.sellerResource.getSellerById(aStringSellerId);
-
-        assertEquals(expectedSellerResponse, actualSellerResponse);
+    private void givenASellerId() {
+        given(this.sellerIdFactory.create(A_SELLER_STRING_ID)).willReturn(A_SELLER_ID);
     }
 }

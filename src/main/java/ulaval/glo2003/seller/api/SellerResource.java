@@ -10,6 +10,7 @@ import ulaval.glo2003.exception.ConstraintsValidator;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerId;
+import ulaval.glo2003.seller.domain.SellerIdFactory;
 import ulaval.glo2003.seller.service.SellerService;
 
 import java.net.URI;
@@ -23,12 +24,14 @@ public class SellerResource {
   private final SellerService sellerService;
   private final SellerAssembler sellerAssembler;
   private final ConstraintsValidator constraintsValidator;
+  private final SellerIdFactory sellerIdFactory;
 
-  public SellerResource(SellerFactory sellerFactory, SellerService sellerService, SellerAssembler sellerAssembler, ConstraintsValidator constraintsValidator) {
+  public SellerResource(SellerFactory sellerFactory, SellerService sellerService, SellerAssembler sellerAssembler, ConstraintsValidator constraintsValidator, SellerIdFactory sellerIdFactory) {
     this.sellerFactory = sellerFactory;
     this.sellerService = sellerService;
     this.sellerAssembler = sellerAssembler;
     this.constraintsValidator = constraintsValidator;
+    this.sellerIdFactory = sellerIdFactory;
   }
 
   @POST
@@ -49,7 +52,7 @@ public class SellerResource {
 
   @GET
   public SellerResponse getSellerById(String id) {
-    SellerId  sellerId = new SellerId(id);
+    SellerId sellerId = this.sellerIdFactory.create(id);
 
     Seller seller = this.sellerService.getSellerById(sellerId);
 

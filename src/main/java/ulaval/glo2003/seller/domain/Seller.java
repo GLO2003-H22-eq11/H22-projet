@@ -28,6 +28,10 @@ public class Seller {
     return this.sellerId;
   }
 
+  public String getStringSellerId() {
+    return this.sellerId.toString();
+  }
+
   public String getStringId() {
     return this.sellerId.toString();
   }
@@ -48,8 +52,8 @@ public class Seller {
     return this.name;
   }
 
-  public LocalDateTime getCreatedAt() {
-    return this.createdAt;
+  public String getStringCreatedAt() {
+    return this.createdAt.toString();
   }
 
   public String getBio() {
