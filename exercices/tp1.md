@@ -1,31 +1,42 @@
 # TP1
 
-## Conventionnal Commits
+## Conventions de commit
 
-### How to name your commit
+### Comment nommer son commit
 
-While doing a commit, the message should be structured as follows:
+Lors d'un commit, le message devrait e3tre structuré ainsi:
 
-`<type>[issue number]: <description of the commit>`
+`<type>[# issue]: <description du commit>`
 
-There are different types of commit : 
-1. `feat` : Introduces a new feature to the codebase
-2. `fix` : Patches a bug in the codebase
-3. `rework` : Rework a feature or a bug fix that is not up to standards
-4. `refactor` : Refactor code to clean up codebase or to upgrade code quality
-5. `docs` : Add documentation to repository
+Il y a différents types de commit : 
+1. `feat` : Introduit une nouvelle feature au codebase
+2. `fix` : Fixer un bug qui se trouve dans l'application
+3. `rework` : Rework une feature ou un bug fix qui n'est pas au standard
+4. `refactor` : Refactor du code pour clean up le codebase
+5. `docs` : Ajouter de la documentation au repository
 
-### What and When to commit
-
-
-
-### Base Branches
-The base branches are `main` and `develop`
+### Quoi et quand faire un commit
+Un commit doit être effectué lorsqu'une bonne partie de la feature/bug est complété et lorsque le code se compile.
+De plus, lorsqu'un membre de l'équipe arrête de travailler sur une feature/bug fix, il est important que celui-ci commit son avancement afin
+de permettre à ses coéquipiers de continuer son travail.
 
 
 
-### Principal Branch
-The base branch of this repository is the main branch. 
+
+### Branches principales
+La seule branche principale est la branche `main`. Celle-ci contient du code qui passe tous les tests de l'application et qui a été
+"reviewé" par les membres de l'équipe afin d'assurer sa qualité.
+
+
+### Quand créer une nouvelle branche ?
+Il est important de créer une nouvelle branche lorsqu'il est question de travailler sur le code, donc lors de l'ajout d'une nouvelle
+feature ou lors d'un bug fix. Une fois le code terminé, la branche créée permettra de créer une Pull Request afin de faire reviewer le code
+par les autres membres de l'équipe et ainsi assurer sa qualité.
+
+
+### Quand faire une demande de changement / d'intégration (pull request / merge request) et sur quelle branche la faire?
+Lorsqu'on désire merger sa pull request, il suffit de faire une demande de changement vers la branche principale, soit la branche 
+`main`.
 
 
 
