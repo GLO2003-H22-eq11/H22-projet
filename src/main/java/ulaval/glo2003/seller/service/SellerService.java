@@ -5,7 +5,6 @@ import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
 
-import java.util.Optional;
 
 public class SellerService {
   private final SellerRepository sellerRepository;
@@ -19,13 +18,7 @@ public class SellerService {
     this.sellerRepository.save(seller);
   }
 
-  public Seller getSellerById(SellerId id) throws SellerNotFoundException {
-    Optional<Seller> seller = this.sellerRepository.findById(id);
-
-    if(seller.isEmpty()) {
-      throw new SellerNotFoundException();
-    }
-
-    return seller.get();
+  public Seller getSellerById(SellerId id) throws GenericException {
+    return this.sellerRepository.findById(id);
   }
 }

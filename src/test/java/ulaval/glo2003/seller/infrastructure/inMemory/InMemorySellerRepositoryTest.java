@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerBuilder;
 import ulaval.glo2003.seller.domain.SellerId;
+import ulaval.glo2003.seller.domain.SellerNotFoundException;
 
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,9 +22,21 @@ class InMemorySellerRepositoryTest {
     }
 
     @Test
-    public void givenASellerAndAnId_whenFindById_thenShouldFindTheSeller(){
-        Optional<Seller> actualSeller = this.inMemorySellerRepository.findById(A_SELLER_ID);
+    public void givenASellerAndAnId_whenFindById_thenShouldFindTheSeller() throws SellerNotFoundException {
+        Seller actualSeller = this.inMemorySellerRepository.findById(A_SELLER_ID);
 
-        assertEquals(A_SELLER, actualSeller.get());
+        assertEquals(A_SELLER, actualSeller);
+    }
+
+    @Test
+    public void givenAnExistentSellerId_whenFindById_thenShouldNotThrow() {
+        assertDoesNotThrow(() -> this.inMemorySellerRepository.findById(A_SELLER_ID));
+    }
+
+    @Test
+    public void givenANonExistentSellerId_whenGetSellerById_thenShouldThrowSellerNotFoundException() {
+        SellerId aSellerId = new SellerId();
+
+        assertThrows(SellerNotFoundException.class, () -> this.inMemorySellerRepository.findById(aSellerId));
     }
 }

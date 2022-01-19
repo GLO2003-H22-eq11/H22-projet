@@ -9,6 +9,7 @@ import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerBuilder;
 import ulaval.glo2003.seller.domain.SellerId;
+import ulaval.glo2003.seller.domain.SellerNotFoundException;
 import ulaval.glo2003.seller.domain.SellerRepository;
 
 import java.util.Optional;
@@ -55,22 +56,5 @@ class SellerServiceTest {
         this.sellerService.getSellerById(aSellerId);
 
         verify(this.sellerRepository).findById(aSellerId);
-    }
-
-    @Test
-    public void givenAnExistentSellerId_whenGetSellerById_thenShouldNotThrow() {
-        SellerId aSellerId = new SellerId();
-        Seller aSeller = new SellerBuilder().build();
-        given(this.sellerRepository.findById(aSellerId)).willReturn(Optional.of(aSeller));
-
-        assertDoesNotThrow(() -> this.sellerService.getSellerById(aSellerId));
-    }
-
-    @Test
-    public void givenANonExistentSellerId_whenGetSellerById_thenShouldThrowSellerNotFoundException() {
-        SellerId aSellerId = new SellerId();
-        given(this.sellerRepository.findById(aSellerId)).willReturn(Optional.empty());
-
-        assertThrows(SellerNotFoundException.class, () -> this.sellerService.getSellerById(aSellerId));
     }
 }

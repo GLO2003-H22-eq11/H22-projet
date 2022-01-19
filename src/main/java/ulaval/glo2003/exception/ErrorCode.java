@@ -6,7 +6,6 @@ public enum ErrorCode {
     ITEM_NOT_FOUND(404, "un élément est introuvable (id invalide ou inexistant)");
 
     private final int code;
-
     private final String description;
 
     ErrorCode(int code, String description) {

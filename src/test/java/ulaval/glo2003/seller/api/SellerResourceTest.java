@@ -12,12 +12,10 @@ import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerBuilder;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerIdFactory;
-import ulaval.glo2003.seller.service.SellerNotFoundException;
 import ulaval.glo2003.seller.service.SellerService;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -114,7 +112,7 @@ public class SellerResourceTest {
         return aSellerResponse;
     }
 
-    private Seller givenASeller() throws SellerNotFoundException {
+    private Seller givenASeller() throws GenericException {
         Seller aSeller = new SellerBuilder().build();
         given(this.sellerService.getSellerById(A_SELLER_ID)).willReturn(aSeller);
         return aSeller;

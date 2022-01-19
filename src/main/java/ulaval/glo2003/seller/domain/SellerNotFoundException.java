@@ -1,4 +1,4 @@
-package ulaval.glo2003.seller.service;
+package ulaval.glo2003.seller.domain;
 
 import ulaval.glo2003.exception.ErrorCode;
 import ulaval.glo2003.exception.ErrorResponse;
@@ -11,5 +11,10 @@ public class SellerNotFoundException extends GenericException {
   @Override
   public ErrorResponse getErrorResponse() {
     return this.errorCode.toErrorResponse();
+  }
+
+  @Override
+  public int getStatus() {
+    return this.errorCode.getCode();
   }
 }

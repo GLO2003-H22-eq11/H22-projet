@@ -46,7 +46,7 @@ public class SellerResource {
       URI uri = URI.create(endpoint + "/" + seller.getStringId());
       return Response.created(uri).build();
     } catch (GenericException e) {
-      return Response.ok(e.getErrorResponse()).build();
+      return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
     }
 
   }
@@ -54,13 +54,17 @@ public class SellerResource {
   @GET
   @Path("/{id}")
   @Produces(MediaType.APPLICATION_JSON)
-  public Response getSellerById(@PathParam("id") String id) throws GenericException {
-    SellerId sellerId = this.sellerIdFactory.create(id);
+  public Response getSellerById(@PathParam("id") String id) {
+    try {
+      SellerId sellerId = this.sellerIdFactory.create(id);
 
-    Seller seller = this.sellerService.getSellerById(sellerId);
+      Seller seller = this.sellerService.getSellerById(sellerId);
 
-    SellerResponse sellerResponse = this.sellerAssembler.toResponse(seller);
+      SellerResponse sellerResponse = this.sellerAssembler.toResponse(seller);
 
-    return Response.ok().entity(sellerResponse).build();
+      return Response.ok().entity(sellerResponse).build();
+    } catch (GenericException e) {
+      return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
+    }
   }
 }
