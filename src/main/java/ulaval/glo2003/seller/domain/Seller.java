@@ -15,7 +15,7 @@ public class Seller {
   private final LocalDate birthDate;
   private final LocalDateTime createdAt;
   private final List<Product> products;
-  private final static int MAJOR_AGE = 18;
+  private static final int MAJOR_AGE = 18;
 
   public Seller(SellerId sellerId, String name, String bio, LocalDate birthDate, LocalDateTime createdAt, List<Product> products) {
     this.sellerId = sellerId;

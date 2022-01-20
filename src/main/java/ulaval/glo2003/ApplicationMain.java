@@ -20,35 +20,35 @@ import java.net.URI;
 
 public class ApplicationMain {
 
-    private static final String URL = "http://localhost:8080/";
-    private static final String PACKAGE = "ulaval.glo2003";
+  private static final String URL = "http://localhost:8080/";
+  private static final String PACKAGE = "ulaval.glo2003";
 
-    public static void main(String[] args) throws IOException {
-        ResourceConfig resourceConfig = setupResources();
-        URI uri = URI.create(URL);
+  public static void main(String[] args) throws IOException {
+    ResourceConfig resourceConfig = setupResources();
+    URI uri = URI.create(URL);
 
-        HttpServer server = GrizzlyHttpServerFactory.createHttpServer(uri, resourceConfig);
-        server.start();
-    }
+    HttpServer server = GrizzlyHttpServerFactory.createHttpServer(uri, resourceConfig);
+    server.start();
+  }
 
-    private static ResourceConfig setupResources() {
-        HealthResource healthResource = new HealthResource();
-        SellerResource sellerResource = createSellerResource();
+  private static ResourceConfig setupResources() {
+    HealthResource healthResource = new HealthResource();
+    SellerResource sellerResource = createSellerResource();
 
-        return new ResourceConfig()
-                .packages(PACKAGE).register(healthResource).register(sellerResource);
-    }
+    return new ResourceConfig()
+            .packages(PACKAGE).register(healthResource).register(sellerResource);
+  }
 
-    private static SellerResource createSellerResource() {
-        SellerFactory sellerFactory = new SellerFactory();
-        SellerIdFactory sellerIdFactory = new SellerIdFactory();
-        SellerRepository sellerRepository = new InMemorySellerRepository();
-        SellerService sellerService = new SellerService(sellerRepository);
-        ConstraintsValidator constraintsValidator = new ConstraintsValidator();
-        OffersAssembler offersAssembler = new OffersAssembler();
-        ProductAssembler productAssembler = new ProductAssembler(offersAssembler);
-        SellerAssembler sellerAssembler = new SellerAssembler(productAssembler);
+  private static SellerResource createSellerResource() {
+    SellerFactory sellerFactory = new SellerFactory();
+    SellerIdFactory sellerIdFactory = new SellerIdFactory();
+    SellerRepository sellerRepository = new InMemorySellerRepository();
+    SellerService sellerService = new SellerService(sellerRepository);
+    ConstraintsValidator constraintsValidator = new ConstraintsValidator();
+    OffersAssembler offersAssembler = new OffersAssembler();
+    ProductAssembler productAssembler = new ProductAssembler(offersAssembler);
+    SellerAssembler sellerAssembler = new SellerAssembler(productAssembler);
 
-        return new SellerResource(sellerFactory, sellerService, sellerAssembler, constraintsValidator, sellerIdFactory);
-    }
+    return new SellerResource(sellerFactory, sellerService, sellerAssembler, constraintsValidator, sellerIdFactory);
+  }
 }

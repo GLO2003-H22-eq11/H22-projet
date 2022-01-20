@@ -8,15 +8,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HealthResourceTest {
 
-    private HealthResource healthResource = new HealthResource();
+  private HealthResource healthResource = new HealthResource();
 
-    @Test
-    public void whenGetHealth_thenShouldReturnOkStatus() {
-        int expectedStatus = 200;
+  @Test
+  public void whenGetHealth_thenShouldReturnOkStatus() {
+    int expectedStatus = 200;
 
-        Response actualResponse = healthResource.getHealth();
+    Response actualResponse = healthResource.getHealth();
 
-        assertEquals(expectedStatus, actualResponse.getStatus());
-    }
+    assertEquals(expectedStatus, actualResponse.getStatus());
+  }
 
 }

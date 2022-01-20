@@ -22,39 +22,39 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 class SellerServiceTest {
 
-    @Mock
-    private Seller seller;
+  @Mock
+  private Seller seller;
 
-    @Mock
-    private SellerRepository sellerRepository;
+  @Mock
+  private SellerRepository sellerRepository;
 
-    private SellerService sellerService;
+  private SellerService sellerService;
 
-    @BeforeEach
-    public void setUp() {
-        this.sellerService = new SellerService(this.sellerRepository);
-    }
+  @BeforeEach
+  public void setUp() {
+    this.sellerService = new SellerService(this.sellerRepository);
+  }
 
-    @Test
-    public void givenAMajorSeller_whenAddSeller_thenShouldAddTheSeller() throws GenericException {
-        this.sellerService.addSeller(this.seller);
+  @Test
+  public void givenAMajorSeller_whenAddSeller_thenShouldAddTheSeller() throws GenericException {
+    this.sellerService.addSeller(this.seller);
 
-        verify(this.sellerRepository).save(this.seller);
-    }
+    verify(this.sellerRepository).save(this.seller);
+  }
 
-    @Test
-    public void givenAMinorSeller_whenAddSeller_thenShouldAddTheSeller() throws GenericException {
-        this.sellerService.addSeller(this.seller);
+  @Test
+  public void givenAMinorSeller_whenAddSeller_thenShouldAddTheSeller() throws GenericException {
+    this.sellerService.addSeller(this.seller);
 
-        verify(this.seller).verifyIfMajor();
-    }
+    verify(this.seller).verifyIfMajor();
+  }
 
-    @Test
-    public void givenASellerId_whenGetSellerById_thenShouldFindById() throws GenericException {
-        SellerId aSellerId = new SellerId();
+  @Test
+  public void givenASellerId_whenGetSellerById_thenShouldFindById() throws GenericException {
+    SellerId aSellerId = new SellerId();
 
-        this.sellerService.getSellerById(aSellerId);
+    this.sellerService.getSellerById(aSellerId);
 
-        verify(this.sellerRepository).findById(aSellerId);
-    }
+    verify(this.sellerRepository).findById(aSellerId);
+  }
 }

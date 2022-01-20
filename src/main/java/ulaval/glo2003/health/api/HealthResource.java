@@ -11,9 +11,9 @@ import jakarta.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 public class HealthResource {
 
-    @GET
-    public Response getHealth() {
-        return Response.ok().build();
-    }
+  @GET
+  public Response getHealth() {
+    return Response.ok().build();
+  }
 
 }

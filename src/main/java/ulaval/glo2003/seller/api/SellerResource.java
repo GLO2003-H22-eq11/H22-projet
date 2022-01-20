@@ -27,7 +27,13 @@ public class SellerResource {
   private final ConstraintsValidator constraintsValidator;
   private final SellerIdFactory sellerIdFactory;
 
-  public SellerResource(SellerFactory sellerFactory, SellerService sellerService, SellerAssembler sellerAssembler, ConstraintsValidator constraintsValidator, SellerIdFactory sellerIdFactory) {
+  public SellerResource(
+          SellerFactory sellerFactory,
+          SellerService sellerService,
+          SellerAssembler sellerAssembler,
+          ConstraintsValidator constraintsValidator,
+          SellerIdFactory sellerIdFactory
+  ) {
     this.sellerFactory = sellerFactory;
     this.sellerService = sellerService;
     this.sellerAssembler = sellerAssembler;

@@ -18,7 +18,7 @@ public class InMemorySellerRepository implements SellerRepository {
   @Override
   public Seller findById(SellerId id) throws SellerNotFoundException {
     Seller seller = this.sellers.get(id);
-    if(seller == null) {
+    if (seller == null) {
       throw new SellerNotFoundException();
     }
     return seller;
