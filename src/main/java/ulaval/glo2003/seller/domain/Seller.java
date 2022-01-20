@@ -1,13 +1,12 @@
 package ulaval.glo2003.seller.domain;
 
-import lombok.EqualsAndHashCode;
 import ulaval.glo2003.exception.GenericException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.util.Objects;
 
-@EqualsAndHashCode
 public class Seller {
   private final SellerId sellerId;
   private final String name;
@@ -58,5 +57,18 @@ public class Seller {
 
   public String getBio() {
     return this.bio;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Seller seller = (Seller) o;
+    return sellerId.equals(seller.sellerId) && name.equals(seller.name) && bio.equals(seller.bio) && birthDate.equals(seller.birthDate) && createdAt.equals(seller.createdAt);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(sellerId, name, bio, birthDate, createdAt);
   }
 }
