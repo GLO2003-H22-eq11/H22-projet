@@ -17,7 +17,14 @@ public class Seller {
   private final List<Product> products;
   private static final int MAJOR_AGE = 18;
 
-  public Seller(SellerId sellerId, String name, String bio, LocalDate birthDate, LocalDateTime createdAt, List<Product> products) {
+  public Seller(
+          SellerId sellerId,
+          String name,
+          String bio,
+          LocalDate birthDate,
+          LocalDateTime createdAt,
+          List<Product> products
+  ) {
     this.sellerId = sellerId;
     this.name = name;
     this.bio = bio;
@@ -71,7 +78,9 @@ public class Seller {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Seller seller = (Seller) o;
-    return sellerId.equals(seller.sellerId) && name.equals(seller.name) && bio.equals(seller.bio) && birthDate.equals(seller.birthDate) && createdAt.equals(seller.createdAt);
+    return sellerId.equals(seller.sellerId) && name.equals(seller.name)
+            && bio.equals(seller.bio) && birthDate.equals(seller.birthDate)
+            && createdAt.equals(seller.createdAt);
   }
 
   @Override

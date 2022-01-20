@@ -8,16 +8,16 @@ public class SellerAssembler {
   private final ProductAssembler productAssembler;
 
   public SellerAssembler(ProductAssembler productAssembler) {
-      this.productAssembler = productAssembler;
+    this.productAssembler = productAssembler;
   }
 
   public SellerResponse toResponse(Seller seller) {
-      return new SellerResponse(
-              seller.getStringSellerId(),
-              seller.getName(),
-              seller.getStringCreatedAt(),
-              seller.getBio(),
-              seller.getProducts().stream().map(this.productAssembler::toResponse).collect(Collectors.toList())
-      );
+    return new SellerResponse(
+            seller.getStringSellerId(),
+            seller.getName(),
+            seller.getStringCreatedAt(),
+            seller.getBio(),
+            seller.getProducts().stream().map(this.productAssembler::toResponse).collect(Collectors.toList())
+    );
   }
 }

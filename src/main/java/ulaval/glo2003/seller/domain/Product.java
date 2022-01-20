@@ -11,7 +11,14 @@ public class Product {
   private final Offers offers;
 
 
-  public Product(ProductId productId, LocalDateTime createdAt, String title, String description, Amount suggestedPrice, Offers offers) {
+  public Product(
+          ProductId productId,
+          LocalDateTime createdAt,
+          String title,
+          String description,
+          Amount suggestedPrice,
+          Offers offers
+  ) {
     this.productId = productId;
     this.createdAt = createdAt;
     this.title = title;

@@ -8,7 +8,14 @@ public class ProductResponse {
   public final int suggestedPrice;
   public final OffersResponse offers;
 
-  public ProductResponse(String productId, String createdAt, String title, String description, int suggestedPrice, OffersResponse offers) {
+  public ProductResponse(
+          String productId,
+          String createdAt,
+          String title,
+          String description,
+          int suggestedPrice,
+          OffersResponse offers
+  ) {
     this.productId = productId;
     this.createdAt = createdAt;
     this.title = title;
