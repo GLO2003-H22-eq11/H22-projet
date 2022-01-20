@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.Objects;
+import java.util.List;
 
 public class Seller {
   private final SellerId sellerId;
@@ -13,14 +14,16 @@ public class Seller {
   private final String bio;
   private final LocalDate birthDate;
   private final LocalDateTime createdAt;
+  private final List<Product> products;
   private final static int MAJOR_AGE = 18;
 
-  public Seller(SellerId sellerId, String name, String bio, LocalDate birthDate, LocalDateTime createdAt) {
+  public Seller(SellerId sellerId, String name, String bio, LocalDate birthDate, LocalDateTime createdAt, List<Product> products) {
     this.sellerId = sellerId;
     this.name = name;
     this.bio = bio;
     this.birthDate = birthDate;
     this.createdAt = createdAt;
+    this.products = products;
   }
 
   public SellerId getSellerId() {
@@ -57,6 +60,10 @@ public class Seller {
 
   public String getBio() {
     return this.bio;
+  }
+
+  public List<Product> getProducts() {
+    return this.products;
   }
 
   @Override

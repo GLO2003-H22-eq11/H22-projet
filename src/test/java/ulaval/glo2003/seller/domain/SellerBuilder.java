@@ -2,6 +2,8 @@ package ulaval.glo2003.seller.domain;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
 
 public class SellerBuilder {
   private SellerId sellerId;
@@ -9,6 +11,7 @@ public class SellerBuilder {
   private String bio;
   private LocalDate birthDate;
   private final LocalDateTime createdAt;
+  private List<Product> products;
 
   public SellerBuilder() {
     this.sellerId = new SellerId();
@@ -16,20 +19,11 @@ public class SellerBuilder {
     this.bio = "Je suis le meilleur programmeur à l'uni";
     this.birthDate = LocalDate.of(2000, 10, 5);
     this.createdAt = LocalDateTime.now();
+    this.products = Collections.emptyList();
   }
 
   public SellerBuilder withSellerId(SellerId sellerId) {
     this.sellerId = sellerId;
-    return this;
-  }
-
-  public SellerBuilder withName(String name) {
-    this.name = name;
-    return this;
-  }
-
-  public SellerBuilder withBio(String bio) {
-    this.bio = bio;
     return this;
   }
 
@@ -44,7 +38,8 @@ public class SellerBuilder {
             this.name,
             this.bio,
             this.birthDate,
-            this.createdAt
+            this.createdAt,
+            this.products
     );
   }
 }

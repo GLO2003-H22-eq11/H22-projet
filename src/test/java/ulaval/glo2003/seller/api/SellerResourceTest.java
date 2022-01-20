@@ -15,6 +15,8 @@ import ulaval.glo2003.seller.domain.SellerIdFactory;
 import ulaval.glo2003.seller.service.SellerService;
 
 
+import java.util.Collections;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -79,7 +81,7 @@ public class SellerResourceTest {
     }
 
     @Test
-    public void givenASellerId_whenGetSellerById_thenShouldCreateSellerId() throws GenericException {
+    public void givenASellerId_whenGetSellerById_thenShouldCreateSellerId() {
         this.sellerResource.getSellerById(A_SELLER_STRING_ID);
 
         verify(this.sellerIdFactory).create(A_SELLER_STRING_ID);
@@ -107,7 +109,7 @@ public class SellerResourceTest {
     }
 
     private SellerResponse givenASellerResponse(Seller aSeller) {
-        SellerResponse aSellerResponse = new SellerResponse(A_SELLER_STRING_ID, "allo", "created", "bio");
+        SellerResponse aSellerResponse = new SellerResponse(A_SELLER_STRING_ID, "allo", "created", "bio", Collections.emptyList());
         given(this.sellerAssembler.toResponse(aSeller)).willReturn(aSellerResponse);
         return aSellerResponse;
     }

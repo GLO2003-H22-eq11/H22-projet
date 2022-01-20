@@ -5,6 +5,8 @@ import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import ulaval.glo2003.exception.ConstraintsValidator;
 import ulaval.glo2003.health.api.HealthResource;
+import ulaval.glo2003.seller.api.OffersAssembler;
+import ulaval.glo2003.seller.api.ProductAssembler;
 import ulaval.glo2003.seller.api.SellerAssembler;
 import ulaval.glo2003.seller.api.SellerFactory;
 import ulaval.glo2003.seller.api.SellerResource;
@@ -43,7 +45,9 @@ public class ApplicationMain {
         SellerRepository sellerRepository = new InMemorySellerRepository();
         SellerService sellerService = new SellerService(sellerRepository);
         ConstraintsValidator constraintsValidator = new ConstraintsValidator();
-        SellerAssembler sellerAssembler = new SellerAssembler();
+        OffersAssembler offersAssembler = new OffersAssembler();
+        ProductAssembler productAssembler = new ProductAssembler(offersAssembler);
+        SellerAssembler sellerAssembler = new SellerAssembler(productAssembler);
 
         return new SellerResource(sellerFactory, sellerService, sellerAssembler, constraintsValidator, sellerIdFactory);
     }
