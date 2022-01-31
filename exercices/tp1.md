@@ -91,6 +91,8 @@ Lorsqu'on désire merger sa pull request, il suffit de faire une demande de chan
 ![image](https://user-images.githubusercontent.com/47373969/151822473-db2cafa4-bea0-45da-a71e-f8ab696684dc.png)
 ![image](https://user-images.githubusercontent.com/47373969/151824183-26b20ea7-1f58-4d06-9738-f9a562f1858f.png)
 ![image](https://user-images.githubusercontent.com/47373969/151824842-298acae0-7e18-41bd-9b6b-65228b818d68.png)
+![image](https://user-images.githubusercontent.com/47373969/151824969-6593e9ad-a0e8-4374-b2a4-2b591e31a3dc.png)
+
 
 
 
