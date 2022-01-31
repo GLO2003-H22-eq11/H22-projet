@@ -41,6 +41,26 @@ Lorsqu'on désire merger sa pull request, il suffit de faire une demande de chan
 
 ## Planification du travail sur github
 
-### Project comprenant les colonnes et les issues associées
+### Photo comprenant les colonnes et les issues associées
+
+<img width="1673" alt="colonne_issues" src="https://user-images.githubusercontent.com/47373969/151815011-1b0af4a3-b200-434b-9619-7ea45b24e4e7.png">
+
+
+### Photo pour le milestone comprenant le titre, la description et les issues associées
+
+<img width="1406" alt="milestone" src="https://user-images.githubusercontent.com/47373969/151816112-7ed66381-e8c6-4cb8-975f-65789819992f.png">
+
+
+## Photo pour les issues avec tous les éléments demandés visibles
+
+<img width="1327" alt="issues" src="https://user-images.githubusercontent.com/47373969/151816494-6cc7b3f0-f414-4ce7-be0b-acf71627d5fb.png">
+
+#### Issues plus en détails
+
+<img width="1429" alt="issues1" src="https://user-images.githubusercontent.com/47373969/151816628-dfad092d-0751-408f-b797-5cbb8f82fb96.png">
+<img width="1418" alt="issues2" src="https://user-images.githubusercontent.com/47373969/151816633-f2cb8b85-529f-40e1-be03-123a23aa7b85.png">
+<img width="1173" alt="issues3" src="https://user-images.githubusercontent.com/47373969/151816634-52240888-6a1c-4622-89db-87593ec46a2f.png">
+
+
 
 
