@@ -62,5 +62,12 @@ Lorsqu'on désire merger sa pull request, il suffit de faire une demande de chan
 <img width="1173" alt="issues3" src="https://user-images.githubusercontent.com/47373969/151816634-52240888-6a1c-4622-89db-87593ec46a2f.png">
 
 
+### Photo pour les PR avec tous les éléments demandés visibles
+
+![Screen Shot 2022-01-31 at 10 03 55 AM](https://user-images.githubusercontent.com/47373969/151818047-762cecec-7796-4b77-9986-82e7e7c527f7.png)
+![Screen Shot 2022-01-31 at 10 02 52 AM](https://user-images.githubusercontent.com/47373969/151818087-c835afbd-db6e-4fa8-8a3d-0be766c0a01d.png)
+
+
+
 
 
