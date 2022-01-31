@@ -20,7 +20,7 @@ import java.net.URI;
 @Path("/sellers")
 @Produces(MediaType.APPLICATION_JSON)
 public class SellerResource {
-  private static final String endpoint = "sellers";
+  private static final String ENDPOINT = "sellers";
   private final SellerFactory sellerFactory;
   private final SellerService sellerService;
   private final SellerAssembler sellerAssembler;
@@ -49,7 +49,7 @@ public class SellerResource {
       Seller seller = this.sellerFactory.create(sellerRequest);
       this.sellerService.addSeller(seller);
 
-      URI uri = URI.create(endpoint + "/" + seller.getStringId());
+      URI uri = URI.create(ENDPOINT + "/" + seller.getStringId());
       return Response.created(uri).build();
     } catch (GenericException e) {
       return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
