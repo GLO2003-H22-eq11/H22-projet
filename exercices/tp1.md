@@ -39,4 +39,8 @@ Lorsqu'on désire merger sa pull request, il suffit de faire une demande de chan
 `main`.
 
 
+## Planification du travail sur github
+
+### Project comprenant les colonnes et les issues associées
+
 
