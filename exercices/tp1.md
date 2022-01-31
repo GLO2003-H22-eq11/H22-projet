@@ -1,4 +1,3 @@
-![Screen Shot 2022-01-31 at 10 01 12 AM](https://user-images.githubusercontent.com/47373969/151819343-c58ca029-5001-4ebf-b028-306f8ae87d17.png)
 # TP1
 
 ## Conventions de commit
@@ -67,6 +66,9 @@ Lorsqu'on désire merger sa pull request, il suffit de faire une demande de chan
 
 ![Screen Shot 2022-01-31 at 10 03 55 AM](https://user-images.githubusercontent.com/47373969/151818047-762cecec-7796-4b77-9986-82e7e7c527f7.png)
 ![Screen Shot 2022-01-31 at 10 02 52 AM](https://user-images.githubusercontent.com/47373969/151818087-c835afbd-db6e-4fa8-8a3d-0be766c0a01d.png)
+![Screen Shot 2022-01-31 at 10 01 12 AM](https://user-images.githubusercontent.com/47373969/151819343-c58ca029-5001-4ebf-b028-306f8ae87d17.png)
+![Screen Shot 2022-01-31 at 10 01 54 AM](https://user-images.githubusercontent.com/47373969/151819511-a78cad17-1de5-4c3a-9fbe-be38b80b8313.png)
+
 
 
 
