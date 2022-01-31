@@ -51,9 +51,13 @@ Lorsqu'on désire merger sa pull request, il suffit de faire une demande de chan
 <img width="1406" alt="milestone" src="https://user-images.githubusercontent.com/47373969/151816112-7ed66381-e8c6-4cb8-975f-65789819992f.png">
 
 
+
+
 ### Photo pour les issues avec tous les éléments demandés visibles
 
 <img width="1327" alt="issues" src="https://user-images.githubusercontent.com/47373969/151816494-6cc7b3f0-f414-4ce7-be0b-acf71627d5fb.png">
+
+
 
 #### Issues plus en détails
 
@@ -61,9 +65,12 @@ Lorsqu'on désire merger sa pull request, il suffit de faire une demande de chan
 <img width="1418" alt="issues2" src="https://user-images.githubusercontent.com/47373969/151816633-f2cb8b85-529f-40e1-be03-123a23aa7b85.png">
 <img width="1173" alt="issues3" src="https://user-images.githubusercontent.com/47373969/151816634-52240888-6a1c-4622-89db-87593ec46a2f.png">
 
+
+
 ### Nous avons rajouté quelques issues au cours du développement pour améliorer le projet, par exemple rajouter un linter, rajouter une meilleur gestion des exceptions, faire des modifications suite aux nouvelles demandes et etc... Voici la liste des issues lors de la fin du TP1
 
 ![Screen Shot 2022-01-31 at 10 20 24 AM](https://user-images.githubusercontent.com/47373969/151820576-2986d07b-2f1c-4daf-9620-cc77b4539303.png)
+
 
 #### Issues rajoutés plus en détails 
 
@@ -84,6 +91,8 @@ Lorsqu'on désire merger sa pull request, il suffit de faire une demande de chan
 ![Screen Shot 2022-01-31 at 10 02 52 AM](https://user-images.githubusercontent.com/47373969/151818087-c835afbd-db6e-4fa8-8a3d-0be766c0a01d.png)
 ![Screen Shot 2022-01-31 at 10 01 12 AM](https://user-images.githubusercontent.com/47373969/151819343-c58ca029-5001-4ebf-b028-306f8ae87d17.png)
 ![Screen Shot 2022-01-31 at 10 01 54 AM](https://user-images.githubusercontent.com/47373969/151819511-a78cad17-1de5-4c3a-9fbe-be38b80b8313.png)
+
+
 
 
 ### Photo pour les PR avec les issues rajoutés 
