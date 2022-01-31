@@ -27,3 +27,6 @@ dependency-reduced-pom.xml
 node_modules
 © 2022 GitHub, Inc.
 Terms
+
+# config
+./config
