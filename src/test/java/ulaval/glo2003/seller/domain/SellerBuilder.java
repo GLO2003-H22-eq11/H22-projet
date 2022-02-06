@@ -1,5 +1,7 @@
 package ulaval.glo2003.seller.domain;
 
+import ulaval.glo2003.products.domain.Product;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;

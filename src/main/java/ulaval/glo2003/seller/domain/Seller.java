@@ -1,6 +1,7 @@
 package ulaval.glo2003.seller.domain;
 
 import ulaval.glo2003.exception.GenericException;
+import ulaval.glo2003.products.domain.Product;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

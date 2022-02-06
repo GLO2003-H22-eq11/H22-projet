@@ -1,30 +1,42 @@
-package ulaval.glo2003.seller.domain;
+package ulaval.glo2003.products.domain;
+
+import ulaval.glo2003.seller.domain.SellerId;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Product {
+  private final SellerId sellerId;
   private final ProductId productId;
-  private final LocalDateTime createdAt;
   private final String title;
   private final String description;
   private final Amount suggestedPrice;
   private final Offers offers;
+  private final List<ProductCategory> productCategories;
+  private final LocalDateTime createdAt;
 
 
   public Product(
-          ProductId productId,
-          LocalDateTime createdAt,
+          SellerId sellerId, ProductId productId,
           String title,
           String description,
           Amount suggestedPrice,
-          Offers offers
+          Offers offers,
+          List<ProductCategory> productCategories,
+          LocalDateTime createdAt
   ) {
+    this.sellerId = sellerId;
     this.productId = productId;
     this.createdAt = createdAt;
     this.title = title;
     this.description = description;
     this.suggestedPrice = suggestedPrice;
     this.offers = offers;
+    this.productCategories = productCategories;
+  }
+
+  public SellerId getSellerId() {
+    return this.sellerId;
   }
 
   public String getStringProductId() {
@@ -49,5 +61,9 @@ public class Product {
 
   public Offers getOffers() {
     return this.offers;
+  }
+
+  public String getStringId() {
+    return this.productId.toString();
   }
 }

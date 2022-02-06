@@ -3,17 +3,9 @@ package ulaval.glo2003;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
-import ulaval.glo2003.exception.ConstraintsValidator;
 import ulaval.glo2003.health.api.HealthResource;
-import ulaval.glo2003.seller.api.OffersAssembler;
-import ulaval.glo2003.seller.api.ProductAssembler;
-import ulaval.glo2003.seller.api.SellerAssembler;
-import ulaval.glo2003.seller.api.SellerFactory;
+import ulaval.glo2003.products.api.ProductResource;
 import ulaval.glo2003.seller.api.SellerResource;
-import ulaval.glo2003.seller.domain.SellerIdFactory;
-import ulaval.glo2003.seller.domain.SellerRepository;
-import ulaval.glo2003.seller.infrastructure.inMemory.InMemorySellerRepository;
-import ulaval.glo2003.seller.service.SellerService;
 
 import java.io.IOException;
 import java.net.URI;
@@ -22,6 +14,7 @@ public class ApplicationMain {
 
   private static final String URL = "http://localhost:8080/";
   private static final String PACKAGE = "ulaval.glo2003";
+  private static final AppContext appContext = new AppContext();
 
   public static void main(String[] args) throws IOException {
     ResourceConfig resourceConfig = setupResources();
@@ -34,21 +27,31 @@ public class ApplicationMain {
   private static ResourceConfig setupResources() {
     HealthResource healthResource = new HealthResource();
     SellerResource sellerResource = createSellerResource();
+    ProductResource productResource = createProductResource();
 
-    return new ResourceConfig()
-            .packages(PACKAGE).register(healthResource).register(sellerResource);
+    return new ResourceConfig().packages(PACKAGE)
+            .register(healthResource)
+            .register(sellerResource)
+            .register(productResource);
+  }
+
+  private static ProductResource createProductResource() {
+    return new ProductResource(
+            appContext.constraintsValidator,
+            appContext.sellerIdFactory,
+            appContext.productFactory,
+            appContext.productService
+    );
+
   }
 
   private static SellerResource createSellerResource() {
-    SellerFactory sellerFactory = new SellerFactory();
-    SellerIdFactory sellerIdFactory = new SellerIdFactory();
-    SellerRepository sellerRepository = new InMemorySellerRepository();
-    SellerService sellerService = new SellerService(sellerRepository);
-    ConstraintsValidator constraintsValidator = new ConstraintsValidator();
-    OffersAssembler offersAssembler = new OffersAssembler();
-    ProductAssembler productAssembler = new ProductAssembler(offersAssembler);
-    SellerAssembler sellerAssembler = new SellerAssembler(productAssembler);
-
-    return new SellerResource(sellerFactory, sellerService, sellerAssembler, constraintsValidator, sellerIdFactory);
+    return new SellerResource(
+            appContext.sellerFactory,
+            appContext.sellerService,
+            appContext.sellerAssembler,
+            appContext.constraintsValidator,
+            appContext.sellerIdFactory
+    );
   }
 }

@@ -10,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class DateParserTest {
 
   @Test
-  public void givenAStringDateIncorrectFormat_whenFormat_thenShouldFormatInLocalDate() {
-    String aDate = "10/08/2002";
-    LocalDate expectedDate = LocalDate.of(2002, 8, 10);
+  public void givenAStringDateInCorrectFormat_whenFormat_thenShouldFormatInLocalDate() {
+    String aDate = "2002-10-08";
+    LocalDate expectedDate = LocalDate.of(2002, 10, 8);
 
     LocalDate actualDate = DateParser.format(aDate);
 
@@ -21,21 +21,21 @@ class DateParserTest {
 
   @Test
   public void givenAStringDateInIncorrectFormat_whenFormat_thenShouldThrowDateTimeParseException() {
-    String anIncorrectDate = "10-08-2002";
+    String anIncorrectDate = "2002/10/08";
 
     assertThrows(DateTimeParseException.class, () -> DateParser.format(anIncorrectDate));
   }
 
   @Test
   public void givenAStringDateWithIncorrectDayNumber_whenFormat_thenShouldThrowDateTimeParseException() {
-    String anIncorrectDate = "40/08/2002";
+    String anIncorrectDate = "2002-08-40";
 
     assertThrows(DateTimeParseException.class, () -> DateParser.format(anIncorrectDate));
   }
 
   @Test
   public void givenAStringDateWithIncorrectMonthNumber_whenFormat_thenShouldThrowDateTimeParseException() {
-    String anIncorrectDate = "20/13/2002";
+    String anIncorrectDate = "2002-20-13";
 
     assertThrows(DateTimeParseException.class, () -> DateParser.format(anIncorrectDate));
   }

@@ -1,6 +1,6 @@
-package ulaval.glo2003.seller.api;
+package ulaval.glo2003.products.api;
 
-import ulaval.glo2003.seller.domain.Offers;
+import ulaval.glo2003.products.domain.Offers;
 
 public class OffersAssembler {
 
