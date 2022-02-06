@@ -43,6 +43,7 @@ public class ProductResource {
 
       SellerId sellerId = this.sellerIdFactory.create(sellerIdString);
       Product product = this.productFactory.create(productRequest, sellerId);
+
       this.productService.addProduct(product);
 
       URI uri = URI.create(ENDPOINT + "/" + product.getStringId());

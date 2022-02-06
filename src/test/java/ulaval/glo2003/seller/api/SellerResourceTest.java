@@ -64,7 +64,7 @@ public class SellerResourceTest {
 
   @Test
   public void givenASellerRequest_whenCreateSeller_thenShouldAddSeller() throws GenericException {
-    given(this.sellerFactory.create(sellerRequest)).willReturn(this.seller);
+    given(this.sellerFactory.create(this.sellerRequest)).willReturn(this.seller);
 
     this.sellerResource.createSeller(this.sellerRequest);
 
@@ -73,7 +73,7 @@ public class SellerResourceTest {
 
   @Test
   public void givenASellerRequest_whenAddSeller_thenShouldCallTheConstraintValidator() throws GenericException {
-    given(this.sellerFactory.create(sellerRequest)).willReturn(this.seller);
+    given(this.sellerFactory.create(this.sellerRequest)).willReturn(this.seller);
 
     this.sellerResource.createSeller(this.sellerRequest);
 
