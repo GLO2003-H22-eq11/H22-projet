@@ -45,6 +45,9 @@ public class SellerResourceTest {
   @Mock
   private SellerIdFactory sellerIdFactory;
 
+  @Mock
+  private SellerRequestValidator sellerRequestValidator;
+
   private SellerResource sellerResource;
 
   private final static String A_SELLER_STRING_ID = "5a3e3b0b-19a6-46cd-a0fe-bf16f42ba492";
@@ -58,7 +61,8 @@ public class SellerResourceTest {
             this.sellerService,
             this.sellerAssembler,
             this.constraintsValidator,
-            this.sellerIdFactory
+            this.sellerIdFactory,
+            this.sellerRequestValidator
     );
   }
 
@@ -69,6 +73,15 @@ public class SellerResourceTest {
     this.sellerResource.createSeller(this.sellerRequest);
 
     verify(this.sellerService).addSeller(this.seller);
+  }
+
+  @Test
+  public void givenASellerRequest_whenAddSeller_thenShouldCallTheSellerRequestValidator() throws GenericException {
+    given(this.sellerFactory.create(this.sellerRequest)).willReturn(this.seller);
+
+    this.sellerResource.createSeller(this.sellerRequest);
+
+    verify(this.sellerRequestValidator).validate(this.sellerRequest);
   }
 
   @Test

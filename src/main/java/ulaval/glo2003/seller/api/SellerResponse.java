@@ -1,6 +1,6 @@
 package ulaval.glo2003.seller.api;
 
-import ulaval.glo2003.products.api.ProductResponse;
+import ulaval.glo2003.product.api.ProductResponse;
 
 import java.util.Objects;
 import java.util.List;

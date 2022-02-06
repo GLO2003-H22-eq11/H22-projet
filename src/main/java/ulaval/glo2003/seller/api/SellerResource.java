@@ -26,25 +26,28 @@ public class SellerResource {
   private final SellerAssembler sellerAssembler;
   private final ConstraintsValidator constraintsValidator;
   private final SellerIdFactory sellerIdFactory;
+  private final SellerRequestValidator sellerRequestValidator;
 
   public SellerResource(
           SellerFactory sellerFactory,
           SellerService sellerService,
           SellerAssembler sellerAssembler,
           ConstraintsValidator constraintsValidator,
-          SellerIdFactory sellerIdFactory
-  ) {
+          SellerIdFactory sellerIdFactory,
+          SellerRequestValidator sellerRequestValidator) {
     this.sellerFactory = sellerFactory;
     this.sellerService = sellerService;
     this.sellerAssembler = sellerAssembler;
     this.constraintsValidator = constraintsValidator;
     this.sellerIdFactory = sellerIdFactory;
+    this.sellerRequestValidator = sellerRequestValidator;
   }
 
   @POST
   public Response createSeller(SellerRequest sellerRequest) {
     try {
       this.constraintsValidator.validate(sellerRequest);
+      this.sellerRequestValidator.validate(sellerRequest);
 
       Seller seller = this.sellerFactory.create(sellerRequest);
       this.sellerService.addSeller(seller);
@@ -73,4 +76,5 @@ public class SellerResource {
       return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
     }
   }
+
 }

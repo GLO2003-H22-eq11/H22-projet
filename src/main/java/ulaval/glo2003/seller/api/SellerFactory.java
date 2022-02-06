@@ -8,7 +8,6 @@ import ulaval.glo2003.util.exceptions.InvalidDateFormatException;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 
-
 public class SellerFactory {
 
   public Seller create(SellerRequest sellerRequest) throws InvalidDateFormatException {

@@ -6,17 +6,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
+import ulaval.glo2003.product.domain.ProductRepository;
 import ulaval.glo2003.seller.domain.Seller;
-import ulaval.glo2003.seller.domain.SellerBuilder;
 import ulaval.glo2003.seller.domain.SellerId;
-import ulaval.glo2003.seller.domain.SellerNotFoundException;
 import ulaval.glo2003.seller.domain.SellerRepository;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.BDDMockito.given;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,11 +25,14 @@ class SellerServiceTest {
   @Mock
   private SellerRepository sellerRepository;
 
+  @Mock
+  private ProductRepository productRepository;
+
   private SellerService sellerService;
 
   @BeforeEach
   public void setUp() {
-    this.sellerService = new SellerService(this.sellerRepository);
+    this.sellerService = new SellerService(this.sellerRepository, this.productRepository);
   }
 
   @Test

@@ -1,15 +1,17 @@
 package ulaval.glo2003;
 
 import ulaval.glo2003.exception.ConstraintsValidator;
-import ulaval.glo2003.products.api.OffersAssembler;
-import ulaval.glo2003.products.api.ProductAssembler;
-import ulaval.glo2003.products.api.ProductCategoryAssembler;
-import ulaval.glo2003.products.api.ProductFactory;
-import ulaval.glo2003.products.domain.ProductRepository;
-import ulaval.glo2003.products.infrastructure.inMemory.InMemoryProductRepository;
-import ulaval.glo2003.products.service.ProductService;
+import ulaval.glo2003.product.api.OffersAssembler;
+import ulaval.glo2003.product.api.ProductAssembler;
+import ulaval.glo2003.product.api.ProductCategoryAssembler;
+import ulaval.glo2003.product.api.ProductFactory;
+import ulaval.glo2003.product.api.ProductRequestValidator;
+import ulaval.glo2003.product.domain.ProductRepository;
+import ulaval.glo2003.product.infrastructure.inMemory.InMemoryProductRepository;
+import ulaval.glo2003.product.service.ProductService;
 import ulaval.glo2003.seller.api.SellerAssembler;
 import ulaval.glo2003.seller.api.SellerFactory;
+import ulaval.glo2003.seller.api.SellerRequestValidator;
 import ulaval.glo2003.seller.domain.SellerIdFactory;
 import ulaval.glo2003.seller.domain.SellerRepository;
 import ulaval.glo2003.seller.infrastructure.inMemory.InMemorySellerRepository;
@@ -32,9 +34,12 @@ public class AppContext {
   public final ProductRepository productRepository = new InMemoryProductRepository();
 
   //services
-  public final SellerService sellerService = new SellerService(sellerRepository);
+  public final SellerService sellerService = new SellerService(sellerRepository, productRepository);
   public final ProductService productService = new ProductService(productRepository);
 
 
+  //validators
   public final ConstraintsValidator constraintsValidator = new ConstraintsValidator();
+  public final ProductRequestValidator productRequestValidator = new ProductRequestValidator();
+  public final SellerRequestValidator sellerRequestValidator = new SellerRequestValidator();
 }

@@ -3,7 +3,7 @@ package ulaval.glo2003.seller.infrastructure.inMemory;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
-import ulaval.glo2003.seller.domain.SellerNotFoundException;
+import ulaval.glo2003.seller.domain.exceptions.SellerNotFoundException;
 
 import java.util.HashMap;
 

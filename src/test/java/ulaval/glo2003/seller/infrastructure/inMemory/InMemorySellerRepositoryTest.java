@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerBuilder;
 import ulaval.glo2003.seller.domain.SellerId;
-import ulaval.glo2003.seller.domain.SellerNotFoundException;
+import ulaval.glo2003.seller.domain.exceptions.SellerNotFoundException;
 
 
 import static org.junit.jupiter.api.Assertions.*;

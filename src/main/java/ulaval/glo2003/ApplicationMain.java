@@ -4,7 +4,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import ulaval.glo2003.health.api.HealthResource;
-import ulaval.glo2003.products.api.ProductResource;
+import ulaval.glo2003.product.api.ProductResource;
 import ulaval.glo2003.seller.api.SellerResource;
 
 import java.io.IOException;
@@ -39,7 +39,8 @@ public class ApplicationMain {
     return new ProductResource(
             appContext.constraintsValidator,
             appContext.productFactory,
-            appContext.productService
+            appContext.productService,
+            appContext.productRequestValidator
     );
 
   }
@@ -50,7 +51,8 @@ public class ApplicationMain {
             appContext.sellerService,
             appContext.sellerAssembler,
             appContext.constraintsValidator,
-            appContext.sellerIdFactory
+            appContext.sellerIdFactory,
+            appContext.sellerRequestValidator
     );
   }
 }

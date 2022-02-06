@@ -1,8 +1,12 @@
 package ulaval.glo2003.seller.domain;
 
 import org.junit.jupiter.api.Test;
+import ulaval.glo2003.product.domain.Product;
+import ulaval.glo2003.product.domain.ProductBuilder;
+import ulaval.glo2003.seller.domain.exceptions.SellerIsMinorException;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,5 +34,17 @@ class SellerTest {
     Seller seller = new SellerBuilder().withBirthDate(aBirthDateOfA17YearsOld).build();
 
     assertThrows(SellerIsMinorException.class, seller::verifyIfMajor);
+  }
+
+  @Test
+  public void givenASellerWithNoProducts_whenAddProduct_thenShouldAdd() {
+    Seller seller = new SellerBuilder().build();
+    Product aProduct = new ProductBuilder().build();
+
+    seller.addProduct(aProduct);
+
+    List<Product> actual = seller.getProducts();
+
+    assertEquals(List.of(aProduct), actual);
   }
 }
