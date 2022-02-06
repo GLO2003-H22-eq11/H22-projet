@@ -66,4 +66,8 @@ public class Product {
   public String getStringId() {
     return this.productId.toString();
   }
+
+  public ProductId getProductId() {
+    return this.productId;
+  }
 }

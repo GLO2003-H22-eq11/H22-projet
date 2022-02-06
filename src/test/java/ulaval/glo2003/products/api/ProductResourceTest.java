@@ -11,7 +11,6 @@ import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.products.domain.Product;
 import ulaval.glo2003.products.service.ProductService;
 import ulaval.glo2003.seller.domain.SellerId;
-import ulaval.glo2003.seller.domain.SellerIdFactory;
 
 import java.net.URI;
 
@@ -37,8 +36,6 @@ class ProductResourceTest {
   @Mock
   private ProductRequest productRequest;
 
-  private final SellerIdFactory sellerIdFactory = new SellerIdFactory();
-
   private ProductResource productResource;
 
   private static final String A_SELLER_STRING_ID = "5a3e3b0b-19a6-46cd-a0fe-bf16f42ba492";
@@ -48,7 +45,6 @@ class ProductResourceTest {
   public void setUp() {
     this.productResource = new ProductResource(
             this.constraintsValidator,
-            this.sellerIdFactory,
             this.productFactory,
             this.productService
     );
@@ -87,7 +83,7 @@ class ProductResourceTest {
 
 
   private void givenAProduct() {
-    given(this.productFactory.create(this.productRequest, A_SELLER_ID)).willReturn(this.product);
+    given(this.productFactory.create(this.productRequest, A_SELLER_STRING_ID)).willReturn(this.product);
     given(this.product.getStringId()).willReturn(A_SELLER_STRING_ID);
   }
 }

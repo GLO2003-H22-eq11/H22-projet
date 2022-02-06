@@ -16,17 +16,25 @@ import ulaval.glo2003.seller.infrastructure.inMemory.InMemorySellerRepository;
 import ulaval.glo2003.seller.service.SellerService;
 
 public class AppContext {
-  public final SellerFactory sellerFactory = new SellerFactory();
-  public final SellerIdFactory sellerIdFactory = new SellerIdFactory();
-  public final SellerRepository sellerRepository = new InMemorySellerRepository();
-  public final SellerService sellerService = new SellerService(sellerRepository);
-  public final ConstraintsValidator constraintsValidator = new ConstraintsValidator();
+  //assemblers
+  public final ProductCategoryAssembler productCategoryAssembler = new ProductCategoryAssembler();
   public final OffersAssembler offersAssembler = new OffersAssembler();
   public final ProductAssembler productAssembler = new ProductAssembler(offersAssembler);
   public final SellerAssembler sellerAssembler = new SellerAssembler(productAssembler);
 
-  public final ProductCategoryAssembler productCategoryAssembler = new ProductCategoryAssembler();
-  public final ProductFactory productFactory = new ProductFactory(productCategoryAssembler);
+  //factories
+  public final SellerFactory sellerFactory = new SellerFactory();
+  public final SellerIdFactory sellerIdFactory = new SellerIdFactory();
+  public final ProductFactory productFactory = new ProductFactory(productCategoryAssembler, sellerIdFactory);
+
+  //repositories
+  public final SellerRepository sellerRepository = new InMemorySellerRepository();
   public final ProductRepository productRepository = new InMemoryProductRepository();
+
+  //services
+  public final SellerService sellerService = new SellerService(sellerRepository);
   public final ProductService productService = new ProductService(productRepository);
+
+
+  public final ConstraintsValidator constraintsValidator = new ConstraintsValidator();
 }

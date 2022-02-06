@@ -10,8 +10,6 @@ import ulaval.glo2003.exception.ConstraintsValidator;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.products.domain.Product;
 import ulaval.glo2003.products.service.ProductService;
-import ulaval.glo2003.seller.domain.SellerId;
-import ulaval.glo2003.seller.domain.SellerIdFactory;
 
 import java.net.URI;
 
@@ -20,18 +18,15 @@ import java.net.URI;
 public class ProductResource {
   private static final String ENDPOINT = "products";
   private final ConstraintsValidator constraintsValidator;
-  private final SellerIdFactory sellerIdFactory;
   private final ProductFactory productFactory;
   private final ProductService productService;
 
   public ProductResource(
           ConstraintsValidator constraintsValidator,
-          SellerIdFactory sellerIdFactory,
           ProductFactory productFactory,
           ProductService productService
   ) {
     this.constraintsValidator = constraintsValidator;
-    this.sellerIdFactory = sellerIdFactory;
     this.productFactory = productFactory;
     this.productService = productService;
   }
@@ -41,8 +36,7 @@ public class ProductResource {
     try {
       this.constraintsValidator.validate(productRequest);
 
-      SellerId sellerId = this.sellerIdFactory.create(sellerIdString);
-      Product product = this.productFactory.create(productRequest, sellerId);
+      Product product = this.productFactory.create(productRequest, sellerIdString);
 
       this.productService.addProduct(product);
 
