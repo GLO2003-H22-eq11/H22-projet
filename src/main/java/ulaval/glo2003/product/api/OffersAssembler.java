@@ -6,7 +6,7 @@ public class OffersAssembler {
 
   public OffersResponse toResponse(Offers offers) {
     return new OffersResponse(
-            offers.getMeanAmount(),
+            null,
             offers.getCount()
     );
   }

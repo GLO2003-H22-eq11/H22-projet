@@ -1,10 +1,10 @@
 package ulaval.glo2003.product.api;
 
 public class OffersResponse {
-  public final int mean;
-  public final int count;
+  public final Integer mean;
+  public final Integer count;
 
-  public OffersResponse(int mean, int count) {
+  public OffersResponse(Integer mean, Integer count) {
     this.mean = mean;
     this.count = count;
   }
