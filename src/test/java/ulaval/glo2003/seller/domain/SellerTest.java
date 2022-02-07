@@ -37,11 +37,11 @@ class SellerTest {
   }
 
   @Test
-  public void givenASellerWithNoProducts_whenAddProduct_thenShouldAdd() {
+  public void givenASellerWithNoProducts_whenSetProducts_thenShouldSet() {
     Seller seller = new SellerBuilder().build();
     Product aProduct = new ProductBuilder().build();
 
-    seller.addProduct(aProduct);
+    seller.setProducts(List.of(aProduct));
 
     List<Product> actual = seller.getProducts();
 

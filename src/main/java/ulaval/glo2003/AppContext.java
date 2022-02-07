@@ -35,7 +35,7 @@ public class AppContext {
 
   //services
   public final SellerService sellerService = new SellerService(sellerRepository, productRepository);
-  public final ProductService productService = new ProductService(productRepository);
+  public final ProductService productService = new ProductService(productRepository, sellerRepository);
 
 
   //validators

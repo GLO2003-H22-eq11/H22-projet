@@ -72,7 +72,7 @@ class ProductResourceTest {
   }
 
   @Test
-  public void givenAProductRequestAndASellerId_whenCreateProduct_thenShouldAddProduct() {
+  public void givenAProductRequestAndASellerId_whenCreateProduct_thenShouldAddProduct() throws GenericException {
     this.givenAProduct(this.productRequest);
 
     this.productResource.createProduct(this.productRequest, A_SELLER_STRING_ID);

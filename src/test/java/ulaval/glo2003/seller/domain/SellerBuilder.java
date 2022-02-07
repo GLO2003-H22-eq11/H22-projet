@@ -4,6 +4,7 @@ import ulaval.glo2003.product.domain.Product;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class SellerBuilder {
     this.bio = "Je suis le meilleur programmeur à l'uni";
     this.birthDate = LocalDate.of(2000, 10, 5);
     this.createdAt = LocalDateTime.now();
-    this.products = Collections.emptyList();
+    this.products = new ArrayList<>();
   }
 
   public SellerBuilder withSellerId(SellerId sellerId) {

@@ -1,23 +1,24 @@
 package ulaval.glo2003.seller.api;
 
+import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.util.DateParser;
 import ulaval.glo2003.util.exceptions.InvalidDateFormatException;
 
 import java.time.LocalDateTime;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class SellerFactory {
 
-  public Seller create(SellerRequest sellerRequest) throws InvalidDateFormatException {
+  public Seller create(SellerRequest sellerRequest) throws GenericException {
     return new Seller(
             new SellerId(),
             sellerRequest.name,
             sellerRequest.bio,
             DateParser.format(sellerRequest.birthDate),
             LocalDateTime.now(),
-            new LinkedList<>()
+            new ArrayList<>()
     );
   }
 }

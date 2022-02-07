@@ -8,7 +8,6 @@ import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SellerService {
   private final SellerRepository sellerRepository;
@@ -27,7 +26,7 @@ public class SellerService {
   public Seller getSellerById(SellerId id) throws GenericException {
     Seller seller = this.sellerRepository.findById(id);
     List<Product> products = this.productRepository.findBySellerId(seller.getSellerId());
-    products.forEach(seller::addProduct);
+    seller.setProducts(products);
 
     return seller;
   }

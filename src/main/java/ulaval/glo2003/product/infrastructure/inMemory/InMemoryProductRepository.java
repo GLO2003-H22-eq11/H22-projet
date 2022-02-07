@@ -3,7 +3,6 @@ package ulaval.glo2003.product.infrastructure.inMemory;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductId;
 import ulaval.glo2003.product.domain.ProductRepository;
-import ulaval.glo2003.product.domain.exceptions.ProductNotFoundException;
 import ulaval.glo2003.seller.domain.SellerId;
 
 import java.util.ArrayList;
@@ -29,13 +28,5 @@ public class InMemoryProductRepository implements ProductRepository {
       return Collections.emptyList();
     }
     return products;
-  }
-
-  public Product findByProductId(ProductId productId) throws ProductNotFoundException {
-    Product product =  this.productsByProductId.get(productId);
-    if (product == null) {
-      throw new ProductNotFoundException();
-    }
-    return product;
   }
 }

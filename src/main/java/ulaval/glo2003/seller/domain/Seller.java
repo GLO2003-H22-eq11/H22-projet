@@ -7,9 +7,6 @@ import ulaval.glo2003.seller.domain.exceptions.SellerIsMinorException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Objects;
 import java.util.List;
 
@@ -78,8 +75,8 @@ public class Seller {
     return this.products;
   }
 
-  public void addProduct(Product product) {
-    this.products.add(product);
+  public void setProducts(List<Product> products) {
+    this.products = products;
   }
 
   @Override
@@ -96,4 +93,5 @@ public class Seller {
   public int hashCode() {
     return Objects.hash(sellerId, name, bio, birthDate, createdAt);
   }
+
 }

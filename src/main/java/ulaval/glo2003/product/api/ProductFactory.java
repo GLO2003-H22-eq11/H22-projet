@@ -1,6 +1,7 @@
 package ulaval.glo2003.product.api;
 
 import ulaval.glo2003.product.domain.Amount;
+import ulaval.glo2003.product.domain.Offers;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductId;
 import ulaval.glo2003.seller.domain.SellerIdFactory;
@@ -25,7 +26,7 @@ public class ProductFactory {
             productRequest.title,
             productRequest.description,
             new Amount(BigDecimal.valueOf(productRequest.suggestedPrice)),
-            null,
+            new Offers(new Amount(BigDecimal.valueOf(0)), 0),
             productRequest.categories.stream().
                     map(this.productCategoryAssembler::toDomain).collect(Collectors.toList()),
             LocalDateTime.now()
