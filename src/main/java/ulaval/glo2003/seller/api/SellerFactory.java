@@ -4,7 +4,6 @@ import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.util.DateParser;
-import ulaval.glo2003.util.exceptions.InvalidDateFormatException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
