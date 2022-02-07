@@ -1,7 +1,7 @@
 package ulaval.glo2003.product.api;
 
 public class ProductResponse {
-  public final String productId;
+  public final String id;
   public final String createdAt;
   public final String title;
   public final String description;
@@ -9,14 +9,14 @@ public class ProductResponse {
   public final OffersResponse offers;
 
   public ProductResponse(
-          String productId,
+          String id,
           String createdAt,
           String title,
           String description,
           int suggestedPrice,
           OffersResponse offers
   ) {
-    this.productId = productId;
+    this.id = id;
     this.createdAt = createdAt;
     this.title = title;
     this.description = description;

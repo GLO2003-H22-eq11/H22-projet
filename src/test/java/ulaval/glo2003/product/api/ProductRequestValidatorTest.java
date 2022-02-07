@@ -15,21 +15,21 @@ class ProductRequestValidatorTest {
   private final ProductRequestValidator productRequestValidator = new ProductRequestValidator();
 
   @Test
-  public void givenAValidProductRequest_whenCreateProduct_thenShouldNotThrow() {
+  public void givenAValidProductRequest_whenValidate_thenShouldNotThrow() {
     ProductRequest aProductRequest = this.givenAProductRequest(A_TITLE, A_DESCRIPTION, A_PRICE);
 
     assertDoesNotThrow(() -> this.productRequestValidator.validate(aProductRequest));
   }
 
   @Test
-  public void givenAnInvalidProductRequestWithAMinus5$Price_whenCreateProduct_thenShouldThrowInvalidProductPriceException() {
+  public void givenAnInvalidProductRequestWithAMinus5$Price_whenValidate_thenShouldThrowInvalidProductPriceException() {
     ProductRequest aProductRequest = this.givenAProductRequest(A_TITLE, A_DESCRIPTION, -5);
 
     assertThrows(InvalidProductPriceException.class, () -> this.productRequestValidator.validate(aProductRequest));
   }
 
   @Test
-  public void givenAValidProductRequestWithA1$Price_whenCreateProduct_thenShouldNotThrowInvalidProductPriceException() {
+  public void givenAValidProductRequestWithA1$Price_whenValidate_thenShouldNotThrowInvalidProductPriceException() {
     ProductRequest aProductRequest = this.givenAProductRequest(A_TITLE, A_DESCRIPTION, 1);
 
     assertDoesNotThrow(() -> this.productRequestValidator.validate(aProductRequest));
@@ -37,28 +37,28 @@ class ProductRequestValidatorTest {
 
 
   @Test
-  public void givenAnInvalidProductRequestWithAnEmptyTitle_whenCreateProduct_thenShouldThrowInvalidProductTitleException() {
+  public void givenAnInvalidProductRequestWithAnEmptyTitle_whenValidate_thenShouldThrowInvalidProductTitleException() {
     ProductRequest aProductRequest = this.givenAProductRequest("", A_DESCRIPTION, A_PRICE);
 
     assertThrows(InvalidProductTitleException.class, () -> this.productRequestValidator.validate(aProductRequest));
   }
 
   @Test
-  public void givenAnInvalidProductRequestWithASpaceOnlyTitle_whenCreateProduct_thenShouldThrowInvalidProductTitleException() {
+  public void givenAnInvalidProductRequestWithASpaceOnlyTitle_whenValidate_thenShouldThrowInvalidProductTitleException() {
     ProductRequest aProductRequest = this.givenAProductRequest("  ", A_DESCRIPTION, A_PRICE);
 
     assertThrows(InvalidProductTitleException.class, () -> this.productRequestValidator.validate(aProductRequest));
   }
 
   @Test
-  public void givenAnInvalidProductRequestWithAnEmptyDescription_whenCreateProduct_thenShouldThrowInvalidProductDescriptionException() {
+  public void givenAnInvalidProductRequestWithAnEmptyDescription_whenValidate_thenShouldThrowInvalidProductDescriptionException() {
     ProductRequest aProductRequest = this.givenAProductRequest(A_TITLE, "", A_PRICE);
 
     assertThrows(InvalidProductDescriptionException.class, () -> this.productRequestValidator.validate(aProductRequest));
   }
 
   @Test
-  public void givenAnInvalidProductRequestWithASpaceOnlyDescription_whenCreateProduct_thenShouldThrowInvalidProductDescriptionException() {
+  public void givenAnInvalidProductRequestWithASpaceOnlyDescription_whenValidate_thenShouldThrowInvalidProductDescriptionException() {
     ProductRequest aProductRequest = this.givenAProductRequest(A_TITLE, "  ", A_PRICE);
 
     assertThrows(InvalidProductDescriptionException.class, () -> this.productRequestValidator.validate(aProductRequest));
@@ -72,5 +72,4 @@ class ProductRequestValidatorTest {
 
     return productRequest;
   }
-
 }
