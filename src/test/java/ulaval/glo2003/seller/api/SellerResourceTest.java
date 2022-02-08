@@ -37,9 +37,6 @@ public class SellerResourceTest {
   private SellerService sellerService;
 
   @Mock
-  private ConstraintsValidator constraintsValidator;
-
-  @Mock
   private SellerAssembler sellerAssembler;
 
   @Mock
@@ -60,7 +57,6 @@ public class SellerResourceTest {
             this.sellerFactory,
             this.sellerService,
             this.sellerAssembler,
-            this.constraintsValidator,
             this.sellerIdFactory,
             this.sellerRequestValidator
     );
@@ -82,15 +78,6 @@ public class SellerResourceTest {
     this.sellerResource.createSeller(this.sellerRequest);
 
     verify(this.sellerRequestValidator).validate(this.sellerRequest);
-  }
-
-  @Test
-  public void givenASellerRequest_whenAddSeller_thenShouldCallTheConstraintValidator() throws GenericException {
-    given(this.sellerFactory.create(this.sellerRequest)).willReturn(this.seller);
-
-    this.sellerResource.createSeller(this.sellerRequest);
-
-    verify(this.constraintsValidator).validate(this.sellerRequest);
   }
 
   @Test

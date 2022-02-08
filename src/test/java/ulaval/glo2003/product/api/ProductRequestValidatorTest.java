@@ -1,24 +1,47 @@
 package ulaval.glo2003.product.api;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import ulaval.glo2003.exception.ConstraintsValidator;
+import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.api.exceptions.InvalidProductDescriptionException;
 import ulaval.glo2003.product.api.exceptions.InvalidProductPriceException;
 import ulaval.glo2003.product.api.exceptions.InvalidProductTitleException;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 
+@ExtendWith(MockitoExtension.class)
 class ProductRequestValidatorTest {
   private static final String A_TITLE = "aTitle";
   private static final String A_DESCRIPTION = "aDescription";
   private static final int A_PRICE = 10;
 
-  private final ProductRequestValidator productRequestValidator = new ProductRequestValidator();
+  private final ProductRequest A_VALID_PRODUCT_REQUEST = this.givenAProductRequest(A_TITLE, A_DESCRIPTION, A_PRICE);
+
+  @Mock
+  private ConstraintsValidator constraintsValidator;
+
+  private ProductRequestValidator productRequestValidator;
+
+  @BeforeEach
+  public void setUp() {
+    this.productRequestValidator = new ProductRequestValidator(this.constraintsValidator);
+  }
+
+  @Test
+  public void givenAProductRequest_whenValidate_thenShouldValidateWithConstraintsValidator() throws GenericException {
+    this.productRequestValidator.validate(A_VALID_PRODUCT_REQUEST);
+
+    verify(this.constraintsValidator).validate(A_VALID_PRODUCT_REQUEST);
+  }
 
   @Test
   public void givenAValidProductRequest_whenValidate_thenShouldNotThrow() {
-    ProductRequest aProductRequest = this.givenAProductRequest(A_TITLE, A_DESCRIPTION, A_PRICE);
-
-    assertDoesNotThrow(() -> this.productRequestValidator.validate(aProductRequest));
+    assertDoesNotThrow(() -> this.productRequestValidator.validate(A_VALID_PRODUCT_REQUEST));
   }
 
   @Test

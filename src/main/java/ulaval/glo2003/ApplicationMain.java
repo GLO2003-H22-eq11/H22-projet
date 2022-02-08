@@ -37,7 +37,6 @@ public class ApplicationMain {
 
   private static ProductResource createProductResource() {
     return new ProductResource(
-            appContext.constraintsValidator,
             appContext.productFactory,
             appContext.productService,
             appContext.productRequestValidator
@@ -50,7 +49,6 @@ public class ApplicationMain {
             appContext.sellerFactory,
             appContext.sellerService,
             appContext.sellerAssembler,
-            appContext.constraintsValidator,
             appContext.sellerIdFactory,
             appContext.sellerRequestValidator
     );

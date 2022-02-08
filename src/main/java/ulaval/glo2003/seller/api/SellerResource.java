@@ -7,7 +7,6 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import ulaval.glo2003.exception.ConstraintsValidator;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerId;
@@ -24,7 +23,6 @@ public class SellerResource {
   private final SellerFactory sellerFactory;
   private final SellerService sellerService;
   private final SellerAssembler sellerAssembler;
-  private final ConstraintsValidator constraintsValidator;
   private final SellerIdFactory sellerIdFactory;
   private final SellerRequestValidator sellerRequestValidator;
 
@@ -32,13 +30,11 @@ public class SellerResource {
           SellerFactory sellerFactory,
           SellerService sellerService,
           SellerAssembler sellerAssembler,
-          ConstraintsValidator constraintsValidator,
           SellerIdFactory sellerIdFactory,
           SellerRequestValidator sellerRequestValidator) {
     this.sellerFactory = sellerFactory;
     this.sellerService = sellerService;
     this.sellerAssembler = sellerAssembler;
-    this.constraintsValidator = constraintsValidator;
     this.sellerIdFactory = sellerIdFactory;
     this.sellerRequestValidator = sellerRequestValidator;
   }
@@ -46,7 +42,6 @@ public class SellerResource {
   @POST
   public Response createSeller(SellerRequest sellerRequest) {
     try {
-      this.constraintsValidator.validate(sellerRequest);
       this.sellerRequestValidator.validate(sellerRequest);
 
       Seller seller = this.sellerFactory.create(sellerRequest);
@@ -76,5 +71,4 @@ public class SellerResource {
       return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
     }
   }
-
 }

@@ -1,5 +1,6 @@
 package ulaval.glo2003.seller.api;
 
+import ulaval.glo2003.exception.ConstraintsValidator;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.seller.api.exceptions.InvalidSellerBiographyException;
 import ulaval.glo2003.seller.api.exceptions.InvalidSellerBirthDateException;
@@ -9,8 +10,14 @@ import ulaval.glo2003.util.DateParser;
 import java.time.LocalDate;
 
 public class SellerRequestValidator {
+  private final ConstraintsValidator constraintsValidator;
+
+  public SellerRequestValidator(ConstraintsValidator constraintsValidator) {
+    this.constraintsValidator = constraintsValidator;
+  }
 
   public void validate(SellerRequest sellerRequest) throws GenericException {
+    this.constraintsValidator.validate(sellerRequest);
     if (sellerRequest.name.isBlank()) {
       throw new InvalidSellerNameException();
     }
