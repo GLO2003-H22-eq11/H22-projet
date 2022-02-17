@@ -11,6 +11,8 @@ public class ProductId {
     this.id = UUIDGenerator.generate();
   }
 
+  public ProductId(String productId) { this.id = UUID.fromString(productId); }
+
   public String toString() {
     return this.id.toString();
   }

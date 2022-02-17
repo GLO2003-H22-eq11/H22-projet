@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.domain.Product;
+import ulaval.glo2003.product.domain.ProductIdFactory;
 import ulaval.glo2003.product.service.ProductService;
 
 import java.net.URI;
@@ -32,6 +33,12 @@ class ProductResourceTest {
   private ProductService productService;
 
   @Mock
+  private ProductAssembler productAssembler;
+
+  @Mock
+  private ProductIdFactory productIdFactory;
+
+  @Mock
   private ProductRequestValidator productRequestValidator;
 
 
@@ -44,6 +51,8 @@ class ProductResourceTest {
     this.productResource = new ProductResource(
             this.productFactory,
             this.productService,
+            this.productAssembler,
+            this.productIdFactory,
             this.productRequestValidator
     );
   }

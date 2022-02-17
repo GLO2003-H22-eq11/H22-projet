@@ -39,6 +39,8 @@ public class ApplicationMain {
     return new ProductResource(
             appContext.productFactory,
             appContext.productService,
+            appContext.productAssembler,
+            appContext.productIdFactory,
             appContext.productRequestValidator
     );
 

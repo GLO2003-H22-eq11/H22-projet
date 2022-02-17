@@ -6,6 +6,7 @@ import ulaval.glo2003.product.api.ProductAssembler;
 import ulaval.glo2003.product.api.ProductCategoryAssembler;
 import ulaval.glo2003.product.api.ProductFactory;
 import ulaval.glo2003.product.api.ProductRequestValidator;
+import ulaval.glo2003.product.domain.ProductIdFactory;
 import ulaval.glo2003.product.domain.ProductRepository;
 import ulaval.glo2003.product.infrastructure.inMemory.InMemoryProductRepository;
 import ulaval.glo2003.product.service.ProductService;
@@ -28,6 +29,7 @@ public class AppContext {
   public final SellerFactory sellerFactory = new SellerFactory();
   public final SellerIdFactory sellerIdFactory = new SellerIdFactory();
   public final ProductFactory productFactory = new ProductFactory(productCategoryAssembler, sellerIdFactory);
+  public final ProductIdFactory productIdFactory = new ProductIdFactory();
 
   //repositories
   public final SellerRepository sellerRepository = new InMemorySellerRepository();
