@@ -1,4 +1,4 @@
-package ulaval.glo2003.product.domain;
+package ulaval.glo2003.product.domain.product;
 
 public class ProductCategory {
   private final String categoryName;

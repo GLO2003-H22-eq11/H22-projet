@@ -1,4 +1,4 @@
-package ulaval.glo2003.product.api;
+package ulaval.glo2003.product.api.product;
 
 public class ProductSellerResponse {
   public String id;

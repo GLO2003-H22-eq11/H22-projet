@@ -1,6 +1,6 @@
 package ulaval.glo2003.seller.api;
 
-import ulaval.glo2003.product.api.OffersResponse;
+import ulaval.glo2003.product.api.offers.OffersResponse;
 
 
 public class SellerProductResponse {

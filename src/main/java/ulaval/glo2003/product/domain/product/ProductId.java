@@ -1,4 +1,4 @@
-package ulaval.glo2003.product.domain;
+package ulaval.glo2003.product.domain.product;
 
 import ulaval.glo2003.util.UUIDGenerator;
 

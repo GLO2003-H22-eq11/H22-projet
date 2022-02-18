@@ -1,13 +1,13 @@
 package ulaval.glo2003;
 
 import ulaval.glo2003.exception.ConstraintsValidator;
-import ulaval.glo2003.product.api.OffersAssembler;
-import ulaval.glo2003.product.api.ProductAssembler;
-import ulaval.glo2003.product.api.ProductCategoryAssembler;
-import ulaval.glo2003.product.api.ProductFactory;
-import ulaval.glo2003.product.api.ProductRequestValidator;
-import ulaval.glo2003.product.domain.ProductIdFactory;
-import ulaval.glo2003.product.domain.ProductRepository;
+import ulaval.glo2003.product.api.offers.OffersAssembler;
+import ulaval.glo2003.product.api.product.ProductAssembler;
+import ulaval.glo2003.product.api.product.ProductCategoryAssembler;
+import ulaval.glo2003.product.api.product.ProductFactory;
+import ulaval.glo2003.product.api.product.ProductRequestValidator;
+import ulaval.glo2003.product.domain.product.ProductIdFactory;
+import ulaval.glo2003.product.domain.product.ProductRepository;
 import ulaval.glo2003.product.infrastructure.inMemory.InMemoryProductRepository;
 import ulaval.glo2003.product.service.ProductService;
 import ulaval.glo2003.seller.api.SellerAssembler;

@@ -1,6 +1,6 @@
-package ulaval.glo2003.product.api;
+package ulaval.glo2003.product.api.product;
 
-import ulaval.glo2003.product.domain.ProductCategory;
+import ulaval.glo2003.product.domain.product.ProductCategory;
 
 public class ProductCategoryAssembler {
 

@@ -1,11 +1,10 @@
 package ulaval.glo2003.seller.domain;
 
-import ulaval.glo2003.product.domain.Product;
+import ulaval.glo2003.product.domain.product.Product;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class SellerBuilder {

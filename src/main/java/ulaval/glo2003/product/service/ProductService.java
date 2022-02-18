@@ -1,9 +1,9 @@
 package ulaval.glo2003.product.service;
 
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.product.domain.Product;
-import ulaval.glo2003.product.domain.ProductId;
-import ulaval.glo2003.product.domain.ProductRepository;
+import ulaval.glo2003.product.domain.product.Product;
+import ulaval.glo2003.product.domain.product.ProductId;
+import ulaval.glo2003.product.domain.product.ProductRepository;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
 

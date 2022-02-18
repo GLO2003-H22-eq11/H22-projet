@@ -1,5 +1,8 @@
 package ulaval.glo2003.product.domain;
 
+import ulaval.glo2003.product.domain.product.Product;
+import ulaval.glo2003.product.domain.product.ProductCategory;
+import ulaval.glo2003.product.domain.product.ProductId;
 import ulaval.glo2003.seller.domain.SellerId;
 
 import java.math.BigDecimal;

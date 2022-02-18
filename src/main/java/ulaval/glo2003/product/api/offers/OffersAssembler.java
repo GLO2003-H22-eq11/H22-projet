@@ -1,4 +1,4 @@
-package ulaval.glo2003.product.api;
+package ulaval.glo2003.product.api.offers;
 
 import ulaval.glo2003.product.domain.Offers;
 

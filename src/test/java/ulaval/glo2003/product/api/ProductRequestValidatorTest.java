@@ -10,6 +10,8 @@ import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.api.exceptions.InvalidProductDescriptionException;
 import ulaval.glo2003.product.api.exceptions.InvalidProductPriceException;
 import ulaval.glo2003.product.api.exceptions.InvalidProductTitleException;
+import ulaval.glo2003.product.api.product.ProductRequest;
+import ulaval.glo2003.product.api.product.ProductRequestValidator;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;

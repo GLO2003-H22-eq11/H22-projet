@@ -7,15 +7,13 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.product.domain.Product;
-import ulaval.glo2003.product.domain.ProductRepository;
+import ulaval.glo2003.product.domain.product.Product;
+import ulaval.glo2003.product.domain.product.ProductRepository;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
-import ulaval.glo2003.seller.domain.exceptions.SellerNotFoundException;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)

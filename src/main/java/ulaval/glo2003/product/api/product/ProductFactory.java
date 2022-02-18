@@ -1,9 +1,9 @@
-package ulaval.glo2003.product.api;
+package ulaval.glo2003.product.api.product;
 
 import ulaval.glo2003.product.domain.Amount;
 import ulaval.glo2003.product.domain.Offers;
-import ulaval.glo2003.product.domain.Product;
-import ulaval.glo2003.product.domain.ProductId;
+import ulaval.glo2003.product.domain.product.Product;
+import ulaval.glo2003.product.domain.product.ProductId;
 import ulaval.glo2003.seller.domain.SellerIdFactory;
 
 import java.math.BigDecimal;

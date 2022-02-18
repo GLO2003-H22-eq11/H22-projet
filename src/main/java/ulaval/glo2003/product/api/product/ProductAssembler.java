@@ -1,6 +1,7 @@
-package ulaval.glo2003.product.api;
+package ulaval.glo2003.product.api.product;
 
-import ulaval.glo2003.product.domain.Product;
+import ulaval.glo2003.product.api.offers.OffersAssembler;
+import ulaval.glo2003.product.domain.product.Product;
 import ulaval.glo2003.seller.api.SellerProductResponse;
 import ulaval.glo2003.seller.domain.Seller;
 
@@ -11,7 +12,7 @@ public class ProductAssembler {
     this.offersAssembler = offersAssembler;
   }
 
-  public SellerProductResponse toResponse(Product product) {
+  public SellerProductResponse toSellerProductResponse(Product product) {
     return new SellerProductResponse(
             product.getStringProductId(),
             product.getStringCreatedAt(),
@@ -21,7 +22,7 @@ public class ProductAssembler {
             this.offersAssembler.toResponse(product.getOffers()));
 
   }
-  public ProductResponse toProductResponse(Product product, Seller seller) {
+  public ProductResponse toResponse(Product product, Seller seller) {
     return new ProductResponse(
             product.getStringProductId(),
             product.getStringCreatedAt(),

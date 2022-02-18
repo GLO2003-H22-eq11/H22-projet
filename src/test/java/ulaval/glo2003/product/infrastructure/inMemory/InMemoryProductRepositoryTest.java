@@ -3,9 +3,9 @@ package ulaval.glo2003.product.infrastructure.inMemory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ulaval.glo2003.product.domain.Product;
+import ulaval.glo2003.product.domain.product.Product;
 import ulaval.glo2003.product.domain.ProductBuilder;
-import ulaval.glo2003.product.domain.ProductId;
+import ulaval.glo2003.product.domain.product.ProductId;
 import ulaval.glo2003.seller.domain.SellerId;
 
 import java.util.List;

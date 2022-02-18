@@ -1,6 +1,6 @@
 package ulaval.glo2003.seller.api;
 
-import ulaval.glo2003.product.api.ProductAssembler;
+import ulaval.glo2003.product.api.product.ProductAssembler;
 import ulaval.glo2003.seller.domain.Seller;
 
 import java.util.stream.Collectors;
@@ -18,7 +18,8 @@ public class SellerAssembler {
             seller.getName(),
             seller.getStringCreatedAt(),
             seller.getBio(),
-            seller.getProducts().stream().map(this.productAssembler::toResponse).collect(Collectors.toList())
+            seller.getProducts().stream().map(this.productAssembler::toSellerProductResponse)
+                    .collect(Collectors.toList())
     );
   }
 }

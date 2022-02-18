@@ -7,8 +7,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.product.domain.Product;
-import ulaval.glo2003.product.domain.ProductIdFactory;
+import ulaval.glo2003.product.api.product.*;
+import ulaval.glo2003.product.domain.product.Product;
+import ulaval.glo2003.product.domain.product.ProductIdFactory;
 import ulaval.glo2003.product.service.ProductService;
 import ulaval.glo2003.seller.service.SellerService;
 

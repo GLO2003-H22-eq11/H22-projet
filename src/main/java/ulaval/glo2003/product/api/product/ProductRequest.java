@@ -1,4 +1,4 @@
-package ulaval.glo2003.product.api;
+package ulaval.glo2003.product.api.product;
 
 import jakarta.validation.constraints.NotNull;
 import ulaval.glo2003.exception.GenericRequest;

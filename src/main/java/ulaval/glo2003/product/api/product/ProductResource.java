@@ -1,4 +1,4 @@
-package ulaval.glo2003.product.api;
+package ulaval.glo2003.product.api.product;
 
 import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.POST;
@@ -9,9 +9,9 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.product.domain.Product;
-import ulaval.glo2003.product.domain.ProductId;
-import ulaval.glo2003.product.domain.ProductIdFactory;
+import ulaval.glo2003.product.domain.product.Product;
+import ulaval.glo2003.product.domain.product.ProductId;
+import ulaval.glo2003.product.domain.product.ProductIdFactory;
 import ulaval.glo2003.product.service.ProductService;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.service.SellerService;
@@ -67,10 +67,9 @@ public class ProductResource {
       ProductId productId = this.productIdFactory.create(id);
 
       Product product = this.productService.getProductById(productId);
-
       Seller seller = this.sellerService.getSellerById(product.getSellerId());
 
-      ProductResponse productResponse = this.productAssembler.toProductResponse(product, seller);
+      ProductResponse productResponse = this.productAssembler.toResponse(product, seller);
 
       return Response.ok().entity(productResponse).build();
     } catch (GenericException e) {
