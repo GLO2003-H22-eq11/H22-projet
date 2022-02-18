@@ -3,11 +3,13 @@ package ulaval.glo2003.product.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.domain.product.Product;
+import ulaval.glo2003.product.domain.product.ProductId;
 import ulaval.glo2003.product.domain.product.ProductRepository;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
@@ -15,6 +17,9 @@ import ulaval.glo2003.seller.domain.SellerRepository;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verify;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 @ExtendWith(MockitoExtension.class)
 class ProductServiceTest {
@@ -66,6 +71,24 @@ class ProductServiceTest {
     inOrder.verify(this.productRepository).save(this.product);
   }
 
+  @Test
+  public void givenAProductId_whenGetProductById_shouldCallTheRepository() throws GenericException {
+    ProductId productId = new ProductId();
+
+    this.productService.getProductById(productId);
+
+    verify(this.productRepository).findById(productId);
+  }
+
+  @Test
+  public void givenAProductId_whenGetProductById_shouldReturnWhatTheRepositoryReturn() throws GenericException {
+    ProductId productId = new ProductId();
+    given(this.productRepository.findById(productId)).willReturn(product);
+
+    Product actualProduct = this.productService.getProductById(productId);
+
+    assertEquals(product, actualProduct);
+  }
   private void givenASellerId(SellerId sellerId) {
     given(this.product.getSellerId()).willReturn(sellerId);
   }
