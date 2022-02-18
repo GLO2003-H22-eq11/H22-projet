@@ -13,6 +13,7 @@ import ulaval.glo2003.product.domain.product.ProductId;
 import ulaval.glo2003.product.domain.product.ProductRepository;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
+import ulaval.glo2003.seller.domain.exceptions.SellerNotFoundException;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
@@ -88,6 +89,15 @@ class ProductServiceTest {
     Product actualProduct = this.productService.getProductById(productId);
 
     assertEquals(product, actualProduct);
+  }
+
+  @Test
+  public void givenAnSellerId_whenGetProductOwner_thenShouldCallTheSellerRepository() throws SellerNotFoundException {
+    SellerId sellerId = new SellerId();
+
+    this.productService.getProductOwner(sellerId);
+
+    verify(this.sellerRepository).findById(sellerId);
   }
   private void givenASellerId(SellerId sellerId) {
     given(this.product.getSellerId()).willReturn(sellerId);

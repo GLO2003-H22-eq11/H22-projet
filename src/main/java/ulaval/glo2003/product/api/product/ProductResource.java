@@ -27,20 +27,18 @@ public class ProductResource {
   private final ProductAssembler productAssembler;
   private final ProductRequestValidator productRequestValidator;
   private final ProductIdFactory productIdFactory;
-  private final SellerService sellerService;
 
   public ProductResource(
           ProductFactory productFactory,
           ProductService productService,
           ProductAssembler productAssembler,
           ProductIdFactory productIdFactory,
-          ProductRequestValidator productRequestValidator, SellerService sellerService) {
+          ProductRequestValidator productRequestValidator) {
     this.productFactory = productFactory;
     this.productService = productService;
     this.productAssembler = productAssembler;
     this.productIdFactory = productIdFactory;
     this.productRequestValidator = productRequestValidator;
-    this.sellerService = sellerService;
   }
 
   @POST
@@ -67,7 +65,7 @@ public class ProductResource {
       ProductId productId = this.productIdFactory.create(id);
 
       Product product = this.productService.getProductById(productId);
-      Seller seller = this.sellerService.getSellerById(product.getSellerId());
+      Seller seller = this.productService.getProductOwner(product.getSellerId());
 
       ProductResponse productResponse = this.productAssembler.toResponse(product, seller);
 
