@@ -73,7 +73,7 @@ class ProductServiceTest {
   }
 
   @Test
-  public void givenAProductId_whenGetProductById_shouldCallTheRepository() throws GenericException {
+  public void givenAProductId_whenGetProductById_thenShouldCallTheRepository() throws GenericException {
     ProductId productId = new ProductId();
 
     this.productService.getProductById(productId);
@@ -82,7 +82,7 @@ class ProductServiceTest {
   }
 
   @Test
-  public void givenAProductId_whenGetProductById_shouldReturnWhatTheRepositoryReturn() throws GenericException {
+  public void givenAProductId_whenGetProductById_thenShouldReturnWhatTheRepositoryReturn() throws GenericException {
     ProductId productId = new ProductId();
     given(this.productRepository.findById(productId)).willReturn(product);
 
@@ -92,13 +92,14 @@ class ProductServiceTest {
   }
 
   @Test
-  public void givenAnSellerId_whenGetProductOwner_thenShouldCallTheSellerRepository() throws SellerNotFoundException {
+  public void givenAnSellerId_whenGetProductOwner_thenShouldCallTheSellerRepository() throws GenericException {
     SellerId sellerId = new SellerId();
 
     this.productService.getProductOwner(sellerId);
 
     verify(this.sellerRepository).findById(sellerId);
   }
+
   private void givenASellerId(SellerId sellerId) {
     given(this.product.getSellerId()).willReturn(sellerId);
   }

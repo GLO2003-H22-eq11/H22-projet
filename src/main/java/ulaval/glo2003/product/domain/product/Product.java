@@ -18,7 +18,6 @@ public class Product {
   private final List<ProductCategory> productCategories;
   private final LocalDateTime createdAt;
 
-
   public Product(
           SellerId sellerId,
           ProductId productId,
@@ -75,8 +74,7 @@ public class Product {
     return this.productId;
   }
 
-  public List<String> getCategories() {
-    List<String> categoriesString = new LinkedList<>();
-    this.productCategories.forEach(productCategory -> categoriesString.add(productCategory.getCategoryName()));
-    return categoriesString; }
+  public List<ProductCategory> getCategories() {
+    return this.productCategories;
+  }
 }

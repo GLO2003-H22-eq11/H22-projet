@@ -7,8 +7,7 @@ public class ProductCategory {
     this.categoryName = categoryName;
   }
 
-
   public String getCategoryName() {
-    return categoryName;
+    return this.categoryName;
   }
 }
