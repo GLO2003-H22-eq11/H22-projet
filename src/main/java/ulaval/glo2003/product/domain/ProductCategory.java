@@ -6,4 +6,9 @@ public class ProductCategory {
   public ProductCategory(String categoryName) {
     this.categoryName = categoryName;
   }
+
+
+  public String getCategoryName() {
+    return categoryName;
+  }
 }

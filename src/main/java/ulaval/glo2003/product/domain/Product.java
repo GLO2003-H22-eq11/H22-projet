@@ -3,6 +3,7 @@ package ulaval.glo2003.product.domain;
 import ulaval.glo2003.seller.domain.SellerId;
 
 import java.time.LocalDateTime;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Product {
@@ -71,4 +72,9 @@ public class Product {
   public ProductId getProductId() {
     return this.productId;
   }
+
+  public List<String> getCategories() {
+    List<String> categoriesString = new LinkedList<>();
+    this.productCategories.forEach(productCategory -> categoriesString.add(productCategory.getCategoryName()));
+    return categoriesString; }
 }

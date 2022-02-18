@@ -24,7 +24,11 @@ public class InMemoryProductRepository implements ProductRepository {
 
   @Override
   public Product findById(ProductId id) throws ProductNotFoundException {
-    return null;
+    Product product = this.productsByProductId.get(id);
+    if (product == null) {
+      throw new ProductNotFoundException();
+    }
+    return product;
   }
 
   @Override

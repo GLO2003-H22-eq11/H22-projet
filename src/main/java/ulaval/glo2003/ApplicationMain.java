@@ -41,8 +41,8 @@ public class ApplicationMain {
             appContext.productService,
             appContext.productAssembler,
             appContext.productIdFactory,
-            appContext.productRequestValidator
-    );
+            appContext.productRequestValidator,
+            appContext.sellerService);
 
   }
 

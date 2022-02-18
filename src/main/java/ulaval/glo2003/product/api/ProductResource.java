@@ -13,6 +13,8 @@ import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductId;
 import ulaval.glo2003.product.domain.ProductIdFactory;
 import ulaval.glo2003.product.service.ProductService;
+import ulaval.glo2003.seller.domain.Seller;
+import ulaval.glo2003.seller.service.SellerService;
 
 import java.net.URI;
 
@@ -25,18 +27,20 @@ public class ProductResource {
   private final ProductAssembler productAssembler;
   private final ProductRequestValidator productRequestValidator;
   private final ProductIdFactory productIdFactory;
+  private final SellerService sellerService;
 
   public ProductResource(
           ProductFactory productFactory,
           ProductService productService,
           ProductAssembler productAssembler,
           ProductIdFactory productIdFactory,
-          ProductRequestValidator productRequestValidator) {
+          ProductRequestValidator productRequestValidator, SellerService sellerService) {
     this.productFactory = productFactory;
     this.productService = productService;
     this.productAssembler = productAssembler;
     this.productIdFactory = productIdFactory;
     this.productRequestValidator = productRequestValidator;
+    this.sellerService = sellerService;
   }
 
   @POST
@@ -64,7 +68,9 @@ public class ProductResource {
 
       Product product = this.productService.getProductById(productId);
 
-      ProductResponse productResponse = this.productAssembler.toResponse(product);
+      Seller seller = this.sellerService.getSellerById(product.getSellerId());
+
+      ProductResponse productResponse = this.productAssembler.toProductResponse(product, seller);
 
       return Response.ok().entity(productResponse).build();
     } catch (GenericException e) {
