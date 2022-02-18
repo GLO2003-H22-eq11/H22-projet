@@ -15,6 +15,7 @@ public class ProductAssembler {
     this.offersAssembler = offersAssembler;
   }
 
+
   public SellerProductResponse toSellerProductResponse(Product product) {
     return new SellerProductResponse(
             product.getStringProductId(),
@@ -25,6 +26,7 @@ public class ProductAssembler {
             this.offersAssembler.toResponse(product.getOffers()));
 
   }
+
   public ProductResponse toResponse(Product product, Seller seller) {
     return new ProductResponse(
             product.getStringProductId(),

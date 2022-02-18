@@ -14,7 +14,6 @@ import ulaval.glo2003.product.domain.product.ProductId;
 import ulaval.glo2003.product.domain.product.ProductIdFactory;
 import ulaval.glo2003.product.service.ProductService;
 import ulaval.glo2003.seller.domain.Seller;
-import ulaval.glo2003.seller.service.SellerService;
 
 import java.net.URI;
 

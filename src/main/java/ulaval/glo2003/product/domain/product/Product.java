@@ -5,7 +5,6 @@ import ulaval.glo2003.product.domain.Offers;
 import ulaval.glo2003.seller.domain.SellerId;
 
 import java.time.LocalDateTime;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Product {
