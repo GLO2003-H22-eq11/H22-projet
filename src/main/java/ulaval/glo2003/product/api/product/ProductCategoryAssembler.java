@@ -7,4 +7,8 @@ public class ProductCategoryAssembler {
   public ProductCategory toDomain(String category) {
     return new ProductCategory(category);
   }
+
+  public String toCategoryString(ProductCategory productCategory) {
+    return productCategory.getCategoryName();
+  }
 }

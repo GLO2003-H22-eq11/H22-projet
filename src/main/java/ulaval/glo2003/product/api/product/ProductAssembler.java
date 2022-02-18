@@ -5,12 +5,17 @@ import ulaval.glo2003.product.domain.product.Product;
 import ulaval.glo2003.seller.api.SellerProductResponse;
 import ulaval.glo2003.seller.domain.Seller;
 
+import java.util.stream.Collectors;
+
 public class ProductAssembler {
   private final OffersAssembler offersAssembler;
+  private final ProductCategoryAssembler productCategoryAssembler;
 
-  public ProductAssembler(OffersAssembler offersAssembler) {
+  public ProductAssembler(OffersAssembler offersAssembler, ProductCategoryAssembler productCategoryAssembler) {
     this.offersAssembler = offersAssembler;
+    this.productCategoryAssembler = productCategoryAssembler;
   }
+
 
   public SellerProductResponse toSellerProductResponse(Product product) {
     return new SellerProductResponse(
@@ -22,6 +27,7 @@ public class ProductAssembler {
             this.offersAssembler.toResponse(product.getOffers()));
 
   }
+
   public ProductResponse toResponse(Product product, Seller seller) {
     return new ProductResponse(
             product.getStringProductId(),
@@ -30,7 +36,8 @@ public class ProductAssembler {
             product.getDescription(),
             product.getSuggestedPriceAmount(),
             this.offersAssembler.toResponse(product.getOffers()),
-            product.getCategories(),
+            product.getCategories().stream().map(this.productCategoryAssembler::toCategoryString)
+                    .collect(Collectors.toList()),
             new ProductSellerResponse(seller.getStringSellerId(), seller.getName()));
   }
 }

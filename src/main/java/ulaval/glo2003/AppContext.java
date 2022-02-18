@@ -22,7 +22,7 @@ public class AppContext {
   //assemblers
   public final ProductCategoryAssembler productCategoryAssembler = new ProductCategoryAssembler();
   public final OffersAssembler offersAssembler = new OffersAssembler();
-  public final ProductAssembler productAssembler = new ProductAssembler(offersAssembler);
+  public final ProductAssembler productAssembler = new ProductAssembler(offersAssembler, productCategoryAssembler);
   public final SellerAssembler sellerAssembler = new SellerAssembler(productAssembler);
 
   //factories
