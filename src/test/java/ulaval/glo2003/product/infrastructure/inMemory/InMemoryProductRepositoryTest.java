@@ -2,7 +2,10 @@ package ulaval.glo2003.product.infrastructure.inMemory;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.BDDMockito;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import ulaval.glo2003.product.domain.exceptions.ProductNotFoundException;
 import ulaval.glo2003.product.domain.product.Product;
 import ulaval.glo2003.product.domain.ProductBuilder;
 import ulaval.glo2003.product.domain.product.ProductId;
@@ -10,8 +13,7 @@ import ulaval.glo2003.seller.domain.SellerId;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class InMemoryProductRepositoryTest {
@@ -25,6 +27,9 @@ class InMemoryProductRepositoryTest {
   private final ProductId ANOTHER_PRODUCT_ID = new ProductId();
 
   private final Product A_PRODUCT = new ProductBuilder().withSellerId(A_SELLER_ID).withProductId(A_PRODUCT_ID).build();
+
+  @Mock
+  private Product product;
 
   @Test
   public void givenAProduct_whenFindBySellerId_thenShouldFindProduct(){
@@ -62,6 +67,26 @@ class InMemoryProductRepositoryTest {
     List<Product> actual = this.inMemoryProductRepository.findBySellerId(A_SELLER_ID);
 
     assertTrue(actual.isEmpty());
+  }
+
+  @Test
+  public void givenNoProduct_whenFindProductById_shouldThrowException() {
+    ProductId productId = new ProductId();
+
+    assertThrows(ProductNotFoundException.class, () -> this.inMemoryProductRepository.findById(productId));
+  }
+
+  @Test
+  public void givenAnProduct_whenFindById_thenShouldReturnTheProduct() throws ProductNotFoundException {
+    ProductId productId = new ProductId();
+    SellerId sellerId = new SellerId();
+    BDDMockito.given(product.getProductId()).willReturn(productId);
+    BDDMockito.given(product.getSellerId()).willReturn(sellerId);
+    this.inMemoryProductRepository.save(product);
+
+    Product actualProduct = this.inMemoryProductRepository.findById(productId);
+
+    assertEquals(actualProduct, product);
   }
 
   private void givenAProduct(Product product) {
