@@ -6,15 +6,17 @@ import ulaval.glo2003.product.domain.product.ProductRepository;
 import ulaval.glo2003.product.domain.exceptions.ProductNotFoundException;
 import ulaval.glo2003.seller.domain.SellerId;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 
 public class InMemoryProductRepository implements ProductRepository {
   private final HashMap<SellerId, List<Product>> productsBySellerId = new HashMap<>();
   private final HashMap<ProductId, Product> productsByProductId = new HashMap<>();
+
+  @Override
+  public List<Product> getAll() {
+    return new LinkedList<>(productsByProductId.values());
+  }
 
   @Override
   public void save(Product product) {

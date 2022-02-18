@@ -35,7 +35,7 @@ public class ProductAssembler {
             product.getDescription(),
             product.getSuggestedPriceAmount(),
             this.offersAssembler.toResponse(product.getOffers()),
-            product.getCategories().stream().map(ProductCategory::getCategoryName).collect(Collectors.toList()),
+            product.getProductCategories().stream().map(ProductCategory::getCategoryName).collect(Collectors.toList()),
             new ProductSellerResponse(seller.getStringSellerId(), seller.getName()));
   }
 }

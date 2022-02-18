@@ -14,7 +14,7 @@ public class Product {
   private final String description;
   private final Amount suggestedPrice;
   private final Offers offers;
-  private final List<ProductCategory> productCategories;
+  private final Categories categories;
   private final LocalDateTime createdAt;
 
   public Product(
@@ -34,7 +34,7 @@ public class Product {
     this.description = description;
     this.suggestedPrice = suggestedPrice;
     this.offers = offers;
-    this.productCategories = productCategories;
+    this.categories = new Categories(productCategories);
   }
 
   public SellerId getSellerId() {
@@ -73,7 +73,11 @@ public class Product {
     return this.productId;
   }
 
-  public List<ProductCategory> getCategories() {
-    return this.productCategories;
+  public List<ProductCategory> getProductCategories() {
+    return this.categories.getProductCategories();
+  }
+
+  public Categories getCategories() {
+    return categories;
   }
 }

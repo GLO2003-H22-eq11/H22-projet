@@ -11,9 +11,9 @@ import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.domain.product.Product;
 import ulaval.glo2003.product.domain.product.ProductId;
 import ulaval.glo2003.product.domain.product.ProductRepository;
+import ulaval.glo2003.product.domain.product.ProductSorter;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
-import ulaval.glo2003.seller.domain.exceptions.SellerNotFoundException;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
@@ -34,11 +34,14 @@ class ProductServiceTest {
   @Mock
   private SellerRepository sellerRepository;
 
+  @Mock
+  private ProductSorter productSorter;
+
   private ProductService productService;
 
   @BeforeEach
   public void setUp() {
-    this.productService = new ProductService(this.productRepository, this.sellerRepository);
+    this.productService = new ProductService(this.productRepository, this.sellerRepository, this.productSorter);
   }
 
   @Test

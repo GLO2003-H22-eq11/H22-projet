@@ -47,6 +47,9 @@ class ProductResourceTest {
   @Mock
   private ProductRequestValidator productRequestValidator;
 
+  @Mock
+  private ProductFilterFactory productFilterFactory;
+
   private ProductResource productResource;
 
   private static final String A_SELLER_STRING_ID = "5a3e3b0b-19a6-46cd-a0fe-bf16f42ba492";
@@ -58,7 +61,8 @@ class ProductResourceTest {
             this.productService,
             this.productAssembler,
             this.productIdFactory,
-            this.productRequestValidator);
+            this.productRequestValidator,
+            this.productFilterFactory);
   }
 
   @Test
