@@ -58,8 +58,8 @@ public class ProductService {
                                                    List<String> categories,
                                                    int minPrice, int maxPrice)
           throws SellerNotFoundException {
-    ProductFilter productFilter = this.productFilterFactory.create(sellerId, title, categories, minPrice, maxPrice);
     List<Product> products = this.productRepository.getAll();
+    ProductFilter productFilter = this.productFilterFactory.create(sellerId, title, categories, minPrice, maxPrice);
     List<Product> sortedProducts =  this.productSorter.sortProduct(productFilter, products);
     return this.productDomainService.getProductsWithSeller(sortedProducts);
   };

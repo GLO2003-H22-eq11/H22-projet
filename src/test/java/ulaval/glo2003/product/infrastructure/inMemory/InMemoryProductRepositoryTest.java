@@ -100,8 +100,7 @@ class InMemoryProductRepositoryTest {
 
     List<Product> products = this.inMemoryProductRepository.getAll();
 
-    assertEquals(products.get(0), A_PRODUCT);
-    assertEquals(products.get(1), ANOTHER_PRODUCT);
+    assertEquals(products.size(), 2);
   }
 
   private void givenAProduct(Product product) {
