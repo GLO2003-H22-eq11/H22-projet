@@ -12,7 +12,7 @@ public class ProductResponse {
   public final int suggestedPrice;
   public final OffersResponse offers;
   public final List<String> categories;
-  public final ProductSellerResponse sellers;
+  public final ProductSellerResponse seller;
 
 
   public ProductResponse(
@@ -31,6 +31,6 @@ public class ProductResponse {
     this.suggestedPrice = suggestedPrice;
     this.offers = offers;
     this.categories = categories;
-    this.sellers = productSellerResponse;
+    this.seller = productSellerResponse;
   }
 }

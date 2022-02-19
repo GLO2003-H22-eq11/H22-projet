@@ -8,10 +8,9 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.product.domain.product.Product;
-import ulaval.glo2003.product.domain.product.ProductId;
-import ulaval.glo2003.product.domain.product.ProductRepository;
-import ulaval.glo2003.product.domain.product.ProductSorter;
+import ulaval.glo2003.product.domain.product.productFilter.ProductFilterFactory;
+import ulaval.glo2003.product.domain.product.*;
+import ulaval.glo2003.product.domain.product.productId.ProductId;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
 
@@ -37,11 +36,22 @@ class ProductServiceTest {
   @Mock
   private ProductSorter productSorter;
 
+  @Mock
+  private ProductDomainService productDomainService;
+
+  @Mock
+  private ProductFilterFactory productFilterFactory;
+
   private ProductService productService;
 
   @BeforeEach
   public void setUp() {
-    this.productService = new ProductService(this.productRepository, this.sellerRepository, this.productSorter);
+    this.productService = new ProductService(
+            this.productRepository,
+            this.sellerRepository,
+            this.productSorter,
+            this.productDomainService,
+            this.productFilterFactory);
   }
 
   @Test

@@ -9,11 +9,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.api.product.*;
 import ulaval.glo2003.product.domain.product.Product;
-import ulaval.glo2003.product.domain.product.ProductId;
-import ulaval.glo2003.product.domain.product.ProductIdFactory;
+import ulaval.glo2003.product.domain.product.productId.ProductId;
+import ulaval.glo2003.product.domain.product.productId.ProductIdFactory;
 import ulaval.glo2003.product.service.ProductService;
 import ulaval.glo2003.seller.domain.SellerId;
-import ulaval.glo2003.seller.service.SellerService;
 
 import java.net.URI;
 
@@ -47,9 +46,6 @@ class ProductResourceTest {
   @Mock
   private ProductRequestValidator productRequestValidator;
 
-  @Mock
-  private ProductFilterFactory productFilterFactory;
-
   private ProductResource productResource;
 
   private static final String A_SELLER_STRING_ID = "5a3e3b0b-19a6-46cd-a0fe-bf16f42ba492";
@@ -61,8 +57,8 @@ class ProductResourceTest {
             this.productService,
             this.productAssembler,
             this.productIdFactory,
-            this.productRequestValidator,
-            this.productFilterFactory);
+            this.productRequestValidator
+    );
   }
 
   @Test

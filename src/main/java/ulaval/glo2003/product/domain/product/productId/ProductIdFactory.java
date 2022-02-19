@@ -1,4 +1,5 @@
-package ulaval.glo2003.product.domain.product;
+package ulaval.glo2003.product.domain.product.productId;
+
 
 public class ProductIdFactory {
 

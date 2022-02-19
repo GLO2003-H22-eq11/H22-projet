@@ -6,14 +6,15 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.QueryParam;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.domain.product.Product;
-import ulaval.glo2003.product.domain.product.ProductFilter;
-import ulaval.glo2003.product.domain.product.ProductId;
-import ulaval.glo2003.product.domain.product.ProductIdFactory;
+import ulaval.glo2003.product.domain.product.productId.ProductId;
+import ulaval.glo2003.product.domain.product.productWithSeller.ProductWithSeller;
+import ulaval.glo2003.product.domain.product.productId.ProductIdFactory;
 import ulaval.glo2003.product.service.ProductService;
 import ulaval.glo2003.seller.domain.Seller;
 
@@ -29,21 +30,18 @@ public class ProductResource {
   private final ProductAssembler productAssembler;
   private final ProductRequestValidator productRequestValidator;
   private final ProductIdFactory productIdFactory;
-  private final ProductFilterFactory productFilterFactory;
 
   public ProductResource(
           ProductFactory productFactory,
           ProductService productService,
           ProductAssembler productAssembler,
           ProductIdFactory productIdFactory,
-          ProductRequestValidator productRequestValidator,
-          ProductFilterFactory productFilterFactory) {
+          ProductRequestValidator productRequestValidator) {
     this.productFactory = productFactory;
     this.productService = productService;
     this.productAssembler = productAssembler;
     this.productIdFactory = productIdFactory;
     this.productRequestValidator = productRequestValidator;
-    this.productFilterFactory = productFilterFactory;
   }
 
   @POST
@@ -82,16 +80,26 @@ public class ProductResource {
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  public Response getFilterProducts(@QueryParam("sellerId") String sellerId,
-                                    @QueryParam("title") String title,
-                                    @QueryParam("categories") List<String> categories,
-                                    @QueryParam("minPrice") int minPrice,
-                                    @QueryParam("maxPrice") int maxPrice) {
+  public Response getFilterProducts(@DefaultValue("") @QueryParam("sellerId") String sellerId,
+                                    @DefaultValue("") @QueryParam("title") String title,
+                                    @DefaultValue("null") @QueryParam("categories") List<String> categories,
+                                    @DefaultValue("0") @QueryParam("minPrice") int minPrice,
+                                    @DefaultValue("0") @QueryParam("maxPrice") int maxPrice) {
 
-    ProductFilter productFilter = this.productFilterFactory.create(sellerId, title, categories, minPrice, maxPrice);
+    try {
+      List<ProductWithSeller> products = this.productService.getFilterProducts(
+              sellerId,
+              title,
+              categories,
+              minPrice,
+              maxPrice);
 
-    List<Product> products = this.productService.getFilterProducts(productFilter);
+      ProductsResponse productsResponse = this.productAssembler.toProductsResponse(products);
 
-    return Response.ok().build();
+      return Response.ok().entity(productsResponse).build();
+    } catch (GenericException e) {
+      return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
+    }
+
   }
 }

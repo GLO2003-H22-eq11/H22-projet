@@ -4,7 +4,6 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import ulaval.glo2003.health.api.HealthResource;
-import ulaval.glo2003.product.api.product.ProductFilterFactory;
 import ulaval.glo2003.product.api.product.ProductResource;
 import ulaval.glo2003.seller.api.SellerResource;
 
@@ -42,8 +41,7 @@ public class ApplicationMain {
             appContext.productService,
             appContext.productAssembler,
             appContext.productIdFactory,
-            appContext.productRequestValidator,
-            new ProductFilterFactory());
+            appContext.productRequestValidator);
 
   }
 

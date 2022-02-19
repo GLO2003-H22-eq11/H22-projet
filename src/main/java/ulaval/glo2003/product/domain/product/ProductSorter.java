@@ -1,6 +1,8 @@
 package ulaval.glo2003.product.domain.product;
 
 import ulaval.glo2003.product.domain.Amount;
+import ulaval.glo2003.product.domain.product.productCategories.Categories;
+import ulaval.glo2003.product.domain.product.productFilter.ProductFilter;
 import ulaval.glo2003.seller.domain.SellerId;
 
 import java.util.List;
@@ -28,9 +30,7 @@ public class ProductSorter {
     }
 
     sortProducts.forEach(product -> {
-      Categories productCategories = product.getCategories();
-
-      if (!productCategories.equals(categories)) {
+      if (product.hasNotTheSameCategories(categories)) {
         sortProducts.remove(product);
       }
     });
@@ -79,7 +79,7 @@ public class ProductSorter {
     }
 
     sortProducts.forEach(product -> {
-      if (!(product.getSellerId().equals(sellerId))) {
+      if (product.hasNotTheSameSellerId(sellerId)) {
         sortProducts.remove(product);
       }
     });
@@ -93,7 +93,7 @@ public class ProductSorter {
     }
 
     sortProducts.forEach(product -> {
-      if (!(product.getTitle().equals(title))) {
+      if (product.hasNotTheSameTitle(title)) {
         sortProducts.remove(product);
       }
     });

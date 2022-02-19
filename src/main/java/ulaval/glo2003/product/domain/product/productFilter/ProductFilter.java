@@ -1,6 +1,7 @@
-package ulaval.glo2003.product.domain.product;
+package ulaval.glo2003.product.domain.product.productFilter;
 
 import ulaval.glo2003.product.domain.Amount;
+import ulaval.glo2003.product.domain.product.productCategories.Categories;
 import ulaval.glo2003.seller.domain.SellerId;
 
 public class ProductFilter {

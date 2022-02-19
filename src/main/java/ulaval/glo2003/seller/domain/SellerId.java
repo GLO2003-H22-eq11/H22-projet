@@ -3,21 +3,20 @@ package ulaval.glo2003.seller.domain;
 import ulaval.glo2003.util.UUIDGenerator;
 
 import java.util.Objects;
-import java.util.UUID;
 
 public class SellerId {
-  private final UUID id;
+  private final String id;
 
   public SellerId() {
-    this.id = UUIDGenerator.generate();
+    this.id = UUIDGenerator.generate().toString();
   }
 
   public SellerId(String sellerId) {
-    this.id = UUID.fromString(sellerId);
+    this.id = sellerId;
   }
 
   public String toString() {
-    return this.id.toString();
+    return this.id;
   }
 
   @Override

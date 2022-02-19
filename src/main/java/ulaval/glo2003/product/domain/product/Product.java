@@ -2,6 +2,9 @@ package ulaval.glo2003.product.domain.product;
 
 import ulaval.glo2003.product.domain.Amount;
 import ulaval.glo2003.product.domain.Offers;
+import ulaval.glo2003.product.domain.product.productCategories.Categories;
+import ulaval.glo2003.product.domain.product.productCategories.ProductCategory;
+import ulaval.glo2003.product.domain.product.productId.ProductId;
 import ulaval.glo2003.seller.domain.SellerId;
 
 import java.time.LocalDateTime;
@@ -79,5 +82,28 @@ public class Product {
 
   public Categories getCategories() {
     return categories;
+  }
+
+  public boolean hasNotTheSameTitle(String title) {
+    return !(this.title.equals(title));
+  }
+
+  public boolean hasNotTheSameSellerId(SellerId sellerId) {
+    return !(this.sellerId.equals(sellerId));
+  }
+
+  public boolean hasNotTheSameCategories(Categories categories) {
+    if (this.categories.numberOfProductCategories() != categories.numberOfProductCategories()) {
+      return true;
+    }
+
+    for (int i = 0; i < this.categories.numberOfProductCategories(); i++) {
+      if (!(this.categories.getProductCategories().get(0).getCategoryName()
+              .equals(categories.getProductCategories().get(0).getCategoryName()))) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }

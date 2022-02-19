@@ -1,6 +1,7 @@
 package ulaval.glo2003.product.domain.product;
 
 import ulaval.glo2003.product.domain.exceptions.ProductNotFoundException;
+import ulaval.glo2003.product.domain.product.productId.ProductId;
 import ulaval.glo2003.seller.domain.SellerId;
 
 import java.util.List;
