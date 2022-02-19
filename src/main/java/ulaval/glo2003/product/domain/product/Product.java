@@ -93,17 +93,7 @@ public class Product {
   }
 
   public boolean hasNotTheSameCategories(Categories categories) {
-    if (this.categories.numberOfProductCategories() != categories.numberOfProductCategories()) {
-      return true;
-    }
-
-    for (int i = 0; i < this.categories.numberOfProductCategories(); i++) {
-      if (!(this.categories.getProductCategories().get(0).getCategoryName()
-              .equals(categories.getProductCategories().get(0).getCategoryName()))) {
-        return true;
-      }
-    }
-
-    return false;
+    return this.categories.hasNotTheSameProductsCategory(categories);
   }
+
 }

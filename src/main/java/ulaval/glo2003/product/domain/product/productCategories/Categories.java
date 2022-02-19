@@ -32,4 +32,19 @@ public class Categories {
   public int numberOfProductCategories() {
     return this.productCategories.size();
   }
+
+  public boolean hasNotTheSameProductsCategory(Categories categories) {
+    if (this.numberOfProductCategories() != categories.numberOfProductCategories()) {
+      return true;
+    }
+
+    for (int i = 0; i < this.numberOfProductCategories(); i++) {
+      if (!(this.getProductCategories().get(0).getCategoryName()
+              .equals(categories.getProductCategories().get(0).getCategoryName()))) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 }

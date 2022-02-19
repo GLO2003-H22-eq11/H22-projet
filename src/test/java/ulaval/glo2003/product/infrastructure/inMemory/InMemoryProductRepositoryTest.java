@@ -28,6 +28,8 @@ class InMemoryProductRepositoryTest {
   private final ProductId ANOTHER_PRODUCT_ID = new ProductId();
 
   private final Product A_PRODUCT = new ProductBuilder().withSellerId(A_SELLER_ID).withProductId(A_PRODUCT_ID).build();
+  private final Product ANOTHER_PRODUCT = new ProductBuilder()
+          .withSellerId(ANOTHER_SELLER_ID).withProductId(ANOTHER_PRODUCT_ID).build();
 
   @Mock
   private Product product;
@@ -89,6 +91,17 @@ class InMemoryProductRepositoryTest {
     Product actualProduct = this.inMemoryProductRepository.findById(productId);
 
     assertEquals(product, actualProduct);
+  }
+
+  @Test
+  public void givenTwoProduct_whenGetAll_thenShouldReturnTheTwoProduct() {
+    this.inMemoryProductRepository.save(A_PRODUCT);
+    this.inMemoryProductRepository.save(ANOTHER_PRODUCT);
+
+    List<Product> products = this.inMemoryProductRepository.getAll();
+
+    assertEquals(products.get(0), A_PRODUCT);
+    assertEquals(products.get(1), ANOTHER_PRODUCT);
   }
 
   private void givenAProduct(Product product) {
