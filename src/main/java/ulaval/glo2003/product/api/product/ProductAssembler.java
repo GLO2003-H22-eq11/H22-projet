@@ -1,6 +1,9 @@
 package ulaval.glo2003.product.api.product;
 
 import ulaval.glo2003.product.api.offers.OffersAssembler;
+import ulaval.glo2003.product.api.product.response.ProductResponse;
+import ulaval.glo2003.product.api.product.response.ProductSellerResponse;
+import ulaval.glo2003.product.api.product.response.ProductsResponse;
 import ulaval.glo2003.product.domain.product.Product;
 import ulaval.glo2003.product.domain.product.productCategories.ProductCategory;
 import ulaval.glo2003.product.domain.product.productWithSeller.ProductWithSeller;

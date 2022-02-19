@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.api.product.*;
+import ulaval.glo2003.product.api.product.response.ProductsResponse;
 import ulaval.glo2003.product.domain.product.Product;
 import ulaval.glo2003.product.domain.product.productId.ProductId;
 import ulaval.glo2003.product.domain.product.productId.ProductIdFactory;

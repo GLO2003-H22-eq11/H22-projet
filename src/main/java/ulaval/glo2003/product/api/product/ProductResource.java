@@ -11,6 +11,8 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.QueryParam;
 import ulaval.glo2003.exception.GenericException;
+import ulaval.glo2003.product.api.product.response.ProductResponse;
+import ulaval.glo2003.product.api.product.response.ProductsResponse;
 import ulaval.glo2003.product.domain.product.Product;
 import ulaval.glo2003.product.domain.product.productId.ProductId;
 import ulaval.glo2003.product.domain.product.productWithSeller.ProductWithSeller;
@@ -87,12 +89,8 @@ public class ProductResource {
                                     @DefaultValue("0") @QueryParam("maxPrice") int maxPrice) {
 
     try {
-      List<ProductWithSeller> products = this.productService.getFilterProducts(
-              sellerId,
-              title,
-              categories,
-              minPrice,
-              maxPrice);
+      List<ProductWithSeller> products = this.productService.getFilterProducts(sellerId, title, categories,
+              minPrice, maxPrice);
 
       ProductsResponse productsResponse = this.productAssembler.toProductsResponse(products);
 
