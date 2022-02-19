@@ -1,4 +1,4 @@
-package ulaval.glo2003.product.api.product;
+package ulaval.glo2003.product.api.product.assembler;
 
 import ulaval.glo2003.product.domain.product.productCategories.ProductCategory;
 

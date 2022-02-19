@@ -1,5 +1,6 @@
 package ulaval.glo2003.product.api.product;
 
+import ulaval.glo2003.product.api.product.assembler.ProductCategoryAssembler;
 import ulaval.glo2003.product.domain.Amount;
 import ulaval.glo2003.product.domain.Offers;
 import ulaval.glo2003.product.domain.product.Product;

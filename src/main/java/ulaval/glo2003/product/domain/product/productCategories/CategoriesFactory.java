@@ -1,6 +1,6 @@
 package ulaval.glo2003.product.domain.product.productCategories;
 
-import ulaval.glo2003.product.api.product.ProductCategoryAssembler;
+import ulaval.glo2003.product.api.product.assembler.ProductCategoryAssembler;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -8,7 +8,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.api.product.*;
-import ulaval.glo2003.product.api.product.response.ProductsResponse;
+import ulaval.glo2003.product.api.product.assembler.ProductAssembler;
+import ulaval.glo2003.product.api.product.assembler.ProductFilterAssembler;
+import ulaval.glo2003.product.api.product.response.ProductsFilterResponse;
 import ulaval.glo2003.product.domain.product.Product;
 import ulaval.glo2003.product.domain.product.productId.ProductId;
 import ulaval.glo2003.product.domain.product.productId.ProductIdFactory;
@@ -55,6 +57,9 @@ class ProductResourceTest {
   @Mock
   private ProductRequestValidator productRequestValidator;
 
+  @Mock
+  private ProductFilterAssembler productFilterAssembler;
+
   private ProductResource productResource;
 
   private static final String A_SELLER_STRING_ID = "5a3e3b0b-19a6-46cd-a0fe-bf16f42ba492";
@@ -66,7 +71,8 @@ class ProductResourceTest {
             this.productService,
             this.productAssembler,
             this.productIdFactory,
-            this.productRequestValidator
+            this.productRequestValidator,
+            this.productFilterAssembler
     );
   }
 
@@ -127,34 +133,46 @@ class ProductResourceTest {
 
   @Test
   public void givenAllInformation_whenGetFilterProducts_thenShouldCallTheProductService() throws GenericException {
+    ProductFilterRequest productFilterRequest = new ProductFilterRequest(A_SELLER_ID, A_TITLE, A_CATEGORIES,
+            MINIMUM_PRICE, MAXIMUM_PRICE);
+    given(this.productFilterAssembler.toRequest(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE))
+            .willReturn(productFilterRequest);
     this.productResource.getFilterProducts(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
 
-    verify(this.productService).getFilterProducts(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
+    verify(this.productService).getFilterProducts(productFilterRequest);
   }
 
   @Test
   public void givenAllInformation_whenGetFilteredProducts_thenShouldCallTheProductsAssembler() throws GenericException {
     List<ProductWithSeller> productWithSellers = new LinkedList<>();
-    given(this.productService.getFilterProducts(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE))
+    ProductFilterRequest productFilterRequest = new ProductFilterRequest(A_SELLER_ID, A_TITLE, A_CATEGORIES,
+            MINIMUM_PRICE, MAXIMUM_PRICE);
+    given(this.productFilterAssembler.toRequest(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE))
+            .willReturn(productFilterRequest);
+    given(this.productService.getFilterProducts(productFilterRequest))
             .willReturn(productWithSellers);
 
     this.productResource.getFilterProducts(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
 
-    verify(this.productAssembler).toProductsResponse(productWithSellers);
+    verify(this.productFilterAssembler).toProductsResponse(productWithSellers);
   }
 
   @Test
   public void givenAllInformation_whenGetFilteredProducts_thenShouldReturnTheRightResponse() throws GenericException {
-    ProductsResponse productsResponse = new ProductsResponse();
+    ProductsFilterResponse productsFilterResponse = new ProductsFilterResponse(new LinkedList<>());
     List<ProductWithSeller> productWithSellers = new LinkedList<>();
-    given(this.productService.getFilterProducts(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE))
+    ProductFilterRequest productFilterRequest = new ProductFilterRequest(A_SELLER_ID, A_TITLE, A_CATEGORIES,
+            MINIMUM_PRICE, MAXIMUM_PRICE);
+    given(this.productFilterAssembler.toRequest(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE))
+            .willReturn(productFilterRequest);
+    given(this.productService.getFilterProducts(productFilterRequest))
             .willReturn(productWithSellers);
-    given(this.productAssembler.toProductsResponse(productWithSellers)).willReturn(productsResponse);
+    given(this.productFilterAssembler.toProductsResponse(productWithSellers)).willReturn(productsFilterResponse);
 
     Response response = this.productResource.getFilterProducts(A_SELLER_ID,
             A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
 
-    assertEquals(response.getEntity(), productsResponse);
+    assertEquals(response.getEntity(), productsFilterResponse);
   }
 
 

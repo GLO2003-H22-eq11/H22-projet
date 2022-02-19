@@ -11,8 +11,10 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.QueryParam;
 import ulaval.glo2003.exception.GenericException;
+import ulaval.glo2003.product.api.product.assembler.ProductAssembler;
+import ulaval.glo2003.product.api.product.assembler.ProductFilterAssembler;
 import ulaval.glo2003.product.api.product.response.ProductResponse;
-import ulaval.glo2003.product.api.product.response.ProductsResponse;
+import ulaval.glo2003.product.api.product.response.ProductsFilterResponse;
 import ulaval.glo2003.product.domain.product.Product;
 import ulaval.glo2003.product.domain.product.productId.ProductId;
 import ulaval.glo2003.product.domain.product.productWithSeller.ProductWithSeller;
@@ -32,18 +34,21 @@ public class ProductResource {
   private final ProductAssembler productAssembler;
   private final ProductRequestValidator productRequestValidator;
   private final ProductIdFactory productIdFactory;
+  private final ProductFilterAssembler productFilterAssembler;
 
   public ProductResource(
           ProductFactory productFactory,
           ProductService productService,
           ProductAssembler productAssembler,
           ProductIdFactory productIdFactory,
-          ProductRequestValidator productRequestValidator) {
+          ProductRequestValidator productRequestValidator,
+          ProductFilterAssembler productFilterAssembler) {
     this.productFactory = productFactory;
     this.productService = productService;
     this.productAssembler = productAssembler;
     this.productIdFactory = productIdFactory;
     this.productRequestValidator = productRequestValidator;
+    this.productFilterAssembler = productFilterAssembler;
   }
 
   @POST
@@ -89,12 +94,14 @@ public class ProductResource {
                                     @DefaultValue("0") @QueryParam("maxPrice") int maxPrice) {
 
     try {
-      List<ProductWithSeller> products = this.productService.getFilterProducts(sellerId, title, categories,
-              minPrice, maxPrice);
+      ProductFilterRequest productFilterRequest = this.productFilterAssembler.toRequest(sellerId, title,
+              categories, minPrice, maxPrice);
 
-      ProductsResponse productsResponse = this.productAssembler.toProductsResponse(products);
+      List<ProductWithSeller> products = this.productService.getFilterProducts(productFilterRequest);
 
-      return Response.ok().entity(productsResponse).build();
+      ProductsFilterResponse productsFilterResponse = this.productFilterAssembler.toProductsResponse(products);
+
+      return Response.ok().entity(productsFilterResponse).build();
     } catch (GenericException e) {
       return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
     }

@@ -24,11 +24,15 @@ public class ProductDomainService {
     List<ProductWithSeller> productWithSellers = new LinkedList<>();
 
     for (Product product : products) {
-      Seller seller = this.sellerRepository.findById(product.getSellerId());
-      ProductWithSeller productWithSeller = this.productWithSellerAssembler.toProductWithSeller(product, seller);
-      productWithSellers.add(productWithSeller);
+      productWithSellers.add(this.getProductWithSeller(product));
     }
 
     return productWithSellers;
+  }
+
+  private ProductWithSeller getProductWithSeller(Product product) throws SellerNotFoundException {
+    Seller seller = this.sellerRepository.findById(product.getSellerId());
+    ProductWithSeller productWithSeller = this.productWithSellerAssembler.toProductWithSeller(product, seller);
+    return productWithSeller;
   }
 }

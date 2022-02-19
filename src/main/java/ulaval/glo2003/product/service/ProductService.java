@@ -1,6 +1,7 @@
 package ulaval.glo2003.product.service;
 
 import ulaval.glo2003.exception.GenericException;
+import ulaval.glo2003.product.api.product.ProductFilterRequest;
 import ulaval.glo2003.product.domain.product.ProductRepository;
 import ulaval.glo2003.product.domain.product.ProductSorter;
 import ulaval.glo2003.product.domain.product.ProductDomainService;
@@ -53,13 +54,10 @@ public class ProductService {
     this.sellerRepository.findById(sellerId);
   }
 
-  public List<ProductWithSeller> getFilterProducts(String sellerId,
-                                                   String title,
-                                                   List<String> categories,
-                                                   int minPrice, int maxPrice)
+  public List<ProductWithSeller> getFilterProducts(ProductFilterRequest productFilterRequest)
           throws SellerNotFoundException {
     List<Product> products = this.productRepository.findAll();
-    ProductFilter productFilter = this.productFilterFactory.create(sellerId, title, categories, minPrice, maxPrice);
+    ProductFilter productFilter = this.productFilterFactory.create(productFilterRequest);
     List<Product> sortedProducts =  this.productSorter.sortProduct(productFilter, products);
     return this.productDomainService.getProductsWithSeller(sortedProducts);
   };

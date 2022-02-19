@@ -2,7 +2,8 @@ package ulaval.glo2003.product.domain.productFilter;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ulaval.glo2003.product.api.product.ProductCategoryAssembler;
+import ulaval.glo2003.product.api.product.ProductFilterRequest;
+import ulaval.glo2003.product.api.product.assembler.ProductCategoryAssembler;
 import ulaval.glo2003.product.domain.AmountFactory;
 import ulaval.glo2003.product.domain.product.productCategories.CategoriesFactory;
 import ulaval.glo2003.product.domain.product.productFilter.ProductFilter;
@@ -44,8 +45,9 @@ public class ProductFilterFactoryTest {
 
   @Test
   public void givenNoFilter_whenCreate_thenShouldCreateAProductFilterWithNullAttributes() {
-    ProductFilter productFilter = this.productFilterFactory.create(EMPTY_SELLER_ID, EMPTY_TITLE, NO_CATEGORIES,
+    ProductFilterRequest productFilterRequest = new ProductFilterRequest(EMPTY_SELLER_ID, EMPTY_TITLE, NO_CATEGORIES,
             INVALID_MINIMUM_PRICE, INVALID_MAXIMUM_PRICE);
+    ProductFilter productFilter = this.productFilterFactory.create(productFilterRequest);
 
     assertNull(productFilter.getCategories());
     assertNull(productFilter.getMaximumPrice());
@@ -56,40 +58,45 @@ public class ProductFilterFactoryTest {
 
   @Test
   public void givenAnValidCategories_whenCreate_thenShouldCreateAProductFilterWithCategories() {
-    ProductFilter productFilter = this.productFilterFactory.create(EMPTY_SELLER_ID, EMPTY_TITLE, CATEGORIES,
+    ProductFilterRequest productFilterRequest = new ProductFilterRequest(EMPTY_SELLER_ID, EMPTY_TITLE, CATEGORIES,
             INVALID_MINIMUM_PRICE, INVALID_MAXIMUM_PRICE);
+    ProductFilter productFilter = this.productFilterFactory.create(productFilterRequest);
 
     assertEquals(productFilter.getCategories().numberOfProductCategories(), 1);
   }
 
   @Test
   public void givenAnValidTitle_whenCreate_thenShouldCreateAProductFilterWithATitle() {
-    ProductFilter productFilter = this.productFilterFactory.create(EMPTY_SELLER_ID, A_TITLE, NO_CATEGORIES,
+    ProductFilterRequest productFilterRequest = new ProductFilterRequest(EMPTY_SELLER_ID, A_TITLE, NO_CATEGORIES,
             INVALID_MINIMUM_PRICE, INVALID_MAXIMUM_PRICE);
+    ProductFilter productFilter = this.productFilterFactory.create(productFilterRequest);
 
     assertEquals(productFilter.getTitle(), A_TITLE);
   }
 
   @Test
   public void givenAnValidSellerId_whenCreate_thenShouldCreateAProductFilterWithASellerId() {
-    ProductFilter productFilter = this.productFilterFactory.create(A_SELLER_ID, EMPTY_TITLE, NO_CATEGORIES,
+    ProductFilterRequest productFilterRequest = new ProductFilterRequest(A_SELLER_ID, EMPTY_TITLE, NO_CATEGORIES,
             INVALID_MINIMUM_PRICE, INVALID_MAXIMUM_PRICE);
+    ProductFilter productFilter = this.productFilterFactory.create(productFilterRequest);
 
     assertEquals(productFilter.getSellerId().toString(), A_SELLER_ID);
   }
 
   @Test
   public void givenAnValidMinimumPrice_whenCreate_thenShouldCreateAProductFilterWithAMinimumPrice() {
-    ProductFilter productFilter = this.productFilterFactory.create(EMPTY_SELLER_ID, EMPTY_TITLE, NO_CATEGORIES,
+    ProductFilterRequest productFilterRequest = new ProductFilterRequest(A_SELLER_ID, EMPTY_TITLE, NO_CATEGORIES,
             A_MINIMUM_PRICE, INVALID_MAXIMUM_PRICE);
+    ProductFilter productFilter = this.productFilterFactory.create(productFilterRequest);
 
     assertEquals(productFilter.getMinimalPrice().getAmount(), A_MINIMUM_PRICE);
   }
 
   @Test
   public void givenAnValidMaximum_whenCreate_thenShouldCreateAProductFilterWithAMaximumPrice() {
-    ProductFilter productFilter = this.productFilterFactory.create(EMPTY_SELLER_ID, EMPTY_TITLE, NO_CATEGORIES,
+    ProductFilterRequest productFilterRequest = new ProductFilterRequest(A_SELLER_ID, EMPTY_TITLE, NO_CATEGORIES,
             INVALID_MINIMUM_PRICE, A_MAXIMUM_PRICE);
+    ProductFilter productFilter = this.productFilterFactory.create(productFilterRequest);
 
     assertEquals(productFilter.getMaximumPrice().getAmount(), A_MAXIMUM_PRICE);
   }
@@ -97,8 +104,10 @@ public class ProductFilterFactoryTest {
 
   @Test
   public void givenMultipleValidFilter_whenCreate_thenShouldCreateAProductFilterWithMultipleValidInformation() {
-    ProductFilter productFilter = this.productFilterFactory.create(A_SELLER_ID, A_TITLE, NO_CATEGORIES,
+    ProductFilterRequest productFilterRequest = new ProductFilterRequest(A_SELLER_ID, A_TITLE, NO_CATEGORIES,
             INVALID_MINIMUM_PRICE, A_MAXIMUM_PRICE);
+
+    ProductFilter productFilter = this.productFilterFactory.create(productFilterRequest);
 
     assertEquals(productFilter.getMaximumPrice().getAmount(), A_MAXIMUM_PRICE);
     assertEquals(productFilter.getTitle(), A_TITLE);

@@ -9,6 +9,7 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
+import ulaval.glo2003.product.api.product.ProductFilterRequest;
 import ulaval.glo2003.product.domain.ProductBuilder;
 import ulaval.glo2003.product.domain.product.productFilter.ProductFilter;
 import ulaval.glo2003.product.domain.product.productFilter.ProductFilterFactory;
@@ -132,25 +133,33 @@ class ProductServiceTest {
   @Test
   public void givenAllInformation_whenGetFilterProducts_thenShouldCallTheProductFilterFactoryToCreate()
           throws GenericException {
-    this.productService.getFilterProducts(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
+    ProductFilterRequest productFilterRequest = new ProductFilterRequest(A_SELLER_ID, A_TITLE, A_CATEGORIES,
+            MINIMUM_PRICE, MAXIMUM_PRICE);
+    this.productService.getFilterProducts(productFilterRequest);
 
-    verify(this.productFilterFactory).create(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
+    verify(this.productFilterFactory).create(productFilterRequest);
   }
 
   @Test
   public void givenAllInformation_whenGetFilterProducts_thenShouldCallTheRepositoryToGetAll() throws GenericException {
-    this.productService.getFilterProducts(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
+    ProductFilterRequest productFilterRequest = new ProductFilterRequest(A_SELLER_ID, A_TITLE, A_CATEGORIES,
+            MINIMUM_PRICE, MAXIMUM_PRICE);
+
+    this.productService.getFilterProducts(productFilterRequest);
 
     verify(this.productRepository).findAll();
   }
 
   @Test
   public void givenAllInformation_whenGetFilterProducts_thenShouldCallTheProductSorter()  throws GenericException {
-    BDDMockito.given(productFilterFactory.create(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE))
+    ProductFilterRequest productFilterRequest = new ProductFilterRequest(A_SELLER_ID, A_TITLE, A_CATEGORIES,
+            MINIMUM_PRICE, MAXIMUM_PRICE);
+
+    BDDMockito.given(productFilterFactory.create(productFilterRequest))
             .willReturn(A_PRODUCT_FILTER);
     BDDMockito.given(this.productRepository.findAll()).willReturn(products);
 
-    this.productService.getFilterProducts(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
+    this.productService.getFilterProducts(productFilterRequest);
 
     verify(this.productSorter).sortProduct(A_PRODUCT_FILTER, products);
   }
@@ -159,45 +168,36 @@ class ProductServiceTest {
   public void giveAllInformation_whenGetFilterProducts_thenShouldCallTheProductDomainServiceToGetProductsSeller()
           throws GenericException {
     List<Product> ANOTHER_PRODUCTS = List.of(new ProductBuilder().build());
-    BDDMockito.given(productFilterFactory.create(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE))
+    ProductFilterRequest productFilterRequest = new ProductFilterRequest(A_SELLER_ID, A_TITLE, A_CATEGORIES,
+            MINIMUM_PRICE, MAXIMUM_PRICE);
+    BDDMockito.given(productFilterFactory.create(productFilterRequest))
             .willReturn(A_PRODUCT_FILTER);
     BDDMockito.given(this.productRepository.findAll()).willReturn(products);
     BDDMockito.given(this.productSorter.sortProduct(A_PRODUCT_FILTER, products)).willReturn(ANOTHER_PRODUCTS);
 
-    this.productService.getFilterProducts(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
+    this.productService.getFilterProducts(productFilterRequest);
 
     verify(this.productDomainService).getProductsWithSeller(ANOTHER_PRODUCTS);
   }
 
   @Test
-  public void giveAllInformation_whenGetFilterProducts_thenShouldReturnWhatDOmainServiceReturn()
+  public void giveAllInformation_whenGetFilterProducts_thenShouldReturnWhatDomainServiceReturn()
           throws GenericException {
+    ProductFilterRequest productFilterRequest = new ProductFilterRequest(A_SELLER_ID, A_TITLE, A_CATEGORIES,
+            MINIMUM_PRICE, MAXIMUM_PRICE);
     List<ProductWithSeller> expectedResult = new LinkedList<>();
     List<Product> ANOTHER_PRODUCTS = List.of(new ProductBuilder().build());
-    BDDMockito.given(productFilterFactory.create(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE))
+    BDDMockito.given(productFilterFactory.create(productFilterRequest))
             .willReturn(A_PRODUCT_FILTER);
     BDDMockito.given(this.productRepository.findAll()).willReturn(products);
     BDDMockito.given(this.productSorter.sortProduct(A_PRODUCT_FILTER, products)).willReturn(ANOTHER_PRODUCTS);
-    BDDMockito.given(this.productService.getFilterProducts(A_SELLER_ID,
-            A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE)).willReturn(expectedResult);
+    BDDMockito.given(this.productService.getFilterProducts(productFilterRequest)).willReturn(expectedResult);
 
-    List<ProductWithSeller> productWithSellers = this.productService.getFilterProducts(A_SELLER_ID,
-            A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
+    List<ProductWithSeller> productWithSellers = this.productService.getFilterProducts(productFilterRequest);
 
     assertEquals(expectedResult, productWithSellers);
   }
 
-
-  /*   public List<ProductWithSeller> getFilterProducts(String sellerId,
-                                                       String title,
-                                                       List<String> categories,
-                                                       int minPrice, int maxPrice)
-          throws SellerNotFoundException {
-    ProductFilter productFilter = this.productFilterFactory.create(sellerId, title, categories, minPrice, maxPrice);
-    List<Product> products = this.productRepository.getAll();
-    List<Product> sortedProducts =  this.productSorter.sortProduct(productFilter, products);
-    return this.productDomainService.getProductsWithSeller(sortedProducts);
-  }; */
 
   private void givenASellerId(SellerId sellerId) {
     given(this.product.getSellerId()).willReturn(sellerId);

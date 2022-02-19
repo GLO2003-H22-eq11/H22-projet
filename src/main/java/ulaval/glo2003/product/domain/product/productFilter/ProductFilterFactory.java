@@ -1,10 +1,9 @@
 package ulaval.glo2003.product.domain.product.productFilter;
 
+import ulaval.glo2003.product.api.product.ProductFilterRequest;
 import ulaval.glo2003.product.domain.AmountFactory;
 import ulaval.glo2003.product.domain.product.productCategories.CategoriesFactory;
 import ulaval.glo2003.seller.domain.SellerIdFactory;
-
-import java.util.List;
 
 public class ProductFilterFactory {
 
@@ -20,27 +19,27 @@ public class ProductFilterFactory {
     this.categoriesFactory = categoriesFactory;
   }
 
-  public ProductFilter create(String sellerId, String title, List<String> categories, int minPrice, int maxPrice) {
+  public ProductFilter create(ProductFilterRequest productFilterRequest) {
     ProductFilter productFilter = new ProductFilter();
 
-    if (!sellerId.isBlank()) {
-      productFilter.setSellerId(this.sellerIdFactory.create(sellerId));
+    if (!productFilterRequest.sellerId.isBlank()) {
+      productFilter.setSellerId(this.sellerIdFactory.create(productFilterRequest.sellerId));
     }
 
-    if (!title.isBlank()) {
-      productFilter.setTitle(title);
+    if (!productFilterRequest.title.isBlank()) {
+      productFilter.setTitle(productFilterRequest.title);
     }
 
-    if (!(categories.size() == 1 && categories.get(0).equals("null"))) {
-      productFilter.setCategories(this.categoriesFactory.create(categories));
+    if (!(productFilterRequest.categories.size() == 1 && productFilterRequest.categories.get(0).equals("null"))) {
+      productFilter.setCategories(this.categoriesFactory.create(productFilterRequest.categories));
     }
 
-    if (minPrice > 0) {
-      productFilter.setMinimalPrice(this.amountFactory.create(minPrice));
+    if (productFilterRequest.minPrice > 0) {
+      productFilter.setMinimalPrice(this.amountFactory.create(productFilterRequest.minPrice));
     }
 
-    if (maxPrice > 0) {
-      productFilter.setMaximumPrice(this.amountFactory.create(maxPrice));
+    if (productFilterRequest.maxPrice > 0) {
+      productFilter.setMaximumPrice(this.amountFactory.create(productFilterRequest.maxPrice));
     }
 
     return productFilter;

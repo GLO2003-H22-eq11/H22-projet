@@ -2,10 +2,11 @@ package ulaval.glo2003;
 
 import ulaval.glo2003.exception.ConstraintsValidator;
 import ulaval.glo2003.product.api.offers.OffersAssembler;
-import ulaval.glo2003.product.api.product.ProductAssembler;
-import ulaval.glo2003.product.api.product.ProductCategoryAssembler;
+import ulaval.glo2003.product.api.product.assembler.ProductAssembler;
+import ulaval.glo2003.product.api.product.assembler.ProductCategoryAssembler;
 import ulaval.glo2003.product.api.product.ProductRequestValidator;
 import ulaval.glo2003.product.api.product.ProductFactory;
+import ulaval.glo2003.product.api.product.assembler.ProductFilterAssembler;
 import ulaval.glo2003.product.domain.product.productFilter.ProductFilterFactory;
 import ulaval.glo2003.product.domain.AmountFactory;
 import ulaval.glo2003.product.domain.product.productCategories.CategoriesFactory;
@@ -25,10 +26,9 @@ import ulaval.glo2003.seller.infrastructure.inMemory.InMemorySellerRepository;
 import ulaval.glo2003.seller.service.SellerService;
 
 public class AppContext {
+
   // sorter
   public final ProductSorter productSorter = new ProductSorter();
-
-
 
   //assemblers
   public final ProductCategoryAssembler productCategoryAssembler = new ProductCategoryAssembler();
@@ -36,6 +36,7 @@ public class AppContext {
   public final ProductAssembler productAssembler = new ProductAssembler(offersAssembler);
   public final SellerAssembler sellerAssembler = new SellerAssembler(productAssembler);
   public final ProductWithSellerAssembler productWithSellerAssembler = new ProductWithSellerAssembler();
+  public final ProductFilterAssembler productFilterAssembler = new ProductFilterAssembler(offersAssembler);
 
   //factories
   public final CategoriesFactory categoriesFactory = new CategoriesFactory(productCategoryAssembler);
