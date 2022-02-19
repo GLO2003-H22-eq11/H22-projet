@@ -11,10 +11,13 @@ import ulaval.glo2003.product.api.product.*;
 import ulaval.glo2003.product.domain.product.Product;
 import ulaval.glo2003.product.domain.product.productId.ProductId;
 import ulaval.glo2003.product.domain.product.productId.ProductIdFactory;
+import ulaval.glo2003.product.domain.product.productWithSeller.ProductWithSeller;
 import ulaval.glo2003.product.service.ProductService;
 import ulaval.glo2003.seller.domain.SellerId;
 
 import java.net.URI;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
@@ -23,6 +26,11 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 class ProductResourceTest {
 
+  private final String A_SELLER_ID = "S@FG_F$GG$cgwre-fg";
+  private String A_TITLE = "TITLE";
+  private final List<String> A_CATEGORIES = List.of("A", "B", "C");
+  private final int MINIMUM_PRICE = 10;
+  private final int MAXIMUM_PRICE = 15;
   private final String A_PRODUCT_ID = "Sqwevwerty";
 
   @Mock
@@ -114,6 +122,38 @@ class ProductResourceTest {
     this.productResource.getProductById(A_PRODUCT_ID);
 
     verify(this.productService).getProductOwner(sellerId);
+  }
+
+  @Test
+  public void givenAllInformation_whenGetFilterProducts_thenShouldCallTheProductService() throws GenericException {
+    this.productResource.getFilterProducts(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
+
+    verify(this.productService).getFilterProducts(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
+  }
+
+  @Test
+  public void givenAllInformation_whenGetFilteredProducts_thenShouldCallTheProductsAssembler() throws GenericException {
+    List<ProductWithSeller> productWithSellers = new LinkedList<>();
+    given(this.productService.getFilterProducts(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE))
+            .willReturn(productWithSellers);
+
+    this.productResource.getFilterProducts(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
+
+    verify(this.productAssembler).toProductsResponse(productWithSellers);
+  }
+
+  @Test
+  public void givenAllInformation_whenGetFilteredProducts_thenShouldReturnTheRightResponse() throws GenericException {
+    ProductsResponse productsResponse = new ProductsResponse();
+    List<ProductWithSeller> productWithSellers = new LinkedList<>();
+    given(this.productService.getFilterProducts(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE))
+            .willReturn(productWithSellers);
+    given(this.productAssembler.toProductsResponse(productWithSellers)).willReturn(productsResponse);
+
+    Response response = this.productResource.getFilterProducts(A_SELLER_ID,
+            A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
+
+    assertEquals(response.getEntity(), productsResponse);
   }
 
 
