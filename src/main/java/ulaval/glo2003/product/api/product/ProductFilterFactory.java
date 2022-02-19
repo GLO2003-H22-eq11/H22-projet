@@ -6,11 +6,29 @@ import java.util.List;
 
 public class ProductFilterFactory {
 
-    public ProductFilter create(String sellerId, String title, List<String> categories, int minPrice, int maxPrice) {
-        System.out.println(sellerId);
-        System.out.println(categories);
-        System.out.println(minPrice);
+  public ProductFilter create(String sellerId, String title, List<String> categories, int minPrice, int maxPrice) {
+    ProductFilter productFilter = new ProductFilter();
 
-        return new ProductFilter();
+    if (sellerId != null) {
+
     }
+
+    if (title != null && !title.isBlank()) {
+      productFilter.setTitle(title);
+    }
+
+    if (!categories.isEmpty()) {
+
+    }
+
+    if (minPrice > 0) {
+
+    }
+
+    if (maxPrice > 0) {
+
+    }
+
+    return productFilter;
+  }
 }

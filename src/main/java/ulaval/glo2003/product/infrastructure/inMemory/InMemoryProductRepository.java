@@ -6,7 +6,11 @@ import ulaval.glo2003.product.domain.product.ProductRepository;
 import ulaval.glo2003.product.domain.exceptions.ProductNotFoundException;
 import ulaval.glo2003.seller.domain.SellerId;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Collections;
 
 
 public class InMemoryProductRepository implements ProductRepository {

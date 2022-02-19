@@ -1,8 +1,14 @@
 package ulaval.glo2003.product.api.product;
 
-import jakarta.ws.rs.*;
+import jakarta.ws.rs.HeaderParam;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.QueryParam;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.domain.product.Product;
 import ulaval.glo2003.product.domain.product.ProductFilter;
@@ -75,7 +81,6 @@ public class ProductResource {
   }
 
   @GET
-  @Path("/")
   @Produces(MediaType.APPLICATION_JSON)
   public Response getFilterProducts(@QueryParam("sellerId") String sellerId,
                                     @QueryParam("title") String title,
@@ -83,10 +88,10 @@ public class ProductResource {
                                     @QueryParam("minPrice") int minPrice,
                                     @QueryParam("maxPrice") int maxPrice) {
 
-      ProductFilter productFilter = this.productFilterFactory.create(sellerId, title, categories, minPrice, maxPrice);
+    ProductFilter productFilter = this.productFilterFactory.create(sellerId, title, categories, minPrice, maxPrice);
 
-      List<Product> products = this.productService.getFilterProducts(productFilter);
+    List<Product> products = this.productService.getFilterProducts(productFilter);
 
-      return Response.ok().build();
+    return Response.ok().build();
   }
 }
