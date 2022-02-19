@@ -141,14 +141,14 @@ class ProductServiceTest {
   public void givenAllInformation_whenGetFilterProducts_thenShouldCallTheRepositoryToGetAll() throws GenericException {
     this.productService.getFilterProducts(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
 
-    verify(this.productRepository).getAll();
+    verify(this.productRepository).findAll();
   }
 
   @Test
   public void givenAllInformation_whenGetFilterProducts_thenShouldCallTheProductSorter()  throws GenericException {
     BDDMockito.given(productFilterFactory.create(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE))
             .willReturn(A_PRODUCT_FILTER);
-    BDDMockito.given(this.productRepository.getAll()).willReturn(products);
+    BDDMockito.given(this.productRepository.findAll()).willReturn(products);
 
     this.productService.getFilterProducts(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
 
@@ -161,7 +161,7 @@ class ProductServiceTest {
     List<Product> ANOTHER_PRODUCTS = List.of(new ProductBuilder().build());
     BDDMockito.given(productFilterFactory.create(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE))
             .willReturn(A_PRODUCT_FILTER);
-    BDDMockito.given(this.productRepository.getAll()).willReturn(products);
+    BDDMockito.given(this.productRepository.findAll()).willReturn(products);
     BDDMockito.given(this.productSorter.sortProduct(A_PRODUCT_FILTER, products)).willReturn(ANOTHER_PRODUCTS);
 
     this.productService.getFilterProducts(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
@@ -176,7 +176,7 @@ class ProductServiceTest {
     List<Product> ANOTHER_PRODUCTS = List.of(new ProductBuilder().build());
     BDDMockito.given(productFilterFactory.create(A_SELLER_ID, A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE))
             .willReturn(A_PRODUCT_FILTER);
-    BDDMockito.given(this.productRepository.getAll()).willReturn(products);
+    BDDMockito.given(this.productRepository.findAll()).willReturn(products);
     BDDMockito.given(this.productSorter.sortProduct(A_PRODUCT_FILTER, products)).willReturn(ANOTHER_PRODUCTS);
     BDDMockito.given(this.productService.getFilterProducts(A_SELLER_ID,
             A_TITLE, A_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE)).willReturn(expectedResult);

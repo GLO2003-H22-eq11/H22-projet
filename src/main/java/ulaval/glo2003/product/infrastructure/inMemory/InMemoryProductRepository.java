@@ -18,7 +18,7 @@ public class InMemoryProductRepository implements ProductRepository {
   private final HashMap<ProductId, Product> productsByProductId = new HashMap<>();
 
   @Override
-  public List<Product> getAll() {
+  public List<Product> findAll() {
     return new LinkedList<>(productsByProductId.values());
   }
 

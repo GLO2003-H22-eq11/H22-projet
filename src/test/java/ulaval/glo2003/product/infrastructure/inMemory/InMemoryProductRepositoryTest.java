@@ -98,7 +98,7 @@ class InMemoryProductRepositoryTest {
     this.inMemoryProductRepository.save(A_PRODUCT);
     this.inMemoryProductRepository.save(ANOTHER_PRODUCT);
 
-    List<Product> products = this.inMemoryProductRepository.getAll();
+    List<Product> products = this.inMemoryProductRepository.findAll();
 
     assertEquals(products.size(), 2);
   }
