@@ -9,7 +9,15 @@ public final class Amount {
     this.dollarAmount = amount;
   }
 
-  public int getAmount() {
+  public BigDecimal getAmount() {
+    return this.dollarAmount;
+  }
+
+  public int getIntValue() {
     return this.dollarAmount.intValue();
+  }
+
+  public boolean isHigher(Amount amount) {
+    return this.dollarAmount.intValue() > amount.getAmount().intValue();
   }
 }

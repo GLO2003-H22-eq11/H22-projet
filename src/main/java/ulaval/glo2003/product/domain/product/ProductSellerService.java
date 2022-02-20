@@ -1,7 +1,5 @@
 package ulaval.glo2003.product.domain.product;
 
-import ulaval.glo2003.product.domain.product.productWithSeller.ProductWithSeller;
-import ulaval.glo2003.product.domain.product.productWithSeller.ProductWithSellerAssembler;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerRepository;
 import ulaval.glo2003.seller.domain.exceptions.SellerNotFoundException;
@@ -9,14 +7,15 @@ import ulaval.glo2003.seller.domain.exceptions.SellerNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ProductDomainService {
-
-  private final ProductWithSellerAssembler productWithSellerAssembler;
+public class ProductSellerService {
+  private final ProductWithSellerFactory productWithSellerFactory;
   private final SellerRepository sellerRepository;
 
-  public ProductDomainService(ProductWithSellerAssembler productWithSellerAssembler,
-                              SellerRepository sellerRepository) {
-    this.productWithSellerAssembler = productWithSellerAssembler;
+  public ProductSellerService(
+          ProductWithSellerFactory productWithSellerFactory,
+          SellerRepository sellerRepository
+  ) {
+    this.productWithSellerFactory = productWithSellerFactory;
     this.sellerRepository = sellerRepository;
   }
 
@@ -30,9 +29,8 @@ public class ProductDomainService {
     return productWithSellers;
   }
 
-  private ProductWithSeller getProductWithSeller(Product product) throws SellerNotFoundException {
+  public ProductWithSeller getProductWithSeller(Product product) throws SellerNotFoundException {
     Seller seller = this.sellerRepository.findById(product.getSellerId());
-    ProductWithSeller productWithSeller = this.productWithSellerAssembler.toProductWithSeller(product, seller);
-    return productWithSeller;
+    return this.productWithSellerFactory.createFrom(product, seller);
   }
 }

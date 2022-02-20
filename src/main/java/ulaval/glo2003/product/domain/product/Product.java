@@ -2,9 +2,6 @@ package ulaval.glo2003.product.domain.product;
 
 import ulaval.glo2003.product.domain.Amount;
 import ulaval.glo2003.product.domain.Offers;
-import ulaval.glo2003.product.domain.product.productCategories.Categories;
-import ulaval.glo2003.product.domain.product.productCategories.ProductCategory;
-import ulaval.glo2003.product.domain.product.productId.ProductId;
 import ulaval.glo2003.seller.domain.SellerId;
 
 import java.time.LocalDateTime;
@@ -27,7 +24,7 @@ public class Product {
           String description,
           Amount suggestedPrice,
           Offers offers,
-          List<ProductCategory> productCategories,
+          List<Category> productCategories,
           LocalDateTime createdAt
   ) {
     this.sellerId = sellerId;
@@ -60,8 +57,12 @@ public class Product {
     return this.description;
   }
 
-  public int getSuggestedPriceAmount() {
-    return this.suggestedPrice.getAmount();
+  public Amount getSuggestedPriceAmount() {
+    return this.suggestedPrice;
+  }
+
+  public int getSuggestedPriceAmountIntValue() {
+    return this.suggestedPrice.getIntValue();
   }
 
   public Offers getOffers() {
@@ -76,24 +77,23 @@ public class Product {
     return this.productId;
   }
 
-  public List<ProductCategory> getProductCategories() {
-    return this.categories.getProductCategories();
+  public List<Category> getProductCategories() {
+    return this.categories.getCategories();
   }
 
   public Categories getCategories() {
     return categories;
   }
 
-  public boolean hasNotTheSameTitle(String title) {
-    return !(this.title.equals(title));
+  public boolean isInTitle(String value) {
+    return this.title.toLowerCase().contains(value.toLowerCase());
   }
 
-  public boolean hasNotTheSameSellerId(SellerId sellerId) {
-    return !(this.sellerId.equals(sellerId));
+  public boolean hasSameSellerId(SellerId sellerId) {
+    return this.sellerId.equals(sellerId);
   }
 
-  public boolean hasNotTheSameCategories(Categories categories) {
-    return this.categories.hasNotTheSameProductsCategory(categories);
+  public boolean hasAtLeastOneCategoryInCommon(Categories categories) {
+    return this.categories.hasAtLeastOneCategoryInCommon(categories);
   }
-
 }

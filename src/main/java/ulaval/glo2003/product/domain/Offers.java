@@ -10,7 +10,7 @@ public class Offers {
   }
 
   public int getMeanAmount() {
-    return this.mean.getAmount();
+    return this.mean.getIntValue();
   }
 
   public int getCount() {

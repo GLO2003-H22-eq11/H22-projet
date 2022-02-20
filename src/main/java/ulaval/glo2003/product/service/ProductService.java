@@ -1,44 +1,39 @@
 package ulaval.glo2003.product.service;
 
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.product.api.product.ProductFilterRequest;
+import ulaval.glo2003.product.domain.product.ProductFilterer;
 import ulaval.glo2003.product.domain.product.ProductRepository;
-import ulaval.glo2003.product.domain.product.ProductSorter;
-import ulaval.glo2003.product.domain.product.ProductDomainService;
+import ulaval.glo2003.product.domain.product.ProductWithSeller;
+import ulaval.glo2003.product.domain.product.ProductSellerService;
 import ulaval.glo2003.product.domain.product.Product;
-import ulaval.glo2003.product.domain.product.productFilter.ProductFilterFactory;
-import ulaval.glo2003.product.domain.product.productFilter.ProductFilter;
-import ulaval.glo2003.product.domain.product.productId.ProductId;
-import ulaval.glo2003.product.domain.product.productWithSeller.ProductWithSeller;
-import ulaval.glo2003.seller.domain.Seller;
+import ulaval.glo2003.product.domain.product.ProductFilters;
+import ulaval.glo2003.product.domain.product.ProductId;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
-import ulaval.glo2003.seller.domain.exceptions.SellerNotFoundException;
 
 import java.util.List;
-
 
 public class ProductService {
   private final ProductRepository productRepository;
   private final SellerRepository sellerRepository;
-  private final ProductSorter productSorter;
-  private final ProductDomainService productDomainService;
-  private final ProductFilterFactory productFilterFactory;
+  private final ProductSellerService productSellerService;
+  private final ProductFilterer productFilterer;
 
-  public ProductService(ProductRepository productRepository,
-                        SellerRepository sellerRepository,
-                        ProductSorter productSorter,
-                        ProductDomainService productDomainService,
-                        ProductFilterFactory productFilterFactory) {
+  public ProductService(
+          ProductRepository productRepository,
+          SellerRepository sellerRepository,
+          ProductSellerService productSellerService,
+          ProductFilterer productFilterer
+  ) {
     this.productRepository = productRepository;
     this.sellerRepository = sellerRepository;
-    this.productSorter = productSorter;
-    this.productDomainService = productDomainService;
-    this.productFilterFactory = productFilterFactory;
+    this.productSellerService = productSellerService;
+    this.productFilterer = productFilterer;
   }
 
-  public Seller getProductOwner(SellerId sellerId) throws SellerNotFoundException {
-    return this.sellerRepository.findById(sellerId);
+  public ProductWithSeller getProductSeller(ProductId productId) throws GenericException {
+    Product product = this.productRepository.findById(productId);
+    return this.productSellerService.getProductWithSeller(product);
   }
 
   public void addProduct(Product product) throws GenericException {
@@ -46,19 +41,12 @@ public class ProductService {
     this.productRepository.save(product);
   }
 
-  public Product getProductById(ProductId id) throws GenericException {
-    return this.productRepository.findById(id);
-  }
-
   private void verifyIfSellerExists(SellerId sellerId) throws GenericException {
     this.sellerRepository.findById(sellerId);
   }
 
-  public List<ProductWithSeller> getFilterProducts(ProductFilterRequest productFilterRequest)
-          throws SellerNotFoundException {
-    List<Product> products = this.productRepository.findAll();
-    ProductFilter productFilter = this.productFilterFactory.create(productFilterRequest);
-    List<Product> sortedProducts =  this.productSorter.sortProduct(productFilter, products);
-    return this.productDomainService.getProductsWithSeller(sortedProducts);
-  };
+  public List<ProductWithSeller> getFilteredProducts(ProductFilters productFilters) throws GenericException {
+    List<Product> products = this.productFilterer.findFilteredProducts(productFilters);
+    return this.productSellerService.getProductsWithSeller(products);
+  }
 }

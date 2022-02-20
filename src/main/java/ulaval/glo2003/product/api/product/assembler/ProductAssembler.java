@@ -2,20 +2,21 @@ package ulaval.glo2003.product.api.product.assembler;
 
 import ulaval.glo2003.product.api.offers.OffersAssembler;
 import ulaval.glo2003.product.api.product.response.ProductResponse;
-import ulaval.glo2003.product.api.product.response.ProductSellerResponse;
 import ulaval.glo2003.product.domain.product.Product;
-import ulaval.glo2003.product.domain.product.productCategories.ProductCategory;
+import ulaval.glo2003.product.domain.product.Category;
+import ulaval.glo2003.product.domain.product.ProductWithSeller;
 import ulaval.glo2003.seller.api.SellerProductResponse;
-import ulaval.glo2003.seller.domain.Seller;
 
 
 import java.util.stream.Collectors;
 
 public class ProductAssembler {
   private final OffersAssembler offersAssembler;
+  private final ProductSellerAssembler productSellerAssembler;
 
-  public ProductAssembler(OffersAssembler offersAssembler) {
+  public ProductAssembler(OffersAssembler offersAssembler, ProductSellerAssembler productSellerAssembler) {
     this.offersAssembler = offersAssembler;
+    this.productSellerAssembler = productSellerAssembler;
   }
 
   public SellerProductResponse toSellerProductResponse(Product product) {
@@ -24,20 +25,21 @@ public class ProductAssembler {
             product.getStringCreatedAt(),
             product.getTitle(),
             product.getDescription(),
-            product.getSuggestedPriceAmount(),
+            product.getSuggestedPriceAmountIntValue(),
             this.offersAssembler.toResponse(product.getOffers()));
 
   }
 
-  public ProductResponse toResponse(Product product, Seller seller) {
+  public ProductResponse toResponse(ProductWithSeller productWithSeller) {
     return new ProductResponse(
-            product.getStringProductId(),
-            product.getStringCreatedAt(),
-            product.getTitle(),
-            product.getDescription(),
-            product.getSuggestedPriceAmount(),
-            this.offersAssembler.toResponse(product.getOffers()),
-            product.getProductCategories().stream().map(ProductCategory::getCategoryName).collect(Collectors.toList()),
-            new ProductSellerResponse(seller.getStringSellerId(), seller.getName()));
+            productWithSeller.getProductStringId(),
+            productWithSeller.getProductStringCreatedAt(),
+            productWithSeller.getProductTitle(),
+            productWithSeller.getProductDescription(),
+            productWithSeller.getProductSuggestedPriceAmountIntValue(),
+            this.offersAssembler.toResponse(productWithSeller.getProductOffers()),
+            productWithSeller.getProductCategories().stream().
+                    map(Category::getCategoryName).collect(Collectors.toList()),
+            this.productSellerAssembler.toResponse(productWithSeller));
   }
 }

@@ -42,8 +42,8 @@ public class ApplicationMain {
             appContext.productAssembler,
             appContext.productIdFactory,
             appContext.productRequestValidator,
-            appContext.productFilterAssembler);
-
+            appContext.productFiltersFactory
+    );
   }
 
   private static SellerResource createSellerResource() {
