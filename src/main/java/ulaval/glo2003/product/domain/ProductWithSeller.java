@@ -1,6 +1,7 @@
 package ulaval.glo2003.product.domain;
 
 import ulaval.glo2003.seller.domain.Seller;
+import ulaval.glo2003.seller.domain.SellerId;
 
 import java.util.List;
 import java.util.Objects;
@@ -45,6 +46,10 @@ public class ProductWithSeller {
 
   public List<Category> getProductCategories() {
     return this.product.getProductCategories();
+  }
+
+  public SellerId getSellerId() {
+    return this.seller.getSellerId();
   }
 
   @Override

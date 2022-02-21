@@ -36,8 +36,8 @@ public class ProductFilterer {
   }
 
   private void filterByAmount(Amount minimalPrice, Amount maximumPrice, List<Product> products) {
-    filterByMinimumPrice(minimalPrice, products);
-    filterByMaximumPrice(maximumPrice, products);
+    this.filterByMinimumPrice(minimalPrice, products);
+    this.filterByMaximumPrice(maximumPrice, products);
   }
 
 

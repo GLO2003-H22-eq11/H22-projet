@@ -102,7 +102,7 @@ class ProductResourceTest {
   }
 
   @Test
-  public void givenAProductRequestAndASellerId_whenCreateProduct_thenShouldReturnUriWithProductLocation() {
+  public void givenAProductRequestAndASellerId_whenCreateProduct_thenShouldReturnUriWithProductLocation() throws GenericException {
     String endpoint = "products";
     this.givenAProduct(this.productRequest);
 
@@ -148,7 +148,7 @@ class ProductResourceTest {
   }
 
 
-  private void givenAProduct(ProductRequest productRequest) {
+  private void givenAProduct(ProductRequest productRequest) throws GenericException{
     given(this.productFactory.create(productRequest, A_SELLER_STRING_ID)).willReturn(this.product);
     given(this.product.getStringId()).willReturn(A_SELLER_STRING_ID);
   }

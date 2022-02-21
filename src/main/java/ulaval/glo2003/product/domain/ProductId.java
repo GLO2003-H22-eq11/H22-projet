@@ -1,5 +1,6 @@
 package ulaval.glo2003.product.domain;
 
+import ulaval.glo2003.main.domain.exception.InvalidIdentifierException;
 import ulaval.glo2003.util.UUIDGenerator;
 
 import java.util.Objects;
@@ -12,7 +13,13 @@ public class ProductId {
     this.id = UUIDGenerator.generate();
   }
 
-  public ProductId(String productId) { this.id = UUID.fromString(productId); }
+  public ProductId(String productId) throws InvalidIdentifierException {
+    try {
+      this.id = UUID.fromString(productId);
+    } catch (Exception e) {
+      throw new InvalidIdentifierException();
+    }
+  }
 
   public String toString() {
     return this.id.toString();

@@ -87,7 +87,7 @@ public class ProductResource {
   @Produces(MediaType.APPLICATION_JSON)
   public Response getFilteredProducts(@DefaultValue("") @QueryParam("sellerId") String sellerId,
                                       @DefaultValue("") @QueryParam("title") String title,
-                                      @DefaultValue("null") @QueryParam("categories") List<String> categories,
+                                      @QueryParam("categories") List<String> categories,
                                       @DefaultValue("0") @QueryParam("minPrice") int minPrice,
                                       @DefaultValue("0") @QueryParam("maxPrice") int maxPrice) {
 

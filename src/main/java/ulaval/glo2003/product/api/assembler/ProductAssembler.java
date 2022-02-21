@@ -39,7 +39,7 @@ public class ProductAssembler {
             this.offersAssembler.toResponse(productWithSeller.getProductOffers()),
             productWithSeller.getProductCategories().stream().
                     map(Category::getCategoryName).collect(Collectors.toList()),
-            new ProductSellerResponse(productWithSeller.getProductStringId(), productWithSeller.getSellerName()));
+            new ProductSellerResponse(productWithSeller.getSellerId().toString(), productWithSeller.getSellerName()));
   }
 
   public ProductsResponse toProductsResponse(List<ProductWithSeller> productsWithSellers) {

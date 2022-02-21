@@ -21,7 +21,7 @@ public class ProductBuilder {
     this.title = "MarinoBoy";
     this.description = "Je suis le meilleur programmeur à l'uni";
     this.suggestedPrice = Amount.fromInt(25);
-    this.offers = null;
+    this.offers = new Offers(Amount.fromInt(0), 0);
     this.categories = new Categories(List.of(new Category("category")));
     this.createdAt = LocalDateTime.now();
   }

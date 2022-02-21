@@ -33,8 +33,8 @@ public class AppContext {
   public final CategoriesFactory categoriesFactory = new CategoriesFactory();
   public final SellerFactory sellerFactory = new SellerFactory();
   public final SellerIdFactory sellerIdFactory = new SellerIdFactory();
-  public final ProductFactory productFactory = new ProductFactory(sellerIdFactory);
   public final ProductIdFactory productIdFactory = new ProductIdFactory();
+  public final ProductFactory productFactory = new ProductFactory(sellerIdFactory, productIdFactory, categoriesFactory);
   public final ProductFiltersFactory productFiltersFactory = new ProductFiltersFactory(
           sellerIdFactory,
           categoriesFactory

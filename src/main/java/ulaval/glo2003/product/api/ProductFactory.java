@@ -1,33 +1,37 @@
 package ulaval.glo2003.product.api;
 
+import ulaval.glo2003.main.domain.exception.InvalidIdentifierException;
 import ulaval.glo2003.product.domain.Amount;
-import ulaval.glo2003.product.domain.Categories;
-import ulaval.glo2003.product.domain.Category;
+import ulaval.glo2003.product.domain.CategoriesFactory;
 import ulaval.glo2003.product.domain.Offers;
 import ulaval.glo2003.product.domain.Product;
-import ulaval.glo2003.product.domain.ProductId;
+import ulaval.glo2003.product.domain.ProductIdFactory;
 import ulaval.glo2003.seller.domain.SellerIdFactory;
 
 import java.time.LocalDateTime;
-import java.util.stream.Collectors;
 
 public class ProductFactory {
   private final SellerIdFactory sellerIdFactory;
+  private final ProductIdFactory productIdFactory;
+  private final CategoriesFactory categoriesFactory;
 
-  public ProductFactory(SellerIdFactory sellerIdFactory) {
+  public ProductFactory(
+          SellerIdFactory sellerIdFactory, ProductIdFactory productIdFactory, CategoriesFactory categoriesFactory
+  ) {
     this.sellerIdFactory = sellerIdFactory;
+    this.productIdFactory = productIdFactory;
+    this.categoriesFactory = categoriesFactory;
   }
 
-  public Product create(ProductRequest productRequest, String sellerId) {
+  public Product create(ProductRequest productRequest, String sellerId) throws InvalidIdentifierException {
     return new Product(
             this.sellerIdFactory.create(sellerId),
-            new ProductId(),
+            this.productIdFactory.create(),
             productRequest.title,
             productRequest.description,
             Amount.fromInt(productRequest.suggestedPrice),
             new Offers(Amount.fromInt(0), 0),
-            new Categories(productRequest.categories.stream().
-                    map(Category::new).collect(Collectors.toList())),
+            this.categoriesFactory.create(productRequest.categories),
             LocalDateTime.now()
     );
   }
