@@ -23,4 +23,11 @@ public class InMemorySellerRepository implements SellerRepository {
     }
     return seller;
   }
+
+  @Override
+  public void verifyIfSellerExists(SellerId id) throws SellerNotFoundException {
+    if (this.sellers.get(id) == null) {
+      throw new SellerNotFoundException();
+    }
+  }
 }

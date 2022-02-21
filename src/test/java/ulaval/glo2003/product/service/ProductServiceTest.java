@@ -28,7 +28,6 @@ import static org.mockito.Mockito.verify;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 @ExtendWith(MockitoExtension.class)
 class ProductServiceTest {
 
@@ -81,7 +80,7 @@ class ProductServiceTest {
 
     this.productService.addProduct(this.product);
 
-    verify(this.sellerRepository).findById(aSellerId);
+    verify(this.sellerRepository).verifyIfSellerExists(aSellerId);
   }
 
   @Test
@@ -94,7 +93,7 @@ class ProductServiceTest {
 
     this.productService.addProduct(this.product);
 
-    inOrder.verify(this.sellerRepository).findById(aSellerId);
+    inOrder.verify(this.sellerRepository).verifyIfSellerExists(aSellerId);
     inOrder.verify(this.productRepository).save(this.product);
   }
 
@@ -120,6 +119,15 @@ class ProductServiceTest {
     this.productService.getFilteredProducts(productFilters);
 
     verify(this.productFilterer).findFilteredProducts(productFilters);
+  }
+
+  @Test
+  public void givenProductFilters_whenGetFilteredProducts_thenShouldVerifyThatSellerIdExists() throws GenericException {
+    SellerId aSellerId = new SellerId();
+    given(productFilters.getSellerId()).willReturn(aSellerId);
+    this.productService.getFilteredProducts(productFilters);
+
+    verify(this.sellerRepository).verifyIfSellerExists(aSellerId);
   }
 
   @Test

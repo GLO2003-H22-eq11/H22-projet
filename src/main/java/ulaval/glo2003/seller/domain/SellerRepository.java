@@ -6,4 +6,6 @@ public interface SellerRepository {
   void save(Seller seller);
 
   Seller findById(SellerId id) throws SellerNotFoundException;
+
+  void verifyIfSellerExists(SellerId id) throws SellerNotFoundException;
 }

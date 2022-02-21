@@ -8,7 +8,6 @@ import ulaval.glo2003.product.domain.ProductSellerDomainService;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductFilters;
 import ulaval.glo2003.product.domain.ProductId;
-import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
 
 import java.util.List;
@@ -37,16 +36,13 @@ public class ProductService {
   }
 
   public void addProduct(Product product) throws GenericException {
-    this.verifyIfSellerExists(product.getSellerId());
+    this.sellerRepository.verifyIfSellerExists(product.getSellerId());
     this.productRepository.save(product);
   }
 
   public List<ProductWithSeller> getFilteredProducts(ProductFilters productFilters) throws GenericException {
+    this.sellerRepository.verifyIfSellerExists(productFilters.getSellerId());
     List<Product> products = this.productFilterer.findFilteredProducts(productFilters);
     return this.productSellerService.getProductsWithSeller(products);
-  }
-
-  private void verifyIfSellerExists(SellerId sellerId) throws GenericException {
-    this.sellerRepository.findById(sellerId);
   }
 }
