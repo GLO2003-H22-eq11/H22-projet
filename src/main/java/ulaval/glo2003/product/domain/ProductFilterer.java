@@ -59,5 +59,4 @@ public class ProductFilterer {
       products.removeIf(product -> minimalPrice.isHigher(product.getSuggestedPriceAmount()));
     }
   }
-
 }

@@ -3,7 +3,6 @@ package ulaval.glo2003;
 import ulaval.glo2003.exception.ConstraintsValidator;
 import ulaval.glo2003.product.api.assembler.OffersAssembler;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
-import ulaval.glo2003.product.api.assembler.CategoryAssembler;
 import ulaval.glo2003.product.api.ProductRequestValidator;
 import ulaval.glo2003.product.api.ProductFactory;
 import ulaval.glo2003.product.api.ProductFiltersFactory;
@@ -26,7 +25,6 @@ import ulaval.glo2003.seller.service.SellerService;
 public class AppContext {
 
   //assemblers
-  public final CategoryAssembler categoryAssembler = new CategoryAssembler();
   public final OffersAssembler offersAssembler = new OffersAssembler();
   public final ProductAssembler productAssembler = new ProductAssembler(offersAssembler);
   public final SellerAssembler sellerAssembler = new SellerAssembler(productAssembler);
@@ -35,7 +33,7 @@ public class AppContext {
   public final CategoriesFactory categoriesFactory = new CategoriesFactory();
   public final SellerFactory sellerFactory = new SellerFactory();
   public final SellerIdFactory sellerIdFactory = new SellerIdFactory();
-  public final ProductFactory productFactory = new ProductFactory(categoryAssembler, sellerIdFactory);
+  public final ProductFactory productFactory = new ProductFactory(sellerIdFactory);
   public final ProductIdFactory productIdFactory = new ProductIdFactory();
   public final ProductFiltersFactory productFiltersFactory = new ProductFiltersFactory(
           sellerIdFactory,

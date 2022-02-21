@@ -23,7 +23,7 @@ public class ProductFiltersFactoryTest {
   private final static String EMPTY_SELLER_ID = "";
   private final static String EMPTY_TITLE = "";
   private final static String A_CATEGORY_NAME = "CATEGO";
-  private final static String A_SELLER_ID = "A_SELLER_ID";
+  private final static String A_SELLER_ID = "bd92e112-a7c1-4ae0-9ea2-0bf0734d0dfe";
   private final static String A_TITLE = "A_TITLE";
 
   private final int INVALID_MINIMUM_PRICE = 0;
