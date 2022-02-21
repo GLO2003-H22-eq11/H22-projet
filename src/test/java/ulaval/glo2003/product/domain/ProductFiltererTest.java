@@ -18,10 +18,9 @@ class ProductFiltererTest {
 
   private final String A_PRODUCT_TITLE = "MARIN_TITLE";
   private final String A_SIMILAR_PRODUCT_TITLE = "TITLE_MARIN";
-  private final Amount THE_LOWEST_AMOUNT_POSSIBLE = Amount.fromInt(2);
   private final Amount AN_AMOUNT = Amount.fromInt(30);
   private final Amount A_MINIMAL_AMOUNT = Amount.fromInt(10);
-  private final Amount A_MAXIMAL_AMOUNT = Amount.fromInt(20);
+  private final Amount A_MAXIMAL_AMOUNT = Amount.fromInt(60);
   private final SellerId A_SELLER_ID = new SellerId();
   private final SellerId ANOTHER_SELLER_ID = new SellerId();
 
@@ -29,6 +28,11 @@ class ProductFiltererTest {
   private final Product A_PRODUCT_WITH_A_SIMILAR_TITLE = new ProductBuilder().withTitle(A_SIMILAR_PRODUCT_TITLE).build();
 
   private final Product A_PRODUCT_WITH_A_SELLER_ID = new ProductBuilder().withSellerId(A_SELLER_ID).build();
+
+  private final Category A_CATEGORY = new Category("A category");
+  private final Category ANOTHER_CATEGORY = new Category("This is another category");
+  private final Categories PRODUCT_CATEGORIES = new Categories(List.of(A_CATEGORY, ANOTHER_CATEGORY));
+  private final Product A_PRODUCT_WITH_TWO_CATEGORIES = new ProductBuilder().withCategories(PRODUCT_CATEGORIES).build();
 
   private List<Product> PRODUCTS;
   private ProductFilters A_PRODUCT_FILTERS;
@@ -48,7 +52,8 @@ class ProductFiltererTest {
   @Test
   public void givenAProductWithATitleAndAProductFiltersWithTheSameTitleAsProduct_whenFindFilteredProducts_thenShouldFindProduct() {
     A_PRODUCT_FILTERS.setTitle(A_PRODUCT_TITLE);
-    givenProducts(List.of(A_PRODUCT_WITH_A_TITLE));
+    PRODUCTS.add(A_PRODUCT_WITH_A_TITLE);
+    givenProducts(PRODUCTS);
 
     List<Product> actual = this.productFilterer.findFilteredProducts(A_PRODUCT_FILTERS);
 
@@ -59,7 +64,8 @@ class ProductFiltererTest {
   public void givenAProductWithATitleAndAProductFiltersWithSmallPartOfTheTitleAsProduct_whenFindFilteredProducts_thenShouldFindProduct() {
     String aSmallPartOfProductTitle = "MAR";
     A_PRODUCT_FILTERS.setTitle(aSmallPartOfProductTitle);
-    givenProducts(List.of(A_PRODUCT_WITH_A_TITLE));
+    PRODUCTS.add(A_PRODUCT_WITH_A_TITLE);
+    givenProducts(PRODUCTS);
 
     List<Product> actual = this.productFilterer.findFilteredProducts(A_PRODUCT_FILTERS);
 
@@ -70,7 +76,8 @@ class ProductFiltererTest {
   public void givenAProductWithATitleAndAProductFiltersWithSmallPartOfTheTitleAsProductWithDifferentCasing_whenFindFilteredProducts_thenShouldFindProduct() {
     String aSmallPartOfProductTitle = "N_tiT";
     A_PRODUCT_FILTERS.setTitle(aSmallPartOfProductTitle);
-    givenProducts(List.of(A_PRODUCT_WITH_A_TITLE));
+    PRODUCTS.add(A_PRODUCT_WITH_A_TITLE);
+    givenProducts(PRODUCTS);
 
     List<Product> actual = this.productFilterer.findFilteredProducts(A_PRODUCT_FILTERS);
 
@@ -103,14 +110,16 @@ class ProductFiltererTest {
   }
 
   @Test
-  public void givenAProductAndAProductFiltersWithSameProductId_whenFindFilteredProducts_thenShouldFindProduct() {
+  public void givenTwoProductAndAProductFiltersWithSameProductId_whenFindFilteredProducts_thenShouldFindProducts() {
+    Product aProduct = new ProductBuilder().withSellerId(A_SELLER_ID).build();
     A_PRODUCT_FILTERS.setSellerId(A_SELLER_ID);
     PRODUCTS.add(A_PRODUCT_WITH_A_SELLER_ID);
+    PRODUCTS.add(aProduct);
     givenProducts(PRODUCTS);
 
     List<Product> actual = this.productFilterer.findFilteredProducts(A_PRODUCT_FILTERS);
 
-    assertEquals(List.of(A_PRODUCT_WITH_A_SELLER_ID), actual);
+    assertEquals(List.of(A_PRODUCT_WITH_A_SELLER_ID, aProduct), actual);
   }
 
   @Test
@@ -126,30 +135,130 @@ class ProductFiltererTest {
 
   @Test
   public void givenAProductWithAPriceAndAMinimalPriceLowerThanProductPrice_whenFindFilteredProducts_thenShouldFindProduct() {
-    //Product product = new ProductBuilder().withAmount(Amount.fromInt())
+    Product productWithHigherAmountThanMinimumAmount = new ProductBuilder().withAmount(AN_AMOUNT).build();
     A_PRODUCT_FILTERS.setMinimalPrice(A_MINIMAL_AMOUNT);
+    PRODUCTS.add(productWithHigherAmountThanMinimumAmount);
+    givenProducts(PRODUCTS);
 
+    List<Product> actual = this.productFilterer.findFilteredProducts(A_PRODUCT_FILTERS);
+
+    assertEquals(List.of(productWithHigherAmountThanMinimumAmount), actual);
   }
 
   @Test
   public void givenAProductWithAPriceAndAMinimalPriceHigherThanProductPrice_whenFindFilteredProducts_thenShouldNotFindProduct() {
+    Amount aVerySmallAmount = Amount.fromInt(2);
+    Product productWithLowerAmountThanMinimalAmount = new ProductBuilder().withAmount(aVerySmallAmount).build();
+    A_PRODUCT_FILTERS.setMinimalPrice(A_MINIMAL_AMOUNT);
+    PRODUCTS.add(productWithLowerAmountThanMinimalAmount);
+    givenProducts(PRODUCTS);
 
+    List<Product> actual = this.productFilterer.findFilteredProducts(A_PRODUCT_FILTERS);
 
+    assertTrue(actual.isEmpty());
   }
 
   @Test
   public void givenAProductWithAPriceAndAMaximumPriceLowerThanProductPrice_whenFindFilteredProducts_thenShouldNotFindProduct() {
+    Product productWithAHighPrice = new ProductBuilder().withAmount(A_MAXIMAL_AMOUNT).build();
+    A_PRODUCT_FILTERS.setMaximumPrice(A_MINIMAL_AMOUNT);
+    PRODUCTS.add(productWithAHighPrice);
+    givenProducts(PRODUCTS);
 
+    List<Product> actual = this.productFilterer.findFilteredProducts(A_PRODUCT_FILTERS);
+
+    assertTrue(actual.isEmpty());
   }
 
   @Test
   public void givenAProductWithAPriceAndAMaximumPriceHigherThanProductPrice_whenFindFilteredProducts_thenShouldFindProduct() {
+    Product productWithALowPrice = new ProductBuilder().withAmount(A_MINIMAL_AMOUNT).build();
+    A_PRODUCT_FILTERS.setMaximumPrice(A_MAXIMAL_AMOUNT);
+    PRODUCTS.add(productWithALowPrice);
+    givenProducts(PRODUCTS);
 
+    List<Product> actual = this.productFilterer.findFilteredProducts(A_PRODUCT_FILTERS);
 
+    assertEquals(List.of(productWithALowPrice), actual);
   }
+
+  @Test
+  public void givenAProductWithAPriceAndAMinimumPriceWithSameValue_whenFindFilteredProducts_thenShouldFindProduct() {
+    Product aProduct = new ProductBuilder().withAmount(AN_AMOUNT).build();
+    A_PRODUCT_FILTERS.setMinimalPrice(AN_AMOUNT);
+    PRODUCTS.add(aProduct);
+    givenProducts(PRODUCTS);
+
+    List<Product> actual = this.productFilterer.findFilteredProducts(A_PRODUCT_FILTERS);
+
+    assertEquals(List.of(aProduct), actual);
+  }
+
+  @Test
+  public void givenAProductWithAPriceAndAMaximumPriceWithSameValue_whenFindFilteredProducts_thenShouldFindProduct() {
+    Product aProduct = new ProductBuilder().withAmount(AN_AMOUNT).build();
+    A_PRODUCT_FILTERS.setMaximumPrice(AN_AMOUNT);
+    PRODUCTS.add(aProduct);
+    givenProducts(PRODUCTS);
+
+    List<Product> actual = this.productFilterer.findFilteredProducts(A_PRODUCT_FILTERS);
+
+    assertEquals(List.of(aProduct), actual);
+  }
+
+  @Test
+  public void givenAProductWithTwoCategoriesAndOnlyOneOfThemCategoriesAsAFilter_whenFindFilteredProducts_thenShouldFindProduct() {
+    Categories filterCategories = new Categories(List.of(A_CATEGORY));
+    A_PRODUCT_FILTERS.setCategories(filterCategories);
+    PRODUCTS.add(A_PRODUCT_WITH_TWO_CATEGORIES);
+    givenProducts(PRODUCTS);
+
+    List<Product> actual = this.productFilterer.findFilteredProducts(A_PRODUCT_FILTERS);
+
+    assertEquals(List.of(A_PRODUCT_WITH_TWO_CATEGORIES), actual);
+  }
+
+  @Test
+  public void givenAProductWithTwoCategoriesAndTwoThemCategoriesAsAFilter_whenFindFilteredProducts_thenShouldFindProduct() {
+    Categories filterCategories = new Categories(List.of(A_CATEGORY, ANOTHER_CATEGORY));
+    A_PRODUCT_FILTERS.setCategories(filterCategories);
+    PRODUCTS.add(A_PRODUCT_WITH_TWO_CATEGORIES);
+    givenProducts(PRODUCTS);
+
+    List<Product> actual = this.productFilterer.findFilteredProducts(A_PRODUCT_FILTERS);
+
+    assertEquals(List.of(A_PRODUCT_WITH_TWO_CATEGORIES), actual);
+  }
+
+  @Test
+  public void givenAProductWithTwoCategoriesAndADifferentCategoryAsAFilter_whenFindFilteredProducts_thenShouldNotFindProduct() {
+    Category aDifferentCategory = new Category("OHOH");
+    Categories filterCategories = new Categories(List.of(aDifferentCategory));
+    A_PRODUCT_FILTERS.setCategories(filterCategories);
+    PRODUCTS.add(A_PRODUCT_WITH_TWO_CATEGORIES);
+    givenProducts(PRODUCTS);
+
+    List<Product> actual = this.productFilterer.findFilteredProducts(A_PRODUCT_FILTERS);
+
+    assertTrue(actual.isEmpty());
+  }
+
+  @Test
+  public void givenAProductAndAFilterWithAPartOfTheProductTitleAMinimumPriceLowerThanProductPriceAndACategoryCorrespondingToProduct_whenFindFilteredProducts_thenShouldFindProduct() {
+    Categories productCategories = new Categories(List.of(A_CATEGORY, ANOTHER_CATEGORY));
+    Product aProduct = new ProductBuilder().withTitle(A_PRODUCT_TITLE).withAmount(AN_AMOUNT).withCategories(productCategories).build();
+    Categories filterCategories = new Categories(List.of(A_CATEGORY));
+    A_PRODUCT_FILTERS.setCategories(filterCategories);
+    PRODUCTS.add(aProduct);
+    givenProducts(PRODUCTS);
+
+    List<Product> actual = this.productFilterer.findFilteredProducts(A_PRODUCT_FILTERS);
+
+    assertEquals(List.of(aProduct), actual);
+  }
+
 
   private void givenProducts(List<Product> products) {
     given(this.productRepository.findAll()).willReturn(products);
   }
-
 }

@@ -22,7 +22,7 @@ public class Product {
           String description,
           Amount suggestedPrice,
           Offers offers,
-          List<Category> productCategories,
+          Categories categories,
           LocalDateTime createdAt
   ) {
     this.sellerId = sellerId;
@@ -32,7 +32,7 @@ public class Product {
     this.description = description;
     this.suggestedPrice = suggestedPrice;
     this.offers = offers;
-    this.categories = new Categories(productCategories);
+    this.categories = categories;
   }
 
   public SellerId getSellerId() {
