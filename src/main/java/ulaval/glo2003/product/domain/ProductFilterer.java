@@ -22,14 +22,16 @@ public class ProductFilterer {
     return products;
   }
 
+  private void filterByTitle(String title, List<Product> products) {
+    if (title != null) {
+      products.removeIf(product -> !product.isInTitle(title));
+    }
+  }
 
-  private void filterByCategories(Categories categories, List<Product> products) {
-    if (categories != null) {
-      products.forEach(product -> {
-        if (!product.hasAtLeastOneCategoryInCommon(categories)) {
-          products.remove(product);
-        }
-      });
+
+  private void filterBySellerId(SellerId sellerId, List<Product> products) {
+    if (sellerId != null) {
+      products.removeIf(product -> !product.hasSameSellerId(sellerId));
     }
   }
 
@@ -38,43 +40,24 @@ public class ProductFilterer {
     filterByMaximumPrice(maximumPrice, products);
   }
 
+
+  private void filterByCategories(Categories categories, List<Product> products) {
+    if (categories != null) {
+      products.removeIf(product -> !product.hasAtLeastOneCategoryInCommon(categories));
+    }
+  }
+
+
   private void filterByMaximumPrice(Amount maximumPrice, List<Product> products) {
     if (maximumPrice != null) {
-      products.forEach(product -> {
-        if (product.getSuggestedPriceAmount().isHigher(maximumPrice)) {
-          products.remove(product);
-        }
-      });
+      products.removeIf(product -> product.getSuggestedPriceAmount().isHigher(maximumPrice));
     }
   }
 
   private void filterByMinimumPrice(Amount minimalPrice, List<Product> products) {
     if (minimalPrice != null) {
-      products.forEach(product -> {
-        if (minimalPrice.isHigher(product.getSuggestedPriceAmount())) {
-          products.remove(product);
-        }
-      });
+      products.removeIf(product -> minimalPrice.isHigher(product.getSuggestedPriceAmount()));
     }
   }
 
-  private void filterBySellerId(SellerId sellerId, List<Product> products) {
-    if (sellerId != null) {
-      products.forEach(product -> {
-        if (!product.hasSameSellerId(sellerId)) {
-          products.remove(product);
-        }
-      });
-    }
-  }
-
-  private void filterByTitle(String title, List<Product> products) {
-    if (title != null) {
-      products.forEach(product -> {
-        if (!product.isInTitle(title)) {
-          products.remove(product);
-        }
-      });
-    }
-  }
 }
