@@ -41,7 +41,9 @@ public class ProductService {
   }
 
   public List<ProductWithSeller> getFilteredProducts(ProductFilters productFilters) throws GenericException {
-    this.sellerRepository.verifyIfSellerExists(productFilters.getSellerId());
+    if (productFilters.getSellerId() != null) {
+      this.sellerRepository.verifyIfSellerExists(productFilters.getSellerId());
+    }
     List<Product> products = this.productFilterer.findFilteredProducts(productFilters);
     return this.productSellerService.getProductsWithSeller(products);
   }

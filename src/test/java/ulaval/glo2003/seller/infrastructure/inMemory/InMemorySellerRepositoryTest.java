@@ -39,4 +39,16 @@ class InMemorySellerRepositoryTest {
 
     assertThrows(SellerNotFoundException.class, () -> this.inMemorySellerRepository.findById(aSellerId));
   }
+
+  @Test
+  public void givenANonExistentSellerId_whenVerifyIfSellerExists_thenShouldThrowSellerNotFoundException() {
+    SellerId aSellerId = new SellerId();
+
+    assertThrows(SellerNotFoundException.class, () -> this.inMemorySellerRepository.verifyIfSellerExists(aSellerId));
+  }
+
+  @Test
+  public void givenAnExistentSellerId_whenVerifyIfSellerExists_thenShouldNotThrowSellerNotFoundException() {
+    assertDoesNotThrow(() -> this.inMemorySellerRepository.verifyIfSellerExists(A_SELLER_ID));
+  }
 }

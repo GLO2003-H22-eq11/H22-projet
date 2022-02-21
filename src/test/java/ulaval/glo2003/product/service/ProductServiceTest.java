@@ -22,8 +22,10 @@ import ulaval.glo2003.seller.domain.SellerRepository;
 
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -122,12 +124,20 @@ class ProductServiceTest {
   }
 
   @Test
-  public void givenProductFilters_whenGetFilteredProducts_thenShouldVerifyThatSellerIdExists() throws GenericException {
+  public void givenProductFiltersWithASellerId_whenGetFilteredProducts_thenShouldVerifyThatSellerIdExists() throws GenericException {
     SellerId aSellerId = new SellerId();
     given(productFilters.getSellerId()).willReturn(aSellerId);
     this.productService.getFilteredProducts(productFilters);
 
     verify(this.sellerRepository).verifyIfSellerExists(aSellerId);
+  }
+
+  @Test
+  public void givenProductFiltersWithNoSellerId_whenGetFilteredProducts_thenShouldNotVerifyThatSellerIdExists() throws GenericException {
+    given(productFilters.getSellerId()).willReturn(null);
+    this.productService.getFilteredProducts(productFilters);
+
+    verify(this.sellerRepository, never()).verifyIfSellerExists(any(SellerId.class));
   }
 
   @Test
