@@ -1,11 +1,11 @@
-package ulaval.glo2003.main.domain.exception;
+package ulaval.glo2003.product.domain.exceptions;
 
 
 import ulaval.glo2003.exception.ErrorCode;
 import ulaval.glo2003.exception.ErrorResponse;
 import ulaval.glo2003.exception.GenericException;
 
-public class InvalidIdentifierException extends GenericException {
+public class InvalidProductIdException extends GenericException {
   private final ErrorCode errorCode = ErrorCode.INVALID_PARAMETER;
 
   public ErrorResponse getErrorResponse() {

@@ -1,6 +1,6 @@
 package ulaval.glo2003.seller.domain;
 
-import ulaval.glo2003.main.domain.exception.InvalidIdentifierException;
+import ulaval.glo2003.seller.domain.exceptions.InvalidSellerIdException;
 import ulaval.glo2003.util.UUIDGenerator;
 
 import java.util.Objects;
@@ -13,11 +13,11 @@ public class SellerId {
     this.id = UUIDGenerator.generate();
   }
 
-  public SellerId(String sellerId) throws InvalidIdentifierException {
+  public SellerId(String sellerId) throws InvalidSellerIdException {
     try {
       this.id = UUID.fromString(sellerId);
     } catch (Exception e) {
-      throw new InvalidIdentifierException();
+      throw new InvalidSellerIdException();
     }
   }
 

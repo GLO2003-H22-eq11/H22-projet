@@ -6,9 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ulaval.glo2003.exception.ConstraintsValidator;
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.main.domain.exception.InvalidIdentifierException;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerBuilder;
 import ulaval.glo2003.seller.domain.SellerId;
@@ -121,7 +119,7 @@ public class SellerResourceTest {
     return aSeller;
   }
 
-  private void givenASellerId(SellerId aSellerId) throws InvalidIdentifierException {
+  private void givenASellerId(SellerId aSellerId) throws GenericException {
     given(this.sellerIdFactory.create(A_SELLER_STRING_ID)).willReturn(aSellerId);
   }
 }

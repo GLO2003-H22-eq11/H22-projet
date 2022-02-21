@@ -1,6 +1,6 @@
 package ulaval.glo2003.product.api;
 
-import ulaval.glo2003.main.domain.exception.InvalidIdentifierException;
+import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.domain.Amount;
 import ulaval.glo2003.product.domain.CategoriesFactory;
 import ulaval.glo2003.product.domain.ProductFilters;
@@ -19,8 +19,12 @@ public class ProductFiltersFactory {
   }
 
   public ProductFilters create(
-          String stringSellerId, String title, List<String> stringCategories, int minPrice, int maxPrice
-  ) throws InvalidIdentifierException {
+          String stringSellerId,
+          String title,
+          List<String> stringCategories,
+          int minPrice,
+          int maxPrice
+  ) throws GenericException {
     ProductFilters productFilters = new ProductFilters();
 
     if (!stringSellerId.isBlank()) {

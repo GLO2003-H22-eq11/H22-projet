@@ -1,6 +1,6 @@
 package ulaval.glo2003.product.api;
 
-import ulaval.glo2003.main.domain.exception.InvalidIdentifierException;
+import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.domain.Amount;
 import ulaval.glo2003.product.domain.CategoriesFactory;
 import ulaval.glo2003.product.domain.Offers;
@@ -23,7 +23,7 @@ public class ProductFactory {
     this.categoriesFactory = categoriesFactory;
   }
 
-  public Product create(ProductRequest productRequest, String sellerId) throws InvalidIdentifierException {
+  public Product create(ProductRequest productRequest, String sellerId) throws GenericException {
     return new Product(
             this.sellerIdFactory.create(sellerId),
             this.productIdFactory.create(),

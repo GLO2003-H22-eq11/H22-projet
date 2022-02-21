@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.main.domain.exception.InvalidIdentifierException;
 import ulaval.glo2003.product.domain.Amount;
 import ulaval.glo2003.product.domain.Categories;
 import ulaval.glo2003.product.domain.CategoriesFactory;
