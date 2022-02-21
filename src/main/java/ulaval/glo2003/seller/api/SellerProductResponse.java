@@ -1,6 +1,6 @@
 package ulaval.glo2003.seller.api;
 
-import ulaval.glo2003.product.api.offers.OffersResponse;
+import ulaval.glo2003.product.api.response.OffersResponse;
 
 public class SellerProductResponse {
   public final String id;

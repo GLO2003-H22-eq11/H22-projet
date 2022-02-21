@@ -1,7 +1,7 @@
 package ulaval.glo2003.seller.domain;
 
 import org.junit.jupiter.api.Test;
-import ulaval.glo2003.product.domain.product.Product;
+import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductBuilder;
 import ulaval.glo2003.seller.domain.exceptions.SellerIsMinorException;
 

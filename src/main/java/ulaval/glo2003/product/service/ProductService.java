@@ -1,13 +1,13 @@
 package ulaval.glo2003.product.service;
 
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.product.domain.product.ProductFilterer;
-import ulaval.glo2003.product.domain.product.ProductRepository;
-import ulaval.glo2003.product.domain.product.ProductWithSeller;
-import ulaval.glo2003.product.domain.product.ProductSellerService;
-import ulaval.glo2003.product.domain.product.Product;
-import ulaval.glo2003.product.domain.product.ProductFilters;
-import ulaval.glo2003.product.domain.product.ProductId;
+import ulaval.glo2003.product.domain.ProductFilterer;
+import ulaval.glo2003.product.domain.ProductRepository;
+import ulaval.glo2003.product.domain.ProductWithSeller;
+import ulaval.glo2003.product.domain.ProductSellerService;
+import ulaval.glo2003.product.domain.Product;
+import ulaval.glo2003.product.domain.ProductFilters;
+import ulaval.glo2003.product.domain.ProductId;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
 
@@ -31,7 +31,7 @@ public class ProductService {
     this.productFilterer = productFilterer;
   }
 
-  public ProductWithSeller getProductSeller(ProductId productId) throws GenericException {
+  public ProductWithSeller getProductWithSeller(ProductId productId) throws GenericException {
     Product product = this.productRepository.findById(productId);
     return this.productSellerService.getProductWithSeller(product);
   }
@@ -41,12 +41,12 @@ public class ProductService {
     this.productRepository.save(product);
   }
 
-  private void verifyIfSellerExists(SellerId sellerId) throws GenericException {
-    this.sellerRepository.findById(sellerId);
-  }
-
   public List<ProductWithSeller> getFilteredProducts(ProductFilters productFilters) throws GenericException {
     List<Product> products = this.productFilterer.findFilteredProducts(productFilters);
     return this.productSellerService.getProductsWithSeller(products);
+  }
+
+  private void verifyIfSellerExists(SellerId sellerId) throws GenericException {
+    this.sellerRepository.findById(sellerId);
   }
 }

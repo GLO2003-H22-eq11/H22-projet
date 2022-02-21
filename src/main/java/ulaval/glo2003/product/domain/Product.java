@@ -1,7 +1,5 @@
-package ulaval.glo2003.product.domain.product;
+package ulaval.glo2003.product.domain;
 
-import ulaval.glo2003.product.domain.Amount;
-import ulaval.glo2003.product.domain.Offers;
 import ulaval.glo2003.seller.domain.SellerId;
 
 import java.time.LocalDateTime;

@@ -1,9 +1,9 @@
-package ulaval.glo2003.product.domain.product;
+package ulaval.glo2003.product.domain;
 
-import ulaval.glo2003.product.domain.Offers;
 import ulaval.glo2003.seller.domain.Seller;
 
 import java.util.List;
+import java.util.Objects;
 
 
 public class ProductWithSeller {
@@ -17,10 +17,6 @@ public class ProductWithSeller {
 
   public String getProductStringId() {
     return this.product.getProductId().toString();
-  }
-
-  public String getSellerStringId() {
-    return this.seller.getStringId();
   }
 
   public String getSellerName() {
@@ -49,5 +45,18 @@ public class ProductWithSeller {
 
   public List<Category> getProductCategories() {
     return this.product.getProductCategories();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ProductWithSeller that = (ProductWithSeller) o;
+    return product.equals(that.product) && seller.equals(that.seller);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(product, seller);
   }
 }

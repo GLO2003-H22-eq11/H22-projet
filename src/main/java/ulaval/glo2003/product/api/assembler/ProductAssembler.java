@@ -1,22 +1,21 @@
-package ulaval.glo2003.product.api.product.assembler;
+package ulaval.glo2003.product.api.assembler;
 
-import ulaval.glo2003.product.api.offers.OffersAssembler;
-import ulaval.glo2003.product.api.product.response.ProductResponse;
-import ulaval.glo2003.product.domain.product.Product;
-import ulaval.glo2003.product.domain.product.Category;
-import ulaval.glo2003.product.domain.product.ProductWithSeller;
+import ulaval.glo2003.product.api.response.ProductResponse;
+import ulaval.glo2003.product.api.response.ProductSellerResponse;
+import ulaval.glo2003.product.api.response.ProductsResponse;
+import ulaval.glo2003.product.domain.Product;
+import ulaval.glo2003.product.domain.Category;
+import ulaval.glo2003.product.domain.ProductWithSeller;
 import ulaval.glo2003.seller.api.SellerProductResponse;
 
-
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProductAssembler {
   private final OffersAssembler offersAssembler;
-  private final ProductSellerAssembler productSellerAssembler;
 
-  public ProductAssembler(OffersAssembler offersAssembler, ProductSellerAssembler productSellerAssembler) {
+  public ProductAssembler(OffersAssembler offersAssembler) {
     this.offersAssembler = offersAssembler;
-    this.productSellerAssembler = productSellerAssembler;
   }
 
   public SellerProductResponse toSellerProductResponse(Product product) {
@@ -40,6 +39,12 @@ public class ProductAssembler {
             this.offersAssembler.toResponse(productWithSeller.getProductOffers()),
             productWithSeller.getProductCategories().stream().
                     map(Category::getCategoryName).collect(Collectors.toList()),
-            this.productSellerAssembler.toResponse(productWithSeller));
+            new ProductSellerResponse(productWithSeller.getProductStringId(), productWithSeller.getSellerName()));
+  }
+
+  public ProductsResponse toProductsResponse(List<ProductWithSeller> productsWithSellers) {
+    return new ProductsResponse(
+            productsWithSellers.stream().map(this::toResponse).collect(Collectors.toList())
+    );
   }
 }

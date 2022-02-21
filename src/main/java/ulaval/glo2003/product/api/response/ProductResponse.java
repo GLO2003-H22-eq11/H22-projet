@@ -1,6 +1,4 @@
-package ulaval.glo2003.product.api.product.response;
-
-import ulaval.glo2003.product.api.offers.OffersResponse;
+package ulaval.glo2003.product.api.response;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package ulaval.glo2003.product.infrastructure.inMemory;
 
-import ulaval.glo2003.product.domain.product.Product;
-import ulaval.glo2003.product.domain.product.ProductId;
-import ulaval.glo2003.product.domain.product.ProductRepository;
+import ulaval.glo2003.product.domain.Product;
+import ulaval.glo2003.product.domain.ProductId;
+import ulaval.glo2003.product.domain.ProductRepository;
 import ulaval.glo2003.product.domain.exceptions.ProductNotFoundException;
 import ulaval.glo2003.seller.domain.SellerId;
 

@@ -1,20 +1,18 @@
 package ulaval.glo2003;
 
 import ulaval.glo2003.exception.ConstraintsValidator;
-import ulaval.glo2003.product.api.offers.OffersAssembler;
-import ulaval.glo2003.product.api.product.assembler.ProductAssembler;
-import ulaval.glo2003.product.api.product.assembler.CategoryAssembler;
-import ulaval.glo2003.product.api.product.ProductRequestValidator;
-import ulaval.glo2003.product.api.product.ProductFactory;
-import ulaval.glo2003.product.api.product.ProductFiltersFactory;
-import ulaval.glo2003.product.api.product.assembler.ProductSellerAssembler;
-import ulaval.glo2003.product.domain.AmountFactory;
-import ulaval.glo2003.product.domain.product.CategoriesFactory;
-import ulaval.glo2003.product.domain.product.ProductFilterer;
-import ulaval.glo2003.product.domain.product.ProductIdFactory;
-import ulaval.glo2003.product.domain.product.ProductRepository;
-import ulaval.glo2003.product.domain.product.ProductSellerService;
-import ulaval.glo2003.product.domain.product.ProductWithSellerFactory;
+import ulaval.glo2003.product.api.assembler.OffersAssembler;
+import ulaval.glo2003.product.api.assembler.ProductAssembler;
+import ulaval.glo2003.product.api.assembler.CategoryAssembler;
+import ulaval.glo2003.product.api.ProductRequestValidator;
+import ulaval.glo2003.product.api.ProductFactory;
+import ulaval.glo2003.product.api.ProductFiltersFactory;
+import ulaval.glo2003.product.domain.CategoriesFactory;
+import ulaval.glo2003.product.domain.ProductFilterer;
+import ulaval.glo2003.product.domain.ProductIdFactory;
+import ulaval.glo2003.product.domain.ProductRepository;
+import ulaval.glo2003.product.domain.ProductSellerService;
+import ulaval.glo2003.product.domain.ProductWithSellerFactory;
 import ulaval.glo2003.product.infrastructure.inMemory.InMemoryProductRepository;
 import ulaval.glo2003.product.service.ProductService;
 import ulaval.glo2003.seller.api.SellerAssembler;
@@ -28,10 +26,9 @@ import ulaval.glo2003.seller.service.SellerService;
 public class AppContext {
 
   //assemblers
-  public final ProductSellerAssembler productSellerAssembler = new ProductSellerAssembler();
   public final CategoryAssembler categoryAssembler = new CategoryAssembler();
   public final OffersAssembler offersAssembler = new OffersAssembler();
-  public final ProductAssembler productAssembler = new ProductAssembler(offersAssembler, productSellerAssembler);
+  public final ProductAssembler productAssembler = new ProductAssembler(offersAssembler);
   public final SellerAssembler sellerAssembler = new SellerAssembler(productAssembler);
 
   //factories
@@ -40,10 +37,8 @@ public class AppContext {
   public final SellerIdFactory sellerIdFactory = new SellerIdFactory();
   public final ProductFactory productFactory = new ProductFactory(categoryAssembler, sellerIdFactory);
   public final ProductIdFactory productIdFactory = new ProductIdFactory();
-  public final AmountFactory amountFactory = new AmountFactory();
   public final ProductFiltersFactory productFiltersFactory = new ProductFiltersFactory(
           sellerIdFactory,
-          amountFactory,
           categoriesFactory
   );
   public final ProductWithSellerFactory productWithSellerFactory = new ProductWithSellerFactory();

@@ -1,14 +1,9 @@
 package ulaval.glo2003.product.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ulaval.glo2003.product.domain.product.Product;
-import ulaval.glo2003.product.domain.product.ProductFilters;
 import ulaval.glo2003.seller.domain.SellerId;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.util.LinkedList;
@@ -20,10 +15,10 @@ public class ProductSorterTest {
 
   private final SellerId A_SELLER_ID = new SellerId();
   private final String A_PRODUCT_TITLE = "MARIN_TITLE";
-  private final Amount THE_LOWEST_AMOUNT_POSSIBLE = new Amount(BigDecimal.valueOf(2));
-  private final Amount A_AMOUNT = new Amount(BigDecimal.valueOf(30));
-  private final Amount A_MINIMAL_AMOUNT = new Amount(BigDecimal.valueOf(10));
-  private final Amount A_MAXIMAL_AMOUNT = new Amount(BigDecimal.valueOf(20));
+  private final Amount THE_LOWEST_AMOUNT_POSSIBLE = Amount.fromInt(2);
+  private final Amount A_AMOUNT = Amount.fromInt(30);
+  private final Amount A_MAXIMAL_AMOUNT = Amount.fromInt(20);
+  private final Amount A_MINIMAL_AMOUNT = Amount.fromInt(10);
   private ProductBuilder productBuilder = new ProductBuilder();
 
   private final Product A_PRODUCT_WITH_PRICE = productBuilder.withAmount(A_AMOUNT).build();

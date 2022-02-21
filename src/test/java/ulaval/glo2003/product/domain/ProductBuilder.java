@@ -1,11 +1,7 @@
 package ulaval.glo2003.product.domain;
 
-import ulaval.glo2003.product.domain.product.Product;
-import ulaval.glo2003.product.domain.product.Category;
-import ulaval.glo2003.product.domain.product.ProductId;
 import ulaval.glo2003.seller.domain.SellerId;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,7 +20,7 @@ public class ProductBuilder {
     this.productId = new ProductId();
     this.title = "MarinoBoy";
     this.description = "Je suis le meilleur programmeur à l'uni";
-    this.suggestedPrice = new Amount(BigDecimal.valueOf(25));
+    this.suggestedPrice = Amount.fromInt(25);
     this.offers = null;
     this.productCategories = List.of(new Category("category"));
     this.createdAt = LocalDateTime.now();

@@ -1,4 +1,4 @@
-package ulaval.glo2003.product.api.product;
+package ulaval.glo2003.product.api;
 
 import ulaval.glo2003.exception.ConstraintsValidator;
 import ulaval.glo2003.exception.GenericException;

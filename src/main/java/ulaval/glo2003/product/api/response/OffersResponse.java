@@ -1,4 +1,4 @@
-package ulaval.glo2003.product.api.offers;
+package ulaval.glo2003.product.api.response;
 
 public class OffersResponse {
   public final Integer mean;

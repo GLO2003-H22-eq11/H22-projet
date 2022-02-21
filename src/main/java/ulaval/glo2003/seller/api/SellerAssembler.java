@@ -1,6 +1,6 @@
 package ulaval.glo2003.seller.api;
 
-import ulaval.glo2003.product.api.product.assembler.ProductAssembler;
+import ulaval.glo2003.product.api.assembler.ProductAssembler;
 import ulaval.glo2003.seller.domain.Seller;
 
 import java.util.stream.Collectors;
