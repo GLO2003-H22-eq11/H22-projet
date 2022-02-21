@@ -10,7 +10,7 @@ import ulaval.glo2003.product.domain.CategoriesFactory;
 import ulaval.glo2003.product.domain.ProductFilterer;
 import ulaval.glo2003.product.domain.ProductIdFactory;
 import ulaval.glo2003.product.domain.ProductRepository;
-import ulaval.glo2003.product.domain.ProductSellerService;
+import ulaval.glo2003.product.domain.ProductSellerDomainService;
 import ulaval.glo2003.product.domain.ProductWithSellerFactory;
 import ulaval.glo2003.product.infrastructure.inMemory.InMemoryProductRepository;
 import ulaval.glo2003.product.service.ProductService;
@@ -46,7 +46,7 @@ public class AppContext {
   public final ProductRepository productRepository = new InMemoryProductRepository();
 
   // domain
-  public final ProductSellerService productSellerService = new ProductSellerService(
+  public final ProductSellerDomainService productSellerDomainService = new ProductSellerDomainService(
           productWithSellerFactory,
           sellerRepository
   );
@@ -57,7 +57,7 @@ public class AppContext {
   public final ProductService productService = new ProductService(
           productRepository,
           sellerRepository,
-          productSellerService,
+          productSellerDomainService,
           productFilterer
   );
 

@@ -8,14 +8,11 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.product.domain.Categories;
 import ulaval.glo2003.product.domain.Product;
-import ulaval.glo2003.product.domain.ProductBuilder;
-import ulaval.glo2003.product.api.ProductFiltersFactory;
 import ulaval.glo2003.product.domain.ProductFilterer;
 import ulaval.glo2003.product.domain.ProductFilters;
 import ulaval.glo2003.product.domain.ProductRepository;
-import ulaval.glo2003.product.domain.ProductSellerService;
+import ulaval.glo2003.product.domain.ProductSellerDomainService;
 import ulaval.glo2003.product.domain.ProductWithSeller;
 import ulaval.glo2003.product.domain.ProductId;
 import ulaval.glo2003.product.domain.exceptions.ProductNotFoundException;
@@ -23,7 +20,6 @@ import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
 
 
-import java.util.LinkedList;
 import java.util.List;
 
 import static org.mockito.BDDMockito.given;
@@ -57,7 +53,7 @@ class ProductServiceTest {
   private ProductFilterer productFilterer;
 
   @Mock
-  private ProductSellerService productSellerService;
+  private ProductSellerDomainService productSellerService;
 
   private ProductService productService;
 

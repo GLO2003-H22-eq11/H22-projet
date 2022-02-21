@@ -7,11 +7,11 @@ import ulaval.glo2003.seller.domain.exceptions.SellerNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ProductSellerService {
+public class ProductSellerDomainService {
   private final ProductWithSellerFactory productWithSellerFactory;
   private final SellerRepository sellerRepository;
 
-  public ProductSellerService(
+  public ProductSellerDomainService(
           ProductWithSellerFactory productWithSellerFactory,
           SellerRepository sellerRepository
   ) {

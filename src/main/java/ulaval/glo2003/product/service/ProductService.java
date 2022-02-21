@@ -4,7 +4,7 @@ import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.domain.ProductFilterer;
 import ulaval.glo2003.product.domain.ProductRepository;
 import ulaval.glo2003.product.domain.ProductWithSeller;
-import ulaval.glo2003.product.domain.ProductSellerService;
+import ulaval.glo2003.product.domain.ProductSellerDomainService;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductFilters;
 import ulaval.glo2003.product.domain.ProductId;
@@ -16,13 +16,13 @@ import java.util.List;
 public class ProductService {
   private final ProductRepository productRepository;
   private final SellerRepository sellerRepository;
-  private final ProductSellerService productSellerService;
+  private final ProductSellerDomainService productSellerService;
   private final ProductFilterer productFilterer;
 
   public ProductService(
           ProductRepository productRepository,
           SellerRepository sellerRepository,
-          ProductSellerService productSellerService,
+          ProductSellerDomainService productSellerService,
           ProductFilterer productFilterer
   ) {
     this.productRepository = productRepository;
