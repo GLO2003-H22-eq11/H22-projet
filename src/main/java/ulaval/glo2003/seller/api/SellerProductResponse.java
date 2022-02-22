@@ -2,6 +2,8 @@ package ulaval.glo2003.seller.api;
 
 import ulaval.glo2003.product.api.response.OffersResponse;
 
+import java.util.List;
+
 public class SellerProductResponse {
   public final String id;
   public final String createdAt;
@@ -9,6 +11,7 @@ public class SellerProductResponse {
   public final String description;
   public final int suggestedPrice;
   public final OffersResponse offers;
+  public final List<String> categories;
 
   public SellerProductResponse(
           String id,
@@ -16,7 +19,8 @@ public class SellerProductResponse {
           String title,
           String description,
           int suggestedPrice,
-          OffersResponse offers
+          OffersResponse offers,
+          List<String> categories
   ) {
     this.id = id;
     this.createdAt = createdAt;
@@ -24,5 +28,6 @@ public class SellerProductResponse {
     this.description = description;
     this.suggestedPrice = suggestedPrice;
     this.offers = offers;
+    this.categories = categories;
   }
 }
