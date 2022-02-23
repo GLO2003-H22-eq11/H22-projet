@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AddProductToSellerTest {
+public class AddProductToSellerEndToEndTest {
 
   private final String LOCATION = "Location";
   private final String LOCATION_PRODUCTS_URL = "http://localhost:8080/products/";
