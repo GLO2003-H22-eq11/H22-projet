@@ -13,7 +13,8 @@ public class ProductResponse {
   public List<String> categories;
   public ProductSellerResponse seller;
 
-  public ProductResponse() {};
+  public ProductResponse() {
+  };
 
   public ProductResponse(
           String id,

@@ -6,7 +6,8 @@ public class OffersResponse {
   public Integer mean;
   public Integer count;
 
-  public OffersResponse() {};
+  public OffersResponse() {
+  };
 
   public OffersResponse(Integer mean, Integer count) {
     this.mean = mean;
