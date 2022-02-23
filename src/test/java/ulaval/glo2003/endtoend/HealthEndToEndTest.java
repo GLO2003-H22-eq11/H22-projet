@@ -1,20 +1,13 @@
 package ulaval.glo2003.endtoend;
 
 import io.restassured.RestAssured;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-public class EndToEndTest {
-
-  @BeforeEach()
-  public void setUp() {
-    RestAssured.baseURI = "http://localhost";
-    RestAssured.port = 8081;
-  }
+public class HealthEndToEndTest {
 
   @Test
-  public void healthCall() {
+  public void whenGetHealthCall_thenShouldReturnStatusOk() {
 
     RestAssured.given()
             .log().all()
