@@ -3,8 +3,10 @@ package ulaval.glo2003.product.api.response;
 import java.util.Objects;
 
 public class OffersResponse {
-  public final Integer mean;
-  public final Integer count;
+  public Integer mean;
+  public Integer count;
+
+  public OffersResponse() {};
 
   public OffersResponse(Integer mean, Integer count) {
     this.mean = mean;

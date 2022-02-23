@@ -4,14 +4,16 @@ import java.util.List;
 import java.util.Objects;
 
 public class ProductResponse {
-  public final String id;
-  public final String createdAt;
-  public final String title;
-  public final String description;
-  public final int suggestedPrice;
-  public final OffersResponse offers;
-  public final List<String> categories;
-  public final ProductSellerResponse seller;
+  public String id;
+  public String createdAt;
+  public String title;
+  public String description;
+  public int suggestedPrice;
+  public OffersResponse offers;
+  public List<String> categories;
+  public ProductSellerResponse seller;
+
+  public ProductResponse() {};
 
   public ProductResponse(
           String id,
