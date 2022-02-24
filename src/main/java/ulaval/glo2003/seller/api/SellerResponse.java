@@ -11,8 +11,6 @@ public class SellerResponse {
   public String bio;
   public List<SellerProductResponse> products;
 
-  public SellerResponse(){}
-
   public SellerResponse(String id, String name, String createdAt, String bio, List<SellerProductResponse> products) {
     this.id = id;
     this.name = name;
