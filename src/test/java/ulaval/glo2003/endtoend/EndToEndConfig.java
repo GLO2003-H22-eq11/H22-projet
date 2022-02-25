@@ -7,16 +7,19 @@ import java.util.List;
 
 public abstract class EndToEndConfig {
 
+  public final String URL = "http://localhost:8080";
   public final String SELLERS_SLASH = "sellers/";
   public final String LOCATION = "Location";
   public final String URL_PRODUCTS_END_POINT = "http://localhost:8080/products/";
   public final String URL_SELLERS_END_POINT = "http://localhost:8080/sellers/";
+  public final String URL_PRODUCTS_END_POINT_WITHOUT_SLASH = "http://localhost:8080/products";
   public final String UUID_REGEX = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$";
   public final String SELLER_END_POINT = "/sellers";
   public final String PRODUCTS_END_POINT = "/products";
 
   public final String X_SELLER_ID_HEADERS_PARAMS = "X-Seller-Id";
 
+  public final String A_RANDOM_TITLE = "random";
   public final String A_PRODUCT_TITLE = "TITLE";
   public final String A_PRODUCT_DESCRIPTION = "description";
   public final int A_VALID_SUGGESTED_PRICE = 10;
