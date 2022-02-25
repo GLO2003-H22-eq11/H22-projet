@@ -1,4 +1,4 @@
-package ulaval.glo2003.endtoend;
+package ulaval.glo2003.endtoendsucces;
 
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;

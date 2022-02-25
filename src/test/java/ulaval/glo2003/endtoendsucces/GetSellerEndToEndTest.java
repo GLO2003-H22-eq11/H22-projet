@@ -1,9 +1,8 @@
-package ulaval.glo2003.endtoend;
+package ulaval.glo2003.endtoendsucces;
 
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Test;
-import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.seller.api.SellerRequest;
 import ulaval.glo2003.seller.api.SellerResponse;
 

@@ -1,4 +1,4 @@
-package ulaval.glo2003.endtoend;
+package ulaval.glo2003.endtoendsucces;
 
 import ulaval.glo2003.product.api.ProductRequest;
 import ulaval.glo2003.seller.api.SellerRequest;
