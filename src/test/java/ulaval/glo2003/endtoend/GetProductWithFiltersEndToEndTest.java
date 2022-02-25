@@ -26,7 +26,7 @@ public class GetProductWithFiltersEndToEndTest extends EndToEndConfig {
             .queryParam("categories", this.A_CATEGORIES)
             .queryParam("minPrice", this.A_VALID_SUGGESTED_PRICE)
             .queryParam("maxPrice", this.A_VALID_SUGGESTED_PRICE)
-            .header("Content-Type", "application/json")
+            .header(CONTENT_TYPE, APPLICATION_JSON)
             .get(this.URL_PRODUCTS_END_POINT_WITHOUT_SLASH)
             .then().assertThat().statusCode(this.GET_STATUS_CODE);
   }
@@ -42,7 +42,7 @@ public class GetProductWithFiltersEndToEndTest extends EndToEndConfig {
             .queryParam("categories", this.A_CATEGORIES)
             .queryParam("minPrice", this.A_VALID_SUGGESTED_PRICE)
             .queryParam("maxPrice", this.A_VALID_SUGGESTED_PRICE)
-            .header("Content-Type", "application/json")
+            .header(CONTENT_TYPE, APPLICATION_JSON)
             .get(this.URL_PRODUCTS_END_POINT_WITHOUT_SLASH)
             .getBody().as(ProductsResponse.class);
 
@@ -60,7 +60,7 @@ public class GetProductWithFiltersEndToEndTest extends EndToEndConfig {
 
     given()
             .body(productRequest)
-            .header("Content-Type", "application/json")
+            .header(CONTENT_TYPE, APPLICATION_JSON)
             .header(this.X_SELLER_ID_HEADERS_PARAMS, sellerId)
             .post(this.PRODUCTS_END_POINT).getHeader(this.LOCATION);
   }
@@ -69,7 +69,7 @@ public class GetProductWithFiltersEndToEndTest extends EndToEndConfig {
     SellerRequest sellerRequest = this.givenAValidSellerRequest();
 
     RequestSpecification request = given();
-    request.header("Content-Type", "application/json");
+    request.header(CONTENT_TYPE, APPLICATION_JSON);
     request.body(sellerRequest);
 
     String URL_LOCATION = request.post(this.SELLER_END_POINT).getHeaders()

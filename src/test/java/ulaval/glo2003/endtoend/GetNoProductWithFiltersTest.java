@@ -3,12 +3,10 @@ package ulaval.glo2003.endtoend;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Test;
 import ulaval.glo2003.product.api.ProductRequest;
-import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductsResponse;
 import ulaval.glo2003.seller.api.SellerRequest;
 
 import static io.restassured.RestAssured.given;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GetNoProductWithFiltersTest extends EndToEndConfig {
@@ -20,11 +18,11 @@ public class GetNoProductWithFiltersTest extends EndToEndConfig {
 
     given()
             .queryParam("title", A_RANDOM_TITLE)
-            .queryParam("sellerId", "")
-            .queryParam("categories", "")
-            .queryParam("minPrice", "")
-            .queryParam("maxPrice", "")
-            .header("Content-Type", "application/json")
+            .queryParam("sellerId", A_RANDOM_ID)
+            .queryParam("categories", A_RANDOM_CATEGORIE)
+            .queryParam("minPrice", A_RANDOM_MIN)
+            .queryParam("maxPrice", A_RANDOM_MAX)
+            .header(CONTENT_TYPE, APPLICATION_JSON)
             .get(this.URL_PRODUCTS_END_POINT_WITHOUT_SLASH)
             .then().assertThat().statusCode(this.GET_STATUS_CODE);
   }
@@ -36,11 +34,11 @@ public class GetNoProductWithFiltersTest extends EndToEndConfig {
 
     ProductsResponse productsResponse = given()
             .queryParam("title", A_RANDOM_TITLE)
-            .queryParam("sellerId", "")
-            .queryParam("categories", "")
-            .queryParam("minPrice", "")
-            .queryParam("maxPrice", "")
-            .header("Content-Type", "application/json")
+            .queryParam("sellerId", A_RANDOM_ID)
+            .queryParam("categories", A_RANDOM_CATEGORIE)
+            .queryParam("minPrice", A_RANDOM_MIN)
+            .queryParam("maxPrice", A_RANDOM_MAX)
+            .header(CONTENT_TYPE, APPLICATION_JSON)
             .get(this.URL_PRODUCTS_END_POINT_WITHOUT_SLASH)
             .getBody().as(ProductsResponse.class);
 
@@ -52,7 +50,7 @@ public class GetNoProductWithFiltersTest extends EndToEndConfig {
 
     given()
             .body(productRequest)
-            .header("Content-Type", "application/json")
+            .header(CONTENT_TYPE, APPLICATION_JSON)
             .header(this.X_SELLER_ID_HEADERS_PARAMS, id)
             .post(this.PRODUCTS_END_POINT).getHeader(this.LOCATION);
   }
@@ -61,7 +59,7 @@ public class GetNoProductWithFiltersTest extends EndToEndConfig {
     SellerRequest sellerRequest = this.givenAValidSellerRequest();
 
     RequestSpecification request = given();
-    request.header("Content-Type", "application/json");
+    request.header(CONTENT_TYPE, APPLICATION_JSON);
     request.body(sellerRequest);
 
     String URL_LOCATION = request.post(this.SELLER_END_POINT).getHeaders()

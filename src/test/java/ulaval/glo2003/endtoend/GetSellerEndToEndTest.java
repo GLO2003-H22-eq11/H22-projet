@@ -1,12 +1,11 @@
 package ulaval.glo2003.endtoend;
 
-import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Test;
-import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.seller.api.SellerRequest;
 import ulaval.glo2003.seller.api.SellerResponse;
 
+import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GetSellerEndToEndTest extends EndToEndConfig {
@@ -15,8 +14,8 @@ public class GetSellerEndToEndTest extends EndToEndConfig {
   public void givenASellerRequest_whenGetSeller_thenShouldReturnRightStatusCode() {
     String sellerId = addSellerAndGetSellerId();
 
-    RestAssured.given()
-            .header("Content-Type", "application/json")
+    given()
+            .header(CONTENT_TYPE, APPLICATION_JSON)
             .get(this.URL_SELLERS_END_POINT + sellerId)
             .then().assertThat().statusCode(this.GET_STATUS_CODE);
 
@@ -27,8 +26,8 @@ public class GetSellerEndToEndTest extends EndToEndConfig {
   public void givenASellerRequest_whenGetSeller_thenShouldReturnTheRightBody() {
     String sellerId = addSellerAndGetSellerId();
 
-    SellerResponse sellerResponse = RestAssured.given()
-            .header("Content-Type", "application/json")
+    SellerResponse sellerResponse = given()
+            .header(CONTENT_TYPE, APPLICATION_JSON)
             .get(this.URL_SELLERS_END_POINT + sellerId)
             .getBody().as(SellerResponse.class);
 
@@ -41,8 +40,8 @@ public class GetSellerEndToEndTest extends EndToEndConfig {
   public String addSellerAndGetSellerId() {
     SellerRequest sellerRequest = this.givenAValidSellerRequest();
 
-    RequestSpecification request = RestAssured.given();
-    request.header("Content-Type", "application/json");
+    RequestSpecification request = given();
+    request.header(CONTENT_TYPE, APPLICATION_JSON);
     request.body(sellerRequest);
 
     String URL_LOCATION = request.post(this.SELLER_END_POINT).getHeaders()

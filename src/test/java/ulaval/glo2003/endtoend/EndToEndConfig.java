@@ -19,7 +19,14 @@ public abstract class EndToEndConfig {
 
   public final String X_SELLER_ID_HEADERS_PARAMS = "X-Seller-Id";
 
+  public final String HEALTH_ENDPOINT = "/health";
+  public final String CONTENT_TYPE = "Content-Type";
+  public final String APPLICATION_JSON = "application/json";
   public final String A_RANDOM_TITLE = "random";
+  public final String A_RANDOM_ID = "random";
+  public final String A_RANDOM_MIN = "random";
+  public final String A_RANDOM_MAX = "random";
+  public final String A_RANDOM_CATEGORIE = "random";
   public final String A_PRODUCT_TITLE = "TITLE";
   public final String A_PRODUCT_DESCRIPTION = "description";
   public final int A_VALID_SUGGESTED_PRICE = 10;

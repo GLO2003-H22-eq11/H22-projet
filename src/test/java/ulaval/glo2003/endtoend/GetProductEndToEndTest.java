@@ -1,12 +1,12 @@
 package ulaval.glo2003.endtoend;
 
-import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Test;
 import ulaval.glo2003.product.api.ProductRequest;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.seller.api.SellerRequest;
 
+import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GetProductEndToEndTest extends EndToEndConfig {
@@ -15,8 +15,8 @@ public class GetProductEndToEndTest extends EndToEndConfig {
   public void givenAProductRequest_whenGetProduct_thenShouldReturnRightStatusCode() {
     String productId = addProductAndGetProductId();
 
-    RestAssured.given()
-            .header("Content-Type", "application/json")
+    given()
+            .header(CONTENT_TYPE, APPLICATION_JSON)
             .get(this.URL_PRODUCTS_END_POINT + productId)
             .then().assertThat().statusCode(this.GET_STATUS_CODE);
 
@@ -26,9 +26,8 @@ public class GetProductEndToEndTest extends EndToEndConfig {
   public void givenAProductRequest_whenGetProduct_thenShouldTheRightBody() {
     String productId = addProductAndGetProductId();
 
-
-    ProductResponse productResponse = RestAssured.given()
-            .header("Content-Type", "application/json")
+    ProductResponse productResponse = given()
+            .header(CONTENT_TYPE, APPLICATION_JSON)
             .get(this.URL_PRODUCTS_END_POINT + productId)
             .getBody().as(ProductResponse.class);
 
@@ -43,9 +42,9 @@ public class GetProductEndToEndTest extends EndToEndConfig {
     ProductRequest productRequest = this.givenAProductRequest();
     String sellerId = addSellerAndGetSellerId();
 
-    String URL_LOCATION = RestAssured.given()
+    String URL_LOCATION = given()
             .body(productRequest)
-            .header("Content-Type", "application/json")
+            .header(CONTENT_TYPE, APPLICATION_JSON)
             .header(this.X_SELLER_ID_HEADERS_PARAMS, sellerId)
             .post(this.PRODUCTS_END_POINT).getHeader(this.LOCATION);
 
@@ -55,8 +54,8 @@ public class GetProductEndToEndTest extends EndToEndConfig {
   private String addSellerAndGetSellerId() {
     SellerRequest sellerRequest = this.givenAValidSellerRequest();
 
-    RequestSpecification request = RestAssured.given();
-    request.header("Content-Type", "application/json");
+    RequestSpecification request = given();
+    request.header(CONTENT_TYPE, APPLICATION_JSON);
     request.body(sellerRequest);
 
     String URL_LOCATION = request.post(this.SELLER_END_POINT).getHeaders()

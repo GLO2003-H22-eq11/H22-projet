@@ -1,20 +1,18 @@
 package ulaval.glo2003.endtoend;
 
-import io.restassured.RestAssured;
 import org.junit.jupiter.api.Test;
 
+import static io.restassured.RestAssured.given;
 
-public class HealthEndToEndTest {
+public class HealthEndToEndTest extends EndToEndConfig {
 
   @Test
   public void whenGetHealthCall_thenShouldReturnStatusOk() {
 
-    RestAssured.given()
-            .log().all()
-            .get("/health")
+    given()
+            .get(this.HEALTH_ENDPOINT)
             .then()
-            .log().all()
-            .statusCode(200);
+            .statusCode(this.GET_STATUS_CODE);
   }
 
 }
