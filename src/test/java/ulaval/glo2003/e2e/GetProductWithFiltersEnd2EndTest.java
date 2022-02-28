@@ -1,19 +1,36 @@
-package ulaval.glo2003.endtoend;
+package ulaval.glo2003.e2e;
 
 import io.restassured.specification.RequestSpecification;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import ulaval.glo2003.ApplicationMain;
 import ulaval.glo2003.product.api.ProductRequest;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductsResponse;
-import ulaval.glo2003.product.domain.Category;
 import ulaval.glo2003.seller.api.SellerRequest;
 
-import java.util.stream.Collectors;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static spark.Spark.stop;
 
-public class GetProductWithFiltersEndToEndTest extends EndToEndConfig {
+public class GetProductWithFiltersEnd2EndTest extends End2EndConfig {
+
+  @BeforeAll
+  public static void startServer() {
+    try {
+      ApplicationMain.main(new String[0]);
+
+    } catch (Exception ignored) {
+    }
+  }
+
+  @AfterAll
+  public static void stopServer() {
+    stop();
+  }
+
 
   @Test
   public void givenAProductRequest_whenGetProductWithFilters_thenShouldReturnTheRightStatusCode() {
@@ -28,7 +45,7 @@ public class GetProductWithFiltersEndToEndTest extends EndToEndConfig {
             .queryParam("maxPrice", this.A_VALID_SUGGESTED_PRICE)
             .header(CONTENT_TYPE, APPLICATION_JSON)
             .get(this.URL_PRODUCTS_END_POINT_WITHOUT_SLASH)
-            .then().assertThat().statusCode(this.GET_STATUS_CODE);
+            .then().assertThat().statusCode(this.OK_STATUS_CODE);
   }
 
   @Test
