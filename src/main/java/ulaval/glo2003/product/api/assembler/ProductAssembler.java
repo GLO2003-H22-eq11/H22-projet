@@ -25,7 +25,9 @@ public class ProductAssembler {
             product.getTitle(),
             product.getDescription(),
             product.getSuggestedPriceAmountIntValue(),
-            this.offersAssembler.toResponse(product.getOffers()));
+            this.offersAssembler.toResponse(product.getOffers()),
+            product.getProductCategories().stream().
+                    map(Category::getCategoryName).collect(Collectors.toList()));
 
   }
 
