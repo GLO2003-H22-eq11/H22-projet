@@ -1,4 +1,4 @@
-package ulaval.glo2003.e2e;
+package ulaval.glo2003.e2e.success;
 
 import io.restassured.response.Response;
 import org.junit.jupiter.api.AfterAll;
@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static spark.Spark.stop;
 import static ulaval.glo2003.e2e.End2EndConfig.CREATED_STATUS_CODE;
 import static ulaval.glo2003.e2e.End2EndConfig.UUID_REGEX;
-import static ulaval.glo2003.e2e.SellerEnd2EndTestUtils.createSeller;
-import static ulaval.glo2003.e2e.SellerEnd2EndTestUtils.createSellerGetId;
+import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.createSeller;
+import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.createSellerGetId;
 
 public class CreateSellerEnd2EndTest {
 

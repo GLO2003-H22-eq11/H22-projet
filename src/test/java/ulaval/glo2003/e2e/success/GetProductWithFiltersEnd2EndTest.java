@@ -1,0 +1,46 @@
+package ulaval.glo2003.e2e.success;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import ulaval.glo2003.ApplicationMain;
+import ulaval.glo2003.product.api.response.ProductResponse;
+import ulaval.glo2003.product.api.response.ProductsResponse;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static spark.Spark.stop;
+import static ulaval.glo2003.e2e.End2EndConfig.A_CATEGORIES;
+import static ulaval.glo2003.e2e.End2EndConfig.A_PRODUCT_TITLE;
+import static ulaval.glo2003.e2e.End2EndConfig.A_VALID_SUGGESTED_PRICE;
+import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.getProductsWithValidFilters;
+import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.createSellerWithProductGetSellerId;
+
+public class GetProductWithFiltersEnd2EndTest {
+
+  @BeforeAll
+  public static void startServer() {
+    try {
+      ApplicationMain.main(new String[0]);
+
+    } catch (Exception ignored) {
+    }
+  }
+
+  @AfterAll
+  public static void stopServer() {
+    stop();
+  }
+
+  @Test
+  public void givenAProduct_whenGetProductWithInclusiveFiltersThatMatch_thenShouldReturnProduct() {
+    String sellerId = createSellerWithProductGetSellerId();
+
+    ProductsResponse productsResponse = getProductsWithValidFilters(sellerId);
+    ProductResponse productResponse = productsResponse.products.get(0);
+
+    assertEquals(productResponse.title, A_PRODUCT_TITLE);
+    assertEquals(productResponse.seller.id, sellerId);
+    assertEquals(productResponse.categories, A_CATEGORIES);
+    assertEquals(productResponse.suggestedPrice, A_VALID_SUGGESTED_PRICE);
+  }
+}

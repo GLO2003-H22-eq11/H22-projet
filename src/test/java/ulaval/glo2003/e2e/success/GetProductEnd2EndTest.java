@@ -1,22 +1,22 @@
-package ulaval.glo2003.e2e;
+package ulaval.glo2003.e2e.success;
 
-import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ulaval.glo2003.ApplicationMain;
-import ulaval.glo2003.product.api.ProductRequest;
 import ulaval.glo2003.product.api.response.ProductResponse;
-import ulaval.glo2003.seller.api.SellerRequest;
 
-import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static spark.Spark.stop;
-import static ulaval.glo2003.e2e.ProductEnd2EndTestUtils.createProductGetId;
-import static ulaval.glo2003.e2e.ProductEnd2EndTestUtils.getProduct;
-import static ulaval.glo2003.e2e.SellerEnd2EndTestUtils.createSellerGetId;
+import static ulaval.glo2003.e2e.End2EndConfig.A_CATEGORIES;
+import static ulaval.glo2003.e2e.End2EndConfig.A_PRODUCT_DESCRIPTION;
+import static ulaval.glo2003.e2e.End2EndConfig.A_PRODUCT_TITLE;
+import static ulaval.glo2003.e2e.End2EndConfig.A_VALID_SUGGESTED_PRICE;
+import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.createProductGetId;
+import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.getProduct;
+import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.createSellerGetId;
 
-public class GetProductEnd2EndTest extends End2EndConfig {
+public class GetProductEnd2EndTest {
 
   @BeforeAll
   public static void startServer() {

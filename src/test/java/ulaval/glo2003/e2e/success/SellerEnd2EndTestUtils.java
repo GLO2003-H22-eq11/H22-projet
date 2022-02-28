@@ -1,4 +1,4 @@
-package ulaval.glo2003.e2e;
+package ulaval.glo2003.e2e.success;
 
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -14,7 +14,7 @@ import static ulaval.glo2003.e2e.End2EndConfig.A_SELLER_NAME;
 import static ulaval.glo2003.e2e.End2EndConfig.CONTENT_TYPE;
 import static ulaval.glo2003.e2e.End2EndConfig.LOCATION;
 import static ulaval.glo2003.e2e.End2EndConfig.SELLER_END_POINT;
-import static ulaval.glo2003.e2e.ProductEnd2EndTestUtils.createProduct;
+import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.createProduct;
 
 public class SellerEnd2EndTestUtils {
 
@@ -35,6 +35,11 @@ public class SellerEnd2EndTestUtils {
     return sellerId;
   }
 
+  public static Response createSellerWithProduct() {
+    String sellerId = createSellerGetId();
+    return createProduct(sellerId);
+  }
+
   public static String createSellerGetId() {
     Response response = createSeller();
     String locationHeader = response.getHeader(LOCATION);
@@ -43,11 +48,6 @@ public class SellerEnd2EndTestUtils {
 
   private static Response getSellerCall(String sellerId) {
     return when().get(SELLER_END_POINT + "/" + sellerId);
-  }
-
-
-  public static int getSellerResponseStatusCode(String sellerId) {
-    return getSellerCall(sellerId).statusCode();
   }
 
   public static SellerResponse getSeller(String sellerId) {

@@ -17,7 +17,6 @@
         <checkstyle.version>8.41</checkstyle.version>
         <checkstyle.config.location>config/checkstyle/config.xml</checkstyle.config.location>
         <checkstyle.suppressions.location>config/checkstyle/suppressions.xml</checkstyle.suppressions.location>
-        <tomcat.version>8.0.46</tomcat.version>
     </properties>
 
     <dependencyManagement>
