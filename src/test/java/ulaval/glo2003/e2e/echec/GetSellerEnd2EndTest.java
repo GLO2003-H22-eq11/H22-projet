@@ -39,7 +39,7 @@ public class GetSellerEnd2EndTest {
     public void givenABadSellerId_whenGetSeller_thenShouldReturnRightStatusCode() {
         given()
                 .header(CONTENT_TYPE, APPLICATION_JSON)
-                .get(URL_SELLERS_END_POINT + A_NON_VALID_UUID_FORMAT)
+                .get(URL_SELLERS_END_POINT +  "/" + A_NON_VALID_UUID_FORMAT)
                 .then().assertThat().statusCode(BAD_STATUS_CODE);
 
     }
