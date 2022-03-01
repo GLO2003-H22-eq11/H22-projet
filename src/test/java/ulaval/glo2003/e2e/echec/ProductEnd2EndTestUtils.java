@@ -47,6 +47,7 @@ public class ProductEnd2EndTestUtils {
     productRequest.description = A_PRODUCT_DESCRIPTION;
     productRequest.title = A_PRODUCT_TITLE;
     productRequest.categories = A_CATEGORIES;
+    productRequest.suggestedPrice = null;
 
     return productRequest;
   }
