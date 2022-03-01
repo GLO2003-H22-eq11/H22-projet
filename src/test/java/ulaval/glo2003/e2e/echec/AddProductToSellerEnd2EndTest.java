@@ -1,14 +1,32 @@
 package ulaval.glo2003.e2e.echec;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import ulaval.glo2003.ApplicationMain;
 import ulaval.glo2003.product.api.ProductRequest;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+import static spark.Spark.stop;
 import static ulaval.glo2003.e2e.End2EndConfig.*;
 import static ulaval.glo2003.e2e.echec.ProductEnd2EndTestUtils.*;
 
 public class AddProductToSellerEnd2EndTest {
+
+  @BeforeAll
+  public static void startServer() {
+    try {
+      ApplicationMain.main(new String[0]);
+
+    } catch (Exception ignored) {
+    }
+  }
+
+  @AfterAll
+  public static void stopServer() {
+    stop();
+  }
 
   @Test
   public void givenAProductRequestWithoutTitle_whenAddProduct_thenShouldReturnTheRightStatusCode() {
@@ -19,7 +37,7 @@ public class AddProductToSellerEnd2EndTest {
       .header(CONTENT_TYPE, APPLICATION_JSON)
       .header(X_SELLER_ID_HEADERS_PARAMS, A_VALID_UUID_FORMAT)
       .post(URL_PRODUCTS_END_POINT)
-      .then().assertThat().statusCode(400);
+      .then().assertThat().statusCode(BAD_STATUS_CODE);
   }
 
   @Test
@@ -31,7 +49,7 @@ public class AddProductToSellerEnd2EndTest {
       .header(CONTENT_TYPE, APPLICATION_JSON)
       .header(X_SELLER_ID_HEADERS_PARAMS, A_VALID_UUID_FORMAT)
       .post(URL_PRODUCTS_END_POINT)
-      .then().assertThat().statusCode(400);
+      .then().assertThat().statusCode(BAD_STATUS_CODE);
   }
 
 //  @Test
@@ -48,7 +66,7 @@ public class AddProductToSellerEnd2EndTest {
       .header(CONTENT_TYPE, APPLICATION_JSON)
       .header(X_SELLER_ID_HEADERS_PARAMS, A_VALID_UUID_FORMAT)
       .post(URL_PRODUCTS_END_POINT)
-      .then().assertThat().statusCode(400);
+      .then().assertThat().statusCode(BAD_STATUS_CODE);
   }
 
   @Test
@@ -60,7 +78,7 @@ public class AddProductToSellerEnd2EndTest {
       .header(CONTENT_TYPE, APPLICATION_JSON)
       .header(X_SELLER_ID_HEADERS_PARAMS, A_VALID_UUID_FORMAT)
       .post(URL_PRODUCTS_END_POINT)
-      .then().assertThat().statusCode(404);
+      .then().assertThat().statusCode(NOT_FOUND_STATUS_CODE);
   }
 
 //  @Test
@@ -110,15 +128,27 @@ public class AddProductToSellerEnd2EndTest {
 
   @Test
   public void givenAProductRequestWithBadPrice_whenAddProduct_thenShouldReturnTheRightBody() {
-    ProductRequest productRequest = givenAProductRequestWithoutPrice();
-    System.out.println(productRequest.suggestedPrice);
+    ProductRequest productRequest = givenAProductRequestWithBadPrice();
     given()
             .body(productRequest)
             .header(CONTENT_TYPE, APPLICATION_JSON)
             .header(X_SELLER_ID_HEADERS_PARAMS, A_VALID_UUID_FORMAT)
             .post(URL_PRODUCTS_END_POINT)
             .then().body(AN_ERROR, equalTo(AN_INVALID_PARAMETER))
-            .body(AN_ERROR_DESCRIPTION, equalTo(A_MISSING_PARAMETER_DESCRIPTION));
+            .body(AN_ERROR_DESCRIPTION, equalTo(AN_INVALID_PARAMETER_DESCRIPTION));
+  }
+
+  @Test
+  public void givenAProductRequestWithoutPrice_whenAddProduct_thenShouldReturnTheRightBody() {
+    ProductRequest productRequest = givenAProductRequestWithoutPrice();
+
+    given()
+      .body(productRequest)
+      .header(CONTENT_TYPE, APPLICATION_JSON)
+      .header(X_SELLER_ID_HEADERS_PARAMS, A_VALID_UUID_FORMAT)
+      .post(URL_PRODUCTS_END_POINT)
+      .then().body(AN_ERROR, equalTo(A_MISSING_PARAMETER))
+      .body(AN_ERROR_DESCRIPTION, equalTo(A_MISSING_PARAMETER_DESCRIPTION));
   }
 
   @Test

@@ -29,7 +29,7 @@ public abstract class End2EndConfig {
   public static final String AN_INVALID_PARAMETER = "INVALID_PARAMETER";
   public static final String AN_ERROR = "code";
   public static final String A_MISSING_PARAMETER_DESCRIPTION = "un paramètre (URL, header, JSON, etc.) est manquant";
-  public static final String AN_INVALID_PARAMETER_DESCRIPTION = "un paramètre (URL, header, JSON, etc.) est manquant";
+  public static final String AN_INVALID_PARAMETER_DESCRIPTION = "un paramètre (URL, header, JSON, etc.) est invalide (vide, négatif, trop long. etc.)";
   public static final String AN_ITEM_NOT_FOUND_DESCRIPTION = "un élément est introuvable (id invalide ou inexistant)";
 
   public static final String A_SELLER_NAME = "Marin Beauchesne";
@@ -38,4 +38,6 @@ public abstract class End2EndConfig {
 
   public static final int CREATED_STATUS_CODE = 201;
   public static final int OK_STATUS_CODE = 200;
+  public static final int BAD_STATUS_CODE = 400;
+  public static final int NOT_FOUND_STATUS_CODE = 404;
 }

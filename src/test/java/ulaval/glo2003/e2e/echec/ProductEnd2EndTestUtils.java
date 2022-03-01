@@ -52,6 +52,16 @@ public class ProductEnd2EndTestUtils {
     return productRequest;
   }
 
+  public static ProductRequest givenAProductRequestWithBadPrice() {
+    ProductRequest productRequest = new ProductRequest();
+    productRequest.description = A_PRODUCT_DESCRIPTION;
+    productRequest.title = A_PRODUCT_TITLE;
+    productRequest.categories = A_CATEGORIES;
+    productRequest.suggestedPrice = 0;
+
+    return productRequest;
+  }
+
   public static ProductRequest givenAProductRequest() {
     ProductRequest productRequest = new ProductRequest();
     productRequest.description = A_PRODUCT_DESCRIPTION;
