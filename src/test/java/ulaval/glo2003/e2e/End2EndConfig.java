@@ -5,10 +5,7 @@ import java.util.List;
 
 public abstract class End2EndConfig {
 
-  public static final String URL = "http://localhost:8080/";
   public static final String LOCATION = "Location";
-  public static final String URL_PRODUCTS_END_POINT = URL + "products/";
-  public static final String URL_PRODUCTS_END_POINT_WITHOUT_SLASH = "http://localhost:8080/products";
   public static final String UUID_REGEX = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$";
   public static final String SELLER_END_POINT = "/sellers";
   public static final String PRODUCTS_END_POINT = "/products";

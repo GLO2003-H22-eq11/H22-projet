@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static spark.Spark.stop;
 import static ulaval.glo2003.e2e.End2EndConfig.A_BIO;
 import static ulaval.glo2003.e2e.End2EndConfig.A_SELLER_NAME;
-import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.createSellerWithProductGetSellerId;
+import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.createSellerWithProductAndGetSellerId;
 import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.getSeller;
 
 public class GetSellerEnd2EndTest {
@@ -30,7 +30,7 @@ public class GetSellerEnd2EndTest {
 
   @Test
   public void givenASellerWithAProduct_whenGetSeller_thenShouldReturnTheRightBody() {
-    String sellerId = createSellerWithProductGetSellerId();
+    String sellerId = createSellerWithProductAndGetSellerId();
 
     SellerResponse sellerResponse = getSeller(sellerId);
 

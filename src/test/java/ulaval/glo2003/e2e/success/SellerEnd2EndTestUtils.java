@@ -28,7 +28,7 @@ public class SellerEnd2EndTestUtils {
     return request.when().post(SELLER_END_POINT);
   }
 
-  public static String createSellerWithProductGetSellerId() {
+  public static String createSellerWithProductAndGetSellerId() {
     String sellerId = createSellerGetId();
     createProduct(sellerId);
 

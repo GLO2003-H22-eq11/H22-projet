@@ -10,7 +10,7 @@ import static spark.Spark.stop;
 import static ulaval.glo2003.e2e.End2EndConfig.CREATED_STATUS_CODE;
 import static ulaval.glo2003.e2e.End2EndConfig.UUID_REGEX;
 import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.createProduct;
-import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.createProductGetId;
+import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.createProductAndGetId;
 import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.createSellerGetId;
 
 public class AddProductToSellerEnd2EndTest {
@@ -42,7 +42,7 @@ public class AddProductToSellerEnd2EndTest {
   public void givenASellerIdAndAProductRequest_whenCreateProduct_thenShouldReturnAProductId() {
     String sellerId = createSellerGetId();
 
-    String productId = createProductGetId(sellerId);
+    String productId = createProductAndGetId(sellerId);
 
     assertTrue(productId.matches(UUID_REGEX));
   }
