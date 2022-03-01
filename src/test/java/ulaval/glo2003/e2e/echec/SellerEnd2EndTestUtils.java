@@ -5,13 +5,7 @@ import io.restassured.specification.RequestSpecification;
 import ulaval.glo2003.seller.api.SellerRequest;
 
 import static io.restassured.RestAssured.given;
-import static ulaval.glo2003.e2e.End2EndConfig.APPLICATION_JSON;
-import static ulaval.glo2003.e2e.End2EndConfig.A_BIO;
-import static ulaval.glo2003.e2e.End2EndConfig.A_SELLER_DATE;
-import static ulaval.glo2003.e2e.End2EndConfig.A_SELLER_NAME;
-import static ulaval.glo2003.e2e.End2EndConfig.CONTENT_TYPE;
-import static ulaval.glo2003.e2e.End2EndConfig.LOCATION;
-import static ulaval.glo2003.e2e.End2EndConfig.SELLER_END_POINT;
+import static ulaval.glo2003.e2e.End2EndConfig.*;
 
 public class SellerEnd2EndTestUtils {
 
@@ -25,32 +19,32 @@ public class SellerEnd2EndTestUtils {
     return request.when().post(SELLER_END_POINT);
   }
 
-  public SellerRequest givenASellerRequestWithoutName() {
+  public static SellerRequest givenASellerRequestWithoutName() {
     SellerRequest sellerRequest = new SellerRequest();
     sellerRequest.bio = A_BIO;
     sellerRequest.birthDate = A_SELLER_DATE;
     return sellerRequest;
   }
 
-  public SellerRequest givenASellerRequestWithoutBio() {
+  public static SellerRequest givenASellerRequestWithoutBio() {
     SellerRequest sellerRequest = new SellerRequest();
     sellerRequest.name = A_SELLER_NAME;
     sellerRequest.birthDate = A_SELLER_DATE;
     return sellerRequest;
   }
 
-  public SellerRequest givenASellerRequestWithoutBirthDate() {
+  public static SellerRequest givenASellerRequestWithoutBirthDate() {
     SellerRequest sellerRequest = new SellerRequest();
     sellerRequest.name = A_SELLER_NAME;
     sellerRequest.bio = A_BIO;
     return sellerRequest;
   }
 
-  public SellerRequest givenASellerRequestWithBadBirthDate() {
+  public static SellerRequest givenASellerRequestWithBadBirthDate() {
     SellerRequest sellerRequest = new SellerRequest();
     sellerRequest.name = A_SELLER_NAME;
     sellerRequest.bio = A_BIO;
-    sellerRequest.birthDate = A_SELLER_DATE;
+    sellerRequest.birthDate = A_BAD_SELLER_DATE;
     return sellerRequest;
   }
 

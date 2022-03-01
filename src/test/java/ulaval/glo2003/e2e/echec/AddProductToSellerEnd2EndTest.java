@@ -130,12 +130,12 @@ public class AddProductToSellerEnd2EndTest {
   public void givenAProductRequestWithBadPrice_whenAddProduct_thenShouldReturnTheRightBody() {
     ProductRequest productRequest = givenAProductRequestWithBadPrice();
     given()
-            .body(productRequest)
-            .header(CONTENT_TYPE, APPLICATION_JSON)
-            .header(X_SELLER_ID_HEADERS_PARAMS, A_VALID_UUID_FORMAT)
-            .post(URL_PRODUCTS_END_POINT)
-            .then().body(AN_ERROR, equalTo(AN_INVALID_PARAMETER))
-            .body(AN_ERROR_DESCRIPTION, equalTo(AN_INVALID_PARAMETER_DESCRIPTION));
+      .body(productRequest)
+      .header(CONTENT_TYPE, APPLICATION_JSON)
+      .header(X_SELLER_ID_HEADERS_PARAMS, A_VALID_UUID_FORMAT)
+      .post(URL_PRODUCTS_END_POINT)
+      .then().body(AN_ERROR, equalTo(AN_INVALID_PARAMETER))
+      .body(AN_ERROR_DESCRIPTION, equalTo(AN_INVALID_PARAMETER_DESCRIPTION));
   }
 
   @Test
