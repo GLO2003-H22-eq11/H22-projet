@@ -13,7 +13,9 @@ import static ulaval.glo2003.e2e.End2EndConfig.A_CATEGORIES;
 import static ulaval.glo2003.e2e.End2EndConfig.A_PRODUCT_DESCRIPTION;
 import static ulaval.glo2003.e2e.End2EndConfig.A_PRODUCT_TITLE;
 import static ulaval.glo2003.e2e.End2EndConfig.A_VALID_SUGGESTED_PRICE;
-import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.getProductsWithValidFilters;
+import static ulaval.glo2003.e2e.End2EndConfig.OK_STATUS_CODE;
+import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.getProductsResponseBodyWithValidFilters;
+import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.getProductsResponseWithValidFilters;
 import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.createSellerWithProductAndGetSellerId;
 
 public class GetProductWithFiltersEnd2EndTest {
@@ -32,11 +34,22 @@ public class GetProductWithFiltersEnd2EndTest {
     stop();
   }
 
+
+  @Test
+  public void givenAProduct_whenGetProductWithInclusiveFiltersThatMatch_thenShouldReturn200StatusCode() {
+    String sellerId = createSellerWithProductAndGetSellerId();
+
+    int statusCode = getProductsResponseWithValidFilters(sellerId).statusCode();
+
+    assertEquals(OK_STATUS_CODE, statusCode);
+  }
+
+
   @Test
   public void givenAProduct_whenGetProductWithInclusiveFiltersThatMatch_thenShouldReturnProduct() {
     String sellerId = createSellerWithProductAndGetSellerId();
 
-    ProductsResponse productsResponse = getProductsWithValidFilters(sellerId);
+    ProductsResponse productsResponse = getProductsResponseBodyWithValidFilters(sellerId);
     ProductResponse productResponse = productsResponse.products.get(0);
 
     assertEquals(productResponse.title, A_PRODUCT_TITLE);

@@ -12,8 +12,10 @@ import static ulaval.glo2003.e2e.End2EndConfig.A_CATEGORIES;
 import static ulaval.glo2003.e2e.End2EndConfig.A_PRODUCT_DESCRIPTION;
 import static ulaval.glo2003.e2e.End2EndConfig.A_PRODUCT_TITLE;
 import static ulaval.glo2003.e2e.End2EndConfig.A_VALID_SUGGESTED_PRICE;
+import static ulaval.glo2003.e2e.End2EndConfig.OK_STATUS_CODE;
 import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.createProductAndGetId;
-import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.getProduct;
+import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.getProductResponse;
+import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.getProductResponseBody;
 import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.createSellerGetId;
 
 public class GetProductEnd2EndTest {
@@ -33,11 +35,21 @@ public class GetProductEnd2EndTest {
   }
 
   @Test
+  public void givenAProductRequest_whenGetProduct_thenShouldReturn200StatusCode() {
+    String sellerId = createSellerGetId();
+    String productId = createProductAndGetId(sellerId);
+
+    int statusCode = getProductResponse(productId).statusCode();
+
+    assertEquals(OK_STATUS_CODE, statusCode);
+  }
+
+  @Test
   public void givenAProductRequest_whenGetProduct_thenShouldReturnTheRightBody() {
     String sellerId = createSellerGetId();
     String productId = createProductAndGetId(sellerId);
 
-    ProductResponse productResponse = getProduct(productId);
+    ProductResponse productResponse = getProductResponseBody(productId);
 
     assertEquals(productResponse.id, productId);
     assertEquals(productResponse.title, A_PRODUCT_TITLE);

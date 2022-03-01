@@ -10,8 +10,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static spark.Spark.stop;
 import static ulaval.glo2003.e2e.End2EndConfig.A_BIO;
 import static ulaval.glo2003.e2e.End2EndConfig.A_SELLER_NAME;
+import static ulaval.glo2003.e2e.End2EndConfig.OK_STATUS_CODE;
 import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.createSellerWithProductAndGetSellerId;
-import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.getSeller;
+import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.getSellerResponse;
+import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.getSellerResponseBody;
 
 public class GetSellerEnd2EndTest {
 
@@ -29,10 +31,19 @@ public class GetSellerEnd2EndTest {
   }
 
   @Test
+  public void givenASellerWithAProduct_whenGetSeller_thenShouldReturn200StatusCode() {
+    String sellerId = createSellerWithProductAndGetSellerId();
+
+    int statusCode = getSellerResponse(sellerId).statusCode();
+
+    assertEquals(OK_STATUS_CODE, statusCode);
+  }
+
+  @Test
   public void givenASellerWithAProduct_whenGetSeller_thenShouldReturnTheRightBody() {
     String sellerId = createSellerWithProductAndGetSellerId();
 
-    SellerResponse sellerResponse = getSeller(sellerId);
+    SellerResponse sellerResponse = getSellerResponseBody(sellerId);
 
     assertEquals(sellerResponse.id, sellerId);
     assertEquals(sellerResponse.bio, A_BIO);

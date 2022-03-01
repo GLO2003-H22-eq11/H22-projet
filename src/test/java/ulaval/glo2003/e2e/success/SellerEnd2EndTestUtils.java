@@ -46,11 +46,11 @@ public class SellerEnd2EndTestUtils {
     return locationHeader.substring(locationHeader.lastIndexOf("/") + 1);
   }
 
-  private static Response getSellerCall(String sellerId) {
+  public static Response getSellerResponse(String sellerId) {
     return when().get(SELLER_END_POINT + "/" + sellerId);
   }
 
-  public static SellerResponse getSeller(String sellerId) {
-    return getSellerCall(sellerId).getBody().as(SellerResponse.class);
+  public static SellerResponse getSellerResponseBody(String sellerId) {
+    return getSellerResponse(sellerId).getBody().as(SellerResponse.class);
   }
 }
