@@ -37,4 +37,5 @@ public abstract class End2EndConfig {
   public static final String A_SELLER_DATE = "1999-07-08";
 
   public static final int CREATED_STATUS_CODE = 201;
+  public static final int OK_STATUS_CODE = 200;
 }

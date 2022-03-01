@@ -46,14 +46,17 @@ public class ProductEnd2EndTestUtils {
     return locationHeader.substring(locationHeader.lastIndexOf("/") + 1);
   }
 
-  public static ProductResponse getProduct(String productId) {
+  public static Response getProductResponse(String productId) {
     return given()
             .header(CONTENT_TYPE, APPLICATION_JSON)
-            .get(PRODUCTS_END_POINT + "/" + productId)
-            .getBody().as(ProductResponse.class);
+            .get(PRODUCTS_END_POINT + "/" + productId);
   }
 
-  public static ProductsResponse getProductsWithValidFilters(String sellerId) {
+  public static ProductResponse getProductResponseBody(String productId) {
+    return getProductResponse(productId).getBody().as(ProductResponse.class);
+  }
+
+  public static Response getProductsResponseWithValidFilters(String sellerId) {
     return given()
             .queryParam("title", A_PRODUCT_TITLE)
             .queryParam("sellerId", sellerId)
@@ -61,17 +64,25 @@ public class ProductEnd2EndTestUtils {
             .queryParam("minPrice", A_VALID_MINIMUM_PRICE)
             .queryParam("maxPrice", A_VALID_MAXIMUM_PRICE)
             .header(CONTENT_TYPE, APPLICATION_JSON)
-            .get(PRODUCTS_END_POINT).getBody().as(ProductsResponse.class);
+            .get(PRODUCTS_END_POINT);
 
   }
 
-  public static ProductsResponse getProductsWithNonExistentValuesAsFilters() {
+  public static ProductsResponse getProductsResponseBodyWithValidFilters(String sellerId) {
+    return getProductsResponseWithValidFilters(sellerId).getBody().as(ProductsResponse.class);
+  }
+
+  public static Response getProductsResponseWithNonExistentValuesAsFilters() {
     return given()
             .queryParam("title", A_RANDOM_TITLE)
             .queryParam("categories", A_RANDOM_CATEGORY)
             .queryParam("minPrice", A_NON_VALID_MIN)
             .queryParam("maxPrice", A_NON_VALID_MAX)
             .header(CONTENT_TYPE, APPLICATION_JSON)
-            .get(PRODUCTS_END_POINT).getBody().as(ProductsResponse.class);
+            .get(PRODUCTS_END_POINT);
+  }
+
+  public static ProductsResponse getProductsResponseBodyWithNonExistentValuesAsFilters() {
+    return getProductsResponseWithNonExistentValuesAsFilters().getBody().as(ProductsResponse.class);
   }
 }
