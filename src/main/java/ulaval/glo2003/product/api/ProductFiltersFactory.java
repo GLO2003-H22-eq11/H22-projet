@@ -22,16 +22,16 @@ public class ProductFiltersFactory {
           String stringSellerId,
           String title,
           List<String> stringCategories,
-          int minPrice,
-          int maxPrice
+          Integer minPrice,
+          Integer maxPrice
   ) throws GenericException {
     ProductFilters productFilters = new ProductFilters();
 
-    if (!stringSellerId.isBlank()) {
+    if (stringSellerId != null) {
       productFilters.setSellerId(this.sellerIdFactory.create(stringSellerId));
     }
 
-    if (!title.isBlank()) {
+    if (title != null) {
       productFilters.setTitle(title);
     }
 
@@ -39,11 +39,11 @@ public class ProductFiltersFactory {
       productFilters.setCategories(this.categoriesFactory.create(stringCategories));
     }
 
-    if (minPrice > 0) {
+    if (minPrice != null) {
       productFilters.setMinimalPrice(Amount.fromInt(minPrice));
     }
 
-    if (maxPrice > 0) {
+    if (maxPrice != null) {
       productFilters.setMaximumPrice(Amount.fromInt(maxPrice));
     }
 
