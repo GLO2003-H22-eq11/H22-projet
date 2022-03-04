@@ -68,11 +68,11 @@ comment il a implémenté sa solution et les critères d'acceptions de l'issue p
 
 ### 3 pour les PR avec tous les éléments demandés visibles
 
-<img width="1248" alt="Create Product" src="https://user-images.githubusercontent.com/47190894/153027532-44937aab-60fd-40cd-a5ab-035c7b586942.png">
+![image](https://user-images.githubusercontent.com/47373969/156838149-190d6a98-a54d-4fa8-9630-2d29171c43c5.png)
+
+![image](https://user-images.githubusercontent.com/47373969/156839129-5e266490-7d04-4199-96b7-a756dace3417.png)
+
+![image](https://user-images.githubusercontent.com/47373969/156839419-a0efbf75-c01c-443a-bc31-671972549bf7.png)
 
 
-<img width="717" alt="image" src="https://user-images.githubusercontent.com/47373969/155181785-8c8ddf52-3c8f-407e-9d6b-a208ce549f70.png">
-
-
-<img width="1489" alt="Screen_Shot_2022-03-01_at_10 50 50_AM" src="https://user-images.githubusercontent.com/47190894/156201822-f7d67b26-e948-480a-a4f8-f4fa9a79b708.png">
 
