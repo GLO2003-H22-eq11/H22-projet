@@ -6,7 +6,6 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.QueryParam;
@@ -85,11 +84,11 @@ public class ProductResource {
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  public Response getFilteredProducts(@DefaultValue("") @QueryParam("sellerId") String sellerId,
-                                      @DefaultValue("") @QueryParam("title") String title,
+  public Response getFilteredProducts(@QueryParam("sellerId") String sellerId,
+                                      @QueryParam("title") String title,
                                       @QueryParam("categories") List<String> categories,
-                                      @DefaultValue("0") @QueryParam("minPrice") int minPrice,
-                                      @DefaultValue("0") @QueryParam("maxPrice") int maxPrice) {
+                                      @QueryParam("minPrice") Integer minPrice,
+                                      @QueryParam("maxPrice") Integer maxPrice) {
 
     try {
       ProductFilters productFilters = this.productFiltersFactory.create(
