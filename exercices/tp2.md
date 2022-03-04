@@ -50,6 +50,11 @@ comment il a implémenté sa solution et les critères d'acceptions de l'issue p
 
 ![image](https://user-images.githubusercontent.com/47373969/156836921-4e2e1b2d-7940-4b92-a7e9-4d6daf90fb26.png)
 
+### 1 pour le milestone comprenant le titre, la description et les issues associées
+
+![image](https://user-images.githubusercontent.com/47373969/156837361-05725d71-07fc-4e1e-be33-51bdea5fbcac.png)
+
+
 
 <img width="1248" alt="Create Product" src="https://user-images.githubusercontent.com/47190894/153027532-44937aab-60fd-40cd-a5ab-035c7b586942.png">
 
