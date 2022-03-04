@@ -83,4 +83,5 @@ tester dans l'application pour ainsi accélerer le processus des pull-requests.
 
 ### 1 pour votre arbre de commits et de branches (au moins 3 branches et/ou 10 commits visibles)
 
-![image](https://user-images.githubusercontent.com/47373969/156839739-938cb3d9-881c-4cf0-96dd-df721c2ed8f8.png)
+![image](https://user-images.githubusercontent.com/47373969/156841158-b27fcb90-d2a9-4d27-8b18-cedf397055f0.png)
+
