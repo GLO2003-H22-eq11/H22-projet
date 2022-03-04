@@ -32,10 +32,7 @@ public class CreateSellerEnd2EndTest {
   public void givenASellerNullName_whenCreateASeller_thenShouldReturnRightStatusCode() {
     SellerRequest sellerRequest = givenASellerRequestWithoutName();
 
-    given()
-      .header(CONTENT_TYPE, APPLICATION_JSON)
-      .body(sellerRequest)
-      .post(URL_SELLERS_END_POINT)
+    postSellerWithSellerBody(sellerRequest)
       .then().statusCode(BAD_STATUS_CODE);
 
   }
@@ -44,10 +41,7 @@ public class CreateSellerEnd2EndTest {
   public void givenASellerNullBio_whenCreateASeller_thenShouldReturnRightStatusCode() {
     SellerRequest sellerRequest = givenASellerRequestWithoutBio();
 
-    given()
-      .header(CONTENT_TYPE, APPLICATION_JSON)
-      .body(sellerRequest)
-      .post(URL_SELLERS_END_POINT)
+    postSellerWithSellerBody(sellerRequest)
       .then().statusCode(BAD_STATUS_CODE);
   }
 
@@ -55,10 +49,7 @@ public class CreateSellerEnd2EndTest {
   public void givenASellerNullBirthDate_whenCreateASeller_thenShouldReturnRightStatusCode() {
     SellerRequest sellerRequest = givenASellerRequestWithoutBirthDate();
 
-    given()
-      .header(CONTENT_TYPE, APPLICATION_JSON)
-      .body(sellerRequest)
-      .post(URL_SELLERS_END_POINT)
+    postSellerWithSellerBody(sellerRequest)
       .then().statusCode(BAD_STATUS_CODE);
   }
 
@@ -66,10 +57,7 @@ public class CreateSellerEnd2EndTest {
   public void givenASellerBadBirthDate_whenCreateASeller_thenShouldReturnRightStatusCode() {
     SellerRequest sellerRequest = givenASellerRequestWithBadBirthDate();
 
-    given()
-      .header(CONTENT_TYPE, APPLICATION_JSON)
-      .body(sellerRequest)
-      .post(URL_SELLERS_END_POINT)
+    postSellerWithSellerBody(sellerRequest)
       .then().statusCode(BAD_STATUS_CODE);
   }
 
@@ -77,10 +65,7 @@ public class CreateSellerEnd2EndTest {
   public void givenASellerNullName_whenCreateASeller_thenShouldReturnRightBody() {
     SellerRequest sellerRequest = givenASellerRequestWithoutName();
 
-    given()
-      .header(CONTENT_TYPE, APPLICATION_JSON)
-      .body(sellerRequest)
-      .post(URL_SELLERS_END_POINT)
+    postSellerWithSellerBody(sellerRequest)
       .then().body(AN_ERROR, equalTo(A_MISSING_PARAMETER))
       .body(AN_ERROR_DESCRIPTION, equalTo(A_MISSING_PARAMETER_DESCRIPTION));
 
@@ -90,10 +75,7 @@ public class CreateSellerEnd2EndTest {
   public void givenASellerNullBio_whenCreateASeller_thenShouldReturnRightBody() {
     SellerRequest sellerRequest = givenASellerRequestWithoutBio();
 
-    given()
-      .header(CONTENT_TYPE, APPLICATION_JSON)
-      .body(sellerRequest)
-      .post(URL_SELLERS_END_POINT)
+    postSellerWithSellerBody(sellerRequest)
       .then().body(AN_ERROR, equalTo(A_MISSING_PARAMETER))
       .body(AN_ERROR_DESCRIPTION, equalTo(A_MISSING_PARAMETER_DESCRIPTION));
 
@@ -103,10 +85,7 @@ public class CreateSellerEnd2EndTest {
   public void givenASellerNullBirthDate_whenCreateASeller_thenShouldReturnRightBody() {
     SellerRequest sellerRequest = givenASellerRequestWithoutBirthDate();
 
-    given()
-      .header(CONTENT_TYPE, APPLICATION_JSON)
-      .body(sellerRequest)
-      .post(URL_SELLERS_END_POINT)
+    postSellerWithSellerBody(sellerRequest)
       .then().body(AN_ERROR, equalTo(A_MISSING_PARAMETER))
       .body(AN_ERROR_DESCRIPTION, equalTo(A_MISSING_PARAMETER_DESCRIPTION));
 
@@ -116,10 +95,7 @@ public class CreateSellerEnd2EndTest {
   public void givenASellerBadBirthDate_whenCreateASeller_thenShouldReturnRightBody() {
     SellerRequest sellerRequest = givenASellerRequestWithBadBirthDate();
 
-    given()
-      .header(CONTENT_TYPE, APPLICATION_JSON)
-      .body(sellerRequest)
-      .post(URL_SELLERS_END_POINT)
+    postSellerWithSellerBody(sellerRequest)
       .then().body(AN_ERROR, equalTo(AN_INVALID_PARAMETER))
       .body(AN_ERROR_DESCRIPTION, equalTo(AN_INVALID_PARAMETER_DESCRIPTION));
 

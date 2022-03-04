@@ -13,6 +13,10 @@ public abstract class End2EndConfig {
   public static final String URL_SELLERS_END_POINT = "http://localhost:8080/sellers";
 
   public static final String X_SELLER_ID_HEADERS_PARAMS = "X-Seller-Id";
+  public static final String SELLER_ID_PARAM = "sellerId";
+  public static final String MIN_PRICE_PARAM = "minPrice";
+  public static final String MAX_PRICE_PARAM = "maxPrice";
+
 
   public static final String CONTENT_TYPE = "Content-Type";
   public static final String APPLICATION_JSON = "application/json";
@@ -23,6 +27,7 @@ public abstract class End2EndConfig {
   public static final String A_NON_VALID_UUID_FORMAT = "0ce7f24b";
   public static final int A_VALID_SUGGESTED_PRICE = 10;
   public static final List<String> A_CATEGORIES = List.of("A", "B", "C");
+  public static final int A_NEGATIVE_PRICE = -5;
 
   public static final String AN_ERROR_DESCRIPTION = "description";
   public static final String A_MISSING_PARAMETER = "MISSING_PARAMETER";

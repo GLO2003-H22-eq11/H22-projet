@@ -1,17 +1,10 @@
 package ulaval.glo2003.e2e.failure;
 
+import io.restassured.response.Response;
 import ulaval.glo2003.product.api.ProductRequest;
 
 import static io.restassured.RestAssured.given;
-import static ulaval.glo2003.e2e.End2EndConfig.APPLICATION_JSON;
-import static ulaval.glo2003.e2e.End2EndConfig.A_CATEGORIES;
-import static ulaval.glo2003.e2e.End2EndConfig.A_PRODUCT_DESCRIPTION;
-import static ulaval.glo2003.e2e.End2EndConfig.A_PRODUCT_TITLE;
-import static ulaval.glo2003.e2e.End2EndConfig.A_VALID_SUGGESTED_PRICE;
-import static ulaval.glo2003.e2e.End2EndConfig.CONTENT_TYPE;
-import static ulaval.glo2003.e2e.End2EndConfig.LOCATION;
-import static ulaval.glo2003.e2e.End2EndConfig.PRODUCTS_END_POINT;
-import static ulaval.glo2003.e2e.End2EndConfig.X_SELLER_ID_HEADERS_PARAMS;
+import static ulaval.glo2003.e2e.End2EndConfig.*;
 
 public class ProductEnd2EndTestUtils {
 
@@ -71,25 +64,32 @@ public class ProductEnd2EndTestUtils {
 
     return productRequest;
   }
-  private String addProductAndGetProductId(String sellerId) {
-    ProductRequest productRequest = this.givenAProductRequest();
 
-    String URL_LOCATION = given()
-      .body(productRequest)
-      .header(CONTENT_TYPE, APPLICATION_JSON)
-      .header(X_SELLER_ID_HEADERS_PARAMS, sellerId)
-      .post(PRODUCTS_END_POINT).getHeader(LOCATION);
-
-    return URL_LOCATION.split(PRODUCTS_END_POINT)[1];
+  public static Response getProductWithStringFilters(String queryParamName, String param) {
+    return given()
+            .queryParam(queryParamName, param)
+            .header(CONTENT_TYPE, APPLICATION_JSON)
+            .get(PRODUCTS_END_POINT);
   }
 
-  private void addProductToSeller(String sellerId) {
-    ProductRequest productRequest = this.givenAProductRequest();
+  public static Response getProductWithIntFilters(String queryParamName, Integer param) {
+    return given()
+            .queryParam(queryParamName, param)
+            .header(CONTENT_TYPE, APPLICATION_JSON)
+            .get(PRODUCTS_END_POINT);
+  }
 
-    given()
-      .body(productRequest)
-      .header(CONTENT_TYPE, APPLICATION_JSON)
-      .header(X_SELLER_ID_HEADERS_PARAMS, sellerId)
-      .post(PRODUCTS_END_POINT).getHeader(LOCATION);
+  public static Response postProductWithBody(ProductRequest productRequest, String sellerId) {
+    return given()
+            .body(productRequest)
+            .header(CONTENT_TYPE, APPLICATION_JSON)
+            .header(X_SELLER_ID_HEADERS_PARAMS, sellerId)
+            .post(URL_PRODUCTS_END_POINT);
+  }
+
+  public static Response getProductWithProductId(String productId) {
+    return given()
+            .header(CONTENT_TYPE, APPLICATION_JSON)
+            .get(URL_PRODUCTS_END_POINT + "/" + productId);
   }
 }

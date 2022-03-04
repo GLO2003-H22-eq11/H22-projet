@@ -9,16 +9,6 @@ import static ulaval.glo2003.e2e.End2EndConfig.*;
 
 public class SellerEnd2EndTestUtils {
 
-  public static Response createSeller() {
-    SellerRequest sellerRequest = new SellerRequest();
-    sellerRequest.name = A_SELLER_NAME;
-    sellerRequest.bio = A_BIO;
-    sellerRequest.birthDate = A_SELLER_DATE;
-
-    RequestSpecification request = given().header(CONTENT_TYPE, APPLICATION_JSON).body(sellerRequest);
-    return request.when().post(SELLER_END_POINT);
-  }
-
   public static SellerRequest givenASellerRequestWithoutName() {
     SellerRequest sellerRequest = new SellerRequest();
     sellerRequest.bio = A_BIO;
@@ -48,10 +38,17 @@ public class SellerEnd2EndTestUtils {
     return sellerRequest;
   }
 
-  public static String createSellerGetId() {
-    Response response = createSeller();
-    String locationHeader = response.getHeader(LOCATION);
-    return locationHeader.substring(locationHeader.lastIndexOf("/") + 1);
+  public static Response getSellerWithSellerId(String sellerId) {
+    return given()
+            .header(CONTENT_TYPE, APPLICATION_JSON)
+            .get(URL_SELLERS_END_POINT + "/" + sellerId);
+  }
+
+  public static Response postSellerWithSellerBody(SellerRequest sellerRequest) {
+    return given()
+            .header(CONTENT_TYPE, APPLICATION_JSON)
+            .body(sellerRequest)
+            .post(URL_SELLERS_END_POINT);
   }
 
 }
