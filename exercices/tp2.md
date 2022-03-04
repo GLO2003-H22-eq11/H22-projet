@@ -75,4 +75,8 @@ comment il a implémenté sa solution et les critères d'acceptions de l'issue p
 ![image](https://user-images.githubusercontent.com/47373969/156839419-a0efbf75-c01c-443a-bc31-671972549bf7.png)
 
 
+### 1 pour votre arbre de commits et de branches (au moins 3 branches et/ou 10 commits visibles)
+
+![image](https://user-images.githubusercontent.com/47373969/156839739-938cb3d9-881c-4cf0-96dd-df721c2ed8f8.png)
+
 
