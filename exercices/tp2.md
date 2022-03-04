@@ -56,6 +56,18 @@ comment il a implémenté sa solution et les critères d'acceptions de l'issue p
 
 
 
+### 3 pour les issues avec tous les éléments demandés visibles
+
+![image](https://user-images.githubusercontent.com/47373969/156837651-10fac67e-ad1c-442e-b447-0c57e099652b.png)
+
+![image](https://user-images.githubusercontent.com/47373969/156837743-7e25834f-dad3-49a2-9f7f-13dc3074bf54.png)
+
+![image](https://user-images.githubusercontent.com/47373969/156837814-479dce74-6cd6-4523-9a00-18d05df05efd.png)
+
+
+
+
+
 <img width="1248" alt="Create Product" src="https://user-images.githubusercontent.com/47190894/153027532-44937aab-60fd-40cd-a5ab-035c7b586942.png">
 
 
