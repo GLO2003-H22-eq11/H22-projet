@@ -91,6 +91,8 @@ public class ProductResource {
                                       @QueryParam("maxPrice") Integer maxPrice) {
 
     try {
+      this.productRequestValidator.validatePrices(minPrice, maxPrice);
+
       ProductFilters productFilters = this.productFiltersFactory.create(
               sellerId, title, categories, minPrice, maxPrice
       );

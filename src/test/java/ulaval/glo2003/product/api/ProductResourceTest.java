@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
+import ulaval.glo2003.product.api.exceptions.InvalidProductPriceException;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductsResponse;
 import ulaval.glo2003.product.domain.Product;
@@ -30,8 +31,8 @@ class ProductResourceTest {
   private final String A_SELLER_ID = "S@FG_F$GG$cgwre-fg";
   private final String A_TITLE = "TITLE";
   private final List<String> STRING_CATEGORIES = List.of("A", "B", "C");
-  private final int MINIMUM_PRICE = 10;
-  private final int MAXIMUM_PRICE = 15;
+  private final Integer MINIMUM_PRICE = 10;
+  private final Integer MAXIMUM_PRICE = 15;
   private final String A_PRODUCT_ID = "Sqwevwerty";
   private static final String A_SELLER_STRING_ID = "5a3e3b0b-19a6-46cd-a0fe-bf16f42ba492";
 
@@ -147,8 +148,15 @@ class ProductResourceTest {
     assertEquals(expected.getEntity(), actual.getEntity());
   }
 
+  @Test
+  public void whenGetFilteredProducts_thenShouldValidateMinPriceAndMaxPrice() throws GenericException {
+    this.productResource.getFilteredProducts(A_SELLER_ID, A_TITLE, STRING_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
 
-  private void givenAProduct(ProductRequest productRequest) throws GenericException{
+    verify(this.productRequestValidator).validatePrices(MINIMUM_PRICE, MAXIMUM_PRICE);
+  }
+
+
+  private void givenAProduct(ProductRequest productRequest) throws GenericException {
     given(this.productFactory.create(productRequest, A_SELLER_STRING_ID)).willReturn(this.product);
     given(this.product.getStringId()).willReturn(A_SELLER_STRING_ID);
   }

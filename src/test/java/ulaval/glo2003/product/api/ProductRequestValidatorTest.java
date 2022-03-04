@@ -103,6 +103,16 @@ class ProductRequestValidatorTest {
     assertThrows(InvalidProductPriceException.class, () -> this.productRequestValidator.validatePrices(aMinPrice, aNegativeMaxPrice));
   }
 
+  @Test
+  public void givenANullMinPriceAndValidMaxPrice_whenValidatePrice_thenShouldNotThrowInvalidProductPrice() {
+    assertDoesNotThrow(() -> this.productRequestValidator.validatePrices(null, A_PRICE));
+  }
+
+  @Test
+  public void givenANullMaxPriceAndValidMinPrice_whenValidatePrice_thenShouldNotThrowInvalidProductPrice() {
+    assertDoesNotThrow(() -> this.productRequestValidator.validatePrices(A_PRICE, null));
+  }
+
   private ProductRequest givenAProductRequest(String title, String description, int price) {
     ProductRequest productRequest = new ProductRequest();
     productRequest.title = title;
