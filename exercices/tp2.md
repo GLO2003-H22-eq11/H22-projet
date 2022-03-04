@@ -1,5 +1,18 @@
 # TP2
 
+
+# Rétrospective sur le processus 
+
+## 1. Selon vous, est-ce que les issues/pull-requests prenaient trop de temps à être terminées? Ou pas assez? Quel serait le temps idéal (approximatif) pour chacun?
+
+## 2. Quel est le lien entre la taille de ces issues/pull-requests et le temps que ça prenait à les terminer?
+
+## 3. Donnez au moins 3 trucs pour améliorer votre processus (tailles des issues/pr, communication, code reviews, uniformisation, etc.)
+
+
+# Planification du travail sur Github
+
+
 <img width="1248" alt="Create Product" src="https://user-images.githubusercontent.com/47190894/153027532-44937aab-60fd-40cd-a5ab-035c7b586942.png">
 
 
