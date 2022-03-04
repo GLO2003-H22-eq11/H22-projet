@@ -1,4 +1,4 @@
-package ulaval.glo2003.e2e.echec;
+package ulaval.glo2003.e2e.failure;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static spark.Spark.stop;
 import static ulaval.glo2003.e2e.End2EndConfig.*;
-import static ulaval.glo2003.e2e.echec.ProductEnd2EndTestUtils.*;
+import static ulaval.glo2003.e2e.failure.ProductEnd2EndTestUtils.*;
 
 public class AddProductToSellerEnd2EndTest {
 
@@ -52,10 +52,29 @@ public class AddProductToSellerEnd2EndTest {
       .then().assertThat().statusCode(BAD_STATUS_CODE);
   }
 
-//  @Test
-//  public void givenAProductRequestWithoutPrice_whenAddProduct_thenShouldReturnTheRightStatusCode(){
-//    ProductRequest productRequest = givenAProductRequestWithoutPrice();
-//  }
+  @Test
+  public void givenAProductRequestWithoutPrice_whenAddProduct_thenShouldReturnTheRightStatusCode(){
+    ProductRequest productRequest = givenAProductRequestWithoutPrice();
+
+    given()
+            .body(productRequest)
+            .header(CONTENT_TYPE, APPLICATION_JSON)
+            .header(X_SELLER_ID_HEADERS_PARAMS, A_VALID_UUID_FORMAT)
+            .post(URL_PRODUCTS_END_POINT)
+            .then().assertThat().statusCode(BAD_STATUS_CODE);
+  }
+
+  @Test
+  public void givenAProductRequestWitBadPrice_whenAddProduct_thenShouldReturnTheRightStatusCode(){
+    ProductRequest productRequest = givenAProductRequestWithBadPrice();
+
+    given()
+            .body(productRequest)
+            .header(CONTENT_TYPE, APPLICATION_JSON)
+            .header(X_SELLER_ID_HEADERS_PARAMS, A_VALID_UUID_FORMAT)
+            .post(URL_PRODUCTS_END_POINT)
+            .then().assertThat().statusCode(BAD_STATUS_CODE);
+  }
 
   @Test
   public void givenAProductRequestWithoutCategories_whenAddProduct_thenShouldReturnTheRightStatusCode() {
@@ -81,10 +100,18 @@ public class AddProductToSellerEnd2EndTest {
       .then().assertThat().statusCode(NOT_FOUND_STATUS_CODE);
   }
 
-//  @Test
-//  public void givenAProductRequestWithoutSellerId_whenAddProduct_thenShouldReturnTheRightStatusCode() {
-//    ProductRequest productRequest = givenAProductRequest();
-//  }
+  @Test
+  public void givenAProductRequestWithoutSellerId_whenAddProduct_thenShouldReturnTheRightStatusCode() {
+    ProductRequest productRequest = givenAProductRequest();
+
+    given()
+            .body(productRequest)
+            .header(CONTENT_TYPE, APPLICATION_JSON)
+            .header(X_SELLER_ID_HEADERS_PARAMS, A_NON_VALID_UUID_FORMAT)
+            .post(URL_PRODUCTS_END_POINT)
+            .then().assertThat().statusCode(BAD_STATUS_CODE);
+
+  }
 
   @Test
   public void givenAProductRequestWithBadSellerId_whenAddProduct_thenShouldReturnTheRightBody() {

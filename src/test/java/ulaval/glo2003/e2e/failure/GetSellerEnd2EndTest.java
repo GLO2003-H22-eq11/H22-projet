@@ -1,10 +1,9 @@
-package ulaval.glo2003.e2e.echec;
+package ulaval.glo2003.e2e.failure;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ulaval.glo2003.ApplicationMain;
-import ulaval.glo2003.e2e.End2EndConfig;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;

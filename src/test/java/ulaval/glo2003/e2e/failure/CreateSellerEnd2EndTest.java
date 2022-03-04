@@ -1,4 +1,4 @@
-package ulaval.glo2003.e2e.echec;
+package ulaval.glo2003.e2e.failure;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static spark.Spark.stop;
 import static ulaval.glo2003.e2e.End2EndConfig.*;
-import static ulaval.glo2003.e2e.echec.SellerEnd2EndTestUtils.*;
+import static ulaval.glo2003.e2e.failure.SellerEnd2EndTestUtils.*;
 
 public class CreateSellerEnd2EndTest {
 
