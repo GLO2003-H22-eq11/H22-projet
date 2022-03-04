@@ -76,4 +76,5 @@ Notre processus établi par notre équipe est déjà très bien structurés, mai
 
 ### 1 pour votre arbre de commits et de branches (au moins 3 branches et/ou 10 commits visibles)
 
-![image](https://user-images.githubusercontent.com/47373969/156840861-6356c358-55c6-498c-a340-66def0ee515e.png)
+![image](https://user-images.githubusercontent.com/47373969/156841158-b27fcb90-d2a9-4d27-8b18-cedf397055f0.png)
+
