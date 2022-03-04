@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import ulaval.glo2003.ApplicationMain;
 import ulaval.glo2003.seller.api.SellerRequest;
 
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static spark.Spark.stop;
 import static ulaval.glo2003.e2e.End2EndConfig.*;

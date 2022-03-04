@@ -71,7 +71,7 @@ public class AddProductToSellerEnd2EndTest {
   public void givenAProductRequestWithBadSellerId_whenAddProduct_thenShouldReturnTheRightStatusCode() {
     ProductRequest productRequest = givenAProductRequest();
 
-    postProductWithBody(productRequest, A_VALID_UUID_FORMAT)
+    postProductWithBody(productRequest, A_VALID_NON_EXISTING_UUID_FORMAT)
             .then().assertThat().statusCode(NOT_FOUND_STATUS_CODE);
   }
 
