@@ -47,7 +47,7 @@ dans notre base de code, ce qui fait que les pull-requests prennaient plus de te
 
 3. Avoir une meilleur description dans les pull-requests, on aimerait que le développeur indique bien dans la pull-request à l'aide d'image ou de paragraphes
 ce qui a été changé, comment il a implémenté sa solution et les critères d'acceptions de l'issue pour que le reviewer sache quoi 
-tester dans l'application pour ainsi accélerer le processus des pull-requests.
+tester dans l'application pour ainsi accélérer le processus des pull-requests.
 
 
 # Planification du travail sur Github
