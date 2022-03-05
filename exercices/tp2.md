@@ -26,7 +26,7 @@ Tout ce processus a fait en sorte que l'implémentation des issues nous prenait 
 n'étaient jamais ouvertes plus que 4 jours. 
 
 Pour répondre à la question, le temps idéal pour l'implémentation d'une issue pour notre équipe est de maximum 4 jours, tandis que l'idéal pour les pull-requests est de maximum 5 jours. On peut donc 
-conclure que notre temps a completés nos issues et PR était idéal selon nos critères.
+conclure que notre temps a completé nos issues et PR était idéal selon nos critères.
 
 
 ## 2. Quel est le lien entre la taille de ces issues/pull-requests et le temps que ça prenait à les terminer?
@@ -34,23 +34,32 @@ conclure que notre temps a completés nos issues et PR était idéal selon nos c
 On a remarqué un lien direct entre la taille des issues et le temps que ça prenait à les terminer. En effet, plus les issues étaient grosses, 
 plus l'implémentation de l'issue
 était longue à compléter pour le développeur. Une plus longue issue signifie aussi souvent plus de codes ajoutés, plus de modifications d'objets ainsi que
-plus de décisions architecturaux à l'intérieur de notre domaine d'affaire et de nos couches hexagonnaux. Comme l'implémentation de l'issue touchait plus de
+plus de décisions architecturales à l'intérieur de notre domaine d'affaire et de nos couches hexagonales. Comme l'implémentation de l'issue touchait plus de
 parties sur l'application, cela entrainait des conversations à l'intérieur des pull-requests plus remplis entre les reviewers et le développeur et cela impliquait en conséquence
 que le développeur allait avoir plus de choses à modifiés dans sa pull-request, ce qui explique que les grosses issues étaient plus longues avant d'être terminé. (Atteindre 
 la definition of done )
 
 ## 3. Donnez au moins 3 trucs pour améliorer votre processus (tailles des issues/pr, communication, code reviews, uniformisation, etc.)
 
-Le processus établi par notre équipe est déjà très bien structurés, mais voici 3 points que l'on aimerait améliorer pour les prochains livrables.
+Le processus établi par notre équipe est déjà très bien structuré, mais voici 3 points que l'on aimerait améliorer pour les prochains livrables.
 
 1. Une meilleure communication entre le développeur et les reviewers pour éviter qu'ils aient une "loop" de changement dans la pull-request.
 
+<<<<<<< HEAD
 2. Séparer les issues en des plus petites issues pour diminuer la grosseur des pull-requests. Nous avons eu 2 pull-requests avec plus de 1 000 modifications 
 dans notre base de code, ce qui fait que les pull-requests prenaient plus de temps avant d'être completés.
 
 3. Avoir une meilleur description dans les pull-requests, on aimerait que le développeur indique bien dans la description de la pull-request à 
 l'aide d'image ou de paragraphes ce qui a été changés, comment il a implémenté sa solution ainsi que les critères d'acceptions de l'issue pour que 
 le reviewer sache quoi tester dans l'application pour ainsi accélerer le processus des pull-requests.
+=======
+2. Séparer les issues en des plus petites issues pour diminuer la grosseur des pull-requests. Nous avons eu 2 pull-request avec plus de 1 000 modifications 
+dans notre base de code, ce qui fait que les pull-requests prennaient plus de temps avant d'être complétées.
+
+3. Avoir une meilleur description dans les pull-requests, on aimerait que le développeur indique bien dans la pull-request à l'aide d'image ou de paragraphes
+ce qui a été changé, comment il a implémenté sa solution et les critères d'acceptions de l'issue pour que le reviewer sache quoi 
+tester dans l'application pour ainsi accélérer le processus des pull-requests.
+>>>>>>> 64433a257f51cf320491b7f54b41e3ca5f2c15c5
 
 
 # Planification du travail sur Github
