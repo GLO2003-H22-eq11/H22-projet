@@ -46,7 +46,7 @@ Le processus établi par notre équipe est déjà très bien structuré, mais vo
 dans notre base de code, ce qui fait que les pull-requests prennaient plus de temps avant d'être complétées.
 
 3. Avoir une meilleur description dans les pull-requests, on aimerait que le développeur indique bien dans la pull-request à l'aide d'image ou de paragraphes
-ce qui a été changés, comment il a implémenté sa solution et les critères d'acceptions de l'issue pour que le reviewer sache quoi 
+ce qui a été changé, comment il a implémenté sa solution et les critères d'acceptions de l'issue pour que le reviewer sache quoi 
 tester dans l'application pour ainsi accélerer le processus des pull-requests.
 
 
