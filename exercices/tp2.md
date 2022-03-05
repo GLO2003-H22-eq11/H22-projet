@@ -43,7 +43,7 @@ Le processus établi par notre équipe est déjà très bien structuré, mais vo
 1. Une meilleure communication entre le développeur et les reviewers pour éviter qu'ils aient une "loop" de changement dans la pull-request.
 
 2. Séparer les issues en des plus petites issues pour diminuer la grosseur des pull-requests. Nous avons eu 2 pull-request avec plus de 1 000 modifications 
-dans notre base de code, ce qui fait que les pull-requests prennaient plus de temps avant d'être completés.
+dans notre base de code, ce qui fait que les pull-requests prennaient plus de temps avant d'être complétées.
 
 3. Avoir une meilleur description dans les pull-requests, on aimerait que le développeur indique bien dans la pull-request à l'aide d'image ou de paragraphes
 ce qui a été changés, comment il a implémenté sa solution et les critères d'acceptions de l'issue pour que le reviewer sache quoi 
