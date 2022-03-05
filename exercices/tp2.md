@@ -38,7 +38,7 @@ que le développeur allait avoir plus de choses à modifiés dans sa pull-reques
 
 ## 3. Donnez au moins 3 trucs pour améliorer votre processus (tailles des issues/pr, communication, code reviews, uniformisation, etc.)
 
-Le processus établi par notre équipe est déjà très bien structurés, mais voici 3 points que l'on aimerait améliorer pour les prochains livrables.
+Le processus établi par notre équipe est déjà très bien structuré, mais voici 3 points que l'on aimerait améliorer pour les prochains livrables.
 
 1. Une meilleur communication entre le développeur et les reviewers pour éviter qu'ils aient une "loop" de changement dans la pull-request.
 
