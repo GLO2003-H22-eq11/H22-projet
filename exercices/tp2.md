@@ -23,7 +23,7 @@ et si ses modifications sont re-acceptés par les reviewers. La pull-request est
 Tout ce processus fait en sorte que l'implémentation des issues prennait au maximum 3 jours ouvrables tandis que les pull-requests 
 ne sont jamais ouvertes plus que 4 jours. 
 
-Pour répondre à la question, le temps idéal pour l'implémentation d'une issue pour notre équipe est de maximum 4 jours, tandis que l'idéal pour les pull-reques est de maximum 5 jours. On peut donc 
+Pour répondre à la question, le temps idéal pour l'implémentation d'une issue pour notre équipe est de maximum 4 jours, tandis que l'idéal pour les pull-request est de maximum 5 jours. On peut donc 
 donc conclure que notre temps a completés nos issues et PR était idéal selon nos critères.
 
 
