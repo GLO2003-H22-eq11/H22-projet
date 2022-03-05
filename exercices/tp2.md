@@ -32,7 +32,7 @@ donc conclure que notre temps a completés nos issues et PR était idéal selon 
 On a remarqué un lien direct entre la taille des issues et le temps que ça prenait à les terminer. En effet, plus les issues étaient grosses, 
 plus l'implémentation de l'issue
 était longue à compléter pour le développeur. Une plus longue issue signifie aussi souvent plus de codes ajoutés, plus de modifications d'objets ainsi que
-plus de décisions architecturaux à l'intérieur de notre domaine d'affaire et de nos couches hexagonnaux. Comme l'implémentation de l'issue touchait plus de
+plus de décisions architecturales à l'intérieur de notre domaine d'affaire et de nos couches hexagonales. Comme l'implémentation de l'issue touchait plus de
 parties sur l'application, cela entrainait des conversations à l'intérieur des pull-requests plus remplis entre les reviewers et le développeur et cela impliquait en conséquence
 que le développeur allait avoir plus de choses à modifiés dans sa pull-request, ce qui explique que les grosses issues étaient plus longues avant d'être terminées.
 
