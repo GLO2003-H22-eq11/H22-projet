@@ -17,7 +17,7 @@ l'issue devait mentionné dans notre conversation Discord que l'issue était pr�
 Les membres de notre équipe étaient actifs sur les reviews, cela a fait en sorte qu'en quelques heures après, jours à l'occasion, que la pull-request aient été ouvertes,
 les commentaires d'au moins 2 membres de l'équipe était inscrit sur la pull-request. Après avoir mis leurs commentaires, les reviewers en question contactaient
 le membre de l'équipe qui a implémenté l'issue
-dans un salon vocal ou texte pour discuter des modifications qu'ils devaient apporter. Ensuite, le membre de l'équipe  allait faire les modifications dans le code,
+dans un salon vocal ou texte pour discuter des modifications qu'il devait apporter. Ensuite, le membre de l'équipe  allait faire les modifications dans le code,
 et si ses modifications sont re-acceptés par les reviewers. La pull-request est "merger" sur notre branche principal, soit "main".
 
 Tout ce processus fait en sorte que l'implémentation des issues prennait au maximum 3 jours ouvrables tandis que les pull-requests 
