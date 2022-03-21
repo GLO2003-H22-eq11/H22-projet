@@ -11,7 +11,6 @@ public class MongoDBSellerRepository {
     this.datastore = datastore;
   }
 
-  // example
   public void save(SellerEntity sellerEntity) {
     this.datastore.save(sellerEntity);
   }
