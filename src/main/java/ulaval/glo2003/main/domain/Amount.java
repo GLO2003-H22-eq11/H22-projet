@@ -35,13 +35,13 @@ public final class Amount {
     return new Amount(newAmount);
   }
 
-  public Amount multiply(int count) {
-    BigDecimal newAmount = dollarAmount.multiply(BigDecimal.valueOf(count));
+  public Amount multiply(int number) {
+    BigDecimal newAmount = dollarAmount.multiply(BigDecimal.valueOf(number));
     return new Amount(newAmount);
   }
 
-  public Amount divide(int count) {
-    BigDecimal newAmount = dollarAmount.divide(BigDecimal.valueOf(count));
+  public Amount divide(int number) {
+    BigDecimal newAmount = dollarAmount.divide(BigDecimal.valueOf(number));
     return new Amount(newAmount);
   }
 

@@ -9,9 +9,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.api.assembler.OfferAssembler;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
+import ulaval.glo2003.product.api.request.OfferRequest;
 import ulaval.glo2003.product.api.request.ProductRequest;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductsResponse;
+import ulaval.glo2003.product.domain.Offer;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductFilters;
 import ulaval.glo2003.product.domain.ProductId;
@@ -24,6 +26,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -34,8 +37,9 @@ class ProductResourceTest {
   private final List<String> STRING_CATEGORIES = List.of("A", "B", "C");
   private final Double MINIMUM_PRICE = 10.0;
   private final Double MAXIMUM_PRICE = 15.0;
-  private final String A_PRODUCT_ID = "Sqwevwerty";
+  private static final String A_PRODUCT_ID = "Sqwevwerty";
   private static final String A_SELLER_STRING_ID = "5a3e3b0b-19a6-46cd-a0fe-bf16f42ba492";
+  private static final String AN_OFFER_ID = "kjdbfgnkdefj";
 
   private final ProductFilters A_PRODUCT_FILTERS = new ProductFilters();
 
@@ -50,6 +54,12 @@ class ProductResourceTest {
 
   @Mock
   private ProductRequest productRequest;
+
+  @Mock
+  private OfferRequest offerRequest;
+
+  @Mock
+  private Offer offer;
 
   @Mock
   private ProductFactory productFactory;
@@ -72,7 +82,8 @@ class ProductResourceTest {
   @Mock
   private OfferRequestValidator offerRequestValidator;
 
-  private final OfferAssembler offerAssembler = new OfferAssembler();
+  @Mock
+  private OfferAssembler offerAssembler;
 
   private ProductResource productResource;
 
@@ -162,6 +173,25 @@ class ProductResourceTest {
     verify(this.productRequestValidator).validatePrices(MINIMUM_PRICE, MAXIMUM_PRICE);
   }
 
+  @Test
+  public void givenAProductIdAndAnOfferRequest_whenCreateOffer_thenShouldValidateOfferRequest() throws GenericException {
+    givenAnOffer(offer);
+
+    this.productResource.createOffer(offerRequest, AN_OFFER_ID);
+
+    verify(this.offerRequestValidator).validate(offerRequest);
+  }
+
+  @Test
+  public void givenAProductIdAndAnOfferRequest_whenCreateOffer_thenShouldCreateOffer() throws GenericException {
+    ProductId aProductId = new ProductId();
+    givenAnOffer(offer);
+    given(this.productIdFactory.create(AN_OFFER_ID)).willReturn(aProductId);
+
+    this.productResource.createOffer(offerRequest, AN_OFFER_ID);
+
+    verify(this.productService).createOffer(offer, aProductId);
+  }
 
   private void givenAProduct(ProductRequest productRequest) throws GenericException {
     given(this.productFactory.create(productRequest, A_SELLER_STRING_ID)).willReturn(this.product);
@@ -171,5 +201,9 @@ class ProductResourceTest {
   private void givenAListOfProductsWithSeller(ProductFilters productFilters) throws GenericException {
     given(this.productFiltersFactory.create(A_SELLER_ID, A_TITLE, STRING_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE)).willReturn(productFilters);
     given(this.productService.getFilteredProducts(productFilters)).willReturn(List.of(productWithSeller));
+  }
+
+  private void givenAnOffer(Offer offer) {
+    given(this.offerAssembler.toDomain(offerRequest)).willReturn(offer);
   }
 }

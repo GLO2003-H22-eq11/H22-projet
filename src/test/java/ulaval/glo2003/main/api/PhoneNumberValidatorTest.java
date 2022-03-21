@@ -1,0 +1,36 @@
+package ulaval.glo2003.main.api;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class PhoneNumberValidatorTest {
+
+  @Test
+  public void givenAValidPhoneNumberString_whenValidate_thenShouldReturnTrue() {
+    String aValidPhoneNumber = "4181234567";
+
+    assertTrue(PhoneNumberValidator.validate(aValidPhoneNumber));
+  }
+
+  @Test
+  public void givenAValidPhoneNumberStringWithDashes_whenValidate_thenShouldReturnTrue() {
+    String aValidPhoneNumber = "418-123-4567";
+
+    assertTrue(PhoneNumberValidator.validate(aValidPhoneNumber));
+  }
+
+  @Test
+  public void givenAnInvalidPhoneNumberStringWithAMissingNumber_whenValidate_thenShouldReturnFalse() {
+    String anInvalidPhoneNumber = "418123456";
+
+    assertFalse(PhoneNumberValidator.validate(anInvalidPhoneNumber));
+  }
+
+  @Test
+  public void givenAnInvalidPhoneNumberWithDashesAndAMissingNumberString_whenValidate_thenShouldReturnFalse() {
+    String anInvalidPhoneNumber = "418-123-456";
+
+    assertFalse(PhoneNumberValidator.validate(anInvalidPhoneNumber));
+  }
+}
