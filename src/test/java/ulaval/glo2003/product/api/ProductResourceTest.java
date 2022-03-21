@@ -7,8 +7,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
+import ulaval.glo2003.product.api.assembler.OfferAssembler;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
-import ulaval.glo2003.product.api.exceptions.InvalidProductPriceException;
+import ulaval.glo2003.product.api.request.ProductRequest;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductsResponse;
 import ulaval.glo2003.product.domain.Product;
@@ -68,6 +69,10 @@ class ProductResourceTest {
   @Mock
   private ProductFiltersFactory productFiltersFactory;
 
+  @Mock
+  private OfferRequestValidator offerRequestValidator;
+
+  private final OfferAssembler offerAssembler = new OfferAssembler();
 
   private ProductResource productResource;
 
@@ -80,7 +85,9 @@ class ProductResourceTest {
             this.productAssembler,
             this.productIdFactory,
             this.productRequestValidator,
-            this.productFiltersFactory
+            this.productFiltersFactory,
+            this.offerAssembler,
+            this.offerRequestValidator
     );
   }
 

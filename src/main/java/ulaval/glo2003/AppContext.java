@@ -1,17 +1,21 @@
 package ulaval.glo2003;
 
 import ulaval.glo2003.exception.ConstraintsValidator;
+import ulaval.glo2003.product.api.OfferRequestValidator;
+import ulaval.glo2003.product.api.assembler.OfferAssembler;
 import ulaval.glo2003.product.api.assembler.OffersAssembler;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
 import ulaval.glo2003.product.api.ProductRequestValidator;
 import ulaval.glo2003.product.api.ProductFactory;
 import ulaval.glo2003.product.api.ProductFiltersFactory;
 import ulaval.glo2003.product.domain.CategoriesFactory;
+import ulaval.glo2003.product.domain.OfferRepository;
 import ulaval.glo2003.product.domain.ProductFilterer;
 import ulaval.glo2003.product.domain.ProductIdFactory;
 import ulaval.glo2003.product.domain.ProductRepository;
 import ulaval.glo2003.product.domain.ProductSellerDomainService;
 import ulaval.glo2003.product.domain.ProductWithSellerFactory;
+import ulaval.glo2003.product.infrastructure.inMemory.InMemoryOfferRepository;
 import ulaval.glo2003.product.infrastructure.inMemory.InMemoryProductRepository;
 import ulaval.glo2003.product.service.ProductService;
 import ulaval.glo2003.seller.api.SellerAssembler;
@@ -28,6 +32,7 @@ public class AppContext {
   public final OffersAssembler offersAssembler = new OffersAssembler();
   public final ProductAssembler productAssembler = new ProductAssembler(offersAssembler);
   public final SellerAssembler sellerAssembler = new SellerAssembler(productAssembler);
+  public final OfferAssembler offerAssembler = new OfferAssembler();
 
   //factories
   public final CategoriesFactory categoriesFactory = new CategoriesFactory();
@@ -44,6 +49,7 @@ public class AppContext {
   //repositories
   public final SellerRepository sellerRepository = new InMemorySellerRepository();
   public final ProductRepository productRepository = new InMemoryProductRepository();
+  public final OfferRepository offerRepository = new InMemoryOfferRepository();
 
   // domain
   public final ProductSellerDomainService productSellerDomainService = new ProductSellerDomainService(
@@ -58,12 +64,13 @@ public class AppContext {
           productRepository,
           sellerRepository,
           productSellerDomainService,
-          productFilterer
-  );
+          productFilterer,
+          offerRepository);
 
 
   //validators
   public final ConstraintsValidator constraintsValidator = new ConstraintsValidator();
   public final ProductRequestValidator productRequestValidator = new ProductRequestValidator(constraintsValidator);
   public final SellerRequestValidator sellerRequestValidator = new SellerRequestValidator(constraintsValidator);
+  public final OfferRequestValidator offerRequestValidator = new OfferRequestValidator(constraintsValidator);
 }

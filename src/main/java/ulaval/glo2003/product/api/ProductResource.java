@@ -10,14 +10,18 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.QueryParam;
 import ulaval.glo2003.exception.GenericException;
+import ulaval.glo2003.product.api.assembler.OfferAssembler;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
+import ulaval.glo2003.product.api.request.OfferRequest;
+import ulaval.glo2003.product.api.request.ProductRequest;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductsResponse;
+import ulaval.glo2003.product.domain.Offer;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductFilters;
 import ulaval.glo2003.product.domain.ProductId;
-import ulaval.glo2003.product.domain.ProductWithSeller;
 import ulaval.glo2003.product.domain.ProductIdFactory;
+import ulaval.glo2003.product.domain.ProductWithSeller;
 import ulaval.glo2003.product.service.ProductService;
 
 import java.net.URI;
@@ -33,6 +37,8 @@ public class ProductResource {
   private final ProductRequestValidator productRequestValidator;
   private final ProductIdFactory productIdFactory;
   private final ProductFiltersFactory productFiltersFactory;
+  private final OfferAssembler offerAssembler;
+  private final OfferRequestValidator offerRequestValidator;
 
   public ProductResource(
           ProductFactory productFactory,
@@ -40,13 +46,18 @@ public class ProductResource {
           ProductAssembler productAssembler,
           ProductIdFactory productIdFactory,
           ProductRequestValidator productRequestValidator,
-          ProductFiltersFactory productFiltersFactory) {
+          ProductFiltersFactory productFiltersFactory,
+          OfferAssembler offerAssembler,
+          OfferRequestValidator offerRequestValidator
+  ) {
     this.productFactory = productFactory;
     this.productService = productService;
     this.productAssembler = productAssembler;
     this.productIdFactory = productIdFactory;
     this.productRequestValidator = productRequestValidator;
     this.productFiltersFactory = productFiltersFactory;
+    this.offerAssembler = offerAssembler;
+    this.offerRequestValidator = offerRequestValidator;
   }
 
   @POST
@@ -102,6 +113,25 @@ public class ProductResource {
       ProductsResponse productsResponse = this.productAssembler.toProductsResponse(products);
 
       return Response.ok().entity(productsResponse).build();
+    } catch (GenericException e) {
+      return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
+    }
+  }
+
+  @POST
+  @Path("/{productId}/offers")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response createOffer(OfferRequest offerRequest, @PathParam("productId") String id) {
+    try {
+      this.offerRequestValidator.validate(offerRequest);
+
+      ProductId productId = this.productIdFactory.create(id);
+
+      Offer offer = this.offerAssembler.toDomain(offerRequest);
+
+      this.productService.createOffer(offer, productId);
+
+      return Response.ok().build();
     } catch (GenericException e) {
       return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
     }

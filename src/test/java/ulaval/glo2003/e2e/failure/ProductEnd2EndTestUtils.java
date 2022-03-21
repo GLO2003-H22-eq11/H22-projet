@@ -1,7 +1,7 @@
 package ulaval.glo2003.e2e.failure;
 
 import io.restassured.response.Response;
-import ulaval.glo2003.product.api.ProductRequest;
+import ulaval.glo2003.product.api.request.ProductRequest;
 
 import static io.restassured.RestAssured.given;
 import static ulaval.glo2003.e2e.End2EndConfig.*;

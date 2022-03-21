@@ -42,7 +42,9 @@ public class ApplicationMain {
             appContext.productAssembler,
             appContext.productIdFactory,
             appContext.productRequestValidator,
-            appContext.productFiltersFactory
+            appContext.productFiltersFactory,
+            appContext.offerAssembler,
+            appContext.offerRequestValidator
     );
   }
 

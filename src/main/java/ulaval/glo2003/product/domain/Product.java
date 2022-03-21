@@ -1,5 +1,7 @@
 package ulaval.glo2003.product.domain;
 
+import ulaval.glo2003.main.domain.Amount;
+import ulaval.glo2003.product.domain.exceptions.InvalidOfferPriceException;
 import ulaval.glo2003.seller.domain.SellerId;
 
 import java.time.LocalDateTime;
@@ -93,5 +95,13 @@ public class Product {
 
   public boolean hasAtLeastOneCategoryInCommon(Categories categories) {
     return this.categories.hasAtLeastOneCategoryInCommon(categories);
+  }
+
+  public void addOffer(Offer offer) throws InvalidOfferPriceException {
+    if (offer.getAmount().isHigherOrEqual(this.suggestedPrice)) {
+      this.offers.addOffer(offer);
+    } else {
+      throw new InvalidOfferPriceException();
+    }
   }
 }

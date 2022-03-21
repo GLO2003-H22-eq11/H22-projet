@@ -1,4 +1,4 @@
-package ulaval.glo2003.product.domain;
+package ulaval.glo2003.main.domain;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -26,6 +26,25 @@ public final class Amount {
     return this.dollarAmount.intValue() > amount.getAmount().intValue();
   }
 
+  public boolean isHigherOrEqual(Amount amount) {
+    return this.dollarAmount.intValue() >= amount.getAmount().intValue();
+  }
+
+  public Amount add(Amount amount) {
+    BigDecimal newAmount = dollarAmount.add(amount.getAmount());
+    return new Amount(newAmount);
+  }
+
+  public Amount multiply(int count) {
+    BigDecimal newAmount = dollarAmount.multiply(BigDecimal.valueOf(count));
+    return new Amount(newAmount);
+  }
+
+  public Amount divide(int count) {
+    BigDecimal newAmount = dollarAmount.divide(BigDecimal.valueOf(count));
+    return new Amount(newAmount);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -38,4 +57,5 @@ public final class Amount {
   public int hashCode() {
     return Objects.hash(dollarAmount);
   }
+
 }
