@@ -61,9 +61,9 @@ public class AppContext {
           productFilterer
   );
 
-
   //validators
   public final ConstraintsValidator constraintsValidator = new ConstraintsValidator();
   public final ProductRequestValidator productRequestValidator = new ProductRequestValidator(constraintsValidator);
   public final SellerRequestValidator sellerRequestValidator = new SellerRequestValidator(constraintsValidator);
+
 }
