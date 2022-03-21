@@ -1,5 +1,6 @@
 package ulaval.glo2003;
 
+import dev.morphia.Datastore;
 import ulaval.glo2003.exception.ConstraintsValidator;
 import ulaval.glo2003.product.api.OfferRequestValidator;
 import ulaval.glo2003.product.api.assembler.OfferAssembler;
@@ -17,6 +18,7 @@ import ulaval.glo2003.product.domain.ProductSellerDomainService;
 import ulaval.glo2003.product.domain.ProductWithSellerFactory;
 import ulaval.glo2003.product.infrastructure.inMemory.InMemoryOfferRepository;
 import ulaval.glo2003.product.infrastructure.inMemory.InMemoryProductRepository;
+import ulaval.glo2003.product.infrastructure.mongodb.repository.MongoDBProductRepository;
 import ulaval.glo2003.product.service.ProductService;
 import ulaval.glo2003.seller.api.SellerAssembler;
 import ulaval.glo2003.seller.api.SellerFactory;
@@ -24,6 +26,7 @@ import ulaval.glo2003.seller.api.SellerRequestValidator;
 import ulaval.glo2003.seller.domain.SellerIdFactory;
 import ulaval.glo2003.seller.domain.SellerRepository;
 import ulaval.glo2003.seller.infrastructure.inMemory.InMemorySellerRepository;
+import ulaval.glo2003.seller.infrastructure.mongoDb.repository.MongoDBSellerRepository;
 import ulaval.glo2003.seller.service.SellerService;
 
 public class AppContext {
@@ -46,7 +49,12 @@ public class AppContext {
   );
   public final ProductWithSellerFactory productWithSellerFactory = new ProductWithSellerFactory();
 
+  // datastore
+  public final Datastore datastore = MongoDbSetUp.getDatastore();
+
   //repositories
+  public final MongoDBSellerRepository mongoDBSellerRepository = new MongoDBSellerRepository(datastore);
+  public final MongoDBProductRepository mongoDBProductRepository = new MongoDBProductRepository(datastore);
   public final SellerRepository sellerRepository = new InMemorySellerRepository();
   public final ProductRepository productRepository = new InMemoryProductRepository();
   public final OfferRepository offerRepository = new InMemoryOfferRepository();
@@ -66,7 +74,6 @@ public class AppContext {
           productSellerDomainService,
           productFilterer,
           offerRepository);
-
 
   //validators
   public final ConstraintsValidator constraintsValidator = new ConstraintsValidator();
