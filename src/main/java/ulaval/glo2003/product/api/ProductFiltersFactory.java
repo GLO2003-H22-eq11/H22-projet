@@ -22,8 +22,8 @@ public class ProductFiltersFactory {
           String stringSellerId,
           String title,
           List<String> stringCategories,
-          Integer minPrice,
-          Integer maxPrice
+          Double minPrice,
+          Double maxPrice
   ) throws GenericException {
     ProductFilters productFilters = new ProductFilters();
 
@@ -40,11 +40,11 @@ public class ProductFiltersFactory {
     }
 
     if (minPrice != null) {
-      productFilters.setMinimalPrice(Amount.fromInt(minPrice));
+      productFilters.setMinimalPrice(Amount.fromDouble(minPrice));
     }
 
     if (maxPrice != null) {
-      productFilters.setMaximumPrice(Amount.fromInt(maxPrice));
+      productFilters.setMaximumPrice(Amount.fromDouble(maxPrice));
     }
 
     return productFilters;

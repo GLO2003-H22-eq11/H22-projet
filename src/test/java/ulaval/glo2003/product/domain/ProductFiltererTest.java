@@ -19,9 +19,9 @@ class ProductFiltererTest {
 
   private final String A_PRODUCT_TITLE = "MARIN_TITLE";
   private final String A_SIMILAR_PRODUCT_TITLE = "TITLE_MARIN";
-  private final Amount AN_AMOUNT = Amount.fromInt(30);
-  private final Amount A_MINIMAL_AMOUNT = Amount.fromInt(10);
-  private final Amount A_MAXIMAL_AMOUNT = Amount.fromInt(60);
+  private final Amount AN_AMOUNT = Amount.fromDouble(30.0);
+  private final Amount A_MINIMAL_AMOUNT = Amount.fromDouble(10.0);
+  private final Amount A_MAXIMAL_AMOUNT = Amount.fromDouble(60.0);
   private final SellerId A_SELLER_ID = new SellerId();
   private final SellerId ANOTHER_SELLER_ID = new SellerId();
 
@@ -148,7 +148,8 @@ class ProductFiltererTest {
 
   @Test
   public void givenAProductWithAPriceAndAMinimalPriceHigherThanProductPrice_whenFindFilteredProducts_thenShouldNotFindProduct() {
-    Amount aVerySmallAmount = Amount.fromInt(2);
+    Double smallNumber = 2.0;
+    Amount aVerySmallAmount = Amount.fromDouble(smallNumber);
     Product productWithLowerAmountThanMinimalAmount = new ProductBuilder().withAmount(aVerySmallAmount).build();
     A_PRODUCT_FILTERS.setMinimalPrice(A_MINIMAL_AMOUNT);
     PRODUCTS.add(productWithLowerAmountThanMinimalAmount);

@@ -27,9 +27,9 @@ public class ProductFiltersFactoryTest {
   private final static String A_SELLER_ID = "bd92e112-a7c1-4ae0-9ea2-0bf0734d0dfe";
   private final static String A_TITLE = "A_TITLE";
 
-  private final Integer NULL_PRICE = null;
-  private final int A_MINIMUM_PRICE = 10;
-  private final int A_MAXIMUM_PRICE = 20;
+  private final Double NULL_PRICE = null;
+  private final Double A_MINIMUM_PRICE = 10.0;
+  private final Double A_MAXIMUM_PRICE = 20.0;
   private final List<String> NO_CATEGORIES = Collections.emptyList();
   private final List<String> CATEGORIES = List.of(A_CATEGORY_NAME);
 
@@ -83,14 +83,14 @@ public class ProductFiltersFactoryTest {
   public void givenAValidMinimumPrice_whenCreate_thenShouldCreateAProductFilterWithAMinimumPrice() throws GenericException{
     ProductFilters productFilters = this.productFiltersFactory.create(NULL_SELLER_ID, NULL_TITLE, NO_CATEGORIES, A_MINIMUM_PRICE, NULL_PRICE);
 
-    assertEquals(productFilters.getMinimalPrice(), Amount.fromInt(A_MINIMUM_PRICE));
+    assertEquals(productFilters.getMinimalPrice(), Amount.fromDouble(A_MINIMUM_PRICE));
   }
 
   @Test
   public void givenAnValidMaximum_whenCreate_thenShouldCreateAProductFilterWithAMaximumPrice() throws GenericException{
     ProductFilters productFilters = this.productFiltersFactory.create(NULL_SELLER_ID, NULL_TITLE, NO_CATEGORIES, NULL_PRICE, A_MAXIMUM_PRICE);
 
-    assertEquals(productFilters.getMaximumPrice(), Amount.fromInt(A_MAXIMUM_PRICE));
+    assertEquals(productFilters.getMaximumPrice(), Amount.fromDouble(A_MAXIMUM_PRICE));
   }
 
 
@@ -100,7 +100,7 @@ public class ProductFiltersFactoryTest {
 
     Categories actual = new Categories(List.of(new Category(A_CATEGORY_NAME)));
 
-    assertEquals(productFilters.getMaximumPrice(), Amount.fromInt(A_MAXIMUM_PRICE));
+    assertEquals(productFilters.getMaximumPrice(), Amount.fromDouble(A_MAXIMUM_PRICE));
     assertEquals(productFilters.getCategories(), actual);
     assertEquals(productFilters.getSellerId(), new SellerId(A_SELLER_ID));
     assertNull(productFilters.getTitle());

@@ -30,8 +30,8 @@ public class ProductFactory {
             this.productIdFactory.create(),
             productRequest.title,
             productRequest.description,
-            Amount.fromInt(productRequest.suggestedPrice),
-            new Offers(Amount.fromInt(0), 0),
+            Amount.fromDouble(productRequest.suggestedPrice),
+            new Offers(null, 0),
             this.categoriesFactory.create(productRequest.categories),
             LocalDateTime.now()
     );

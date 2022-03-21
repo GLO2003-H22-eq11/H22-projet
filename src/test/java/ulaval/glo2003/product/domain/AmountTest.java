@@ -6,10 +6,10 @@ import ulaval.glo2003.main.domain.Amount;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AmountTest {
-  private static final int A_HIGH_VALUE = 500;
-  private static final int A_LOW_VALUE = 1;
-  private final Amount A_HIGH_AMOUNT = Amount.fromInt(A_HIGH_VALUE);
-  private final Amount A_LOW_AMOUNT = Amount.fromInt(A_LOW_VALUE);
+  private static final Double A_HIGH_VALUE = 500.0;
+  private static final Double A_LOW_VALUE = 1.0;
+  private final Amount A_HIGH_AMOUNT = Amount.fromDouble(A_HIGH_VALUE);
+  private final Amount A_LOW_AMOUNT = Amount.fromDouble(A_LOW_VALUE);
 
   @Test
   public void givenAHighAmountAndASmallAmount_whenGettingIfHigherAmountIsHigher_thenShouldReturnTrue() {
@@ -23,8 +23,8 @@ class AmountTest {
 
   @Test
   public void givenAnAmount_whenGettingIfAmountIsHigherThanSameAmount_thenShouldReturnFalse() {
-    int aValue = 20;
-    Amount anAmount = Amount.fromInt(aValue);
+    Double aValue = 20.0;
+    Amount anAmount = Amount.fromDouble(aValue);
 
     assertFalse(anAmount.isHigher(anAmount));
   }

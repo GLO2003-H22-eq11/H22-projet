@@ -34,7 +34,7 @@ class ProductAssemblerTest {
             aProduct.getStringCreatedAt(),
             aProduct.getTitle(),
             aProduct.getDescription(),
-            aProduct.getSuggestedPriceAmountIntValue(),
+            aProduct.getSuggestedPriceAmountDoubleValue(),
             expectedOffersResponse,
             expectedCategories,
             expectedProductSellerResponse

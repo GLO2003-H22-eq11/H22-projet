@@ -61,8 +61,8 @@ public class Product {
     return this.suggestedPrice;
   }
 
-  public int getSuggestedPriceAmountIntValue() {
-    return this.suggestedPrice.getIntValue();
+  public Double getSuggestedPriceAmountDoubleValue() {
+    return this.suggestedPrice.getDoubleValue();
   }
 
   public Offers getOffers() {

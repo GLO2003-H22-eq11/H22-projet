@@ -8,7 +8,7 @@ public class ProductResponse {
   public String createdAt;
   public String title;
   public String description;
-  public int suggestedPrice;
+  public Double suggestedPrice;
   public OffersResponse offers;
   public List<String> categories;
   public ProductSellerResponse seller;
@@ -21,7 +21,7 @@ public class ProductResponse {
           String createdAt,
           String title,
           String description,
-          int suggestedPrice,
+          Double suggestedPrice,
           OffersResponse offers,
           List<String> categories,
           ProductSellerResponse productSellerResponse) {
@@ -40,7 +40,7 @@ public class ProductResponse {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ProductResponse that = (ProductResponse) o;
-    return suggestedPrice == that.suggestedPrice && id.equals(that.id) && createdAt.equals(that.createdAt)
+    return Objects.equals(suggestedPrice, that.suggestedPrice) && id.equals(that.id) && createdAt.equals(that.createdAt)
             && title.equals(that.title) && description.equals(that.description)
             && offers.equals(that.offers) && categories.equals(that.categories) && seller.equals(that.seller);
   }

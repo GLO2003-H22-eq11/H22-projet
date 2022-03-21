@@ -12,7 +12,7 @@ public class OfferAssembler {
             offerRequest.name,
             new Email(offerRequest.email),
             new PhoneNumber(offerRequest.phoneNumber),
-            Amount.fromInt(offerRequest.amount),
+            Amount.fromDouble(offerRequest.amount),
             offerRequest.message
     );
   }

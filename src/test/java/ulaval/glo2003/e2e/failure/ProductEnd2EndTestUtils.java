@@ -50,7 +50,7 @@ public class ProductEnd2EndTestUtils {
     productRequest.description = A_PRODUCT_DESCRIPTION;
     productRequest.title = A_PRODUCT_TITLE;
     productRequest.categories = A_CATEGORIES;
-    productRequest.suggestedPrice = 0;
+    productRequest.suggestedPrice = 0.0;
 
     return productRequest;
   }
@@ -72,7 +72,7 @@ public class ProductEnd2EndTestUtils {
             .get(PRODUCTS_END_POINT);
   }
 
-  public static Response getProductWithIntFilters(String queryParamName, Integer param) {
+  public static Response getProductWithIntFilters(String queryParamName, Double param) {
     return given()
             .queryParam(queryParamName, param)
             .header(CONTENT_TYPE, APPLICATION_JSON)

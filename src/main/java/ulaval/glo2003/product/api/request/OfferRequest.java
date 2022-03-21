@@ -14,7 +14,7 @@ public class OfferRequest extends GenericRequest {
   public String phoneNumber;
 
   @NotNull
-  public Integer amount;
+  public Double amount;
 
   @NotNull
   public String message;

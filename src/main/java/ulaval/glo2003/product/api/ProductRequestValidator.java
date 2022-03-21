@@ -27,7 +27,7 @@ public class ProductRequestValidator {
     }
   }
 
-  public void validatePrices(Integer minPrice, Integer maxPrice) throws InvalidProductPriceException {
+  public void validatePrices(Double minPrice, Double maxPrice) throws InvalidProductPriceException {
     if (minPrice != null && minPrice < 0 || maxPrice != null && maxPrice < 0) {
       throw new InvalidProductPriceException();
     }

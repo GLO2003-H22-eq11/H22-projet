@@ -13,7 +13,7 @@ public class ProductRequest extends GenericRequest {
   public String description;
 
   @NotNull
-  public Integer suggestedPrice;
+  public Double suggestedPrice;
 
   @NotNull
   public List<String> categories;

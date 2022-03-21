@@ -32,8 +32,8 @@ class ProductResourceTest {
   private final String A_SELLER_ID = "S@FG_F$GG$cgwre-fg";
   private final String A_TITLE = "TITLE";
   private final List<String> STRING_CATEGORIES = List.of("A", "B", "C");
-  private final Integer MINIMUM_PRICE = 10;
-  private final Integer MAXIMUM_PRICE = 15;
+  private final Double MINIMUM_PRICE = 10.0;
+  private final Double MAXIMUM_PRICE = 15.0;
   private final String A_PRODUCT_ID = "Sqwevwerty";
   private static final String A_SELLER_STRING_ID = "5a3e3b0b-19a6-46cd-a0fe-bf16f42ba492";
 

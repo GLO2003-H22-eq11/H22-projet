@@ -9,7 +9,7 @@ public class SellerProductResponse {
   public String createdAt;
   public String title;
   public String description;
-  public int suggestedPrice;
+  public Double suggestedPrice;
   public OffersResponse offers;
   public List<String> categories;
 
@@ -21,7 +21,7 @@ public class SellerProductResponse {
           String createdAt,
           String title,
           String description,
-          int suggestedPrice,
+          Double suggestedPrice,
           OffersResponse offers,
           List<String> categories
   ) {

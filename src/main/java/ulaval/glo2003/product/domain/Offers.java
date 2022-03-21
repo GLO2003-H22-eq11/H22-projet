@@ -4,15 +4,18 @@ import ulaval.glo2003.main.domain.Amount;
 
 public class Offers {
   private Amount mean;
-  private int count;
+  private Integer count;
 
   public Offers(Amount mean, int count) {
     this.mean = mean;
     this.count = count;
   }
 
-  public int getMeanAmount() {
-    return this.mean.getIntValue();
+  public Double getMeanAmount() {
+    if (this.mean == null) {
+      return null;
+    }
+    return this.mean.getDoubleValue();
   }
 
   public int getCount() {

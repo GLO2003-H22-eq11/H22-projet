@@ -10,7 +10,7 @@ public final class Amount {
     this.dollarAmount = amount;
   }
 
-  public static Amount fromInt(int value) {
+  public static Amount fromDouble(Double value) {
     return new Amount(BigDecimal.valueOf(value));
   }
 
@@ -18,8 +18,8 @@ public final class Amount {
     return this.dollarAmount;
   }
 
-  public int getIntValue() {
-    return this.dollarAmount.intValue();
+  public Double getDoubleValue() {
+    return this.dollarAmount.doubleValue();
   }
 
   public boolean isHigher(Amount amount) {

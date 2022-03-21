@@ -98,8 +98,8 @@ public class ProductResource {
   public Response getFilteredProducts(@QueryParam("sellerId") String sellerId,
                                       @QueryParam("title") String title,
                                       @QueryParam("categories") List<String> categories,
-                                      @QueryParam("minPrice") Integer minPrice,
-                                      @QueryParam("maxPrice") Integer maxPrice) {
+                                      @QueryParam("minPrice") Double minPrice,
+                                      @QueryParam("maxPrice") Double maxPrice) {
 
     try {
       this.productRequestValidator.validatePrices(minPrice, maxPrice);
