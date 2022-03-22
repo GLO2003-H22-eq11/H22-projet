@@ -5,6 +5,7 @@ import ulaval.glo2003.main.domain.Email;
 import ulaval.glo2003.main.domain.PhoneNumber;
 
 public class OfferBuilder {
+  private ProductId productId;
   private final String name;
   private final Email email;
   private final PhoneNumber phoneNumber;
@@ -13,6 +14,7 @@ public class OfferBuilder {
 
 
   public OfferBuilder() {
+    this.productId = new ProductId();
     this.name = "MARINO";
     this.email = new Email("CapatinBarbossa@email.ca");
     this.phoneNumber = new PhoneNumber("4181234567");
@@ -25,8 +27,14 @@ public class OfferBuilder {
     return this;
   }
 
+  public OfferBuilder withProductId(ProductId productId) {
+    this.productId = productId;
+    return this;
+  }
+
   public Offer build() {
     return new Offer(
+            this.productId,
             this.name,
             this.email,
             this.phoneNumber,

@@ -54,12 +54,12 @@ public class ProductService {
     return this.productSellerService.getProductsWithSeller(products);
   }
 
-  public void createOffer(Offer offer, ProductId productId) throws GenericException {
-    Product product = this.productRepository.findById(productId);
+  public void createOffer(Offer offer) throws GenericException {
+    Product product = this.productRepository.findById(offer.getProductId());
 
     product.addOffer(offer);
 
     this.productRepository.save(product);
-    this.offerRepository.save(offer, productId);
+    this.offerRepository.save(offer);
   }
 }

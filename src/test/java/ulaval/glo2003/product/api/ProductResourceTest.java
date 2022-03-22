@@ -7,7 +7,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.product.api.assembler.OfferAssembler;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
 import ulaval.glo2003.product.api.request.OfferRequest;
 import ulaval.glo2003.product.api.request.ProductRequest;
@@ -39,7 +38,6 @@ class ProductResourceTest {
   private final Double MAXIMUM_PRICE = 15.0;
   private static final String A_PRODUCT_ID = "Sqwevwerty";
   private static final String A_SELLER_STRING_ID = "5a3e3b0b-19a6-46cd-a0fe-bf16f42ba492";
-  private static final String AN_OFFER_ID = "kjdbfgnkdefj";
 
   private final ProductFilters A_PRODUCT_FILTERS = new ProductFilters();
 
@@ -83,7 +81,7 @@ class ProductResourceTest {
   private OfferRequestValidator offerRequestValidator;
 
   @Mock
-  private OfferAssembler offerAssembler;
+  private OfferFactory offerFactory;
 
   private ProductResource productResource;
 
@@ -97,7 +95,7 @@ class ProductResourceTest {
             this.productIdFactory,
             this.productRequestValidator,
             this.productFiltersFactory,
-            this.offerAssembler,
+            this.offerFactory,
             this.offerRequestValidator
     );
   }
@@ -175,22 +173,20 @@ class ProductResourceTest {
 
   @Test
   public void givenAProductIdAndAnOfferRequest_whenCreateOffer_thenShouldValidateOfferRequest() throws GenericException {
-    givenAnOffer(offer);
+    givenAnOffer(offer, A_PRODUCT_ID);
 
-    this.productResource.createOffer(offerRequest, AN_OFFER_ID);
+    this.productResource.createOffer(offerRequest, A_PRODUCT_ID);
 
     verify(this.offerRequestValidator).validate(offerRequest);
   }
 
   @Test
   public void givenAProductIdAndAnOfferRequest_whenCreateOffer_thenShouldCreateOffer() throws GenericException {
-    ProductId aProductId = new ProductId();
-    givenAnOffer(offer);
-    given(this.productIdFactory.create(AN_OFFER_ID)).willReturn(aProductId);
+    givenAnOffer(offer, A_PRODUCT_ID);
 
-    this.productResource.createOffer(offerRequest, AN_OFFER_ID);
+    this.productResource.createOffer(offerRequest, A_PRODUCT_ID);
 
-    verify(this.productService).createOffer(offer, aProductId);
+    verify(this.productService).createOffer(offer);
   }
 
   private void givenAProduct(ProductRequest productRequest) throws GenericException {
@@ -203,7 +199,7 @@ class ProductResourceTest {
     given(this.productService.getFilteredProducts(productFilters)).willReturn(List.of(productWithSeller));
   }
 
-  private void givenAnOffer(Offer offer) {
-    given(this.offerAssembler.toDomain(offerRequest)).willReturn(offer);
+  private void givenAnOffer(Offer offer, String productId) throws GenericException {
+    given(this.offerFactory.create(offerRequest, productId)).willReturn(offer);
   }
 }

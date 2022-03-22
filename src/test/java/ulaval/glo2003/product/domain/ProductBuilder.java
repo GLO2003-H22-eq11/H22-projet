@@ -22,7 +22,7 @@ public class ProductBuilder {
     this.title = "MarinoBoy";
     this.description = "Max est le meilleur programmeur à l'uni";
     this.suggestedPrice = Amount.fromDouble(25.0);
-    this.offers = new Offers(Amount.fromDouble(0.0), 0);
+    this.offers = new Offers();
     this.categories = new Categories(List.of(new Category("category")));
     this.createdAt = LocalDateTime.now();
   }

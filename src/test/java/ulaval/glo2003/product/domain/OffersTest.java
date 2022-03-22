@@ -1,5 +1,6 @@
 package ulaval.glo2003.product.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ulaval.glo2003.main.domain.Amount;
 import ulaval.glo2003.main.domain.Email;
@@ -9,19 +10,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OffersTest {
 
-  private static final Double A_VALUE = 10.0;
-  private static final Amount AN_AMOUNT = Amount.fromDouble(A_VALUE);
-  private static final Integer A_COUNT = 1;
   private static final String A_NAME = "Offer name";
   private static final Email AN_EMAIL = new Email("allo@email.ca");
   private static final PhoneNumber A_PHONE_NUMBER = new PhoneNumber("4181234567");
   private static final String A_MESSAGE = "jkdbfkdfjkbdfbfadfbadbfkjsdfbjk";
-  private static final Double ANOTHER_VALUE = 20.0;
-  private static final Amount ANOTHER_AMOUNT = Amount.fromDouble(ANOTHER_VALUE);
-  private static final Offer AN_OFFER = new Offer(A_NAME, AN_EMAIL, A_PHONE_NUMBER, ANOTHER_AMOUNT, A_MESSAGE);
+  private static final Double A_VALUE = 20.0;
+  private static final Amount AN_AMOUNT = Amount.fromDouble(A_VALUE);
+  private static final ProductId A_PRODUCT_ID = new ProductId();
+  private static final Offer AN_OFFER = new Offer(A_PRODUCT_ID, A_NAME, AN_EMAIL, A_PHONE_NUMBER, AN_AMOUNT, A_MESSAGE);
 
-  private final Offers offers = new Offers(AN_AMOUNT, A_COUNT);
-  private final Offers offersWithNullMean = new Offers(null, 0);
+  private final Offers offers = new Offers();
+  private final Offers offersWithNullMean = new Offers();
+
+  @BeforeEach
+  public void setUp() {
+    offers.addOffer(AN_OFFER);
+  }
 
   @Test
   public void givenAnOffersWithANullMean_whenGetMeanAmount_thenShouldReturnNull() {
@@ -34,11 +38,13 @@ class OffersTest {
   }
 
   @Test
-  public void givenAnOffersWithANonNullMeanValueAndAnOffer_whenAddOffer_thenShouldAdjustOffersMeanAndCount() {
-    int expectedCount = A_COUNT + 1;
-    Double expectedMeanAmount = 15.0;
+  public void givenAnOffersWithTwoOffers_whenAddOffer_thenShouldAdjustOffersMeanAndCount() {
+    Amount anAmount = Amount.fromDouble(40.0);
+    Offer anotherOffer = new Offer(A_PRODUCT_ID, A_NAME, AN_EMAIL, A_PHONE_NUMBER, anAmount, A_MESSAGE);
+    int expectedCount = 2;
+    Double expectedMeanAmount = 30.0;
 
-    offers.addOffer(AN_OFFER);
+    offers.addOffer(anotherOffer);
 
     int actualCount = offers.getCount();
     Double actualMeanAmount = offers.getMeanAmount();
@@ -57,6 +63,6 @@ class OffersTest {
     Double actualMeanAmount = offersWithNullMean.getMeanAmount();
 
     assertEquals(expectedCount, actualCount);
-    assertEquals(ANOTHER_VALUE, actualMeanAmount);
+    assertEquals(A_VALUE, actualMeanAmount);
   }
 }

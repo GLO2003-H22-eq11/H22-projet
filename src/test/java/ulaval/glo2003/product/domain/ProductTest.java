@@ -13,7 +13,7 @@ class ProductTest {
 
   private static final String A_TITLE = "A TITLE";
   private static final Amount A_PRICE = Amount.fromDouble(20.0);
-  private static final Offers OFFERS = spy(new Offers(null, 0));
+  private static final Offers OFFERS = spy(new Offers());
 
   private final Product A_PRODUCT_WITH_A_TITLE = new ProductBuilder().withTitle(A_TITLE).build();
   private final Product A_PRODUCT_WITH_A_PRICE = new ProductBuilder().withAmount(A_PRICE).withOffers(OFFERS).build();

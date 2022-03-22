@@ -12,7 +12,7 @@ public class InMemoryOfferRepository implements OfferRepository {
   private final HashMap<ProductId, List<Offer>> offersByProductId = new HashMap<>();
 
   @Override
-  public void save(Offer offer, ProductId productId) {
-    this.offersByProductId.computeIfAbsent(productId, k -> new ArrayList<>()).add(offer);
+  public void save(Offer offer) {
+    this.offersByProductId.computeIfAbsent(offer.getProductId(), k -> new ArrayList<>()).add(offer);
   }
 }

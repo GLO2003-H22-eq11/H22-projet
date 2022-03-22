@@ -43,7 +43,7 @@ public class ApplicationMain {
             appContext.productIdFactory,
             appContext.productRequestValidator,
             appContext.productFiltersFactory,
-            appContext.offerAssembler,
+            appContext.offerFactory,
             appContext.offerRequestValidator
     );
   }

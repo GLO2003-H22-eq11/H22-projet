@@ -28,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ProductServiceTest {
 
   private final ProductId A_PRODUCT_ID = new ProductId();
+  private final Offer AN_OFFER = new OfferBuilder().withProductId(A_PRODUCT_ID).build();
 
   @Mock
   private ProductRepository productRepository;
@@ -37,9 +38,6 @@ class ProductServiceTest {
 
   @Mock
   private Product product;
-
-  @Mock
-  private Offer offer;
 
   @Mock
   private ProductWithSeller productWithSeller;
@@ -155,7 +153,7 @@ class ProductServiceTest {
   public void givenAnOfferAndAProductId_whenCreateOffer_thenShouldFindProductById() throws GenericException {
     givenAProduct(A_PRODUCT_ID);
 
-    this.productService.createOffer(offer, A_PRODUCT_ID);
+    this.productService.createOffer(AN_OFFER);
 
     verify(this.productRepository).findById(A_PRODUCT_ID);
   }
@@ -164,16 +162,16 @@ class ProductServiceTest {
   public void givenAnOfferAndAProductId_whenCreateOffer_thenShouldAddOfferToProduct() throws GenericException {
     givenAProduct(A_PRODUCT_ID);
 
-    this.productService.createOffer(offer, A_PRODUCT_ID);
+    this.productService.createOffer(AN_OFFER);
 
-    verify(this.product).addOffer(offer);
+    verify(this.product).addOffer(AN_OFFER);
   }
 
   @Test
   public void givenAnOfferAndAProductId_whenCreateOffer_thenShouldSaveProduct() throws GenericException {
     givenAProduct(A_PRODUCT_ID);
 
-    this.productService.createOffer(offer, A_PRODUCT_ID);
+    this.productService.createOffer(AN_OFFER);
 
     verify(this.productRepository).save(product);
   }
@@ -182,9 +180,9 @@ class ProductServiceTest {
   public void givenAnOfferAndAProductId_whenCreateOffer_thenShouldSaveOffer() throws GenericException {
     givenAProduct(A_PRODUCT_ID);
 
-    this.productService.createOffer(offer, A_PRODUCT_ID);
+    this.productService.createOffer(AN_OFFER);
 
-    verify(this.offerRepository).save(offer, A_PRODUCT_ID);
+    verify(this.offerRepository).save(AN_OFFER);
   }
 
 

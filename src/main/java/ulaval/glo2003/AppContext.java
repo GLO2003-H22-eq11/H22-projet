@@ -2,8 +2,8 @@ package ulaval.glo2003;
 
 import dev.morphia.Datastore;
 import ulaval.glo2003.exception.ConstraintsValidator;
+import ulaval.glo2003.product.api.OfferFactory;
 import ulaval.glo2003.product.api.OfferRequestValidator;
-import ulaval.glo2003.product.api.assembler.OfferAssembler;
 import ulaval.glo2003.product.api.assembler.OffersAssembler;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
 import ulaval.glo2003.product.api.ProductRequestValidator;
@@ -35,7 +35,6 @@ public class AppContext {
   public final OffersAssembler offersAssembler = new OffersAssembler();
   public final ProductAssembler productAssembler = new ProductAssembler(offersAssembler);
   public final SellerAssembler sellerAssembler = new SellerAssembler(productAssembler);
-  public final OfferAssembler offerAssembler = new OfferAssembler();
 
   //factories
   public final CategoriesFactory categoriesFactory = new CategoriesFactory();
@@ -48,6 +47,8 @@ public class AppContext {
           categoriesFactory
   );
   public final ProductWithSellerFactory productWithSellerFactory = new ProductWithSellerFactory();
+  public final OfferFactory offerFactory = new OfferFactory(productIdFactory);
+
 
   // datastore
   public final Datastore datastore = MongoDbSetUp.getDatastore();

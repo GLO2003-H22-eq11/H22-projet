@@ -31,7 +31,7 @@ public class ProductFactory {
             productRequest.title,
             productRequest.description,
             Amount.fromDouble(productRequest.suggestedPrice),
-            new Offers(null, 0),
+            new Offers(),
             this.categoriesFactory.create(productRequest.categories),
             LocalDateTime.now()
     );

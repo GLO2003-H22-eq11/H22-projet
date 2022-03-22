@@ -10,7 +10,6 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.QueryParam;
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.product.api.assembler.OfferAssembler;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
 import ulaval.glo2003.product.api.request.OfferRequest;
 import ulaval.glo2003.product.api.request.ProductRequest;
@@ -37,7 +36,7 @@ public class ProductResource {
   private final ProductRequestValidator productRequestValidator;
   private final ProductIdFactory productIdFactory;
   private final ProductFiltersFactory productFiltersFactory;
-  private final OfferAssembler offerAssembler;
+  private final OfferFactory offerFactory;
   private final OfferRequestValidator offerRequestValidator;
 
   public ProductResource(
@@ -47,7 +46,7 @@ public class ProductResource {
           ProductIdFactory productIdFactory,
           ProductRequestValidator productRequestValidator,
           ProductFiltersFactory productFiltersFactory,
-          OfferAssembler offerAssembler,
+          OfferFactory offerFactory,
           OfferRequestValidator offerRequestValidator
   ) {
     this.productFactory = productFactory;
@@ -56,7 +55,7 @@ public class ProductResource {
     this.productIdFactory = productIdFactory;
     this.productRequestValidator = productRequestValidator;
     this.productFiltersFactory = productFiltersFactory;
-    this.offerAssembler = offerAssembler;
+    this.offerFactory = offerFactory;
     this.offerRequestValidator = offerRequestValidator;
   }
 
@@ -121,15 +120,13 @@ public class ProductResource {
   @POST
   @Path("/{productId}/offers")
   @Produces(MediaType.APPLICATION_JSON)
-  public Response createOffer(OfferRequest offerRequest, @PathParam("productId") String id) {
+  public Response createOffer(OfferRequest offerRequest, @PathParam("productId") String productId) {
     try {
       this.offerRequestValidator.validate(offerRequest);
 
-      ProductId productId = this.productIdFactory.create(id);
+      Offer offer = this.offerFactory.create(offerRequest, productId);
 
-      Offer offer = this.offerAssembler.toDomain(offerRequest);
-
-      this.productService.createOffer(offer, productId);
+      this.productService.createOffer(offer);
 
       return Response.ok().build();
     } catch (GenericException e) {

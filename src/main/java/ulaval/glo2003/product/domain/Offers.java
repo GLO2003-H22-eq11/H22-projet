@@ -6,9 +6,8 @@ public class Offers {
   private Amount mean;
   private Integer count;
 
-  public Offers(Amount mean, int count) {
-    this.mean = mean;
-    this.count = count;
+  public Offers() {
+    this.count = 0;
   }
 
   public Double getMeanAmount() {

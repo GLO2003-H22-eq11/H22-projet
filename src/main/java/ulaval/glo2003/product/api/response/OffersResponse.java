@@ -7,7 +7,7 @@ public class OffersResponse {
   public Integer count;
 
   public OffersResponse() {
-  };
+  }
 
   public OffersResponse(Double mean, Integer count) {
     this.mean = mean;
@@ -19,6 +19,9 @@ public class OffersResponse {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     OffersResponse that = (OffersResponse) o;
+    if (mean == null && that.mean == null) {
+      return count.equals(that.count);
+    }
     return mean.equals(that.mean) && count.equals(that.count);
   }
 
