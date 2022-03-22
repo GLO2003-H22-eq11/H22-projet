@@ -13,7 +13,7 @@ import ulaval.glo2003.seller.infrastructure.mongoDb.entity.SellerEntity;
 public class MongoDBSellerRepository implements SellerRepository {
 
   private final MongoDbSellerAssembler mongoDbSellerAssembler;
-  public final Datastore datastore;
+  private final Datastore datastore;
 
   public MongoDBSellerRepository(Datastore datastore, MongoDbSellerAssembler mongoDbSellerAssembler) {
     this.datastore = datastore;
@@ -41,7 +41,7 @@ public class MongoDBSellerRepository implements SellerRepository {
   @Override
   public void verifyIfSellerExists(SellerId id) throws SellerNotFoundException {
     SellerEntity sellerEntity = this.datastore.find(SellerEntity.class)
-            .filter(Filters.eq("sellerId", id.toString())).first();
+            .filter(Filters.eq("_id", id.toString())).first();
 
     if (sellerEntity == null) {
       throw new SellerNotFoundException();

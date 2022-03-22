@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class SellerEntity {
 
   @Id
-  public String sellerId;
+  private String sellerId;
   private String name;
   private String bio;
   private LocalDate birthDate;
@@ -32,22 +32,22 @@ public class SellerEntity {
   }
 
   public LocalDateTime getCreatedAt() {
-    return createdAt;
+    return this.createdAt;
   }
 
   public LocalDate getBirthDate() {
-    return birthDate;
+    return this.birthDate;
   }
 
   public String getName() {
-    return name;
+    return this.name;
   }
 
   public String getBio() {
-    return bio;
+    return this.bio;
   }
 
   public String getSellerId() {
-    return sellerId;
+    return this.sellerId;
   }
 }

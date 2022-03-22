@@ -74,11 +74,11 @@ public class Seller {
   }
 
   public LocalDate getBirthDate() {
-    return birthDate;
+    return this.birthDate;
   }
 
   public LocalDateTime getCreatedAt() {
-    return createdAt;
+    return this.createdAt;
   }
 
   public void setProducts(List<Product> products) {
