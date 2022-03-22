@@ -31,4 +31,12 @@ jobs:
     - name: Run tests
       run: mvn verify
 
+    - uses: actions/checkout@v2
+    - uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key:  d16133e4-e97b-4c29-a574-f24c94fa3b8c
+        heroku_app_name:  processus-equipe-22-staging
+        heroku_email: processusequipe22marinocovido@gmail.com
+
+
 
