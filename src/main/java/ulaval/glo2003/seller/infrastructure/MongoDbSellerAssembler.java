@@ -13,7 +13,8 @@ public class MongoDbSellerAssembler {
   }
 
   public Seller toSeller(SellerEntity sellerEntity) throws InvalidSellerIdException {
-    return new Seller(new SellerId(sellerEntity.getSellerId()), sellerEntity.getName(), sellerEntity.getBio(), sellerEntity.getBirthDate(),
+    return new Seller(new SellerId(sellerEntity.getSellerId()), sellerEntity.getName(),
+            sellerEntity.getBio(), sellerEntity.getBirthDate(),
             sellerEntity.getCreatedAt());
   }
 
