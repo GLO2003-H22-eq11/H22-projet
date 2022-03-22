@@ -43,7 +43,7 @@ public class AppContext {
   public final OffersAssembler offersAssembler = new OffersAssembler();
   public final ProductAssembler productAssembler = new ProductAssembler(offersAssembler);
   public final SellerAssembler sellerAssembler = new SellerAssembler(productAssembler);
-  public final MongoDbSellerAssembler mongoDbSellerAssembler = new MongoDbSellerAssembler(sellerIdFactory);
+  public final MongoDbSellerAssembler mongoDbSellerAssembler = new MongoDbSellerAssembler();
 
   // datastore
   public final Datastore datastore = MongoDbSetUp.getDatastore();
