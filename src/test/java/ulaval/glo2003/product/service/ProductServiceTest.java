@@ -39,6 +39,9 @@ class ProductServiceTest {
   private Product product;
 
   @Mock
+  private Offer offer;
+
+  @Mock
   private ProductWithSeller productWithSeller;
 
   @Mock
@@ -147,6 +150,44 @@ class ProductServiceTest {
 
     assertEquals(List.of(productWithSeller), actual);
   }
+
+  @Test
+  public void givenAnOfferAndAProductId_whenCreateOffer_thenShouldFindProductById() throws GenericException {
+    givenAProduct(A_PRODUCT_ID);
+
+    this.productService.createOffer(offer, A_PRODUCT_ID);
+
+    verify(this.productRepository).findById(A_PRODUCT_ID);
+  }
+
+  @Test
+  public void givenAnOfferAndAProductId_whenCreateOffer_thenShouldAddOfferToProduct() throws GenericException {
+    givenAProduct(A_PRODUCT_ID);
+
+    this.productService.createOffer(offer, A_PRODUCT_ID);
+
+    verify(this.product).addOffer(offer);
+  }
+
+  @Test
+  public void givenAnOfferAndAProductId_whenCreateOffer_thenShouldSaveProduct() throws GenericException {
+    givenAProduct(A_PRODUCT_ID);
+
+    this.productService.createOffer(offer, A_PRODUCT_ID);
+
+    verify(this.productRepository).save(product);
+  }
+
+  @Test
+  public void givenAnOfferAndAProductId_whenCreateOffer_thenShouldSaveOffer() throws GenericException {
+    givenAProduct(A_PRODUCT_ID);
+
+    this.productService.createOffer(offer, A_PRODUCT_ID);
+
+    verify(this.offerRepository).save(offer, A_PRODUCT_ID);
+  }
+
+
 
   private void givenASellerId(SellerId sellerId) {
     given(this.product.getSellerId()).willReturn(sellerId);

@@ -27,7 +27,8 @@ public class ProductService {
           SellerRepository sellerRepository,
           ProductSellerDomainService productSellerService,
           ProductFilterer productFilterer,
-          OfferRepository offerRepository) {
+          OfferRepository offerRepository
+  ) {
     this.productRepository = productRepository;
     this.sellerRepository = sellerRepository;
     this.productSellerService = productSellerService;
