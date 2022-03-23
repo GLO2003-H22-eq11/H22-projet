@@ -9,28 +9,35 @@ class PhoneNumberValidatorTest {
 
   @Test
   public void givenAValidPhoneNumberString_whenValidate_thenShouldReturnTrue() {
-    String aValidPhoneNumber = "4181234567";
+    String aValidPhoneNumber = "14181234567";
 
     assertTrue(PhoneNumberValidator.validate(aValidPhoneNumber));
   }
 
   @Test
-  public void givenAValidPhoneNumberStringWithDashes_whenValidate_thenShouldReturnTrue() {
-    String aValidPhoneNumber = "418-123-4567";
+  public void givenAValidPhoneNumberStringWithOnlyZeros_whenValidate_thenShouldReturnTrue() {
+    String aValidPhoneNumber = "00000000000";
 
     assertTrue(PhoneNumberValidator.validate(aValidPhoneNumber));
+  }
+
+  @Test
+  public void givenAInvalidPhoneNumberStringWithDashes_whenValidate_thenShouldReturnFalse() {
+    String aValidPhoneNumber = "1-418-123-4567";
+
+    assertFalse(PhoneNumberValidator.validate(aValidPhoneNumber));
   }
 
   @Test
   public void givenAnInvalidPhoneNumberStringWithAMissingNumber_whenValidate_thenShouldReturnFalse() {
-    String anInvalidPhoneNumber = "418123456";
+    String anInvalidPhoneNumber = "4181234567";
 
     assertFalse(PhoneNumberValidator.validate(anInvalidPhoneNumber));
   }
 
   @Test
-  public void givenAnInvalidPhoneNumberWithDashesAndAMissingNumberString_whenValidate_thenShouldReturnFalse() {
-    String anInvalidPhoneNumber = "418-123-456";
+  public void givenAnInvalidPhoneNumberStringWithOneTooManyNumber_whenValidate_thenShouldReturnFalse() {
+    String anInvalidPhoneNumber = "141812345678";
 
     assertFalse(PhoneNumberValidator.validate(anInvalidPhoneNumber));
   }

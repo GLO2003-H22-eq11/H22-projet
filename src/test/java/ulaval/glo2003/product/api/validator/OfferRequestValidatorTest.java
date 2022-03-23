@@ -20,7 +20,7 @@ import static org.mockito.Mockito.verify;
 class OfferRequestValidatorTest {
   private static final String A_NAME = "MARINO";
   private static final String A_VALID_EMAIL = "marinoboi@email.ca";
-  private static final String A_VALID_PHONE_NUMBER = "4181234567";
+  private static final String A_VALID_PHONE_NUMBER = "14181234567";
   private static final Double AN_AMOUNT = 50.5;
   private static final String A_VALID_MESSAGE_WITH_100_CHARACTERS = "Donec porttitor interdum lacus sed finibus. Nam pulvinar facilisis posuere. Maecenas vel lorem amet.";
 
