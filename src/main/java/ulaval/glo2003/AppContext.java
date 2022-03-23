@@ -49,10 +49,12 @@ public class AppContext {
   public final Datastore datastore = MongoDbSetUp.getDatastore();
 
   //repositories
-  public final SellerRepository sellerRepository = new MongoDBSellerRepository(datastore,
+  public final SellerRepository mongoDBSellerRepository = new MongoDBSellerRepository(datastore,
           mongoDbSellerAssembler);
   public final MongoDBProductRepository mongoDBProductRepository = new MongoDBProductRepository(datastore);
+  public final SellerRepository sellerRepository = new InMemorySellerRepository();
   public final ProductRepository productRepository = new InMemoryProductRepository();
+
 
   // domain
   public final ProductSellerDomainService productSellerDomainService = new ProductSellerDomainService(
