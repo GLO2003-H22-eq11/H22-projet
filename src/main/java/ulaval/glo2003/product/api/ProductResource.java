@@ -15,7 +15,10 @@ import ulaval.glo2003.product.api.request.OfferRequest;
 import ulaval.glo2003.product.api.request.ProductRequest;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductsResponse;
+import ulaval.glo2003.product.api.validator.OfferRequestValidator;
+import ulaval.glo2003.product.api.validator.ProductRequestValidator;
 import ulaval.glo2003.product.domain.Offer;
+import ulaval.glo2003.product.domain.OfferFactory;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductFilters;
 import ulaval.glo2003.product.domain.ProductId;
@@ -124,7 +127,14 @@ public class ProductResource {
     try {
       this.offerRequestValidator.validate(offerRequest);
 
-      Offer offer = this.offerFactory.create(offerRequest, productId);
+      Offer offer = this.offerFactory.create(
+              offerRequest.name,
+              offerRequest.email,
+              offerRequest.phoneNumber,
+              offerRequest.amount,
+              offerRequest.message,
+              productId
+      );
 
       this.productService.createOffer(offer);
 

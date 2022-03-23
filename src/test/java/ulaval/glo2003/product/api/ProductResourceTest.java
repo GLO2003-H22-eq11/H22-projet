@@ -12,7 +12,10 @@ import ulaval.glo2003.product.api.request.OfferRequest;
 import ulaval.glo2003.product.api.request.ProductRequest;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductsResponse;
+import ulaval.glo2003.product.api.validator.OfferRequestValidator;
+import ulaval.glo2003.product.api.validator.ProductRequestValidator;
 import ulaval.glo2003.product.domain.Offer;
+import ulaval.glo2003.product.domain.OfferFactory;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductFilters;
 import ulaval.glo2003.product.domain.ProductId;
@@ -38,7 +41,13 @@ class ProductResourceTest {
   private final Double MAXIMUM_PRICE = 15.0;
   private static final String A_PRODUCT_ID = "Sqwevwerty";
   private static final String A_SELLER_STRING_ID = "5a3e3b0b-19a6-46cd-a0fe-bf16f42ba492";
+  private static final String A_NAME = "A NAME";
+  private static final String AN_EMAIL = "allo@email.ca";
+  private static final String A_PHONE_NUMBER = "14181234567";
+  private static final Double AN_AMOUNT = 20.0;
+  private static final String A_MESSAGE = "Donec porttitor interdum lacus sed finibus. Nam pulvinar facilisis posuere. Maecenas vel lorem amet.";
 
+  private final OfferRequest AN_OFFER_REQUEST = this.givenAnOfferRequest(A_NAME, AN_EMAIL, A_PHONE_NUMBER, AN_AMOUNT, A_MESSAGE);
   private final ProductFilters A_PRODUCT_FILTERS = new ProductFilters();
 
   @Mock
@@ -52,9 +61,6 @@ class ProductResourceTest {
 
   @Mock
   private ProductRequest productRequest;
-
-  @Mock
-  private OfferRequest offerRequest;
 
   @Mock
   private Offer offer;
@@ -175,16 +181,16 @@ class ProductResourceTest {
   public void givenAProductIdAndAnOfferRequest_whenCreateOffer_thenShouldValidateOfferRequest() throws GenericException {
     givenAnOffer(offer, A_PRODUCT_ID);
 
-    this.productResource.createOffer(offerRequest, A_PRODUCT_ID);
+    this.productResource.createOffer(AN_OFFER_REQUEST, A_PRODUCT_ID);
 
-    verify(this.offerRequestValidator).validate(offerRequest);
+    verify(this.offerRequestValidator).validate(AN_OFFER_REQUEST);
   }
 
   @Test
   public void givenAProductIdAndAnOfferRequest_whenCreateOffer_thenShouldCreateOffer() throws GenericException {
     givenAnOffer(offer, A_PRODUCT_ID);
 
-    this.productResource.createOffer(offerRequest, A_PRODUCT_ID);
+    this.productResource.createOffer(AN_OFFER_REQUEST, A_PRODUCT_ID);
 
     verify(this.productService).createOffer(offer);
   }
@@ -200,6 +206,17 @@ class ProductResourceTest {
   }
 
   private void givenAnOffer(Offer offer, String productId) throws GenericException {
-    given(this.offerFactory.create(offerRequest, productId)).willReturn(offer);
+    given(this.offerFactory.create(A_NAME, AN_EMAIL, A_PHONE_NUMBER, AN_AMOUNT, A_MESSAGE, productId)).willReturn(offer);
+  }
+
+  private OfferRequest givenAnOfferRequest(String name, String email, String phoneNumber, Double amount, String message) {
+    OfferRequest offerRequest = new OfferRequest();
+    offerRequest.name = name;
+    offerRequest.email = email;
+    offerRequest.phoneNumber = phoneNumber;
+    offerRequest.amount = amount;
+    offerRequest.message = message;
+
+    return offerRequest;
   }
 }

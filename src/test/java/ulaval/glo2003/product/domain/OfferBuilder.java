@@ -1,9 +1,5 @@
 package ulaval.glo2003.product.domain;
 
-import ulaval.glo2003.main.domain.Amount;
-import ulaval.glo2003.main.domain.Email;
-import ulaval.glo2003.main.domain.PhoneNumber;
-
 public class OfferBuilder {
   private ProductId productId;
   private final String name;

@@ -1,4 +1,4 @@
-package ulaval.glo2003.product.api;
+package ulaval.glo2003.product.api.validator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +11,7 @@ import ulaval.glo2003.product.api.exceptions.InvalidProductDescriptionException;
 import ulaval.glo2003.product.api.exceptions.InvalidProductPriceException;
 import ulaval.glo2003.product.api.exceptions.InvalidProductTitleException;
 import ulaval.glo2003.product.api.request.ProductRequest;
+import ulaval.glo2003.product.api.validator.ProductRequestValidator;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;

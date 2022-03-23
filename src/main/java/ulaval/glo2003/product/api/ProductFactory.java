@@ -2,7 +2,7 @@ package ulaval.glo2003.product.api;
 
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.api.request.ProductRequest;
-import ulaval.glo2003.main.domain.Amount;
+import ulaval.glo2003.product.domain.Amount;
 import ulaval.glo2003.product.domain.CategoriesFactory;
 import ulaval.glo2003.product.domain.Offers;
 import ulaval.glo2003.product.domain.Product;

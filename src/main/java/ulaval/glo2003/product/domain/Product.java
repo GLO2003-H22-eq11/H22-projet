@@ -1,6 +1,5 @@
 package ulaval.glo2003.product.domain;
 
-import ulaval.glo2003.main.domain.Amount;
 import ulaval.glo2003.product.domain.exceptions.InvalidOfferPriceException;
 import ulaval.glo2003.seller.domain.SellerId;
 
@@ -97,9 +96,9 @@ public class Product {
     return this.categories.hasAtLeastOneCategoryInCommon(categories);
   }
 
-  public void addOffer(Offer offer) throws InvalidOfferPriceException {
-    if (offer.getAmount().isHigherOrEqual(this.suggestedPrice)) {
-      this.offers.addOffer(offer);
+  public void addOfferAmount(Amount offerAmount) throws InvalidOfferPriceException {
+    if (offerAmount.isHigherOrEqual(this.suggestedPrice)) {
+      this.offers.addOfferAmount(offerAmount);
     } else {
       throw new InvalidOfferPriceException();
     }

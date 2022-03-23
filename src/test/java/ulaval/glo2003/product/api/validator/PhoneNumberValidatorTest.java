@@ -1,6 +1,7 @@
-package ulaval.glo2003.main.api;
+package ulaval.glo2003.product.api.validator;
 
 import org.junit.jupiter.api.Test;
+import ulaval.glo2003.product.api.validator.PhoneNumberValidator;
 
 import static org.junit.jupiter.api.Assertions.*;
 

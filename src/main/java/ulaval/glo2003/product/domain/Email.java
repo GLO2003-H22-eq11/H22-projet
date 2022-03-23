@@ -1,4 +1,4 @@
-package ulaval.glo2003.main.domain;
+package ulaval.glo2003.product.domain;
 
 public class Email {
   private final String email;

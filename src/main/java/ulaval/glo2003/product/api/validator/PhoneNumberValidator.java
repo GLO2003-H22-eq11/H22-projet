@@ -1,4 +1,4 @@
-package ulaval.glo2003.main.api;
+package ulaval.glo2003.product.api.validator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

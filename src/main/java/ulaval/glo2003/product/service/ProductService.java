@@ -57,7 +57,7 @@ public class ProductService {
   public void createOffer(Offer offer) throws GenericException {
     Product product = this.productRepository.findById(offer.getProductId());
 
-    product.addOffer(offer);
+    product.addOfferAmount(offer.getAmount());
 
     this.productRepository.save(product);
     this.offerRepository.save(offer);

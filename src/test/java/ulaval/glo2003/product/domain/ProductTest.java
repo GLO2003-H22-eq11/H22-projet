@@ -1,7 +1,6 @@
 package ulaval.glo2003.product.domain;
 
 import org.junit.jupiter.api.Test;
-import ulaval.glo2003.main.domain.Amount;
 import ulaval.glo2003.product.domain.exceptions.InvalidOfferPriceException;
 import ulaval.glo2003.seller.domain.SellerId;
 
@@ -62,29 +61,25 @@ class ProductTest {
   }
 
   @Test
-  public void givenAnOfferWithSamePriceAsProduct_whenAddOffer_thenShouldAddOffer() throws InvalidOfferPriceException {
-    Offer anOfferWithSamePrice = new OfferBuilder().withAmount(A_PRICE).build();
+  public void givenAnOfferWithSamePriceAsProduct_whenAddOfferAmount_thenShouldAddOffer() throws InvalidOfferPriceException {
+    A_PRODUCT_WITH_A_PRICE.addOfferAmount(A_PRICE);
 
-    A_PRODUCT_WITH_A_PRICE.addOffer(anOfferWithSamePrice);
-
-    verify(OFFERS).addOffer(anOfferWithSamePrice);
+    verify(OFFERS).addOfferAmount(A_PRICE);
   }
 
   @Test
-  public void givenAnOfferWithPriceHigherThanProduct_whenAddOffer_thenShouldAddOffer() throws InvalidOfferPriceException {
+  public void givenAnOfferWithPriceHigherThanProduct_whenAddOfferAmount_thenShouldAddOffer() throws InvalidOfferPriceException {
     Amount aHigherPrice = Amount.fromDouble(250.0);
-    Offer anOfferWithHigherPrice = new OfferBuilder().withAmount(aHigherPrice).build();
 
-    A_PRODUCT_WITH_A_PRICE.addOffer(anOfferWithHigherPrice);
+    A_PRODUCT_WITH_A_PRICE.addOfferAmount(aHigherPrice);
 
-    verify(OFFERS).addOffer(anOfferWithHigherPrice);
+    verify(OFFERS).addOfferAmount(aHigherPrice);
   }
 
   @Test
-  public void givenAnOfferWithPriceLowerThanProduct_whenAddOffer_thenShouldThrowInvalidOfferPriceException() throws InvalidOfferPriceException {
+  public void givenAnOfferWithPriceLowerThanProduct_whenAddOfferAmount_thenShouldThrowInvalidOfferPriceException() {
     Amount aLowerPrice = Amount.fromDouble(2.0);
-    Offer anOfferWithHigherPrice = new OfferBuilder().withAmount(aLowerPrice).build();
 
-    assertThrows(InvalidOfferPriceException.class, () -> A_PRODUCT_WITH_A_PRICE.addOffer(anOfferWithHigherPrice));
+    assertThrows(InvalidOfferPriceException.class, () -> A_PRODUCT_WITH_A_PRICE.addOfferAmount(aLowerPrice));
   }
 }

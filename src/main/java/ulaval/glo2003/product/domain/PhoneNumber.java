@@ -1,4 +1,4 @@
-package ulaval.glo2003.main.domain;
+package ulaval.glo2003.product.domain;
 
 public class PhoneNumber {
   private final String phoneNumber;

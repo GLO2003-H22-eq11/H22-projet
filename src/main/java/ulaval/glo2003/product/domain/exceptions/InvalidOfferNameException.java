@@ -1,4 +1,4 @@
-package ulaval.glo2003.product.api.exceptions;
+package ulaval.glo2003.product.domain.exceptions;
 
 import ulaval.glo2003.exception.ErrorCode;
 import ulaval.glo2003.exception.ErrorResponse;

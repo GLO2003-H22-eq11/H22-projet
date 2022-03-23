@@ -1,7 +1,6 @@
 package ulaval.glo2003.product.domain;
 
 import org.junit.jupiter.api.Test;
-import ulaval.glo2003.main.domain.Amount;
 
 import static org.junit.jupiter.api.Assertions.*;
 

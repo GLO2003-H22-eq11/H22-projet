@@ -1,4 +1,4 @@
-package ulaval.glo2003.product.api;
+package ulaval.glo2003.product.api.validator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,8 +8,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.ConstraintsValidator;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.api.exceptions.InvalidEmailException;
-import ulaval.glo2003.product.api.exceptions.InvalidMessageException;
-import ulaval.glo2003.product.api.exceptions.InvalidOfferNameException;
+import ulaval.glo2003.product.domain.exceptions.InvalidMessageException;
+import ulaval.glo2003.product.domain.exceptions.InvalidOfferNameException;
 import ulaval.glo2003.product.api.exceptions.InvalidPhoneNumberException;
 import ulaval.glo2003.product.api.request.OfferRequest;
 
@@ -48,13 +48,6 @@ class OfferRequestValidatorTest {
     assertDoesNotThrow(() -> this.offerRequestValidator.validate(A_VALID_OFFER_REQUEST));
   }
 
-  @Test
-  public void givenAnInvalidOfferRequestWithABlankName_whenValidate_thenShouldThrowInvalidOfferNameException() {
-    String aBlankName = "";
-    OfferRequest offerRequest = this.givenAnOfferRequest(aBlankName, A_VALID_EMAIL, A_VALID_PHONE_NUMBER, AN_AMOUNT, A_VALID_MESSAGE_WITH_100_CHARACTERS);
-
-    assertThrows(InvalidOfferNameException.class, () -> this.offerRequestValidator.validate(offerRequest));
-  }
 
   @Test
   public void givenAnInvalidOfferRequestWithAnInvalidEmail_whenValidate_thenShouldThrowInvalidEmailException() {
@@ -72,21 +65,6 @@ class OfferRequestValidatorTest {
     assertThrows(InvalidPhoneNumberException.class, () -> this.offerRequestValidator.validate(offerRequest));
   }
 
-  @Test
-  public void givenAnInvalidOfferRequestWithAMessageWithLessThan100Characters_whenValidate_thenShouldThrowInvalidMessageException() {
-    String aSmallMessage = "Bonjour je suis intéressé à acheter votre maison";
-    OfferRequest offerRequest = this.givenAnOfferRequest(A_NAME, A_VALID_EMAIL, A_VALID_PHONE_NUMBER, AN_AMOUNT, aSmallMessage);
-
-    assertThrows(InvalidMessageException.class, () -> this.offerRequestValidator.validate(offerRequest));
-  }
-
-  @Test
-  public void givenAnInvalidOfferRequestWithAMessageWithMoreThan100Characters_whenValidate_thenShouldNotThrow() {
-    String aMessageWith110Characters = "Donec porttitor interdum lacus sed finibus. Nam pulvinar facilisis posuere. Maecenas vel lorem amet yeet skee.";
-    OfferRequest offerRequest = this.givenAnOfferRequest(A_NAME, A_VALID_EMAIL, A_VALID_PHONE_NUMBER, AN_AMOUNT, aMessageWith110Characters);
-
-    assertDoesNotThrow(() -> this.offerRequestValidator.validate(offerRequest));
-  }
 
   private OfferRequest givenAnOfferRequest(String name, String email, String phoneNumber, Double amount, String message) {
     OfferRequest offerRequest = new OfferRequest();
@@ -97,5 +75,4 @@ class OfferRequestValidatorTest {
     offerRequest.message = message;
     return offerRequest;
   }
-
 }

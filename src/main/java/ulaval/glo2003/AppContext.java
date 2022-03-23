@@ -2,11 +2,11 @@ package ulaval.glo2003;
 
 import dev.morphia.Datastore;
 import ulaval.glo2003.exception.ConstraintsValidator;
-import ulaval.glo2003.product.api.OfferFactory;
-import ulaval.glo2003.product.api.OfferRequestValidator;
+import ulaval.glo2003.product.domain.OfferFactory;
+import ulaval.glo2003.product.api.validator.OfferRequestValidator;
 import ulaval.glo2003.product.api.assembler.OffersAssembler;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
-import ulaval.glo2003.product.api.ProductRequestValidator;
+import ulaval.glo2003.product.api.validator.ProductRequestValidator;
 import ulaval.glo2003.product.api.ProductFactory;
 import ulaval.glo2003.product.api.ProductFiltersFactory;
 import ulaval.glo2003.product.domain.CategoriesFactory;
