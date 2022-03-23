@@ -10,7 +10,7 @@ public class SellerProductResponse {
   public String title;
   public String description;
   public Double suggestedPrice;
-  public OffersResponse offers;
+  public OffersResponse productOffers;
   public List<String> categories;
 
   public SellerProductResponse() {
@@ -22,7 +22,7 @@ public class SellerProductResponse {
           String title,
           String description,
           Double suggestedPrice,
-          OffersResponse offers,
+          OffersResponse productOffers,
           List<String> categories
   ) {
     this.id = id;
@@ -30,7 +30,7 @@ public class SellerProductResponse {
     this.title = title;
     this.description = description;
     this.suggestedPrice = suggestedPrice;
-    this.offers = offers;
+    this.productOffers = productOffers;
     this.categories = categories;
   }
 }

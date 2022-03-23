@@ -31,6 +31,7 @@ public class OfferFactory {
     }
 
     return new Offer(
+            new OfferId(),
             this.productIdFactory.create(productId),
             name,
             new Email(email),

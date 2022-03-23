@@ -9,7 +9,7 @@ public class ProductResponse {
   public String title;
   public String description;
   public Double suggestedPrice;
-  public OffersResponse offers;
+  public OffersResponse productOffers;
   public List<String> categories;
   public ProductSellerResponse seller;
 
@@ -22,7 +22,7 @@ public class ProductResponse {
           String title,
           String description,
           Double suggestedPrice,
-          OffersResponse offers,
+          OffersResponse productOffers,
           List<String> categories,
           ProductSellerResponse productSellerResponse) {
     this.id = id;
@@ -30,7 +30,7 @@ public class ProductResponse {
     this.title = title;
     this.description = description;
     this.suggestedPrice = suggestedPrice;
-    this.offers = offers;
+    this.productOffers = productOffers;
     this.categories = categories;
     this.seller = productSellerResponse;
   }
@@ -40,13 +40,16 @@ public class ProductResponse {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ProductResponse that = (ProductResponse) o;
-    return Objects.equals(suggestedPrice, that.suggestedPrice) && id.equals(that.id) && createdAt.equals(that.createdAt)
+    return Objects.equals(suggestedPrice, that.suggestedPrice) && id.equals(that.id)
+            && createdAt.equals(that.createdAt)
             && title.equals(that.title) && description.equals(that.description)
-            && offers.equals(that.offers) && categories.equals(that.categories) && seller.equals(that.seller);
+            && productOffers.equals(that.productOffers) && categories.equals(that.categories)
+
+            && seller.equals(that.seller);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, createdAt, title, description, suggestedPrice, offers, categories, seller);
+    return Objects.hash(id, createdAt, title, description, suggestedPrice, productOffers, categories, seller);
   }
 }

@@ -1,21 +1,29 @@
 package ulaval.glo2003.seller.service;
 
 import ulaval.glo2003.exception.GenericException;
+import ulaval.glo2003.product.domain.OfferDomainService;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductRepository;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerId;
+import ulaval.glo2003.seller.domain.SellerWithProducts;
 import ulaval.glo2003.seller.domain.SellerRepository;
 
 import java.util.List;
 
 public class SellerService {
+
   private final SellerRepository sellerRepository;
   private final ProductRepository productRepository;
+  private final OfferDomainService offerDomainService;
 
-  public SellerService(SellerRepository sellerRepository, ProductRepository productRepository) {
+
+  public SellerService(SellerRepository sellerRepository,
+                       ProductRepository productRepository,
+                       OfferDomainService offerDomainService) {
     this.sellerRepository = sellerRepository;
     this.productRepository = productRepository;
+    this.offerDomainService = offerDomainService;
   }
 
   public void addSeller(Seller seller) throws GenericException {
@@ -29,5 +37,11 @@ public class SellerService {
     seller.setProducts(products);
 
     return seller;
+  }
+
+  public SellerWithProducts getSellerWithProducts(SellerId sellerId) throws GenericException {
+    Seller seller = this.sellerRepository.findById(sellerId);
+
+    return this.offerDomainService.assembleProductWithOfferToSeller(seller);
   }
 }

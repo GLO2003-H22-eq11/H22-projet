@@ -5,27 +5,27 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class OffersTest {
+class ProductOffersTest {
 
   private static final Double A_VALUE = 20.0;
   private static final Amount AN_AMOUNT = Amount.fromDouble(A_VALUE);
 
-  private final Offers offers = new Offers();
-  private final Offers offersWithNullMean = new Offers();
+  private final OffersSummary offersSummary = new OffersSummary();
+  private final OffersSummary offersSummaryWithNullMean = new OffersSummary();
 
   @BeforeEach
   public void setUp() {
-    offers.addOfferAmount(AN_AMOUNT);
+    offersSummary.addOfferAmount(AN_AMOUNT);
   }
 
   @Test
   public void givenAnOffersWithANullMean_whenGetMeanAmount_thenShouldReturnNull() {
-    assertNull(offersWithNullMean.getMeanAmount());
+    assertNull(offersSummaryWithNullMean.getMeanAmount());
   }
 
   @Test
   public void givenAnOffersWithANonNullMean_whenGetMeanAmount_thenShouldReturnMeanValue() {
-    assertEquals(A_VALUE, offers.getMeanAmount());
+    assertEquals(A_VALUE, offersSummary.getMeanAmount());
   }
 
   @Test
@@ -34,10 +34,10 @@ class OffersTest {
     int expectedCount = 2;
     Double expectedMeanAmount = 30.0;
 
-    offers.addOfferAmount(anAmount);
+    offersSummary.addOfferAmount(anAmount);
 
-    int actualCount = offers.getCount();
-    Double actualMeanAmount = offers.getMeanAmount();
+    int actualCount = offersSummary.getCount();
+    Double actualMeanAmount = offersSummary.getMeanAmount();
 
     assertEquals(expectedCount, actualCount);
     assertEquals(expectedMeanAmount, actualMeanAmount);
@@ -47,10 +47,10 @@ class OffersTest {
   public void givenAnOffersWithANullMeanValueAndAnOffer_whenAddOfferAmount_thenShouldAdjustOffersMeanAndCount() {
     int expectedCount = 1;
 
-    offersWithNullMean.addOfferAmount(AN_AMOUNT);
+    offersSummaryWithNullMean.addOfferAmount(AN_AMOUNT);
 
-    int actualCount = offersWithNullMean.getCount();
-    Double actualMeanAmount = offersWithNullMean.getMeanAmount();
+    int actualCount = offersSummaryWithNullMean.getCount();
+    Double actualMeanAmount = offersSummaryWithNullMean.getMeanAmount();
 
     assertEquals(expectedCount, actualCount);
     assertEquals(A_VALUE, actualMeanAmount);

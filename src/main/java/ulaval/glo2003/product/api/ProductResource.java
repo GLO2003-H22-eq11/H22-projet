@@ -121,7 +121,7 @@ public class ProductResource {
   }
 
   @POST
-  @Path("/{productId}/offers")
+  @Path("/{productId}/productOffers")
   @Produces(MediaType.APPLICATION_JSON)
   public Response createOffer(OfferRequest offerRequest, @PathParam("productId") String productId) {
     try {

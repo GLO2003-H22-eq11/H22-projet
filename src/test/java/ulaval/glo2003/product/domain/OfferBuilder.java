@@ -30,6 +30,7 @@ public class OfferBuilder {
 
   public Offer build() {
     return new Offer(
+            new OfferId(),
             this.productId,
             this.name,
             this.email,

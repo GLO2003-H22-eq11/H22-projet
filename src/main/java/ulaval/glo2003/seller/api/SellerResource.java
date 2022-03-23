@@ -1,16 +1,18 @@
 package ulaval.glo2003.seller.api;
 
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.HeaderParam;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerIdFactory;
+import ulaval.glo2003.seller.domain.SellerWithProducts;
 import ulaval.glo2003.seller.service.SellerService;
 
 import java.net.URI;
@@ -67,6 +69,24 @@ public class SellerResource {
       SellerResponse sellerResponse = this.sellerAssembler.toResponse(seller);
 
       return Response.ok().entity(sellerResponse).build();
+    } catch (GenericException e) {
+      return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
+    }
+  }
+
+  @GET
+  @Path("/@me")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response getCurrentSeller(@HeaderParam("X-Seller-Id") String sellerIdString) {
+    try {
+      SellerId sellerId = this.sellerIdFactory.create(sellerIdString);
+
+      SellerWithProducts sellerInformation = this.sellerService.getSellerWithProducts(sellerId);
+
+      SellerWithOfferResponse sellerWithOfferResponse =
+              this.sellerAssembler.toSellerWithOfferResponse(sellerInformation);
+
+      return Response.ok().entity(sellerWithOfferResponse).build();
     } catch (GenericException e) {
       return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
     }

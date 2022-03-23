@@ -40,7 +40,7 @@ public class ProductWithSeller {
     return this.product.getSuggestedPriceAmountDoubleValue();
   }
 
-  public Offers getProductOffers() {
+  public OffersSummary getProductOffers() {
     return this.product.getOffers();
   }
 

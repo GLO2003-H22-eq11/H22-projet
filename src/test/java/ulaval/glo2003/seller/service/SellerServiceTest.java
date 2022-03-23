@@ -6,9 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.product.domain.Product;
-import ulaval.glo2003.product.domain.ProductBuilder;
-import ulaval.glo2003.product.domain.ProductRepository;
+import ulaval.glo2003.product.domain.*;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
@@ -33,11 +31,14 @@ class SellerServiceTest {
   @Mock
   private ProductRepository productRepository;
 
+  @Mock
+  private OfferDomainService offerDomainService;
+
   private SellerService sellerService;
 
   @BeforeEach
   public void setUp() {
-    this.sellerService = new SellerService(this.sellerRepository, this.productRepository);
+    this.sellerService = new SellerService(this.sellerRepository, this.productRepository, this.offerDomainService);
   }
 
   @Test

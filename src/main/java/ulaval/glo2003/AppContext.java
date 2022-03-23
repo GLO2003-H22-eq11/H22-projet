@@ -2,7 +2,6 @@ package ulaval.glo2003;
 
 import dev.morphia.Datastore;
 import ulaval.glo2003.exception.ConstraintsValidator;
-import ulaval.glo2003.product.domain.OfferFactory;
 import ulaval.glo2003.product.api.validator.OfferRequestValidator;
 import ulaval.glo2003.product.api.assembler.OffersAssembler;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
@@ -10,12 +9,14 @@ import ulaval.glo2003.product.api.validator.ProductRequestValidator;
 import ulaval.glo2003.product.api.ProductFactory;
 import ulaval.glo2003.product.api.ProductFiltersFactory;
 import ulaval.glo2003.product.domain.CategoriesFactory;
-import ulaval.glo2003.product.domain.OfferRepository;
-import ulaval.glo2003.product.domain.ProductFilterer;
+import ulaval.glo2003.product.domain.OfferFactory;
 import ulaval.glo2003.product.domain.ProductIdFactory;
 import ulaval.glo2003.product.domain.ProductRepository;
-import ulaval.glo2003.product.domain.ProductSellerDomainService;
+import ulaval.glo2003.product.domain.OfferRepository;
 import ulaval.glo2003.product.domain.ProductWithSellerFactory;
+import ulaval.glo2003.product.domain.ProductSellerDomainService;
+import ulaval.glo2003.product.domain.OfferDomainService;
+import ulaval.glo2003.product.domain.ProductFilterer;
 import ulaval.glo2003.product.infrastructure.inMemory.InMemoryOfferRepository;
 import ulaval.glo2003.product.infrastructure.inMemory.InMemoryProductRepository;
 import ulaval.glo2003.product.infrastructure.mongodb.repository.MongoDBProductRepository;
@@ -70,9 +71,10 @@ public class AppContext {
           sellerRepository
   );
   public final ProductFilterer productFilterer = new ProductFilterer(productRepository);
+  public final OfferDomainService offerDomainService = new OfferDomainService(productRepository, offerRepository);
 
   //services
-  public final SellerService sellerService = new SellerService(sellerRepository, productRepository);
+  public final SellerService sellerService = new SellerService(sellerRepository, productRepository, offerDomainService);
   public final ProductService productService = new ProductService(
           productRepository,
           sellerRepository,

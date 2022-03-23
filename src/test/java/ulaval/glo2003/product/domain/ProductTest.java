@@ -12,10 +12,10 @@ class ProductTest {
 
   private static final String A_TITLE = "A TITLE";
   private static final Amount A_PRICE = Amount.fromDouble(20.0);
-  private static final Offers OFFERS = spy(new Offers());
+  private static final OffersSummary PRODUCT_OFFERS = spy(new OffersSummary());
 
   private final Product A_PRODUCT_WITH_A_TITLE = new ProductBuilder().withTitle(A_TITLE).build();
-  private final Product A_PRODUCT_WITH_A_PRICE = new ProductBuilder().withAmount(A_PRICE).withOffers(OFFERS).build();
+  private final Product A_PRODUCT_WITH_A_PRICE = new ProductBuilder().withAmount(A_PRICE).withOffers(PRODUCT_OFFERS).build();
 
   @Test
   public void givenAProductWithATitleAndAnotherSameTitle_whenIsInTitle_thenShouldReturnTrue() {
@@ -64,7 +64,7 @@ class ProductTest {
   public void givenAnOfferWithSamePriceAsProduct_whenAddOfferAmount_thenShouldAddOffer() throws InvalidOfferPriceException {
     A_PRODUCT_WITH_A_PRICE.addOfferAmount(A_PRICE);
 
-    verify(OFFERS).addOfferAmount(A_PRICE);
+    verify(PRODUCT_OFFERS).addOfferAmount(A_PRICE);
   }
 
   @Test
@@ -73,7 +73,7 @@ class ProductTest {
 
     A_PRODUCT_WITH_A_PRICE.addOfferAmount(aHigherPrice);
 
-    verify(OFFERS).addOfferAmount(aHigherPrice);
+    verify(PRODUCT_OFFERS).addOfferAmount(aHigherPrice);
   }
 
   @Test
