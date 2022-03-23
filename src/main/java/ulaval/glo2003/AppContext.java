@@ -22,6 +22,7 @@ import ulaval.glo2003.seller.api.SellerRequestValidator;
 import ulaval.glo2003.seller.domain.SellerIdFactory;
 import ulaval.glo2003.seller.domain.SellerRepository;
 import ulaval.glo2003.seller.infrastructure.MongoDbSellerAssembler;
+import ulaval.glo2003.seller.infrastructure.inMemory.InMemorySellerRepository;
 import ulaval.glo2003.seller.infrastructure.mongoDb.repository.MongoDBSellerRepository;
 import ulaval.glo2003.seller.service.SellerService;
 
@@ -49,9 +50,10 @@ public class AppContext {
   public final Datastore datastore = MongoDbSetUp.getDatastore();
 
   //repositories
-  public final SellerRepository sellerRepository = new MongoDBSellerRepository(datastore,
+  public final SellerRepository mongoDBSellerRepository = new MongoDBSellerRepository(datastore,
           mongoDbSellerAssembler);
   public final MongoDBProductRepository mongoDBProductRepository = new MongoDBProductRepository(datastore);
+  public final SellerRepository sellerRepository = new InMemorySellerRepository();
   public final ProductRepository productRepository = new InMemoryProductRepository();
 
   // domain
