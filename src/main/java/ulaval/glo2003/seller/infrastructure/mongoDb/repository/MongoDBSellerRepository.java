@@ -1,17 +1,51 @@
 package ulaval.glo2003.seller.infrastructure.mongoDb.repository;
 
 import dev.morphia.Datastore;
+import dev.morphia.query.experimental.filters.Filters;
+import ulaval.glo2003.exception.GenericException;
+import ulaval.glo2003.seller.domain.Seller;
+import ulaval.glo2003.seller.domain.SellerId;
+import ulaval.glo2003.seller.domain.SellerRepository;
+import ulaval.glo2003.seller.domain.exceptions.SellerNotFoundException;
+import ulaval.glo2003.seller.infrastructure.MongoDbSellerAssembler;
 import ulaval.glo2003.seller.infrastructure.mongoDb.entity.SellerEntity;
 
-public class MongoDBSellerRepository {
+public class MongoDBSellerRepository implements SellerRepository {
 
-  public final Datastore datastore;
+  private final MongoDbSellerAssembler mongoDbSellerAssembler;
+  private final Datastore datastore;
 
-  public MongoDBSellerRepository(Datastore datastore) {
+  public MongoDBSellerRepository(Datastore datastore, MongoDbSellerAssembler mongoDbSellerAssembler) {
     this.datastore = datastore;
+    this.mongoDbSellerAssembler = mongoDbSellerAssembler;
   }
 
-  public void save(SellerEntity sellerEntity) {
+  @Override
+  public void save(Seller seller) {
+    SellerEntity sellerEntity = this.mongoDbSellerAssembler.toEntity(seller);
     this.datastore.save(sellerEntity);
+  }
+
+  @Override
+  public Seller findById(SellerId id) throws GenericException {
+    SellerEntity sellerEntity = this.datastore.find(SellerEntity.class)
+            .filter(Filters.eq("_id", id.toString())).first();
+
+    if (sellerEntity == null) {
+      throw new SellerNotFoundException();
+    }
+
+    return this.mongoDbSellerAssembler.toSeller(sellerEntity);
+  }
+
+  @Override
+  public void verifyIfSellerExists(SellerId id) throws SellerNotFoundException {
+    SellerEntity sellerEntity = this.datastore.find(SellerEntity.class)
+            .filter(Filters.eq("_id", id.toString())).first();
+
+    if (sellerEntity == null) {
+      throw new SellerNotFoundException();
+    }
+
   }
 }

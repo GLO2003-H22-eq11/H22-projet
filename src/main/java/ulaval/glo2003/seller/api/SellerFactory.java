@@ -6,7 +6,6 @@ import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.util.DateParser;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class SellerFactory {
 
@@ -16,8 +15,7 @@ public class SellerFactory {
             sellerRequest.name,
             sellerRequest.bio,
             DateParser.format(sellerRequest.birthDate),
-            LocalDateTime.now(),
-            new ArrayList<>()
+            LocalDateTime.now()
     );
   }
 }

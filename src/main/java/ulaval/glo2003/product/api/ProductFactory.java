@@ -1,6 +1,7 @@
 package ulaval.glo2003.product.api;
 
 import ulaval.glo2003.exception.GenericException;
+import ulaval.glo2003.product.api.request.ProductRequest;
 import ulaval.glo2003.product.domain.Amount;
 import ulaval.glo2003.product.domain.CategoriesFactory;
 import ulaval.glo2003.product.domain.Offers;
@@ -29,8 +30,8 @@ public class ProductFactory {
             this.productIdFactory.create(),
             productRequest.title,
             productRequest.description,
-            Amount.fromInt(productRequest.suggestedPrice),
-            new Offers(Amount.fromInt(0), 0),
+            Amount.fromDouble(productRequest.suggestedPrice),
+            new Offers(),
             this.categoriesFactory.create(productRequest.categories),
             LocalDateTime.now()
     );

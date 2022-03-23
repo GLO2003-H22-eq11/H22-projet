@@ -5,6 +5,7 @@ import ulaval.glo2003.product.api.response.OffersResponse;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductSellerResponse;
 import ulaval.glo2003.product.domain.Category;
+import ulaval.glo2003.product.domain.Offers;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductBuilder;
 import ulaval.glo2003.product.domain.ProductWithSeller;
@@ -23,7 +24,7 @@ class ProductAssemblerTest {
 
   @Test
   public void givenAProductWithSeller_whenAssemblingToResponse_thenShouldAssembleWithCorrespondingParameters() {
-    Product aProduct = new ProductBuilder().build();
+    Product aProduct = new ProductBuilder().withOffers(new Offers()).build();
     Seller aSeller = new SellerBuilder().build();
     ProductWithSeller aProductWithSeller = new ProductWithSeller(aProduct, aSeller);
     List<String> expectedCategories = aProduct.getProductCategories().stream().map(Category::getCategoryName).collect(Collectors.toList());
@@ -34,7 +35,7 @@ class ProductAssemblerTest {
             aProduct.getStringCreatedAt(),
             aProduct.getTitle(),
             aProduct.getDescription(),
-            aProduct.getSuggestedPriceAmountIntValue(),
+            aProduct.getSuggestedPriceAmountDoubleValue(),
             expectedOffersResponse,
             expectedCategories,
             expectedProductSellerResponse

@@ -1,7 +1,7 @@
 package ulaval.glo2003.e2e.failure;
 
 import io.restassured.response.Response;
-import ulaval.glo2003.product.api.ProductRequest;
+import ulaval.glo2003.product.api.request.ProductRequest;
 
 import static io.restassured.RestAssured.given;
 import static ulaval.glo2003.e2e.End2EndConfig.*;
@@ -50,7 +50,7 @@ public class ProductEnd2EndTestUtils {
     productRequest.description = A_PRODUCT_DESCRIPTION;
     productRequest.title = A_PRODUCT_TITLE;
     productRequest.categories = A_CATEGORIES;
-    productRequest.suggestedPrice = 0;
+    productRequest.suggestedPrice = 0.0;
 
     return productRequest;
   }
@@ -72,7 +72,7 @@ public class ProductEnd2EndTestUtils {
             .get(PRODUCTS_END_POINT);
   }
 
-  public static Response getProductWithIntFilters(String queryParamName, Integer param) {
+  public static Response getProductWithIntFilters(String queryParamName, Double param) {
     return given()
             .queryParam(queryParamName, param)
             .header(CONTENT_TYPE, APPLICATION_JSON)

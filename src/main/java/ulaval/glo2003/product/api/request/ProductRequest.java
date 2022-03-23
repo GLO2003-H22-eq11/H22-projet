@@ -1,4 +1,4 @@
-package ulaval.glo2003.product.api;
+package ulaval.glo2003.product.api.request;
 
 import jakarta.validation.constraints.NotNull;
 import ulaval.glo2003.exception.GenericRequest;
@@ -13,7 +13,7 @@ public class ProductRequest extends GenericRequest {
   public String description;
 
   @NotNull
-  public Integer suggestedPrice;
+  public Double suggestedPrice;
 
   @NotNull
   public List<String> categories;

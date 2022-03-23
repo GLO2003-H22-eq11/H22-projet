@@ -24,15 +24,13 @@ public class Seller {
           String name,
           String bio,
           LocalDate birthDate,
-          LocalDateTime createdAt,
-          List<Product> products
+          LocalDateTime createdAt
   ) {
     this.sellerId = sellerId;
     this.name = name;
     this.bio = bio;
     this.birthDate = birthDate;
     this.createdAt = createdAt;
-    this.products = products;
   }
 
   public SellerId getSellerId() {
@@ -73,6 +71,14 @@ public class Seller {
 
   public List<Product> getProducts() {
     return this.products;
+  }
+
+  public LocalDate getBirthDate() {
+    return this.birthDate;
+  }
+
+  public LocalDateTime getCreatedAt() {
+    return this.createdAt;
   }
 
   public void setProducts(List<Product> products) {

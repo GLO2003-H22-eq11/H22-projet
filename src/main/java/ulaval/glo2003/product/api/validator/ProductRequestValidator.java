@@ -1,10 +1,11 @@
-package ulaval.glo2003.product.api;
+package ulaval.glo2003.product.api.validator;
 
 import ulaval.glo2003.exception.ConstraintsValidator;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.api.exceptions.InvalidProductDescriptionException;
 import ulaval.glo2003.product.api.exceptions.InvalidProductPriceException;
 import ulaval.glo2003.product.api.exceptions.InvalidProductTitleException;
+import ulaval.glo2003.product.api.request.ProductRequest;
 
 public class ProductRequestValidator {
   private final ConstraintsValidator constraintsValidator;
@@ -26,7 +27,7 @@ public class ProductRequestValidator {
     }
   }
 
-  public void validatePrices(Integer minPrice, Integer maxPrice) throws InvalidProductPriceException {
+  public void validatePrices(Double minPrice, Double maxPrice) throws InvalidProductPriceException {
     if (minPrice != null && minPrice < 0 || maxPrice != null && maxPrice < 0) {
       throw new InvalidProductPriceException();
     }

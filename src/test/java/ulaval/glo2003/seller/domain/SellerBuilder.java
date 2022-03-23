@@ -18,7 +18,7 @@ public class SellerBuilder {
   public SellerBuilder() {
     this.sellerId = new SellerId();
     this.name = "MarinoBoi";
-    this.bio = "Je suis le meilleur programmeur à l'uni";
+    this.bio = "Phil est le meilleur programmeur à l'uni";
     this.birthDate = LocalDate.of(2000, 10, 5);
     this.createdAt = LocalDateTime.now();
     this.products = new ArrayList<>();
@@ -40,8 +40,7 @@ public class SellerBuilder {
             this.name,
             this.bio,
             this.birthDate,
-            this.createdAt,
-            this.products
+            this.createdAt
     );
   }
 }

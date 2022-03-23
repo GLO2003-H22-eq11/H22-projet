@@ -8,9 +8,14 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
-import ulaval.glo2003.product.api.exceptions.InvalidProductPriceException;
+import ulaval.glo2003.product.api.request.OfferRequest;
+import ulaval.glo2003.product.api.request.ProductRequest;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductsResponse;
+import ulaval.glo2003.product.api.validator.OfferRequestValidator;
+import ulaval.glo2003.product.api.validator.ProductRequestValidator;
+import ulaval.glo2003.product.domain.Offer;
+import ulaval.glo2003.product.domain.OfferFactory;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductFilters;
 import ulaval.glo2003.product.domain.ProductId;
@@ -23,6 +28,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -31,11 +37,17 @@ class ProductResourceTest {
   private final String A_SELLER_ID = "S@FG_F$GG$cgwre-fg";
   private final String A_TITLE = "TITLE";
   private final List<String> STRING_CATEGORIES = List.of("A", "B", "C");
-  private final Integer MINIMUM_PRICE = 10;
-  private final Integer MAXIMUM_PRICE = 15;
-  private final String A_PRODUCT_ID = "Sqwevwerty";
+  private final Double MINIMUM_PRICE = 10.0;
+  private final Double MAXIMUM_PRICE = 15.0;
+  private static final String A_PRODUCT_ID = "Sqwevwerty";
   private static final String A_SELLER_STRING_ID = "5a3e3b0b-19a6-46cd-a0fe-bf16f42ba492";
+  private static final String A_NAME = "A NAME";
+  private static final String AN_EMAIL = "allo@email.ca";
+  private static final String A_PHONE_NUMBER = "14181234567";
+  private static final Double AN_AMOUNT = 20.0;
+  private static final String A_MESSAGE = "Donec porttitor interdum lacus sed finibus. Nam pulvinar facilisis posuere. Maecenas vel lorem amet.";
 
+  private final OfferRequest AN_OFFER_REQUEST = this.givenAnOfferRequest(A_NAME, AN_EMAIL, A_PHONE_NUMBER, AN_AMOUNT, A_MESSAGE);
   private final ProductFilters A_PRODUCT_FILTERS = new ProductFilters();
 
   @Mock
@@ -49,6 +61,9 @@ class ProductResourceTest {
 
   @Mock
   private ProductRequest productRequest;
+
+  @Mock
+  private Offer offer;
 
   @Mock
   private ProductFactory productFactory;
@@ -68,6 +83,11 @@ class ProductResourceTest {
   @Mock
   private ProductFiltersFactory productFiltersFactory;
 
+  @Mock
+  private OfferRequestValidator offerRequestValidator;
+
+  @Mock
+  private OfferFactory offerFactory;
 
   private ProductResource productResource;
 
@@ -80,7 +100,9 @@ class ProductResourceTest {
             this.productAssembler,
             this.productIdFactory,
             this.productRequestValidator,
-            this.productFiltersFactory
+            this.productFiltersFactory,
+            this.offerFactory,
+            this.offerRequestValidator
     );
   }
 
@@ -155,6 +177,23 @@ class ProductResourceTest {
     verify(this.productRequestValidator).validatePrices(MINIMUM_PRICE, MAXIMUM_PRICE);
   }
 
+  @Test
+  public void givenAProductIdAndAnOfferRequest_whenCreateOffer_thenShouldValidateOfferRequest() throws GenericException {
+    givenAnOffer(offer, A_PRODUCT_ID);
+
+    this.productResource.createOffer(AN_OFFER_REQUEST, A_PRODUCT_ID);
+
+    verify(this.offerRequestValidator).validate(AN_OFFER_REQUEST);
+  }
+
+  @Test
+  public void givenAProductIdAndAnOfferRequest_whenCreateOffer_thenShouldCreateOffer() throws GenericException {
+    givenAnOffer(offer, A_PRODUCT_ID);
+
+    this.productResource.createOffer(AN_OFFER_REQUEST, A_PRODUCT_ID);
+
+    verify(this.productService).createOffer(offer);
+  }
 
   private void givenAProduct(ProductRequest productRequest) throws GenericException {
     given(this.productFactory.create(productRequest, A_SELLER_STRING_ID)).willReturn(this.product);
@@ -164,5 +203,20 @@ class ProductResourceTest {
   private void givenAListOfProductsWithSeller(ProductFilters productFilters) throws GenericException {
     given(this.productFiltersFactory.create(A_SELLER_ID, A_TITLE, STRING_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE)).willReturn(productFilters);
     given(this.productService.getFilteredProducts(productFilters)).willReturn(List.of(productWithSeller));
+  }
+
+  private void givenAnOffer(Offer offer, String productId) throws GenericException {
+    given(this.offerFactory.create(A_NAME, AN_EMAIL, A_PHONE_NUMBER, AN_AMOUNT, A_MESSAGE, productId)).willReturn(offer);
+  }
+
+  private OfferRequest givenAnOfferRequest(String name, String email, String phoneNumber, Double amount, String message) {
+    OfferRequest offerRequest = new OfferRequest();
+    offerRequest.name = name;
+    offerRequest.email = email;
+    offerRequest.phoneNumber = phoneNumber;
+    offerRequest.amount = amount;
+    offerRequest.message = message;
+
+    return offerRequest;
   }
 }
