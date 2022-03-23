@@ -3,13 +3,13 @@ package ulaval.glo2003.product.api.response;
 import java.util.Objects;
 
 public class OffersResponse {
-  public Integer mean;
+  public Double mean;
   public Integer count;
 
   public OffersResponse() {
-  };
+  }
 
-  public OffersResponse(Integer mean, Integer count) {
+  public OffersResponse(Double mean, Integer count) {
     this.mean = mean;
     this.count = count;
   }
@@ -19,6 +19,9 @@ public class OffersResponse {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     OffersResponse that = (OffersResponse) o;
+    if (mean == null && that.mean == null) {
+      return count.equals(that.count);
+    }
     return mean.equals(that.mean) && count.equals(that.count);
   }
 

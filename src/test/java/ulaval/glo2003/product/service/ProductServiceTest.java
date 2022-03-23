@@ -8,13 +8,8 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.product.domain.Product;
-import ulaval.glo2003.product.domain.ProductFilterer;
-import ulaval.glo2003.product.domain.ProductFilters;
-import ulaval.glo2003.product.domain.ProductRepository;
-import ulaval.glo2003.product.domain.ProductSellerDomainService;
-import ulaval.glo2003.product.domain.ProductWithSeller;
-import ulaval.glo2003.product.domain.ProductId;
+import ulaval.glo2003.product.domain.Amount;
+import ulaval.glo2003.product.domain.*;
 import ulaval.glo2003.product.domain.exceptions.ProductNotFoundException;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
@@ -33,7 +28,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(MockitoExtension.class)
 class ProductServiceTest {
 
-  private final ProductId A_PRODUCT_ID = new ProductId();
+  private static final ProductId A_PRODUCT_ID = new ProductId();
+  private static final Amount AN_AMOUNT = Amount.fromDouble(20.0);
+  private static final Offer AN_OFFER = new OfferBuilder().withProductId(A_PRODUCT_ID).withAmount(AN_AMOUNT).build();
 
   @Mock
   private ProductRepository productRepository;
@@ -56,6 +53,9 @@ class ProductServiceTest {
   @Mock
   private ProductSellerDomainService productSellerService;
 
+  @Mock
+  private OfferRepository offerRepository;
+
   private ProductService productService;
 
   @BeforeEach
@@ -64,7 +64,8 @@ class ProductServiceTest {
             this.productRepository,
             this.sellerRepository,
             this.productSellerService,
-            this.productFilterer
+            this.productFilterer,
+            this.offerRepository
     );
   }
 
@@ -148,6 +149,42 @@ class ProductServiceTest {
     List<ProductWithSeller> actual = this.productService.getFilteredProducts(productFilters);
 
     assertEquals(List.of(productWithSeller), actual);
+  }
+
+  @Test
+  public void givenAnOfferAndAProductId_whenCreateOffer_thenShouldFindProductById() throws GenericException {
+    givenAProduct(A_PRODUCT_ID);
+
+    this.productService.createOffer(AN_OFFER);
+
+    verify(this.productRepository).findById(A_PRODUCT_ID);
+  }
+
+  @Test
+  public void givenAnOfferAndAProductId_whenCreateOffer_thenShouldAddOfferToProduct() throws GenericException {
+    givenAProduct(A_PRODUCT_ID);
+
+    this.productService.createOffer(AN_OFFER);
+
+    verify(this.product).addOfferAmount(AN_AMOUNT);
+  }
+
+  @Test
+  public void givenAnOfferAndAProductId_whenCreateOffer_thenShouldSaveProduct() throws GenericException {
+    givenAProduct(A_PRODUCT_ID);
+
+    this.productService.createOffer(AN_OFFER);
+
+    verify(this.productRepository).save(product);
+  }
+
+  @Test
+  public void givenAnOfferAndAProductId_whenCreateOffer_thenShouldSaveOffer() throws GenericException {
+    givenAProduct(A_PRODUCT_ID);
+
+    this.productService.createOffer(AN_OFFER);
+
+    verify(this.offerRepository).save(AN_OFFER);
   }
 
   private void givenASellerId(SellerId sellerId) {

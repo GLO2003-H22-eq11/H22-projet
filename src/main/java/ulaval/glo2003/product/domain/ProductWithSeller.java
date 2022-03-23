@@ -36,8 +36,8 @@ public class ProductWithSeller {
     return this.product.getDescription();
   }
 
-  public int getProductSuggestedPriceAmountIntValue() {
-    return this.product.getSuggestedPriceAmountIntValue();
+  public Double getProductSuggestedPriceAmountIntValue() {
+    return this.product.getSuggestedPriceAmountDoubleValue();
   }
 
   public Offers getProductOffers() {

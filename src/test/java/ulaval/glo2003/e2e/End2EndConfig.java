@@ -25,9 +25,9 @@ public abstract class End2EndConfig {
   public static final String A_VALID_UUID_FORMAT = "0ce7f24b-e80e-4513-a7bc-78ae2a71c3a5";
   public static final String A_VALID_NON_EXISTING_UUID_FORMAT = "d3815eac-bf01-49bf-b570-3a8f376b8c15";
   public static final String A_NON_VALID_UUID_FORMAT = "0ce7f24b";
-  public static final int A_VALID_SUGGESTED_PRICE = 10;
+  public static final Double A_VALID_SUGGESTED_PRICE = 10.0;
   public static final List<String> A_CATEGORIES = List.of("A", "B", "C");
-  public static final int A_NEGATIVE_PRICE = -5;
+  public static final Double A_NEGATIVE_PRICE = -5.0;
 
   public static final String AN_ERROR_DESCRIPTION = "description";
   public static final String A_MISSING_PARAMETER = "MISSING_PARAMETER";

@@ -1,33 +1,39 @@
 package ulaval.glo2003.product.service;
 
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.product.domain.ProductFilterer;
-import ulaval.glo2003.product.domain.ProductRepository;
-import ulaval.glo2003.product.domain.ProductWithSeller;
-import ulaval.glo2003.product.domain.ProductSellerDomainService;
+import ulaval.glo2003.product.domain.Offer;
+import ulaval.glo2003.product.domain.OfferRepository;
 import ulaval.glo2003.product.domain.Product;
+import ulaval.glo2003.product.domain.ProductFilterer;
 import ulaval.glo2003.product.domain.ProductFilters;
 import ulaval.glo2003.product.domain.ProductId;
+import ulaval.glo2003.product.domain.ProductRepository;
+import ulaval.glo2003.product.domain.ProductSellerDomainService;
+import ulaval.glo2003.product.domain.ProductWithSeller;
 import ulaval.glo2003.seller.domain.SellerRepository;
 
 import java.util.List;
+
 
 public class ProductService {
   private final ProductRepository productRepository;
   private final SellerRepository sellerRepository;
   private final ProductSellerDomainService productSellerService;
   private final ProductFilterer productFilterer;
+  private final OfferRepository offerRepository;
 
   public ProductService(
           ProductRepository productRepository,
           SellerRepository sellerRepository,
           ProductSellerDomainService productSellerService,
-          ProductFilterer productFilterer
+          ProductFilterer productFilterer,
+          OfferRepository offerRepository
   ) {
     this.productRepository = productRepository;
     this.sellerRepository = sellerRepository;
     this.productSellerService = productSellerService;
     this.productFilterer = productFilterer;
+    this.offerRepository = offerRepository;
   }
 
   public ProductWithSeller getProductWithSeller(ProductId productId) throws GenericException {
@@ -46,5 +52,14 @@ public class ProductService {
     }
     List<Product> products = this.productFilterer.findFilteredProducts(productFilters);
     return this.productSellerService.getProductsWithSeller(products);
+  }
+
+  public void createOffer(Offer offer) throws GenericException {
+    Product product = this.productRepository.findById(offer.getProductId());
+
+    product.addOfferAmount(offer.getAmount());
+
+    this.productRepository.save(product);
+    this.offerRepository.save(offer);
   }
 }

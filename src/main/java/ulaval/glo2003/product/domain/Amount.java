@@ -10,7 +10,7 @@ public final class Amount {
     this.dollarAmount = amount;
   }
 
-  public static Amount fromInt(int value) {
+  public static Amount fromDouble(Double value) {
     return new Amount(BigDecimal.valueOf(value));
   }
 
@@ -18,12 +18,31 @@ public final class Amount {
     return this.dollarAmount;
   }
 
-  public int getIntValue() {
-    return this.dollarAmount.intValue();
+  public Double getDoubleValue() {
+    return this.dollarAmount.doubleValue();
   }
 
   public boolean isHigher(Amount amount) {
     return this.dollarAmount.intValue() > amount.getAmount().intValue();
+  }
+
+  public boolean isHigherOrEqual(Amount amount) {
+    return this.dollarAmount.intValue() >= amount.getAmount().intValue();
+  }
+
+  public Amount add(Amount amount) {
+    BigDecimal newAmount = dollarAmount.add(amount.getAmount());
+    return new Amount(newAmount);
+  }
+
+  public Amount multiply(int number) {
+    BigDecimal newAmount = dollarAmount.multiply(BigDecimal.valueOf(number));
+    return new Amount(newAmount);
+  }
+
+  public Amount divide(int number) {
+    BigDecimal newAmount = dollarAmount.divide(BigDecimal.valueOf(number));
+    return new Amount(newAmount);
   }
 
   @Override
@@ -38,4 +57,5 @@ public final class Amount {
   public int hashCode() {
     return Objects.hash(dollarAmount);
   }
+
 }
