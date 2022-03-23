@@ -63,6 +63,7 @@ public class AppContext {
   public final ProductRepository productRepository = new InMemoryProductRepository();
   public final OfferRepository offerRepository = new InMemoryOfferRepository();
 
+
   // domain
   public final ProductSellerDomainService productSellerDomainService = new ProductSellerDomainService(
           productWithSellerFactory,
