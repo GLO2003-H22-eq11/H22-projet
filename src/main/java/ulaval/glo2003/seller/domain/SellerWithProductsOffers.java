@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class SellerWithProducts {
+public class SellerWithProductsOffers {
 
   private final SellerId sellerId;
   private final String name;
@@ -15,7 +15,7 @@ public class SellerWithProducts {
   private final LocalDateTime createdAt;
   private List<ProductWithOffers> products;
 
-  public SellerWithProducts(
+  public SellerWithProductsOffers(
           SellerId sellerId,
           String name,
           String bio,

@@ -1,6 +1,6 @@
 package ulaval.glo2003.product.api.assembler;
 
-import ulaval.glo2003.product.api.ProductWithOfferResponse;
+import ulaval.glo2003.product.api.ProductWithOffersResponse;
 import ulaval.glo2003.product.api.response.OffersInformationResponse;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductSellerResponse;
@@ -10,7 +10,6 @@ import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductWithOffers;
 import ulaval.glo2003.product.domain.ProductWithSeller;
 import ulaval.glo2003.seller.api.SellerProductResponse;
-import ulaval.glo2003.seller.domain.SellerWithProducts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,15 +54,15 @@ public class ProductAssembler {
     );
   }
 
-  public List<ProductWithOfferResponse> toProductsWithOffersResponse(SellerWithProducts sellerInformation) {
-    List<ProductWithOfferResponse> productsWithOffersResponse = new ArrayList<>();
+  public List<ProductWithOffersResponse> toProductsWithOffersResponse(List<ProductWithOffers> productsWithOffers) {
+    List<ProductWithOffersResponse> productsWithOffersResponse = new ArrayList<>();
 
-    for (ProductWithOffers productWithOffers : sellerInformation.getProducts()) {
+    for (ProductWithOffers productWithOffers : productsWithOffers) {
 
       OffersInformationResponse offersInformationResponse =
               this.offersAssembler.toOffersInformationResponse(productWithOffers);
 
-      ProductWithOfferResponse productWithOfferResponse = new ProductWithOfferResponse(
+      ProductWithOffersResponse productWithOfferResponse = new ProductWithOffersResponse(
               productWithOffers.getStringId(),
               productWithOffers.getTitle(),
               productWithOffers.getDescription(),

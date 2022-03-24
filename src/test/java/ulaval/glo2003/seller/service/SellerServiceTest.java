@@ -32,13 +32,13 @@ class SellerServiceTest {
   private ProductRepository productRepository;
 
   @Mock
-  private OfferDomainService offerDomainService;
+  private ProductOfferDomainService productOfferDomainService;
 
   private SellerService sellerService;
 
   @BeforeEach
   public void setUp() {
-    this.sellerService = new SellerService(this.sellerRepository, this.productRepository, this.offerDomainService);
+    this.sellerService = new SellerService(this.sellerRepository, this.productRepository, this.productOfferDomainService);
   }
 
   @Test
