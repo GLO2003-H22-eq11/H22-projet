@@ -22,13 +22,12 @@ public class OffersAssembler {
   }
 
   public OffersInformationResponse toOffersInformationResponse(ProductWithOffers productWithOffers) {
-    List<OfferResponse> offerResponses = getOfferResponses(productWithOffers);
-
-    OffersInformationResponse offersInformationResponse = new OffersInformationResponse(
-            productWithOffers.getMinOffer(), productWithOffers.getMaxOffer(), productWithOffers.getMean(),
-            productWithOffers.getCount(), offerResponses
-    );
-    return offersInformationResponse;
+    List<OfferResponse> offersResponse = getOfferResponses(productWithOffers);
+    double minPrice = productWithOffers.getMinOffer();
+    double maxPrice = productWithOffers.getMaxOffer();
+    double mean = productWithOffers.getMean();
+    int count = productWithOffers.getCount();
+    return new OffersInformationResponse(minPrice, maxPrice, mean, count, offersResponse);
   }
 
   @NotNull
@@ -42,6 +41,7 @@ public class OffersAssembler {
               buyerResponse);
       offerResponses.add(offerResponse);
     }
+
     return offerResponses;
   }
 }

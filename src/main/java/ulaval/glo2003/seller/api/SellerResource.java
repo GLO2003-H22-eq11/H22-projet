@@ -83,7 +83,7 @@ public class SellerResource {
 
       SellerWithProductsOffers sellerWithProductsOffers = this.sellerService.getSellerWithProducts(sellerId);
 
-      SellerWithProductOffersResponse sellerWithOfferResponse =
+      SellerWithProductsOffersResponse sellerWithOfferResponse =
               this.sellerAssembler.toSellerWithProductsOffersResponse(sellerWithProductsOffers);
 
       return Response.ok().entity(sellerWithOfferResponse).build();

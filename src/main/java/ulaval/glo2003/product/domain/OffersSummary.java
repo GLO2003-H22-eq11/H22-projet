@@ -14,7 +14,7 @@ public class OffersSummary {
 
   public Double getMeanAmount() {
     if (this.mean == null) {
-      return null;
+      return 0.0; // TODO mettre à null
     }
     return this.mean.getDoubleValue();
   }

@@ -28,12 +28,12 @@ public class SellerAssembler {
   }
 
 
-  public SellerWithProductOffersResponse toSellerWithProductsOffersResponse(SellerWithProductsOffers
+  public SellerWithProductsOffersResponse toSellerWithProductsOffersResponse(SellerWithProductsOffers
                                                                                     sellerWithProductsOffers) {
     List<ProductWithOffersResponse> productsWithOffersResponse = this.productAssembler.
             toProductsWithOffersResponse(sellerWithProductsOffers.getProducts());
 
-    return new SellerWithProductOffersResponse(
+    return new SellerWithProductsOffersResponse(
             sellerWithProductsOffers.getStringSellerId(),
             sellerWithProductsOffers.getName(),
             sellerWithProductsOffers.getStringCreatedAt(),
