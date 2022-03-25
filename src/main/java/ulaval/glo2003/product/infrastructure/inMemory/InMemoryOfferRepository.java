@@ -19,7 +19,13 @@ public class InMemoryOfferRepository implements OfferRepository {
 
   @Override
   public List<Offer> findByProduct(Product product) {
-    return this.offersByProductId.get(product.getProductId());
+    List<Offer> offers = this.offersByProductId.get(product.getProductId());
+
+    if (offers == null) {
+      return new ArrayList<>();
+    }
+
+    return offers;
   }
 
 }
