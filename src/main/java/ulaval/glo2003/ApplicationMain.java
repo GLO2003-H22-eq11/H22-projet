@@ -12,7 +12,7 @@ import java.net.URI;
 
 public class ApplicationMain {
 
-  private static final String URL = "http://localhost:8083/";
+  private static final String URL = "http://localhost:8080/";
   private static final String PACKAGE = "ulaval.glo2003";
   private static final AppContext appContext = new AppContext();
 
