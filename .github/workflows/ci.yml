@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - '*'
+jobs:
+  test:
+    name: validate and test code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup java JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Cache the Maven packages to speed up build
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Checkstyle
+        run: mvn checkstyle:checkstyle
+
+      - name: Compile application
+        run: mvn compile
+
+      - name: Run tests
+        env:
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+          DATABASE_NAME: ${{secrets.DATABASE_NAME}}-tests
+        run: mvn verify
