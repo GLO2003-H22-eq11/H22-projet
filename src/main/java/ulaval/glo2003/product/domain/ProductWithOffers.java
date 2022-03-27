@@ -12,6 +12,7 @@ public class ProductWithOffers {
   private final Categories categories;
   private final List<Offer> productOffers;
   private final OffersSummary offersSummary;
+  private final String createdAt;
 
   public ProductWithOffers(
           ProductId productId,
@@ -20,7 +21,8 @@ public class ProductWithOffers {
           Amount suggestedPrice,
           Categories categories,
           List<Offer> productOffers,
-          OffersSummary offersSummarySummary
+          OffersSummary offersSummarySummary,
+          String createdAt
   ) {
     this.productId = productId;
     this.title = title;
@@ -29,6 +31,11 @@ public class ProductWithOffers {
     this.productOffers = productOffers;
     this.categories = categories;
     this.offersSummary = offersSummarySummary;
+    this.createdAt = createdAt;
+  }
+
+  public String getCreatedAt() {
+    return this.createdAt;
   }
 
   public String getTitle() {
@@ -69,11 +76,23 @@ public class ProductWithOffers {
     return this.offersSummary.getCount();
   }
 
-  public double getMaxOffer() {
+  public Double getMaxOffer() {
+    int count = this.getCount();
+
+    if (count == 0) {
+      return null;
+    }
+
     return this.offersSummary.getMax().getDoubleValue();
   }
 
-  public double getMinOffer() {
+  public Double getMinOffer() {
+    int count = this.getCount();
+
+    if (count == 0) {
+      return null;
+    }
+
     return this.offersSummary.getMin().getDoubleValue();
   }
 

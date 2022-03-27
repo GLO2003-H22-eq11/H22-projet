@@ -8,8 +8,6 @@ public class OffersSummary {
 
   public OffersSummary() {
     this.count = 0;
-    this.min = Amount.fromDouble(0.0);
-    this.max = Amount.fromDouble(0.0);
   }
 
   public Double getMeanAmount() {

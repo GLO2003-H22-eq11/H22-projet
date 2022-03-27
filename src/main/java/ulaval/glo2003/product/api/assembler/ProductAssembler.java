@@ -69,7 +69,8 @@ public class ProductAssembler {
               productWithOffers.getSuggestedPriceAmount(),
               productWithOffers.getProductCategories().stream().
                       map(Category::getCategoryName).collect(Collectors.toList()),
-              offersInformationResponse);
+              offersInformationResponse,
+              productWithOffers.getCreatedAt());
 
       productsWithOffersResponse.add(productWithOfferResponse);
     }

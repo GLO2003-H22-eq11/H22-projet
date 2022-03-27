@@ -12,7 +12,8 @@ public class ProductWithOffersFactory {
             product.getSuggestedPriceAmount(),
             product.getCategories(),
             productListOfOffer,
-            product.getOffers()
+            product.getOffers(),
+            product.getStringCreatedAt()
     );
   }
 }
