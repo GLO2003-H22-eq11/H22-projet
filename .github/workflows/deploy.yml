@@ -28,9 +28,6 @@ jobs:
 
       - name: Run tests
         run: mvn verify
-        env:
-          DB_URL: ${{secrets.DATABASE_URL}}
-          DB_NAME: ${{secrets.DATABADE_NAME}}-tests
 
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:

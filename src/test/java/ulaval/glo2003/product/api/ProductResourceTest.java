@@ -29,7 +29,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -106,8 +105,7 @@ class ProductResourceTest {
             this.productRequestValidator,
             this.productFiltersFactory,
             this.offerFactory,
-            this.offerRequestValidator,
-            mongoDBProductRepository);
+            this.offerRequestValidator);
   }
 
   @Test

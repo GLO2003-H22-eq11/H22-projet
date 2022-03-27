@@ -32,7 +32,4 @@ jobs:
         run: mvn compile
 
       - name: Run tests
-        env:
-          DATABASE_URL: ${{secrets.DATABASE_URL}}
-          DATABASE_NAME: ${{secrets.DATABASE_NAME}}-tests
         run: mvn verify

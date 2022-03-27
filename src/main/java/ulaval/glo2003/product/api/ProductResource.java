@@ -24,8 +24,6 @@ import ulaval.glo2003.product.domain.ProductFilters;
 import ulaval.glo2003.product.domain.ProductId;
 import ulaval.glo2003.product.domain.ProductIdFactory;
 import ulaval.glo2003.product.domain.ProductWithSeller;
-import ulaval.glo2003.product.infrastructure.mongodb.entity.ProductEntity;
-import ulaval.glo2003.product.infrastructure.mongodb.repository.MongoDBProductRepository;
 import ulaval.glo2003.product.service.ProductService;
 
 import java.net.URI;
@@ -43,7 +41,6 @@ public class ProductResource {
   private final ProductFiltersFactory productFiltersFactory;
   private final OfferFactory offerFactory;
   private final OfferRequestValidator offerRequestValidator;
-  private final MongoDBProductRepository mongoDBProductRepository;
 
   public ProductResource(
           ProductFactory productFactory,
@@ -53,8 +50,8 @@ public class ProductResource {
           ProductRequestValidator productRequestValidator,
           ProductFiltersFactory productFiltersFactory,
           OfferFactory offerFactory,
-          OfferRequestValidator offerRequestValidator,
-          MongoDBProductRepository mongoDBProductRepository) {
+          OfferRequestValidator offerRequestValidator
+  ) {
     this.productFactory = productFactory;
     this.productService = productService;
     this.productAssembler = productAssembler;
@@ -63,7 +60,6 @@ public class ProductResource {
     this.productFiltersFactory = productFiltersFactory;
     this.offerFactory = offerFactory;
     this.offerRequestValidator = offerRequestValidator;
-    this.mongoDBProductRepository = mongoDBProductRepository;
   }
 
   @POST
@@ -146,16 +142,5 @@ public class ProductResource {
     } catch (GenericException e) {
       return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
     }
-  }
-
-  @POST
-  @Path("/test")
-  public Response test() {
-    ProductEntity aProductEntity = new ProductEntity();
-    aProductEntity.productId = "123";
-
-    this.mongoDBProductRepository.save(aProductEntity);
-
-    return Response.ok().build();
   }
 }

@@ -14,7 +14,7 @@ import java.net.URI;
 
 public class ApplicationMain {
 
-  private static final String PORT = System.getenv("PORT");
+  private static final String PORT = System.getenv().getOrDefault("PORT", "8080");
   public static final String URL = "http://localhost:" + PORT;
   private static final String PACKAGE = "ulaval.glo2003";
   private static final AppContext appContext = new AppContext();
@@ -49,8 +49,8 @@ public class ApplicationMain {
             appContext.productRequestValidator,
             appContext.productFiltersFactory,
             appContext.offerFactory,
-            appContext.offerRequestValidator,
-            appContext.mongoDBProductRepository);
+            appContext.offerRequestValidator
+    );
   }
 
   private static SellerResource createSellerResource() {
