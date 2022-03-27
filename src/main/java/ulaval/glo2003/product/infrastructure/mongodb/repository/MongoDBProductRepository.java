@@ -14,5 +14,4 @@ public class MongoDBProductRepository {
   public void save(ProductEntity productEntity) {
     this.datastore.save(productEntity);
   }
-
 }

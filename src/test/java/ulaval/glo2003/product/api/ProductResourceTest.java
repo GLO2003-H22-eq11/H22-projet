@@ -21,6 +21,7 @@ import ulaval.glo2003.product.domain.ProductFilters;
 import ulaval.glo2003.product.domain.ProductId;
 import ulaval.glo2003.product.domain.ProductIdFactory;
 import ulaval.glo2003.product.domain.ProductWithSeller;
+import ulaval.glo2003.product.infrastructure.mongodb.repository.MongoDBProductRepository;
 import ulaval.glo2003.product.service.ProductService;
 
 import java.net.URI;
@@ -28,7 +29,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -89,6 +89,9 @@ class ProductResourceTest {
   @Mock
   private OfferFactory offerFactory;
 
+  @Mock
+  private MongoDBProductRepository mongoDBProductRepository;
+
   private ProductResource productResource;
 
 
@@ -102,8 +105,7 @@ class ProductResourceTest {
             this.productRequestValidator,
             this.productFiltersFactory,
             this.offerFactory,
-            this.offerRequestValidator
-    );
+            this.offerRequestValidator);
   }
 
   @Test

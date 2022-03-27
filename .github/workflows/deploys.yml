@@ -1,0 +1,5 @@
+deploy:
+  staging:
+    url: "https://processus-equipe-22-staging.herokuapp.com/"
+  production:
+    url: "https://processus-equipe-22-production.herokuapp.com/"

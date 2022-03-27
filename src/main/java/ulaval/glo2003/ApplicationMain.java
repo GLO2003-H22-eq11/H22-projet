@@ -6,17 +6,22 @@ import org.glassfish.jersey.server.ResourceConfig;
 import ulaval.glo2003.health.api.HealthResource;
 import ulaval.glo2003.product.api.ProductResource;
 import ulaval.glo2003.seller.api.SellerResource;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import java.io.IOException;
 import java.net.URI;
 
 public class ApplicationMain {
 
-  private static final String URL = "http://localhost:8080/";
+  private static final String PORT = System.getenv().getOrDefault("PORT", "8080");
+  public static final String URL = "http://localhost:" + PORT;
   private static final String PACKAGE = "ulaval.glo2003";
   private static final AppContext appContext = new AppContext();
+  private static final Logger logger = LogManager.getLogger(ApplicationMain.class);
 
   public static void main(String[] args) throws IOException {
+    logger.trace("Starting application.");
     ResourceConfig resourceConfig = setupResources();
     URI uri = URI.create(URL);
 
