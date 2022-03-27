@@ -1,5 +1,7 @@
 package ulaval.glo2003.product.domain;
 
+import java.time.LocalDateTime;
+
 public class OfferBuilder {
   private ProductId productId;
   private final String name;
@@ -36,7 +38,8 @@ public class OfferBuilder {
             this.email,
             this.phoneNumber,
             this.amount,
-            this.message
+            this.message,
+            LocalDateTime.now()
     );
   }
 }

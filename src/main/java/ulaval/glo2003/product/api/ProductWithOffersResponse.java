@@ -8,11 +8,11 @@ public class ProductWithOffersResponse {
   public String id;
   public String title;
   public String description;
-  public double suggestedPrice;
+  public Double suggestedPrice;
   public List<String> categories;
   public OffersInformationResponse offers;
 
-  public ProductWithOffersResponse(String id, String title, String description, double suggestedPrice,
+  public ProductWithOffersResponse(String id, String title, String description, Double suggestedPrice,
                                    List<String> categories, OffersInformationResponse offersInformationResponse) {
     this.id = id;
     this.title = title;

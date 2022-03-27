@@ -2,14 +2,16 @@ package ulaval.glo2003.product.api.response;
 
 public class OfferResponse {
   public String id;
-  public double amount;
+  public Double amount;
   public String message;
   public BuyerResponse buyer;
+  public String createdAt;
 
-  public OfferResponse(String id, double amount, String message, BuyerResponse buyer) {
+  public OfferResponse(String id, Double amount, String message, BuyerResponse buyer, String createdAt) {
     this.id = id;
     this.amount = amount;
     this.message = message;
     this.buyer = buyer;
+    this.createdAt = createdAt;
   }
 }

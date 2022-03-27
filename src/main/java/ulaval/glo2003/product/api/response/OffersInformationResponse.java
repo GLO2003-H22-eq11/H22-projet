@@ -3,13 +3,13 @@ package ulaval.glo2003.product.api.response;
 import java.util.List;
 
 public class OffersInformationResponse {
-  public double min;
-  public double max;
-  public double mean;
-  public int count;
+  public Double min;
+  public Double max;
+  public Double mean;
+  public Integer count;
   public List<OfferResponse> items;
 
-  public OffersInformationResponse(double min, double max, double mean, int count, List<OfferResponse> items) {
+  public OffersInformationResponse(Double min, Double max, Double mean, Integer count, List<OfferResponse> items) {
     this.min = min;
     this.max = max;
     this.mean = mean;

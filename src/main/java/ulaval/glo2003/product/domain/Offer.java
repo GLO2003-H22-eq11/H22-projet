@@ -1,5 +1,7 @@
 package ulaval.glo2003.product.domain;
 
+import java.time.LocalDateTime;
+
 public class Offer {
 
   private final OfferId offerId;
@@ -9,9 +11,10 @@ public class Offer {
   private final PhoneNumber phoneNumber;
   private final Amount amount;
   private final String message;
+  private final LocalDateTime createdAt;
 
   public Offer(OfferId offerId, ProductId productId, String name, Email email, PhoneNumber phoneNumber,
-               Amount amount, String message) {
+               Amount amount, String message, LocalDateTime createdAt) {
     this.offerId = offerId;
     this.productId = productId;
     this.name = name;
@@ -19,6 +22,11 @@ public class Offer {
     this.phoneNumber = phoneNumber;
     this.amount = amount;
     this.message = message;
+    this.createdAt = createdAt;
+  }
+
+  public String getCreatedAt() {
+    return this.createdAt.toString();
   }
 
   public String getId() {

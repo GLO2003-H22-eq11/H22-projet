@@ -14,7 +14,7 @@ import java.net.URI;
 
 public class ApplicationMain {
 
-  private static final String PORT = System.getenv().getOrDefault("PORT", "8080");
+  private static final String PORT = System.getenv().getOrDefault("PORT", "8081");
   public static final String URL = "http://localhost:" + PORT;
   private static final String PACKAGE = "ulaval.glo2003";
   private static final AppContext appContext = new AppContext();

@@ -55,8 +55,14 @@ public class ProductWithOffers {
     return this.categories.getCategories();
   }
 
-  public double getMean() {
-    return this.offersSummary.getMeanAmount();
+  public Double getMean() {
+    Double mean = this.offersSummary.getMeanAmount();
+
+    if (mean == null) {
+      return null;
+    }
+
+    return mean;
   }
 
   public int getCount() {
