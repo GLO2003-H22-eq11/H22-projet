@@ -57,11 +57,11 @@ public class AppContext {
 
   public final Datastore datastore = DatastoreProvider.getDatastore();
 
-  public final SellerRepository mongoDBSellerRepository = new MongoDBSellerRepository(
+  public final SellerRepository sellerRepository = new MongoDBSellerRepository(
           datastore,
           mongoDbSellerAssembler
   );
-  public final ProductRepository mongoDBProductRepository = new MongoDBProductRepository(
+  public final ProductRepository productRepository = new MongoDBProductRepository(
           datastore,
           mongoDbProductAssembler
   );
@@ -70,14 +70,14 @@ public class AppContext {
 
   public final ProductSellerDomainService productSellerDomainService = new ProductSellerDomainService(
           productWithSellerFactory,
-          mongoDBSellerRepository
+          sellerRepository
   );
-  public final ProductFilterer productFilterer = new ProductFilterer(mongoDBProductRepository);
+  public final ProductFilterer productFilterer = new ProductFilterer(productRepository);
 
-  public final SellerService sellerService = new SellerService(mongoDBSellerRepository, mongoDBProductRepository);
+  public final SellerService sellerService = new SellerService(sellerRepository, productRepository);
   public final ProductService productService = new ProductService(
-          mongoDBProductRepository,
-          mongoDBSellerRepository,
+          productRepository,
+          sellerRepository,
           productSellerDomainService,
           productFilterer,
           offerRepository
