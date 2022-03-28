@@ -1,6 +1,7 @@
 package ulaval.glo2003.seller.infrastructure.mongoDb.repository;
 
 import dev.morphia.Datastore;
+import dev.morphia.query.Query;
 import dev.morphia.query.experimental.filters.Filters;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.seller.domain.Seller;
@@ -45,6 +46,12 @@ public class MongoDBSellerRepository implements SellerRepository {
     if (sellerEntity == null) {
       throw new SellerNotFoundException();
     }
+  }
 
+  @Override
+  public void clear() {
+    Query<SellerEntity> query = this.datastore.find(SellerEntity.class);
+
+    query.forEach(this.datastore::delete);
   }
 }

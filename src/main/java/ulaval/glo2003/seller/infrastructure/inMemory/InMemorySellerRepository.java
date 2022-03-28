@@ -8,7 +8,7 @@ import ulaval.glo2003.seller.domain.exceptions.SellerNotFoundException;
 import java.util.HashMap;
 
 public class InMemorySellerRepository implements SellerRepository {
-  private final HashMap<SellerId, Seller> sellers = new HashMap<>();
+  private HashMap<SellerId, Seller> sellers = new HashMap<>();
 
   @Override
   public void save(Seller seller) {
@@ -29,5 +29,10 @@ public class InMemorySellerRepository implements SellerRepository {
     if (this.sellers.get(id) == null) {
       throw new SellerNotFoundException();
     }
+  }
+
+  @Override
+  public void clear() {
+    this.sellers = new HashMap<>();
   }
 }

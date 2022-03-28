@@ -1,5 +1,7 @@
 package ulaval.glo2003.product.domain;
 
+import java.util.Objects;
+
 public class Offers {
   private Amount mean;
   private Integer count;
@@ -33,5 +35,18 @@ public class Offers {
       this.mean = offerAmount;
       this.count += 1;
     }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Offers offers = (Offers) o;
+    return Objects.equals(mean, offers.mean) && count.equals(offers.count);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(mean, count);
   }
 }

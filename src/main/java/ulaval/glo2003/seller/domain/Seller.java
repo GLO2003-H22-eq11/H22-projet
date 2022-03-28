@@ -92,12 +92,11 @@ public class Seller {
     Seller seller = (Seller) o;
     return sellerId.equals(seller.sellerId) && name.equals(seller.name)
             && bio.equals(seller.bio) && birthDate.equals(seller.birthDate)
-            && createdAt.equals(seller.createdAt);
+            && createdAt.equals(seller.createdAt) && products.equals(seller.products);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(sellerId, name, bio, birthDate, createdAt);
+    return Objects.hash(sellerId, name, bio, birthDate, createdAt, products);
   }
-
 }

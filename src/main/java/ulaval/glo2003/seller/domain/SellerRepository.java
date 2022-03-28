@@ -9,4 +9,6 @@ public interface SellerRepository {
   Seller findById(SellerId id) throws GenericException;
 
   void verifyIfSellerExists(SellerId id) throws SellerNotFoundException;
+
+  void clear();
 }

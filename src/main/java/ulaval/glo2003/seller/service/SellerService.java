@@ -33,7 +33,7 @@ public class SellerService {
 
   public void deleteAll() {
     if (System.getenv("DATABASE_NAME").equals("floppa-dev")) {
-      this.productRepository.clear();
+      this.sellerRepository.clear();
     }
   }
 }

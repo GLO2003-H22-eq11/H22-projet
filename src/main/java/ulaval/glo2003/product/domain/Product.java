@@ -5,6 +5,7 @@ import ulaval.glo2003.seller.domain.SellerId;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 public class Product {
   private final SellerId sellerId;
@@ -106,5 +107,23 @@ public class Product {
     } else {
       throw new InvalidOfferPriceException();
     }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Product product = (Product) o;
+    return sellerId.equals(product.sellerId)
+            && productId.equals(product.productId)
+            && title.equals(product.title)
+            && description.equals(product.description) && suggestedPrice.equals(product.suggestedPrice)
+            && offers.equals(product.offers) && categories.equals(product.categories)
+            && createdAt.equals(product.createdAt);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(sellerId, productId, title, description, suggestedPrice, offers, categories, createdAt);
   }
 }
