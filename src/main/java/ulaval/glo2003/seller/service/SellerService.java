@@ -39,7 +39,7 @@ public class SellerService {
     return seller;
   }
 
-  public SellerWithProductsOffers getSellerWithProducts(SellerId sellerId) throws GenericException {
+  public SellerWithProductsOffers getSellerWithProductsOffers(SellerId sellerId) throws GenericException {
     Seller seller = this.sellerRepository.findById(sellerId);
 
     return this.productOfferDomainService.assembleProductsWithOffersToSeller(seller);

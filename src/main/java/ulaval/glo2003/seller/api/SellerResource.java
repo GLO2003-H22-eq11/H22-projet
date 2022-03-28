@@ -81,7 +81,7 @@ public class SellerResource {
     try {
       SellerId sellerId = this.sellerIdFactory.create(sellerIdString);
 
-      SellerWithProductsOffers sellerWithProductsOffers = this.sellerService.getSellerWithProducts(sellerId);
+      SellerWithProductsOffers sellerWithProductsOffers = this.sellerService.getSellerWithProductsOffers(sellerId);
 
       SellerWithProductsOffersResponse sellerWithOfferResponse =
               this.sellerAssembler.toSellerWithProductsOffersResponse(sellerWithProductsOffers);

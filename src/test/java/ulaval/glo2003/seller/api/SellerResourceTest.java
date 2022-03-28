@@ -7,10 +7,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.seller.domain.Seller;
-import ulaval.glo2003.seller.domain.SellerBuilder;
-import ulaval.glo2003.seller.domain.SellerId;
-import ulaval.glo2003.seller.domain.SellerIdFactory;
+import ulaval.glo2003.seller.domain.*;
+import ulaval.glo2003.seller.domain.exceptions.InvalidSellerIdException;
 import ulaval.glo2003.seller.service.SellerService;
 
 
@@ -43,6 +41,12 @@ public class SellerResourceTest {
 
   @Mock
   private SellerRequestValidator sellerRequestValidator;
+
+  @Mock
+  private SellerWithProductsOffers sellerWithProductsOffers;
+
+  @Mock
+  private SellerWithProductsOffersResponse sellerWithProductsOffersResponse;
 
   private SellerResource sellerResource;
 
@@ -105,6 +109,36 @@ public class SellerResourceTest {
     Response actualResponse = this.sellerResource.getSellerById(A_SELLER_STRING_ID);
 
     assertEquals(expectedResponse.getEntity(), actualResponse.getEntity());
+  }
+
+  @Test
+  public void givenASellerId_whenGetCurrentSeller_thenShouldCallTheSellerIdFactory() throws InvalidSellerIdException {
+    this.sellerResource.getCurrentSeller(A_SELLER_STRING_ID);
+
+    verify(this.sellerIdFactory).create(A_SELLER_STRING_ID);
+  }
+
+  @Test
+  public void givenASellerId_whenGetCurrentSeller_thenShouldCallTheServiceToGetSellerProductsWithOffers() throws
+          GenericException {
+    SellerId aSellerId = new SellerId(A_SELLER_STRING_ID);
+    givenASellerId(aSellerId);
+
+    this.sellerResource.getCurrentSeller(A_SELLER_STRING_ID);
+
+    verify(this.sellerService).getSellerWithProductsOffers(aSellerId);
+  }
+
+  @Test
+  public void givenASellerId_whenGetCurrentSeller_thenShouldCallTheSellerAssemblerToCreateResponse() throws
+          GenericException {
+    SellerId aSellerId = new SellerId(A_SELLER_STRING_ID);
+    givenASellerId(aSellerId);
+    given(this.sellerService.getSellerWithProductsOffers(aSellerId)).willReturn(this.sellerWithProductsOffers);
+
+    this.sellerResource.getCurrentSeller(A_SELLER_STRING_ID);
+
+    verify(this.sellerAssembler).toSellerWithProductsOffersResponse(this.sellerWithProductsOffers);
   }
 
   private SellerResponse givenASellerResponse(Seller aSeller) {
