@@ -2,6 +2,7 @@ package ulaval.glo2003.product.domain;
 
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerWithProductsOffers;
+import ulaval.glo2003.seller.domain.SellerWithProductsOffersFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,25 +30,35 @@ public class ProductOfferDomainService {
   public SellerWithProductsOffers assembleProductsWithOffersToSeller(Seller seller) {
     List<Product> products = this.productRepository.findBySellerId(seller.getSellerId());
 
-    Map<Product, List<Offer>> offersWithProducts = new HashMap<>();
+    Map<Product, List<Offer>> productsWithOffers = this.getMapOfProductsWithTheirOffers(products);
 
-    products.forEach((product) -> {
-      offersWithProducts.put(product, this.offerRepository.findByProduct(product));
-    });
-
-    return this.assembleSellerInformation(seller, offersWithProducts);
+    return this.assembleOffersToSeller(seller, productsWithOffers);
 
   }
 
-  public SellerWithProductsOffers assembleSellerInformation(Seller seller, Map<Product, List<Offer>> offers) {
+  private SellerWithProductsOffers assembleOffersToSeller(Seller seller, Map<Product, List<Offer>> offers) {
+    List<ProductWithOffers> productsWithOffers = getProductWithOffers(offers);
+
+    return this.sellerWithProductsOffersFactory.create(seller, productsWithOffers);
+  }
+
+  private Map<Product, List<Offer>> getMapOfProductsWithTheirOffers(List<Product> products) {
+    Map<Product, List<Offer>> productsWithOffers = new HashMap<>();
+
+    products.forEach((product) -> {
+      productsWithOffers.put(product, this.offerRepository.findByProduct(product));
+    });
+    return productsWithOffers;
+  }
+
+  private List<ProductWithOffers> getProductWithOffers(Map<Product, List<Offer>> offers) {
     List<ProductWithOffers> productsWithOffers = new ArrayList<>();
 
     for (Map.Entry<Product, List<Offer>> productWithOffer : offers.entrySet()) {
       productsWithOffers.add(this.productWithOffersFactory.create(productWithOffer.getKey(),
               productWithOffer.getValue()));
     }
-
-    return this.sellerWithProductsOffersFactory.create(seller, productsWithOffers);
+    return productsWithOffers;
   }
 
 }

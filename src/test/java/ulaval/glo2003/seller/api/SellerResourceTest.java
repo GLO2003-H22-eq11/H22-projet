@@ -141,6 +141,21 @@ public class SellerResourceTest {
     verify(this.sellerAssembler).toSellerWithProductsOffersResponse(this.sellerWithProductsOffers);
   }
 
+  @Test
+  public void givenASellerId_whenGetCurrentSeller_thenShouldReturnAResponseWithTheRightEntity() throws
+          GenericException {
+    SellerId aSellerId = new SellerId(A_SELLER_STRING_ID);
+    givenASellerId(aSellerId);
+    given(this.sellerService.getSellerWithProductsOffers(aSellerId)).willReturn(this.sellerWithProductsOffers);
+    given(this.sellerAssembler.toSellerWithProductsOffersResponse(this.sellerWithProductsOffers)).willReturn(this.sellerWithProductsOffersResponse);
+
+    Response expectedResponse = Response.ok().entity(this.sellerWithProductsOffersResponse).build();
+    Response actualResponse = this.sellerResource.getCurrentSeller(A_SELLER_STRING_ID);
+
+    assertEquals(expectedResponse.getEntity(), actualResponse.getEntity());
+  }
+
+
   private SellerResponse givenASellerResponse(Seller aSeller) {
     SellerResponse aSellerResponse = new SellerResponse(A_SELLER_STRING_ID, "allo", "created", "bio", Collections.emptyList());
     given(this.sellerAssembler.toResponse(aSeller)).willReturn(aSellerResponse);

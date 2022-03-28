@@ -12,7 +12,7 @@ import ulaval.glo2003.product.domain.OfferRepository;
 import ulaval.glo2003.product.domain.ProductIdFactory;
 import ulaval.glo2003.product.domain.ProductRepository;
 import ulaval.glo2003.product.domain.ProductWithOffersFactory;
-import ulaval.glo2003.product.domain.SellerWithProductsOffersFactory;
+import ulaval.glo2003.seller.domain.SellerWithProductsOffersFactory;
 import ulaval.glo2003.product.domain.OfferFactory;
 import ulaval.glo2003.product.domain.ProductFilterer;
 import ulaval.glo2003.product.domain.ProductWithSellerFactory;

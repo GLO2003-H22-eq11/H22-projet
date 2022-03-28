@@ -39,7 +39,8 @@ class ProductSellerDomainServiceTest {
   }
 
   @Test
-  public void givenAListOfProducts_whenGetProductsWithSeller_thenShouldGetTheirCorrespondingSeller() throws GenericException {
+  public void givenAListOfProducts_whenGetProductsWithSeller_thenShouldGetTheirCorrespondingSeller()
+          throws GenericException {
     givenASeller(A_SELLER_ID, A_SELLER);
     givenASeller(ANOTHER_SELLER_ID, ANOTHER_SELLER);
 
