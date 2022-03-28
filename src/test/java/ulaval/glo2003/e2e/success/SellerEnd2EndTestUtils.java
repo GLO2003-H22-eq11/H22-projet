@@ -13,7 +13,6 @@ import static ulaval.glo2003.e2e.End2EndConfig.A_SELLER_DATE;
 import static ulaval.glo2003.e2e.End2EndConfig.A_SELLER_NAME;
 import static ulaval.glo2003.e2e.End2EndConfig.CONTENT_TYPE;
 import static ulaval.glo2003.e2e.End2EndConfig.LOCATION;
-import static ulaval.glo2003.e2e.End2EndConfig.PRODUCTS_END_POINT;
 import static ulaval.glo2003.e2e.End2EndConfig.SELLER_END_POINT;
 import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.createProduct;
 
@@ -55,7 +54,7 @@ public class SellerEnd2EndTestUtils {
     return getSellerResponse(sellerId).getBody().as(SellerResponse.class);
   }
 
-  public static void clearDatabase() {
+  public static void clearSellersDatabase() {
     given().delete(SELLER_END_POINT + "/clear");
   }
 }

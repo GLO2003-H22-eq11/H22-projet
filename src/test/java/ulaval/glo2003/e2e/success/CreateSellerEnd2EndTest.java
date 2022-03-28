@@ -31,8 +31,8 @@ public class CreateSellerEnd2EndTest {
 
   @AfterAll
   public static void clearDatabase() {
-    ProductEnd2EndTestUtils.clearDatabase();
-    SellerEnd2EndTestUtils.clearDatabase();
+    ProductEnd2EndTestUtils.clearProductsDatabase();
+    SellerEnd2EndTestUtils.clearSellersDatabase();
   }
 
 
