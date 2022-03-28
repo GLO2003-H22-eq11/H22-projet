@@ -26,6 +26,9 @@ jobs:
       - name: Checkstyle
         run: mvn checkstyle:checkstyle
 
+      - name: MongoDB in GitHub Actions
+        uses: supercharge/mongodb-github-action@1.7.0
+
       - name: Run tests
         run: mvn verify
 

@@ -51,7 +51,6 @@
         <module name="WhitespaceAfter"/>
         <module name="WhitespaceAround"/>
 
-        <module name="AvoidInlineConditionals"/>
         <module name="EmptyStatement"/>
         <module name="MagicNumber"/>
 

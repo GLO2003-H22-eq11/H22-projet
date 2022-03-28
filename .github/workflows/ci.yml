@@ -31,5 +31,8 @@ jobs:
       - name: Compile application
         run: mvn compile
 
+      - name: MongoDB in GitHub Actions
+        uses: supercharge/mongodb-github-action@1.7.0
+
       - name: Run tests
         run: mvn verify

@@ -30,4 +30,10 @@ public class SellerService {
 
     return seller;
   }
+
+  public void deleteAll() {
+    if (System.getenv("DATABASE_NAME").equals("floppa-dev")) {
+      this.productRepository.clear();
+    }
+  }
 }

@@ -11,7 +11,6 @@ import ulaval.glo2003.seller.infrastructure.MongoDbSellerAssembler;
 import ulaval.glo2003.seller.infrastructure.mongoDb.entity.SellerEntity;
 
 public class MongoDBSellerRepository implements SellerRepository {
-
   private final MongoDbSellerAssembler mongoDbSellerAssembler;
   private final Datastore datastore;
 

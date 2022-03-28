@@ -1,5 +1,6 @@
 package ulaval.glo2003.product.api;
 
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -142,5 +143,12 @@ public class ProductResource {
     } catch (GenericException e) {
       return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
     }
+  }
+
+  @DELETE
+  @Path("/clear")
+  public Response clear() {
+    this.productService.deleteAll();
+    return Response.ok().build();
   }
 }

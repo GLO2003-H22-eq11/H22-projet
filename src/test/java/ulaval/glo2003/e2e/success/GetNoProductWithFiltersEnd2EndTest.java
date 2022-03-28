@@ -30,6 +30,12 @@ public class GetNoProductWithFiltersEnd2EndTest {
     stop();
   }
 
+  @AfterAll
+  public static void clearDatabase() {
+    ProductEnd2EndTestUtils.clearDatabase();
+    SellerEnd2EndTestUtils.clearDatabase();
+  }
+
   @Test
   public void givenAProduct_whenGetProductsWithNonExistentValues_thenShouldReturn200StatusCode() {
     createSellerWithProduct();

@@ -16,6 +16,8 @@ public class SellerEntity {
   private LocalDate birthDate;
   private LocalDateTime createdAt;
 
+  public SellerEntity() {
+  }
 
   public SellerEntity(
           String sellerId,

@@ -62,4 +62,11 @@ public class ProductService {
     this.productRepository.save(product);
     this.offerRepository.save(offer);
   }
+
+  public void deleteAll() {
+    if (System.getenv("DATABASE_NAME").equals("floppa-dev")) {
+      this.productRepository.clear();
+      this.offerRepository.clear();
+    }
+  }
 }

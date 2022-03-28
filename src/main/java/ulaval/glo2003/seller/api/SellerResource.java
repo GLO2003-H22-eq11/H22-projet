@@ -1,5 +1,6 @@
 package ulaval.glo2003.seller.api;
 
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -70,5 +71,12 @@ public class SellerResource {
     } catch (GenericException e) {
       return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
     }
+  }
+
+  @DELETE
+  @Path("/clear")
+  public Response clear() {
+    this.sellerService.deleteAll();
+    return Response.ok().build();
   }
 }

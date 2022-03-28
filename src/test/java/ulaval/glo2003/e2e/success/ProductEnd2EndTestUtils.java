@@ -85,4 +85,8 @@ public class ProductEnd2EndTestUtils {
   public static ProductsResponse getProductsResponseBodyWithNonExistentValuesAsFilters() {
     return getProductsResponseWithNonExistentValuesAsFilters().getBody().as(ProductsResponse.class);
   }
+
+  public static void clearDatabase() {
+    given().delete(PRODUCTS_END_POINT + "/clear");
+  }
 }

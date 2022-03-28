@@ -8,6 +8,11 @@ public class Offers {
     this.count = 0;
   }
 
+  public Offers(Amount mean, Integer count) {
+    this.mean = mean;
+    this.count = count;
+  }
+
   public Double getMeanAmount() {
     if (this.mean == null) {
       return null;

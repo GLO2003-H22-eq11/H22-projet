@@ -9,10 +9,15 @@ import java.util.HashMap;
 import java.util.List;
 
 public class InMemoryOfferRepository implements OfferRepository {
-  private final HashMap<ProductId, List<Offer>> offersByProductId = new HashMap<>();
+  private HashMap<ProductId, List<Offer>> offersByProductId = new HashMap<>();
 
   @Override
   public void save(Offer offer) {
     this.offersByProductId.computeIfAbsent(offer.getProductId(), k -> new ArrayList<>()).add(offer);
+  }
+
+  @Override
+  public void clear() {
+    this.offersByProductId = new HashMap<>();
   }
 }

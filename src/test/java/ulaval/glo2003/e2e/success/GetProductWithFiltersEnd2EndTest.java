@@ -34,6 +34,12 @@ public class GetProductWithFiltersEnd2EndTest {
     stop();
   }
 
+  @AfterAll
+  public static void clearDatabase() {
+    ProductEnd2EndTestUtils.clearDatabase();
+    SellerEnd2EndTestUtils.clearDatabase();
+  }
+
 
   @Test
   public void givenAProduct_whenGetProductWithInclusiveFiltersThatMatch_thenShouldReturn200StatusCode() {

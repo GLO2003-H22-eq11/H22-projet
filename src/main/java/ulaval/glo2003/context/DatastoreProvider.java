@@ -23,6 +23,7 @@ public class DatastoreProvider {
 
   private static final String PRODUCT_ENTITY_PACKAGE = "ulaval.glo2003.product.infrastructure.mongodb.entity";
   private static final String SELLER_ENTITY_PACKAGE = "ulaval.glo2003.seller.infrastructure.mongodb.entity";
+  private static final String OFFERS_ENTITY_PACKAGE = "ulaval.glo2003.product.infrastructure.mongodb.entity";
 
   public static Datastore getDatastore() {
     ConnectionString connectionString = new ConnectionString(DATABASE_URL);
@@ -40,6 +41,8 @@ public class DatastoreProvider {
 
     morphiaDatastore.getMapper().mapPackage(PRODUCT_ENTITY_PACKAGE);
     morphiaDatastore.getMapper().mapPackage(SELLER_ENTITY_PACKAGE);
+    morphiaDatastore.getMapper().mapPackage(OFFERS_ENTITY_PACKAGE);
+
     morphiaDatastore.ensureIndexes();
 
     return morphiaDatastore;

@@ -14,8 +14,8 @@ import java.util.Collections;
 
 
 public class InMemoryProductRepository implements ProductRepository {
-  private final HashMap<SellerId, List<Product>> productsBySellerId = new HashMap<>();
-  private final HashMap<ProductId, Product> productsByProductId = new HashMap<>();
+  private HashMap<SellerId, List<Product>> productsBySellerId = new HashMap<>();
+  private HashMap<ProductId, Product> productsByProductId = new HashMap<>();
 
   @Override
   public List<Product> findAll() {
@@ -44,5 +44,11 @@ public class InMemoryProductRepository implements ProductRepository {
       return Collections.emptyList();
     }
     return products;
+  }
+
+  @Override
+  public void clear() {
+    this.productsBySellerId = new HashMap<>();
+    this.productsByProductId = new HashMap<>();
   }
 }

@@ -8,7 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OfferFactoryTest {
   private final ProductIdFactory productIdFactory = new ProductIdFactory();
-  private final OfferFactory offerFactory = new OfferFactory(productIdFactory);
+  private final OfferIdFactory offerIdFactory = new OfferIdFactory();
+  private final OfferFactory offerFactory = new OfferFactory(productIdFactory, offerIdFactory);
 
   private static final String A_NAME = "A NAME";
   private static final String AN_EMAIL = "allo@email.ca";

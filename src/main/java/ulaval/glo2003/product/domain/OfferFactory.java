@@ -8,9 +8,12 @@ public class OfferFactory {
   private static final int MIN_MESSAGE_LENGTH = 100;
 
   private final ProductIdFactory productIdFactory;
+  private final OfferIdFactory offerIdFactory;
 
-  public OfferFactory(ProductIdFactory productIdFactory) {
+
+  public OfferFactory(ProductIdFactory productIdFactory, OfferIdFactory offerIdFactory) {
     this.productIdFactory = productIdFactory;
+    this.offerIdFactory = offerIdFactory;
   }
 
   public Offer create(
@@ -31,6 +34,7 @@ public class OfferFactory {
     }
 
     return new Offer(
+            this.offerIdFactory.create(),
             this.productIdFactory.create(productId),
             name,
             new Email(email),

@@ -44,6 +44,10 @@ public class Product {
     return this.productId.toString();
   }
 
+  public String getStringSellerId() {
+    return this.sellerId.toString();
+  }
+
   public String getStringCreatedAt() {
     return this.createdAt.toString();
   }

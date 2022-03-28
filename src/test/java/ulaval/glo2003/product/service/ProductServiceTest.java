@@ -191,7 +191,7 @@ class ProductServiceTest {
     given(this.product.getSellerId()).willReturn(sellerId);
   }
 
-  private void givenAProduct(ProductId productId) throws ProductNotFoundException {
+  private void givenAProduct(ProductId productId) throws GenericException {
     given(this.productRepository.findById(productId)).willReturn(product);
   }
 }

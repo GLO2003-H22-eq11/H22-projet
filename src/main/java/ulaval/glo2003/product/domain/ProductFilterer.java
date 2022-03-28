@@ -1,5 +1,6 @@
 package ulaval.glo2003.product.domain;
 
+import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.seller.domain.SellerId;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class ProductFilterer {
     this.productRepository = productRepository;
   }
 
-  public List<Product> findFilteredProducts(ProductFilters productFilters) {
+  public List<Product> findFilteredProducts(ProductFilters productFilters) throws GenericException {
     List<Product> products = this.productRepository.findAll();
 
     this.filterByTitle(productFilters.getTitle(), products);
