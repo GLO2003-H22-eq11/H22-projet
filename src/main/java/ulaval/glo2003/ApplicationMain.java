@@ -31,6 +31,7 @@ public class ApplicationMain {
     }
     HttpServer server = GrizzlyHttpServerFactory.createHttpServer(uri, resourceConfig);
     server.start();
+
   }
 
   private static ResourceConfig setupResources() {
