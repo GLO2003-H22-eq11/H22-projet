@@ -1,5 +1,6 @@
 package ulaval.glo2003;
 
+import jakarta.ws.rs.core.UriBuilder;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -15,7 +16,6 @@ import java.net.URI;
 public class ApplicationMain {
 
   private static final String PORT = System.getenv().getOrDefault("PORT", "8080");
-  public static final String URL = "http://localhost:" + PORT;
   private static final String PACKAGE = "ulaval.glo2003";
   private static final AppContext appContext = new AppContext();
   private static final Logger logger = LogManager.getLogger(ApplicationMain.class);
@@ -23,8 +23,12 @@ public class ApplicationMain {
   public static void main(String[] args) throws IOException {
     logger.trace("Starting application.");
     ResourceConfig resourceConfig = setupResources();
-    URI uri = URI.create(URL);
-
+    URI uri;
+    if (PORT.equals("8080")) {
+      uri = UriBuilder.fromUri("http://localhost").port(Integer.parseInt(PORT)).build();
+    } else {
+      uri = UriBuilder.fromUri("http://0.0.0.0").port(Integer.parseInt(PORT)).build();
+    }
     HttpServer server = GrizzlyHttpServerFactory.createHttpServer(uri, resourceConfig);
     server.start();
   }
