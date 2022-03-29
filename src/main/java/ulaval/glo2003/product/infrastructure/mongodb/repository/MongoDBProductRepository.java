@@ -14,7 +14,6 @@ import ulaval.glo2003.seller.domain.SellerId;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class MongoDBProductRepository implements ProductRepository {
 
@@ -60,8 +59,8 @@ public class MongoDBProductRepository implements ProductRepository {
 
   @Override
   public List<Product> findBySellerId(SellerId sellerId) throws GenericException {
-    List<ProductEntity> query = this.datastore.find(ProductEntity.class)
-            .filter(Filters.eq("sellerId", sellerId.toString())).stream().collect(Collectors.toList());
+    Query<ProductEntity> query = this.datastore.find(ProductEntity.class)
+            .filter(Filters.eq("sellerId", sellerId.toString()));
 
     List<Product> products = new ArrayList<>();
 
