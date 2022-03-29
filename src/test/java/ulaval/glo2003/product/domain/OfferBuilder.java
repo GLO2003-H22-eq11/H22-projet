@@ -1,6 +1,6 @@
 package ulaval.glo2003.product.domain;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 public class OfferBuilder {
   private final OfferId offerId;
@@ -34,7 +34,7 @@ public class OfferBuilder {
             this.productId,
             this.amount,
             this.message,
-            LocalDateTime.now(),
+            Instant.now(),
             this.buyer
     );
   }

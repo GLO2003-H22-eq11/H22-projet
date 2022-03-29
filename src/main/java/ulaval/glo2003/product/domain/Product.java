@@ -3,7 +3,7 @@ package ulaval.glo2003.product.domain;
 import ulaval.glo2003.product.domain.exceptions.InvalidOfferPriceException;
 import ulaval.glo2003.seller.domain.SellerId;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,7 +15,7 @@ public class Product {
   private final Amount suggestedPrice;
   private final OffersSummary offersSummary;
   private final Categories categories;
-  private final LocalDateTime createdAt;
+  private final Instant createdAt;
 
   public Product(
           SellerId sellerId,
@@ -25,7 +25,7 @@ public class Product {
           Amount suggestedPrice,
           OffersSummary offersSummary,
           Categories categories,
-          LocalDateTime createdAt
+          Instant createdAt
   ) {
     this.sellerId = sellerId;
     this.productId = productId;

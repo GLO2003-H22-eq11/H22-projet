@@ -2,6 +2,7 @@ package ulaval.glo2003.seller.domain;
 
 import ulaval.glo2003.product.domain.Product;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ public class SellerBuilder {
   private String name;
   private String bio;
   private LocalDate birthDate;
-  private final LocalDateTime createdAt;
+  private final Instant createdAt;
   private List<Product> products;
 
   public SellerBuilder() {
@@ -20,7 +21,7 @@ public class SellerBuilder {
     this.name = "MarinoBoi";
     this.bio = "Phil est le meilleur programmeur à l'uni";
     this.birthDate = LocalDate.of(2000, 10, 5);
-    this.createdAt = LocalDateTime.now();
+    this.createdAt = Instant.now();
     this.products = new ArrayList<>();
   }
 

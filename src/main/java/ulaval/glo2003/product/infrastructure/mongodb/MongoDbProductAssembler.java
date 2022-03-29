@@ -10,8 +10,8 @@ import ulaval.glo2003.product.domain.ProductId;
 import ulaval.glo2003.product.infrastructure.mongodb.entity.OffersEntity;
 import ulaval.glo2003.product.infrastructure.mongodb.entity.ProductEntity;
 import ulaval.glo2003.seller.domain.SellerId;
-import ulaval.glo2003.util.DateParser;
 
+import java.time.Instant;
 import java.util.stream.Collectors;
 
 public class MongoDbProductAssembler {
@@ -48,7 +48,7 @@ public class MongoDbProductAssembler {
                     Amount.fromDouble(productEntity.getOffers().getMax())
             ),
             new Categories(productEntity.getCategories().stream().map(Category::new).collect(Collectors.toList())),
-            DateParser.formatLocalDateTime(productEntity.getCreatedAt())
+            Instant.parse(productEntity.getCreatedAt())
     );
   }
 }

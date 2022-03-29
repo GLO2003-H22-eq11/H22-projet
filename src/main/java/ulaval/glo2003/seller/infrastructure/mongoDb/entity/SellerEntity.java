@@ -3,8 +3,8 @@ package ulaval.glo2003.seller.infrastructure.mongoDb.entity;
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
 
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity("Sellers")
 public class SellerEntity {
@@ -14,7 +14,7 @@ public class SellerEntity {
   private String name;
   private String bio;
   private LocalDate birthDate;
-  private LocalDateTime createdAt;
+  private Instant createdAt;
 
   public SellerEntity() {
   }
@@ -24,7 +24,7 @@ public class SellerEntity {
           String name,
           String bio,
           LocalDate birthDate,
-          LocalDateTime createdAt
+          Instant createdAt
   ) {
     this.sellerId = sellerId;
     this.name = name;
@@ -33,7 +33,7 @@ public class SellerEntity {
     this.createdAt = createdAt;
   }
 
-  public LocalDateTime getCreatedAt() {
+  public Instant getCreatedAt() {
     return this.createdAt;
   }
 

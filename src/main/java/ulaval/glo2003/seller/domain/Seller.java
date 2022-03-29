@@ -4,8 +4,8 @@ import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.seller.domain.exceptions.SellerIsMinorException;
 
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.Objects;
 import java.util.List;
@@ -15,7 +15,7 @@ public class Seller {
   private final String name;
   private final String bio;
   private final LocalDate birthDate;
-  private final LocalDateTime createdAt;
+  private final Instant createdAt;
   private List<Product> products;
   private static final int MAJOR_AGE = 18;
 
@@ -24,7 +24,7 @@ public class Seller {
           String name,
           String bio,
           LocalDate birthDate,
-          LocalDateTime createdAt
+          Instant createdAt
   ) {
     this.sellerId = sellerId;
     this.name = name;
@@ -81,7 +81,7 @@ public class Seller {
     return this.birthDate.toString();
   }
 
-  public LocalDateTime getCreatedAt() {
+  public Instant getCreatedAt() {
     return this.createdAt;
   }
 

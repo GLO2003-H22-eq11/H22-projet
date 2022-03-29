@@ -9,7 +9,7 @@ import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.Amount;
 import ulaval.glo2003.seller.domain.SellerIdFactory;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 public class ProductFactory {
   private final SellerIdFactory sellerIdFactory;
@@ -33,7 +33,7 @@ public class ProductFactory {
             Amount.fromDouble(productRequest.suggestedPrice),
             new OffersSummary(),
             this.categoriesFactory.create(productRequest.categories),
-            LocalDateTime.now()
+            Instant.now()
     );
   }
 }

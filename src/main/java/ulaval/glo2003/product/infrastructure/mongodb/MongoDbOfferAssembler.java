@@ -9,7 +9,8 @@ import ulaval.glo2003.product.domain.OfferId;
 import ulaval.glo2003.product.domain.PhoneNumber;
 import ulaval.glo2003.product.domain.ProductId;
 import ulaval.glo2003.product.infrastructure.mongodb.entity.OfferEntity;
-import ulaval.glo2003.util.DateParser;
+
+import java.time.Instant;
 
 public class MongoDbOfferAssembler {
 
@@ -32,7 +33,7 @@ public class MongoDbOfferAssembler {
             new ProductId(offerEntity.getProductId()),
             Amount.fromDouble(offerEntity.getAmount()),
             offerEntity.getMessage(),
-            DateParser.formatLocalDateTime(offerEntity.getCreatedAt()),
+            Instant.parse(offerEntity.getCreatedAt()),
             new Buyer(
                     offerEntity.getName(),
                     new Email(offerEntity.getEmail()),

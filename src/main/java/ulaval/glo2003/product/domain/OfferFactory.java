@@ -4,7 +4,7 @@ import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.domain.exceptions.InvalidOfferNameException;
 import ulaval.glo2003.product.domain.exceptions.InvalidMessageException;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 public class OfferFactory {
   private static final int MIN_MESSAGE_LENGTH = 100;
@@ -40,7 +40,7 @@ public class OfferFactory {
             this.productIdFactory.create(productId),
             Amount.fromDouble(amount),
             message,
-            LocalDateTime.now(),
+            Instant.now(),
             new Buyer(name, new Email(email), new PhoneNumber(phoneNumber))
     );
   }

@@ -1,6 +1,6 @@
 package ulaval.glo2003.product.domain;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Objects;
 
 public class Offer {
@@ -8,7 +8,7 @@ public class Offer {
   private final ProductId productId;
   private final Amount amount;
   private final String message;
-  private final LocalDateTime createdAt;
+  private final Instant createdAt;
   private final Buyer buyer;
 
   public Offer(
@@ -16,7 +16,7 @@ public class Offer {
           ProductId productId,
           Amount amount,
           String message,
-          LocalDateTime createdAt,
+          Instant createdAt,
           Buyer buyer) {
     this.offerId = offerId;
     this.productId = productId;

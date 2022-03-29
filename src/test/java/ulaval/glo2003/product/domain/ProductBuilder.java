@@ -2,7 +2,7 @@ package ulaval.glo2003.product.domain;
 
 import ulaval.glo2003.seller.domain.SellerId;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 
 public class ProductBuilder {
@@ -13,7 +13,7 @@ public class ProductBuilder {
   private Amount suggestedPrice;
   private OffersSummary offersSummary;
   private Categories categories;
-  private final LocalDateTime createdAt;
+  private final Instant createdAt;
 
   public ProductBuilder() {
     this.sellerId = new SellerId();
@@ -23,7 +23,7 @@ public class ProductBuilder {
     this.suggestedPrice = Amount.fromDouble(25.0);
     this.offersSummary = new OffersSummary();
     this.categories = new Categories(List.of(new Category("category")));
-    this.createdAt = LocalDateTime.now();
+    this.createdAt = Instant.now();
   }
 
   public ProductBuilder withTitle(String title) {
