@@ -1,6 +1,7 @@
 package ulaval.glo2003.product.domain;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 public final class Amount {
@@ -11,6 +12,9 @@ public final class Amount {
   }
 
   public static Amount fromDouble(Double value) {
+    if (value == null) {
+      return null;
+    }
     return new Amount(BigDecimal.valueOf(value));
   }
 
@@ -41,7 +45,7 @@ public final class Amount {
   }
 
   public Amount divide(int number) {
-    BigDecimal newAmount = dollarAmount.divide(BigDecimal.valueOf(number));
+    BigDecimal newAmount = dollarAmount.divide(BigDecimal.valueOf(number), RoundingMode.FLOOR);
     return new Amount(newAmount);
   }
 

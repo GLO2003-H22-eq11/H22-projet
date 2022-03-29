@@ -77,6 +77,10 @@ public class Seller {
     return this.birthDate;
   }
 
+  public String getStringBirthDate() {
+    return this.birthDate.toString();
+  }
+
   public LocalDateTime getCreatedAt() {
     return this.createdAt;
   }

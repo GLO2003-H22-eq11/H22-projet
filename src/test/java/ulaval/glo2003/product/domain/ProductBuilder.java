@@ -11,7 +11,7 @@ public class ProductBuilder {
   private String title;
   private final String description;
   private Amount suggestedPrice;
-  private Offers offers;
+  private OffersSummary offersSummary;
   private Categories categories;
   private final LocalDateTime createdAt;
 
@@ -21,7 +21,7 @@ public class ProductBuilder {
     this.title = "MarinoBoy";
     this.description = "Max est le meilleur programmeur à l'uni";
     this.suggestedPrice = Amount.fromDouble(25.0);
-    this.offers = new Offers();
+    this.offersSummary = new OffersSummary();
     this.categories = new Categories(List.of(new Category("category")));
     this.createdAt = LocalDateTime.now();
   }
@@ -36,8 +36,8 @@ public class ProductBuilder {
     return this;
   }
 
-  public ProductBuilder withOffers(Offers offers) {
-    this.offers = offers;
+  public ProductBuilder withOffers(OffersSummary offersSummary) {
+    this.offersSummary = offersSummary;
     return this;
   }
 
@@ -63,7 +63,7 @@ public class ProductBuilder {
             this.title,
             this.description,
             this.suggestedPrice,
-            this.offers,
+            this.offersSummary,
             this.categories,
             this.createdAt
     );

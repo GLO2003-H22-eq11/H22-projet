@@ -11,6 +11,8 @@ import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerBuilder;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerIdFactory;
+import ulaval.glo2003.seller.domain.SellerWithProducts;
+import ulaval.glo2003.seller.domain.exceptions.InvalidSellerIdException;
 import ulaval.glo2003.seller.service.SellerService;
 
 
@@ -43,6 +45,12 @@ public class SellerResourceTest {
 
   @Mock
   private SellerRequestValidator sellerRequestValidator;
+
+  @Mock
+  private SellerWithProducts sellerWithProducts;
+
+  @Mock
+  private SellerWithProductsResponse sellerWithProductsResponse;
 
   private SellerResource sellerResource;
 
@@ -106,6 +114,39 @@ public class SellerResourceTest {
 
     assertEquals(expectedResponse.getEntity(), actualResponse.getEntity());
   }
+
+  @Test
+  public void givenASellerId_whenGetCurrentSeller_thenShouldCallTheSellerIdFactory() throws InvalidSellerIdException {
+    this.sellerResource.getCurrentSeller(A_SELLER_STRING_ID);
+
+    verify(this.sellerIdFactory).create(A_SELLER_STRING_ID);
+  }
+
+  @Test
+  public void givenASellerId_whenGetCurrentSeller_thenShouldCallTheServiceToGetSellerProductsWithOffers() throws
+          GenericException {
+    SellerId aSellerId = new SellerId(A_SELLER_STRING_ID);
+    givenASellerId(aSellerId);
+
+    this.sellerResource.getCurrentSeller(A_SELLER_STRING_ID);
+
+    verify(this.sellerService).getSellerWithProductsById(aSellerId);
+  }
+
+  @Test
+  public void givenASellerId_whenGetCurrentSeller_thenShouldReturnAResponseWithTheRightEntity() throws
+          GenericException {
+    SellerId aSellerId = new SellerId(A_SELLER_STRING_ID);
+    givenASellerId(aSellerId);
+    given(this.sellerService.getSellerWithProductsById(aSellerId)).willReturn(this.sellerWithProducts);
+    given(this.sellerAssembler.toSellerWithProductsResponse(this.sellerWithProducts)).willReturn(this.sellerWithProductsResponse);
+
+    Response expectedResponse = Response.ok().entity(this.sellerWithProductsResponse).build();
+    Response actualResponse = this.sellerResource.getCurrentSeller(A_SELLER_STRING_ID);
+
+    assertEquals(expectedResponse.getEntity(), actualResponse.getEntity());
+  }
+
 
   private SellerResponse givenASellerResponse(Seller aSeller) {
     SellerResponse aSellerResponse = new SellerResponse(A_SELLER_STRING_ID, "allo", "created", "bio", Collections.emptyList());

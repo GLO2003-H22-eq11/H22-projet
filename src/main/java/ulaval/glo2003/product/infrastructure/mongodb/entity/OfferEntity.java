@@ -13,6 +13,7 @@ public class OfferEntity {
   private String phoneNumber;
   private Double amount;
   private String message;
+  private String createdAt;
 
   public OfferEntity() {
   }
@@ -24,7 +25,8 @@ public class OfferEntity {
           String email,
           String phoneNumber,
           Double amount,
-          String message
+          String message,
+          String createdAt
   ) {
     this.offerId = offerId;
     this.productId = productId;
@@ -33,8 +35,8 @@ public class OfferEntity {
     this.phoneNumber = phoneNumber;
     this.amount = amount;
     this.message = message;
+    this.createdAt = createdAt;
   }
-
 
   public String getOfferId() {
     return this.offerId;
@@ -62,5 +64,9 @@ public class OfferEntity {
 
   public String getMessage() {
     return this.message;
+  }
+
+  public String getCreatedAt() {
+    return this.createdAt;
   }
 }

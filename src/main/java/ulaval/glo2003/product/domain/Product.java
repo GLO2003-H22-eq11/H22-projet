@@ -13,7 +13,7 @@ public class Product {
   private final String title;
   private final String description;
   private final Amount suggestedPrice;
-  private final Offers offers;
+  private final OffersSummary offersSummary;
   private final Categories categories;
   private final LocalDateTime createdAt;
 
@@ -23,7 +23,7 @@ public class Product {
           String title,
           String description,
           Amount suggestedPrice,
-          Offers offers,
+          OffersSummary offersSummary,
           Categories categories,
           LocalDateTime createdAt
   ) {
@@ -33,7 +33,7 @@ public class Product {
     this.title = title;
     this.description = description;
     this.suggestedPrice = suggestedPrice;
-    this.offers = offers;
+    this.offersSummary = offersSummary;
     this.categories = categories;
   }
 
@@ -69,8 +69,8 @@ public class Product {
     return this.suggestedPrice.getDoubleValue();
   }
 
-  public Offers getOffers() {
-    return this.offers;
+  public OffersSummary getOffersSummary() {
+    return this.offersSummary;
   }
 
   public String getStringId() {
@@ -103,7 +103,7 @@ public class Product {
 
   public void addOfferAmount(Amount offerAmount) throws InvalidOfferPriceException {
     if (offerAmount.isHigherOrEqual(this.suggestedPrice)) {
-      this.offers.addOfferAmount(offerAmount);
+      this.offersSummary.addOfferAmount(offerAmount);
     } else {
       throw new InvalidOfferPriceException();
     }
@@ -117,13 +117,15 @@ public class Product {
     return sellerId.equals(product.sellerId)
             && productId.equals(product.productId)
             && title.equals(product.title)
-            && description.equals(product.description) && suggestedPrice.equals(product.suggestedPrice)
-            && offers.equals(product.offers) && categories.equals(product.categories)
+            && description.equals(product.description)
+            && suggestedPrice.equals(product.suggestedPrice)
+            && offersSummary.equals(product.offersSummary)
+            && categories.equals(product.categories)
             && createdAt.equals(product.createdAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(sellerId, productId, title, description, suggestedPrice, offers, categories, createdAt);
+    return Objects.hash(sellerId, productId, title, description, suggestedPrice, offersSummary, categories, createdAt);
   }
 }

@@ -6,4 +6,8 @@ public class PhoneNumber {
   public PhoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
+
+  public String toString() {
+    return this.phoneNumber;
+  }
 }

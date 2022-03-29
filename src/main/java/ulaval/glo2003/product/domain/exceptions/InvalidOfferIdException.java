@@ -16,3 +16,4 @@ public class InvalidOfferIdException extends GenericException {
     return this.errorCode.getCode();
   }
 }
+

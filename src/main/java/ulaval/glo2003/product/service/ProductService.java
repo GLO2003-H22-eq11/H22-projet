@@ -8,7 +8,7 @@ import ulaval.glo2003.product.domain.ProductFilterer;
 import ulaval.glo2003.product.domain.ProductFilters;
 import ulaval.glo2003.product.domain.ProductId;
 import ulaval.glo2003.product.domain.ProductRepository;
-import ulaval.glo2003.product.domain.ProductSellerDomainService;
+import ulaval.glo2003.product.domain.ProductWithSellerDomainService;
 import ulaval.glo2003.product.domain.ProductWithSeller;
 import ulaval.glo2003.seller.domain.SellerRepository;
 
@@ -18,14 +18,14 @@ import java.util.List;
 public class ProductService {
   private final ProductRepository productRepository;
   private final SellerRepository sellerRepository;
-  private final ProductSellerDomainService productSellerService;
+  private final ProductWithSellerDomainService productSellerService;
   private final ProductFilterer productFilterer;
   private final OfferRepository offerRepository;
 
   public ProductService(
           ProductRepository productRepository,
           SellerRepository sellerRepository,
-          ProductSellerDomainService productSellerService,
+          ProductWithSellerDomainService productSellerService,
           ProductFilterer productFilterer,
           OfferRepository offerRepository
   ) {

@@ -1,6 +1,6 @@
 package ulaval.glo2003.seller.api;
 
-import ulaval.glo2003.product.api.response.OffersResponse;
+import ulaval.glo2003.product.api.response.OffersSummaryResponse;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class SellerProductResponse {
   public String title;
   public String description;
   public Double suggestedPrice;
-  public OffersResponse offers;
+  public OffersSummaryResponse offers;
   public List<String> categories;
 
   public SellerProductResponse() {
@@ -22,7 +22,7 @@ public class SellerProductResponse {
           String title,
           String description,
           Double suggestedPrice,
-          OffersResponse offers,
+          OffersSummaryResponse offers,
           List<String> categories
   ) {
     this.id = id;

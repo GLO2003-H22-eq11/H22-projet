@@ -12,7 +12,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Collections;
 
-
 public class InMemoryProductRepository implements ProductRepository {
   private HashMap<SellerId, List<Product>> productsBySellerId = new HashMap<>();
   private HashMap<ProductId, Product> productsByProductId = new HashMap<>();
@@ -24,7 +23,10 @@ public class InMemoryProductRepository implements ProductRepository {
 
   @Override
   public void save(Product product) {
-    this.productsBySellerId.computeIfAbsent(product.getSellerId(), k -> new ArrayList<>()).add(product);
+    List<Product> products = productsBySellerId.get(product.getSellerId());
+    if (products == null || !products.contains(product)) {
+      this.productsBySellerId.computeIfAbsent(product.getSellerId(), k -> new ArrayList<>()).add(product);
+    }
     this.productsByProductId.put(product.getProductId(), product);
   }
 

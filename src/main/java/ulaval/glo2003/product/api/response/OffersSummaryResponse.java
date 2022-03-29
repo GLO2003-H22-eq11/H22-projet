@@ -2,14 +2,14 @@ package ulaval.glo2003.product.api.response;
 
 import java.util.Objects;
 
-public class OffersResponse {
+public class OffersSummaryResponse {
   public Double mean;
   public Integer count;
 
-  public OffersResponse() {
+  public OffersSummaryResponse() {
   }
 
-  public OffersResponse(Double mean, Integer count) {
+  public OffersSummaryResponse(Double mean, Integer count) {
     this.mean = mean;
     this.count = count;
   }
@@ -18,11 +18,8 @@ public class OffersResponse {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    OffersResponse that = (OffersResponse) o;
-    if (mean == null && that.mean == null) {
-      return count.equals(that.count);
-    }
-    return mean.equals(that.mean) && count.equals(that.count);
+    OffersSummaryResponse that = (OffersSummaryResponse) o;
+    return Objects.equals(mean, that.mean) && count.equals(that.count);
   }
 
   @Override

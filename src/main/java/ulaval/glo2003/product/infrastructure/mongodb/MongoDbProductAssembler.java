@@ -4,7 +4,7 @@ import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.domain.Amount;
 import ulaval.glo2003.product.domain.Categories;
 import ulaval.glo2003.product.domain.Category;
-import ulaval.glo2003.product.domain.Offers;
+import ulaval.glo2003.product.domain.OffersSummary;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductId;
 import ulaval.glo2003.product.infrastructure.mongodb.entity.OffersEntity;
@@ -23,7 +23,12 @@ public class MongoDbProductAssembler {
             product.getTitle(),
             product.getDescription(),
             product.getSuggestedPriceAmountDoubleValue(),
-            new OffersEntity(product.getOffers().getMeanAmount(), product.getOffers().getCount()),
+            new OffersEntity(
+                    product.getOffersSummary().getMeanAmount(),
+                    product.getOffersSummary().getCount(),
+                    product.getOffersSummary().getMinAmount(),
+                    product.getOffersSummary().getMaxAmount()
+            ),
             product.getProductCategories().stream().map(Category::getCategoryName).collect(Collectors.toList()),
             product.getStringCreatedAt()
     );
@@ -36,11 +41,12 @@ public class MongoDbProductAssembler {
             productEntity.getTitle(),
             productEntity.getDescription(),
             Amount.fromDouble(productEntity.getSuggestedPrice()),
-            productEntity.getOffers() != null ? productEntity.getOffers().getMean() != null
-                    ? new Offers(
-                            Amount.fromDouble(productEntity.getOffers().getMean()),
-                            productEntity.getOffers().getCount()
-                    ) : new Offers() : new Offers(),
+            new OffersSummary(
+                    Amount.fromDouble(productEntity.getOffers().getMean()),
+                    productEntity.getOffers().getCount(),
+                    Amount.fromDouble(productEntity.getOffers().getMin()),
+                    Amount.fromDouble(productEntity.getOffers().getMax())
+            ),
             new Categories(productEntity.getCategories().stream().map(Category::new).collect(Collectors.toList())),
             DateParser.formatLocalDateTime(productEntity.getCreatedAt())
     );

@@ -1,11 +1,11 @@
 package ulaval.glo2003.product.api.assembler;
 
 import org.junit.jupiter.api.Test;
-import ulaval.glo2003.product.api.response.OffersResponse;
+import ulaval.glo2003.product.api.response.OffersSummaryResponse;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductSellerResponse;
 import ulaval.glo2003.product.domain.Category;
-import ulaval.glo2003.product.domain.Offers;
+import ulaval.glo2003.product.domain.OffersSummary;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductBuilder;
 import ulaval.glo2003.product.domain.ProductWithSeller;
@@ -19,24 +19,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProductAssemblerTest {
 
-  private final OffersAssembler offersAssembler = new OffersAssembler();
+  private final BuyerAssembler buyerAssembler = new BuyerAssembler();
+  private final OffersAssembler offersAssembler = new OffersAssembler(buyerAssembler);
   private final ProductAssembler productAssembler = new ProductAssembler(offersAssembler);
 
   @Test
   public void givenAProductWithSeller_whenAssemblingToResponse_thenShouldAssembleWithCorrespondingParameters() {
-    Product aProduct = new ProductBuilder().withOffers(new Offers()).build();
+    Product aProduct = new ProductBuilder().withOffers(new OffersSummary()).build();
     Seller aSeller = new SellerBuilder().build();
     ProductWithSeller aProductWithSeller = new ProductWithSeller(aProduct, aSeller);
     List<String> expectedCategories = aProduct.getProductCategories().stream().map(Category::getCategoryName).collect(Collectors.toList());
     ProductSellerResponse expectedProductSellerResponse = new ProductSellerResponse(aSeller.getStringId(), aSeller.getName());
-    OffersResponse expectedOffersResponse = new OffersResponse(aProduct.getOffers().getMeanAmount(), aProduct.getOffers().getCount());
+    OffersSummaryResponse expectedOffersSummaryResponse = new OffersSummaryResponse(aProduct.getOffersSummary().getMeanAmount(), aProduct.getOffersSummary().getCount());
     ProductResponse expected = new ProductResponse(
             aProduct.getStringProductId(),
             aProduct.getStringCreatedAt(),
             aProduct.getTitle(),
             aProduct.getDescription(),
             aProduct.getSuggestedPriceAmountDoubleValue(),
-            expectedOffersResponse,
+            expectedOffersSummaryResponse,
             expectedCategories,
             expectedProductSellerResponse
     );

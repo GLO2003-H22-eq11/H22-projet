@@ -13,9 +13,9 @@ public class OfferId {
     this.id = UUIDGenerator.generate();
   }
 
-  public OfferId(String productId) throws InvalidOfferIdException {
+  public OfferId(String offerId) throws InvalidOfferIdException {
     try {
-      this.id = UUID.fromString(productId);
+      this.id = UUID.fromString(offerId);
     } catch (Exception e) {
       throw new InvalidOfferIdException();
     }

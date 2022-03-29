@@ -2,11 +2,11 @@ package ulaval.glo2003.product.api;
 
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.api.request.ProductRequest;
-import ulaval.glo2003.product.domain.Amount;
-import ulaval.glo2003.product.domain.CategoriesFactory;
-import ulaval.glo2003.product.domain.Offers;
-import ulaval.glo2003.product.domain.Product;
+import ulaval.glo2003.product.domain.OffersSummary;
 import ulaval.glo2003.product.domain.ProductIdFactory;
+import ulaval.glo2003.product.domain.CategoriesFactory;
+import ulaval.glo2003.product.domain.Product;
+import ulaval.glo2003.product.domain.Amount;
 import ulaval.glo2003.seller.domain.SellerIdFactory;
 
 import java.time.LocalDateTime;
@@ -31,7 +31,7 @@ public class ProductFactory {
             productRequest.title,
             productRequest.description,
             Amount.fromDouble(productRequest.suggestedPrice),
-            new Offers(),
+            new OffersSummary(),
             this.categoriesFactory.create(productRequest.categories),
             LocalDateTime.now()
     );

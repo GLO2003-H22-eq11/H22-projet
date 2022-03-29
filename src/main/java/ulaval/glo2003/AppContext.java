@@ -3,7 +3,7 @@ package ulaval.glo2003;
 import dev.morphia.Datastore;
 import ulaval.glo2003.context.DatastoreProvider;
 import ulaval.glo2003.exception.ConstraintsValidator;
-import ulaval.glo2003.product.domain.OfferFactory;
+import ulaval.glo2003.product.api.assembler.BuyerAssembler;
 import ulaval.glo2003.product.api.validator.OfferRequestValidator;
 import ulaval.glo2003.product.api.assembler.OffersAssembler;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
@@ -13,15 +13,19 @@ import ulaval.glo2003.product.api.ProductFiltersFactory;
 import ulaval.glo2003.product.domain.CategoriesFactory;
 import ulaval.glo2003.product.domain.OfferIdFactory;
 import ulaval.glo2003.product.domain.OfferRepository;
-import ulaval.glo2003.product.domain.ProductFilterer;
+import ulaval.glo2003.product.domain.OffersInformationFactory;
 import ulaval.glo2003.product.domain.ProductIdFactory;
 import ulaval.glo2003.product.domain.ProductRepository;
-import ulaval.glo2003.product.domain.ProductSellerDomainService;
+import ulaval.glo2003.product.domain.ProductWithOffersFactory;
+import ulaval.glo2003.product.domain.OfferFactory;
+import ulaval.glo2003.product.domain.ProductFilterer;
 import ulaval.glo2003.product.domain.ProductWithSellerFactory;
 import ulaval.glo2003.product.infrastructure.mongodb.MongoDbOfferAssembler;
 import ulaval.glo2003.product.infrastructure.mongodb.MongoDbProductAssembler;
 import ulaval.glo2003.product.infrastructure.mongodb.repository.MongoDBProductRepository;
 import ulaval.glo2003.product.infrastructure.mongodb.repository.MongoDbOfferRepository;
+import ulaval.glo2003.seller.domain.SellerWithProductsDomainService;
+import ulaval.glo2003.product.domain.ProductWithSellerDomainService;
 import ulaval.glo2003.product.service.ProductService;
 import ulaval.glo2003.seller.api.SellerAssembler;
 import ulaval.glo2003.seller.api.SellerFactory;
@@ -45,10 +49,15 @@ public class AppContext {
           categoriesFactory
   );
   public final ProductWithSellerFactory productWithSellerFactory = new ProductWithSellerFactory();
+  public final OffersInformationFactory offersInformationFactory = new OffersInformationFactory();
+  public final ProductWithOffersFactory productWithOffersFactory = new ProductWithOffersFactory(
+          offersInformationFactory
+  );
   public final OfferFactory offerFactory = new OfferFactory(productIdFactory, offerIdFactory);
 
 
-  public final OffersAssembler offersAssembler = new OffersAssembler();
+  public final BuyerAssembler buyerAssembler = new BuyerAssembler();
+  public final OffersAssembler offersAssembler = new OffersAssembler(buyerAssembler);
   public final ProductAssembler productAssembler = new ProductAssembler(offersAssembler);
   public final SellerAssembler sellerAssembler = new SellerAssembler(productAssembler);
   public final MongoDbSellerAssembler mongoDbSellerAssembler = new MongoDbSellerAssembler();
@@ -68,17 +77,28 @@ public class AppContext {
   public final OfferRepository offerRepository = new MongoDbOfferRepository(datastore, mongoDbOfferAssembler);
 
 
-  public final ProductSellerDomainService productSellerDomainService = new ProductSellerDomainService(
+  public final ProductWithSellerDomainService productWithSellerDomainService = new ProductWithSellerDomainService(
           productWithSellerFactory,
           sellerRepository
   );
   public final ProductFilterer productFilterer = new ProductFilterer(productRepository);
+  public final SellerWithProductsDomainService sellerWithProductsDomainService = new SellerWithProductsDomainService(
+          productRepository,
+          offerRepository,
+          productWithOffersFactory
+  );
 
-  public final SellerService sellerService = new SellerService(sellerRepository, productRepository);
+
+  public final SellerService sellerService = new SellerService(
+          sellerRepository,
+          productRepository,
+          sellerWithProductsDomainService
+  );
+
   public final ProductService productService = new ProductService(
           productRepository,
           sellerRepository,
-          productSellerDomainService,
+          productWithSellerDomainService,
           productFilterer,
           offerRepository
   );

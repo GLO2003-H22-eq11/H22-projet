@@ -9,7 +9,7 @@ public class ProductResponse {
   public String title;
   public String description;
   public Double suggestedPrice;
-  public OffersResponse offers;
+  public OffersSummaryResponse offers;
   public List<String> categories;
   public ProductSellerResponse seller;
 
@@ -22,7 +22,7 @@ public class ProductResponse {
           String title,
           String description,
           Double suggestedPrice,
-          OffersResponse offers,
+          OffersSummaryResponse offers,
           List<String> categories,
           ProductSellerResponse productSellerResponse) {
     this.id = id;
@@ -40,9 +40,11 @@ public class ProductResponse {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ProductResponse that = (ProductResponse) o;
-    return Objects.equals(suggestedPrice, that.suggestedPrice) && id.equals(that.id) && createdAt.equals(that.createdAt)
+    return Objects.equals(suggestedPrice, that.suggestedPrice) && id.equals(that.id)
+            && createdAt.equals(that.createdAt)
             && title.equals(that.title) && description.equals(that.description)
-            && offers.equals(that.offers) && categories.equals(that.categories) && seller.equals(that.seller);
+            && offers.equals(that.offers) && categories.equals(that.categories)
+            && seller.equals(that.seller);
   }
 
   @Override
