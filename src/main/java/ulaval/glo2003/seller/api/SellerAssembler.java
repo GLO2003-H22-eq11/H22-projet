@@ -1,11 +1,9 @@
 package ulaval.glo2003.seller.api;
 
-import ulaval.glo2003.product.api.ProductWithOffersResponse;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
 import ulaval.glo2003.seller.domain.Seller;
-import ulaval.glo2003.seller.domain.SellerWithProductsOffers;
+import ulaval.glo2003.seller.domain.SellerWithProducts;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class SellerAssembler {
@@ -27,20 +25,15 @@ public class SellerAssembler {
     );
   }
 
-
-  public SellerWithProductsOffersResponse toSellerWithProductsOffersResponse(SellerWithProductsOffers
-                                                                                    sellerWithProductsOffers) {
-    List<ProductWithOffersResponse> productsWithOffersResponse = this.productAssembler.
-            toProductsWithOffersResponse(sellerWithProductsOffers.getProducts());
-
-    return new SellerWithProductsOffersResponse(
-            sellerWithProductsOffers.getStringSellerId(),
-            sellerWithProductsOffers.getName(),
-            sellerWithProductsOffers.getStringCreatedAt(),
-            sellerWithProductsOffers.getBio(),
-            sellerWithProductsOffers.getBirthDate(),
-            productsWithOffersResponse);
+  public SellerWithProductsResponse toSellerWithProductsResponse(SellerWithProducts sellerWithProducts) {
+    return new SellerWithProductsResponse(
+            sellerWithProducts.getStringSellerId(),
+            sellerWithProducts.getName(),
+            sellerWithProducts.getStringCreatedAt(),
+            sellerWithProducts.getBio(),
+            sellerWithProducts.getBirthDate(),
+            sellerWithProducts.getProducts().stream()
+                    .map(this.productAssembler::toProductWithOffersResponse).collect(Collectors.toList())
+    );
   }
-
-
 }

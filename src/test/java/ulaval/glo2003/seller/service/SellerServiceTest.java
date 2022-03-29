@@ -10,7 +10,8 @@ import ulaval.glo2003.product.domain.*;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
-import ulaval.glo2003.seller.domain.SellerWithProductsOffers;
+import ulaval.glo2003.seller.domain.SellerWithProducts;
+import ulaval.glo2003.seller.domain.SellerWithProductsDomainService;
 
 import java.util.List;
 
@@ -32,16 +33,16 @@ class SellerServiceTest {
   private ProductRepository productRepository;
 
   @Mock
-  private ProductOfferDomainService productOfferDomainService;
+  private SellerWithProductsDomainService sellerWithProductsDomainService;
 
   @Mock
-  private SellerWithProductsOffers sellerWithProductsOffers;
+  private SellerWithProducts sellerWithProducts;
 
   private SellerService sellerService;
 
   @BeforeEach
   public void setUp() {
-    this.sellerService = new SellerService(this.sellerRepository, this.productRepository, this.productOfferDomainService);
+    this.sellerService = new SellerService(this.sellerRepository, this.productRepository, this.sellerWithProductsDomainService);
   }
 
   @Test
@@ -96,7 +97,7 @@ class SellerServiceTest {
           throws GenericException {
     SellerId aSellerId = new SellerId();
 
-    this.sellerService.getSellerWithProductsOffers(aSellerId);
+    this.sellerService.getSellerWithProductsById(aSellerId);
 
     verify(this.sellerRepository).findById(aSellerId);
   }
@@ -107,9 +108,9 @@ class SellerServiceTest {
     SellerId aSellerId = new SellerId();
     given(this.sellerRepository.findById(aSellerId)).willReturn(this.seller);
 
-    this.sellerService.getSellerWithProductsOffers(aSellerId);
+    this.sellerService.getSellerWithProductsById(aSellerId);
 
-    verify(this.productOfferDomainService).assembleProductsWithOffersToSeller(this.seller);
+    verify(this.sellerWithProductsDomainService).getSellerWithProducts(this.seller);
   }
 
   @Test
@@ -117,12 +118,12 @@ class SellerServiceTest {
           throws GenericException {
     SellerId aSellerId = new SellerId();
     given(this.sellerRepository.findById(aSellerId)).willReturn(this.seller);
-    given(this.productOfferDomainService.assembleProductsWithOffersToSeller(this.seller))
-            .willReturn(this.sellerWithProductsOffers);
+    given(this.sellerWithProductsDomainService.getSellerWithProducts(this.seller))
+            .willReturn(this.sellerWithProducts);
 
-    SellerWithProductsOffers sellerWithProductsOffers = this.sellerService.getSellerWithProductsOffers(aSellerId);
+    SellerWithProducts sellerWithProducts = this.sellerService.getSellerWithProductsById(aSellerId);
 
-    assertEquals(sellerWithProductsOffers, this.sellerWithProductsOffers);
+    assertEquals(sellerWithProducts, this.sellerWithProducts);
   }
 
   private void givenASeller(SellerId sellerId) throws GenericException {

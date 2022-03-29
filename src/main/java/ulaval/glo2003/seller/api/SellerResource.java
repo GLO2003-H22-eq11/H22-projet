@@ -12,7 +12,7 @@ import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerIdFactory;
-import ulaval.glo2003.seller.domain.SellerWithProductsOffers;
+import ulaval.glo2003.seller.domain.SellerWithProducts;
 import ulaval.glo2003.seller.service.SellerService;
 
 import java.net.URI;
@@ -54,7 +54,6 @@ public class SellerResource {
     } catch (GenericException e) {
       return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
     }
-
   }
 
   @GET
@@ -81,10 +80,10 @@ public class SellerResource {
     try {
       SellerId sellerId = this.sellerIdFactory.create(sellerIdString);
 
-      SellerWithProductsOffers sellerWithProductsOffers = this.sellerService.getSellerWithProductsOffers(sellerId);
+      SellerWithProducts sellerWithProducts = this.sellerService.getSellerWithProductsById(sellerId);
 
-      SellerWithProductsOffersResponse sellerWithOfferResponse =
-              this.sellerAssembler.toSellerWithProductsOffersResponse(sellerWithProductsOffers);
+      SellerWithProductsResponse sellerWithOfferResponse =
+              this.sellerAssembler.toSellerWithProductsResponse(sellerWithProducts);
 
       return Response.ok().entity(sellerWithOfferResponse).build();
     } catch (GenericException e) {

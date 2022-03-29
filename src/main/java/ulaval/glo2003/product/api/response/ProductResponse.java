@@ -9,7 +9,7 @@ public class ProductResponse {
   public String title;
   public String description;
   public Double suggestedPrice;
-  public OffersResponse productOffers;
+  public OffersSummaryResponse offers;
   public List<String> categories;
   public ProductSellerResponse seller;
 
@@ -22,7 +22,7 @@ public class ProductResponse {
           String title,
           String description,
           Double suggestedPrice,
-          OffersResponse productOffers,
+          OffersSummaryResponse offers,
           List<String> categories,
           ProductSellerResponse productSellerResponse) {
     this.id = id;
@@ -30,7 +30,7 @@ public class ProductResponse {
     this.title = title;
     this.description = description;
     this.suggestedPrice = suggestedPrice;
-    this.productOffers = productOffers;
+    this.offers = offers;
     this.categories = categories;
     this.seller = productSellerResponse;
   }
@@ -43,13 +43,13 @@ public class ProductResponse {
     return Objects.equals(suggestedPrice, that.suggestedPrice) && id.equals(that.id)
             && createdAt.equals(that.createdAt)
             && title.equals(that.title) && description.equals(that.description)
-            && productOffers.equals(that.productOffers) && categories.equals(that.categories)
+            && offers.equals(that.offers) && categories.equals(that.categories)
 
             && seller.equals(that.seller);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, createdAt, title, description, suggestedPrice, productOffers, categories, seller);
+    return Objects.hash(id, createdAt, title, description, suggestedPrice, offers, categories, seller);
   }
 }

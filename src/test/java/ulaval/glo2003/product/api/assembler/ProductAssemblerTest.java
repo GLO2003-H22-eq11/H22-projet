@@ -1,7 +1,7 @@
 package ulaval.glo2003.product.api.assembler;
 
 import org.junit.jupiter.api.Test;
-import ulaval.glo2003.product.api.response.OffersResponse;
+import ulaval.glo2003.product.api.response.OffersSummaryResponse;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductSellerResponse;
 import ulaval.glo2003.product.domain.Category;
@@ -19,7 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProductAssemblerTest {
 
-  private final OffersAssembler offersAssembler = new OffersAssembler();
+  private final BuyerAssembler buyerAssembler = new BuyerAssembler();
+  private final OffersAssembler offersAssembler = new OffersAssembler(buyerAssembler);
   private final ProductAssembler productAssembler = new ProductAssembler(offersAssembler);
 
   @Test
@@ -29,14 +30,14 @@ class ProductAssemblerTest {
     ProductWithSeller aProductWithSeller = new ProductWithSeller(aProduct, aSeller);
     List<String> expectedCategories = aProduct.getProductCategories().stream().map(Category::getCategoryName).collect(Collectors.toList());
     ProductSellerResponse expectedProductSellerResponse = new ProductSellerResponse(aSeller.getStringId(), aSeller.getName());
-    OffersResponse expectedOffersResponse = new OffersResponse(aProduct.getOffers().getMeanAmount(), aProduct.getOffers().getCount());
+    OffersSummaryResponse expectedOffersSummaryResponse = new OffersSummaryResponse(aProduct.getOffersSummary().getMeanAmount(), aProduct.getOffersSummary().getCount());
     ProductResponse expected = new ProductResponse(
             aProduct.getStringProductId(),
             aProduct.getStringCreatedAt(),
             aProduct.getTitle(),
             aProduct.getDescription(),
             aProduct.getSuggestedPriceAmountDoubleValue(),
-            expectedOffersResponse,
+            expectedOffersSummaryResponse,
             expectedCategories,
             expectedProductSellerResponse
     );

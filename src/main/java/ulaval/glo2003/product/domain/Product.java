@@ -64,7 +64,7 @@ public class Product {
     return this.suggestedPrice.getDoubleValue();
   }
 
-  public OffersSummary getOffers() {
+  public OffersSummary getOffersSummary() {
     return this.offersSummary;
   }
 
@@ -103,4 +103,5 @@ public class Product {
       throw new InvalidOfferPriceException();
     }
   }
+
 }

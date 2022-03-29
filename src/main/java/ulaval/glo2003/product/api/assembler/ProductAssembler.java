@@ -1,7 +1,6 @@
 package ulaval.glo2003.product.api.assembler;
 
 import ulaval.glo2003.product.api.ProductWithOffersResponse;
-import ulaval.glo2003.product.api.response.OffersInformationResponse;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductSellerResponse;
 import ulaval.glo2003.product.api.response.ProductsResponse;
@@ -11,7 +10,6 @@ import ulaval.glo2003.product.domain.ProductWithOffers;
 import ulaval.glo2003.product.domain.ProductWithSeller;
 import ulaval.glo2003.seller.api.SellerProductResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,7 +27,7 @@ public class ProductAssembler {
             product.getTitle(),
             product.getDescription(),
             product.getSuggestedPriceAmountDoubleValue(),
-            this.offersAssembler.toResponse(product.getOffers()),
+            this.offersAssembler.toResponse(product.getOffersSummary()),
             product.getProductCategories().stream().
                     map(Category::getCategoryName).collect(Collectors.toList()));
 
@@ -54,26 +52,15 @@ public class ProductAssembler {
     );
   }
 
-  public List<ProductWithOffersResponse> toProductsWithOffersResponse(List<ProductWithOffers> productsWithOffers) {
-    List<ProductWithOffersResponse> productsWithOffersResponse = new ArrayList<>();
-
-    for (ProductWithOffers productWithOffers : productsWithOffers) {
-
-      OffersInformationResponse offersInformationResponse =
-              this.offersAssembler.toOffersInformationResponse(productWithOffers);
-
-      ProductWithOffersResponse productWithOfferResponse = new ProductWithOffersResponse(
-              productWithOffers.getStringId(),
-              productWithOffers.getTitle(),
-              productWithOffers.getDescription(),
-              productWithOffers.getSuggestedPriceAmount(),
-              productWithOffers.getProductCategories().stream().
-                      map(Category::getCategoryName).collect(Collectors.toList()),
-              offersInformationResponse,
-              productWithOffers.getCreatedAt());
-
-      productsWithOffersResponse.add(productWithOfferResponse);
-    }
-    return productsWithOffersResponse;
+  public ProductWithOffersResponse toProductWithOffersResponse(ProductWithOffers productWithOffers) {
+    return new ProductWithOffersResponse(
+            productWithOffers.getStringProductId(),
+            productWithOffers.getProductTitle(),
+            productWithOffers.getProductDescription(),
+            productWithOffers.getProductSuggestedPriceAmount(),
+            productWithOffers.getProductCategories().stream().
+                    map(Category::getCategoryName).collect(Collectors.toList()),
+            this.offersAssembler.toOffersInformationResponse(productWithOffers.getOffers()),
+            productWithOffers.getProductCreatedAt());
   }
 }

@@ -18,7 +18,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-class ProductSellerDomainServiceTest {
+class ProductWithSellerDomainServiceTest {
 
   private final Seller A_SELLER = new SellerBuilder().build();
   private final Seller ANOTHER_SELLER = new SellerBuilder().build();
@@ -31,11 +31,11 @@ class ProductSellerDomainServiceTest {
   private SellerRepository sellerRepository;
 
   private final ProductWithSellerFactory productWithSellerFactory = new ProductWithSellerFactory();
-  private ProductSellerDomainService productSellerService;
+  private ProductWithSellerDomainService productSellerService;
 
   @BeforeEach
   public void setUp() {
-    this.productSellerService = new ProductSellerDomainService(productWithSellerFactory, sellerRepository);
+    this.productSellerService = new ProductWithSellerDomainService(productWithSellerFactory, sellerRepository);
   }
 
   @Test

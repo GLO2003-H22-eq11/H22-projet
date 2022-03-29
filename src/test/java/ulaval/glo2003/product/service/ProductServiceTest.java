@@ -51,7 +51,7 @@ class ProductServiceTest {
   private ProductFilterer productFilterer;
 
   @Mock
-  private ProductSellerDomainService productSellerService;
+  private ProductWithSellerDomainService productSellerService;
 
   @Mock
   private OfferRepository offerRepository;

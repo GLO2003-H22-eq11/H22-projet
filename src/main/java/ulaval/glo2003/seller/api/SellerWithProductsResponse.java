@@ -4,7 +4,7 @@ import ulaval.glo2003.product.api.ProductWithOffersResponse;
 
 import java.util.List;
 
-public class SellerWithProductsOffersResponse {
+public class SellerWithProductsResponse {
   public String id;
   public String name;
   public String createdAt;
@@ -12,8 +12,14 @@ public class SellerWithProductsOffersResponse {
   public String birthDate;
   public List<ProductWithOffersResponse> products;
 
-  public SellerWithProductsOffersResponse(String id, String name, String created, String bio, String birthDate,
-                                          List<ProductWithOffersResponse> products) {
+  public SellerWithProductsResponse(
+          String id,
+          String name,
+          String created,
+          String bio,
+          String birthDate,
+          List<ProductWithOffersResponse> products
+  ) {
     this.id = id;
     this.name = name;
     this.createdAt = created;

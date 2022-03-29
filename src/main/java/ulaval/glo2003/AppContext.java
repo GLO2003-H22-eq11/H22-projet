@@ -1,6 +1,7 @@
 package ulaval.glo2003;
 
 import ulaval.glo2003.exception.ConstraintsValidator;
+import ulaval.glo2003.product.api.assembler.BuyerAssembler;
 import ulaval.glo2003.product.api.validator.OfferRequestValidator;
 import ulaval.glo2003.product.api.assembler.OffersAssembler;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
@@ -9,15 +10,15 @@ import ulaval.glo2003.product.api.ProductFactory;
 import ulaval.glo2003.product.api.ProductFiltersFactory;
 import ulaval.glo2003.product.domain.CategoriesFactory;
 import ulaval.glo2003.product.domain.OfferRepository;
+import ulaval.glo2003.product.domain.OffersInformationFactory;
 import ulaval.glo2003.product.domain.ProductIdFactory;
 import ulaval.glo2003.product.domain.ProductRepository;
 import ulaval.glo2003.product.domain.ProductWithOffersFactory;
-import ulaval.glo2003.seller.domain.SellerWithProductsOffersFactory;
 import ulaval.glo2003.product.domain.OfferFactory;
 import ulaval.glo2003.product.domain.ProductFilterer;
 import ulaval.glo2003.product.domain.ProductWithSellerFactory;
-import ulaval.glo2003.product.domain.ProductOfferDomainService;
-import ulaval.glo2003.product.domain.ProductSellerDomainService;
+import ulaval.glo2003.seller.domain.SellerWithProductsDomainService;
+import ulaval.glo2003.product.domain.ProductWithSellerDomainService;
 import ulaval.glo2003.product.infrastructure.inMemory.InMemoryOfferRepository;
 import ulaval.glo2003.product.infrastructure.inMemory.InMemoryProductRepository;
 import ulaval.glo2003.product.service.ProductService;
@@ -42,11 +43,14 @@ public class AppContext {
   );
   public final ProductWithSellerFactory productWithSellerFactory = new ProductWithSellerFactory();
   public final OfferFactory offerFactory = new OfferFactory(productIdFactory);
-  public final SellerWithProductsOffersFactory sellerWithProductsOffersFactory = new SellerWithProductsOffersFactory();
-  public final ProductWithOffersFactory productWithOffersFactory = new ProductWithOffersFactory();
+  public final OffersInformationFactory offersInformationFactory = new OffersInformationFactory();
+  public final ProductWithOffersFactory productWithOffersFactory = new ProductWithOffersFactory(
+          offersInformationFactory
+  );
 
 
-  public final OffersAssembler offersAssembler = new OffersAssembler();
+  public final BuyerAssembler buyerAssembler = new BuyerAssembler();
+  public final OffersAssembler offersAssembler = new OffersAssembler(buyerAssembler);
   public final ProductAssembler productAssembler = new ProductAssembler(offersAssembler);
   public final SellerAssembler sellerAssembler = new SellerAssembler(productAssembler);
 
@@ -54,29 +58,30 @@ public class AppContext {
   public final ProductRepository productRepository = new InMemoryProductRepository();
   public final OfferRepository offerRepository = new InMemoryOfferRepository();
 
-  public final ProductSellerDomainService productSellerDomainService = new ProductSellerDomainService(
+  public final ProductWithSellerDomainService productWithSellerDomainService = new ProductWithSellerDomainService(
           productWithSellerFactory,
           sellerRepository
   );
   public final ProductFilterer productFilterer = new ProductFilterer(productRepository);
-  public final ProductOfferDomainService productOfferDomainService = new ProductOfferDomainService(
+  public final SellerWithProductsDomainService sellerWithProductsDomainService = new SellerWithProductsDomainService(
           productRepository,
           offerRepository,
-          productWithOffersFactory,
-          sellerWithProductsOffersFactory);
+          productWithOffersFactory
+  );
 
 
   public final SellerService sellerService = new SellerService(
           sellerRepository,
           productRepository,
-          productOfferDomainService);
+          sellerWithProductsDomainService);
 
   public final ProductService productService = new ProductService(
           productRepository,
           sellerRepository,
-          productSellerDomainService,
+          productWithSellerDomainService,
           productFilterer,
-          offerRepository);
+          offerRepository
+  );
 
 
   public final ConstraintsValidator constraintsValidator = new ConstraintsValidator();

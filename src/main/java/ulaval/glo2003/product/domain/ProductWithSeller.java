@@ -41,7 +41,7 @@ public class ProductWithSeller {
   }
 
   public OffersSummary getProductOffers() {
-    return this.product.getOffers();
+    return this.product.getOffersSummary();
   }
 
   public List<Category> getProductCategories() {

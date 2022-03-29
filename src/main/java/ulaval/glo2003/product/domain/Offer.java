@@ -6,20 +6,21 @@ public class Offer {
 
   private final OfferId offerId;
   private final ProductId productId;
-  private final String name;
-  private final Email email;
-  private final PhoneNumber phoneNumber;
   private final Amount amount;
   private final String message;
   private final LocalDateTime createdAt;
+  private final Buyer buyer;
 
-  public Offer(OfferId offerId, ProductId productId, String name, Email email, PhoneNumber phoneNumber,
-               Amount amount, String message, LocalDateTime createdAt) {
+  public Offer(
+          OfferId offerId,
+          ProductId productId,
+          Amount amount,
+          String message,
+          LocalDateTime createdAt,
+          Buyer buyer) {
     this.offerId = offerId;
     this.productId = productId;
-    this.name = name;
-    this.email = email;
-    this.phoneNumber = phoneNumber;
+    this.buyer = buyer;
     this.amount = amount;
     this.message = message;
     this.createdAt = createdAt;
@@ -29,7 +30,7 @@ public class Offer {
     return this.createdAt.toString();
   }
 
-  public String getId() {
+  public String getStringId() {
     return this.offerId.toString();
   }
 
@@ -41,24 +42,15 @@ public class Offer {
     return this.amount;
   }
 
+  public Double getAmountDoubleValue() {
+    return this.amount.getDoubleValue();
+  }
+
   public String getMessage() {
     return this.message;
   }
 
-  public String getPhoneNumber() {
-    return this.phoneNumber.toString();
-  }
-
-  public String getEmail() {
-    return this.email.toString();
-  }
-
-  public String getName() {
-    return this.name;
-  }
-
-
-  public double getDoubleValue() {
-    return this.amount.getDoubleValue();
+  public Buyer getBuyer() {
+    return this.buyer;
   }
 }

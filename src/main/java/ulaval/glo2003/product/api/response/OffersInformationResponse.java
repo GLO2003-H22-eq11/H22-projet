@@ -16,5 +16,4 @@ public class OffersInformationResponse {
     this.count = count;
     this.items = items;
   }
-
 }

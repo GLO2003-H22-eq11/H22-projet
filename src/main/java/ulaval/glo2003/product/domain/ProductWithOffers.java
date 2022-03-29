@@ -5,98 +5,46 @@ import java.util.List;
 
 public class ProductWithOffers {
 
-  private final ProductId productId;
-  private final String title;
-  private final String description;
-  private final Amount suggestedPrice;
-  private final Categories categories;
-  private final List<Offer> productOffers;
-  private final OffersSummary offersSummary;
-  private final String createdAt;
+  private final Product product;
+  private final OffersInformation offersInformation;
 
   public ProductWithOffers(
-          ProductId productId,
-          String title,
-          String description,
-          Amount suggestedPrice,
-          Categories categories,
-          List<Offer> productOffers,
-          OffersSummary offersSummarySummary,
-          String createdAt
+          Product product,
+          OffersInformation offersInformation
   ) {
-    this.productId = productId;
-    this.title = title;
-    this.description = description;
-    this.suggestedPrice = suggestedPrice;
-    this.productOffers = productOffers;
-    this.categories = categories;
-    this.offersSummary = offersSummarySummary;
-    this.createdAt = createdAt;
+    this.product = product;
+    this.offersInformation = offersInformation;
   }
 
-  public String getCreatedAt() {
-    return this.createdAt;
+  public Product getProduct() {
+    return this.product;
   }
 
-  public String getTitle() {
-    return this.title;
+  public OffersInformation getOffers() {
+    return this.offersInformation;
   }
 
-  public String getDescription() {
-    return this.description;
+  public String getStringProductId() {
+    return this.product.getStringProductId();
   }
 
-  public double getSuggestedPriceAmount() {
-    return this.suggestedPrice.getDoubleValue();
+  public String getProductTitle() {
+    return this.product.getTitle();
   }
 
-  public String getStringId() {
-    return this.productId.toString();
+  public String getProductDescription() {
+    return this.product.getDescription();
   }
 
-  public ProductId getProductId() {
-    return this.productId;
+  public Double getProductSuggestedPriceAmount() {
+    return this.product.getSuggestedPriceAmountDoubleValue();
   }
 
   public List<Category> getProductCategories() {
-    return this.categories.getCategories();
+    return this.product.getProductCategories();
   }
 
-  public Double getMean() {
-    Double mean = this.offersSummary.getMeanAmount();
-
-    if (mean == null) {
-      return null;
-    }
-
-    return mean;
-  }
-
-  public int getCount() {
-    return this.offersSummary.getCount();
-  }
-
-  public Double getMaxOffer() {
-    int count = this.getCount();
-
-    if (count == 0) {
-      return null;
-    }
-
-    return this.offersSummary.getMax().getDoubleValue();
-  }
-
-  public Double getMinOffer() {
-    int count = this.getCount();
-
-    if (count == 0) {
-      return null;
-    }
-
-    return this.offersSummary.getMin().getDoubleValue();
-  }
-
-  public List<Offer> getProductOffers() {
-    return this.productOffers;
+  public String getProductCreatedAt() {
+    return this.product.getStringCreatedAt();
   }
 }

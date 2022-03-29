@@ -7,11 +7,11 @@ import ulaval.glo2003.seller.domain.SellerRepository;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ProductSellerDomainService {
+public class ProductWithSellerDomainService {
   private final ProductWithSellerFactory productWithSellerFactory;
   private final SellerRepository sellerRepository;
 
-  public ProductSellerDomainService(
+  public ProductWithSellerDomainService(
           ProductWithSellerFactory productWithSellerFactory,
           SellerRepository sellerRepository
   ) {

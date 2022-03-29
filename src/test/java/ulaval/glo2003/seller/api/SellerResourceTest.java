@@ -43,10 +43,10 @@ public class SellerResourceTest {
   private SellerRequestValidator sellerRequestValidator;
 
   @Mock
-  private SellerWithProductsOffers sellerWithProductsOffers;
+  private SellerWithProducts sellerWithProducts;
 
   @Mock
-  private SellerWithProductsOffersResponse sellerWithProductsOffersResponse;
+  private SellerResponse sellerResponse;
 
   private SellerResource sellerResource;
 
@@ -126,7 +126,7 @@ public class SellerResourceTest {
 
     this.sellerResource.getCurrentSeller(A_SELLER_STRING_ID);
 
-    verify(this.sellerService).getSellerWithProductsOffers(aSellerId);
+    verify(this.sellerService).getSellerWithProductsById(aSellerId);
   }
 
   @Test
@@ -134,11 +134,11 @@ public class SellerResourceTest {
           GenericException {
     SellerId aSellerId = new SellerId(A_SELLER_STRING_ID);
     givenASellerId(aSellerId);
-    given(this.sellerService.getSellerWithProductsOffers(aSellerId)).willReturn(this.sellerWithProductsOffers);
+    given(this.sellerService.getSellerWithProductsById(aSellerId)).willReturn(this.sellerWithProducts);
 
     this.sellerResource.getCurrentSeller(A_SELLER_STRING_ID);
 
-    verify(this.sellerAssembler).toSellerWithProductsOffersResponse(this.sellerWithProductsOffers);
+    verify(this.sellerAssembler).toResponse(this.seller);
   }
 
   @Test
@@ -146,10 +146,10 @@ public class SellerResourceTest {
           GenericException {
     SellerId aSellerId = new SellerId(A_SELLER_STRING_ID);
     givenASellerId(aSellerId);
-    given(this.sellerService.getSellerWithProductsOffers(aSellerId)).willReturn(this.sellerWithProductsOffers);
-    given(this.sellerAssembler.toSellerWithProductsOffersResponse(this.sellerWithProductsOffers)).willReturn(this.sellerWithProductsOffersResponse);
+    given(this.sellerService.getSellerWithProductsById(aSellerId)).willReturn(this.sellerWithProducts);
+    given(this.sellerAssembler.toResponse(this.seller)).willReturn(this.sellerResponse);
 
-    Response expectedResponse = Response.ok().entity(this.sellerWithProductsOffersResponse).build();
+    Response expectedResponse = Response.ok().entity(this.sellerResponse).build();
     Response actualResponse = this.sellerResource.getCurrentSeller(A_SELLER_STRING_ID);
 
     assertEquals(expectedResponse.getEntity(), actualResponse.getEntity());

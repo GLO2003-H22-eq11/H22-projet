@@ -35,12 +35,10 @@ public class OfferFactory {
     return new Offer(
             new OfferId(),
             this.productIdFactory.create(productId),
-            name,
-            new Email(email),
-            new PhoneNumber(phoneNumber),
             Amount.fromDouble(amount),
             message,
-            LocalDateTime.now()
+            LocalDateTime.now(),
+            new Buyer(name, new Email(email), new PhoneNumber(phoneNumber))
     );
   }
 }

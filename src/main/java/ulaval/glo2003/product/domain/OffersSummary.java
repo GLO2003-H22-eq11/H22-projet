@@ -2,8 +2,6 @@ package ulaval.glo2003.product.domain;
 
 public class OffersSummary {
 
-  private final Amount MAX_MIN_STARTING_PRICE = Amount.fromDouble(0.0);
-
   private Amount mean;
   private Integer count;
   private Amount min;
@@ -11,8 +9,8 @@ public class OffersSummary {
 
   public OffersSummary() {
     this.count = 0;
-    this.min = this.MAX_MIN_STARTING_PRICE;
-    this.max = this.MAX_MIN_STARTING_PRICE;
+    this.min = null;
+    this.max = null;
   }
 
   public Double getMeanAmount() {
@@ -22,25 +20,30 @@ public class OffersSummary {
     return this.mean.getDoubleValue();
   }
 
-  public int getCount() {
+  public Integer getCount() {
     return this.count;
   }
 
-  public Amount getMax() {
-    return this.max;
+  public Double getMaxAmount() {
+    if(this.max == null) {
+      return null;
+    }
+    return this.max.getDoubleValue();
   }
 
-  public Amount getMin() {
-    return this.min;
+  public Double getMinAmount() {
+    if(this.min == null) {
+      return null;
+    }
+    return this.min.getDoubleValue();
   }
 
   public void addOfferAmount(Amount offerAmount) {
-
-    if (offerAmount.isHigher(this.max)) {
+    if (this.max == null || offerAmount.isHigher(this.max)) {
       this.max = offerAmount;
     }
 
-    if (this.min.isHigher(offerAmount) || this.min.equals(this.MAX_MIN_STARTING_PRICE)) {
+    if (this.min == null || this.min.isHigher(offerAmount)) {
       this.min = offerAmount;
     }
 
