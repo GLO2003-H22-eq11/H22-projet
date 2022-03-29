@@ -43,7 +43,7 @@ public class SellerWithProductsDomainService {
     Map<Product, List<Offer>> productsWithOffers = new HashMap<>();
 
     products.forEach((product) -> {
-      productsWithOffers.put(product, this.offerRepository.findByProduct(product));
+      productsWithOffers.put(product, this.offerRepository.findByProductId(product.getProductId()));
     });
 
     return this.createProductWithOffers(productsWithOffers);

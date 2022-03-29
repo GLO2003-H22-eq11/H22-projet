@@ -6,5 +6,5 @@ public interface OfferRepository {
 
   void save(Offer offer);
 
-  List<Offer> findByProduct(Product product);
+  List<Offer> findByProductId(ProductId productId);
 }

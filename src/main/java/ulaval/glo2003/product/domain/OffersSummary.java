@@ -9,8 +9,6 @@ public class OffersSummary {
 
   public OffersSummary() {
     this.count = 0;
-    this.min = null;
-    this.max = null;
   }
 
   public Double getMeanAmount() {

@@ -1,6 +1,6 @@
 package ulaval.glo2003.product.domain;
 
-import ulaval.glo2003.product.domain.exceptions.InvalidProductIdException;
+import ulaval.glo2003.product.domain.exceptions.InvalidOfferIdException;
 import ulaval.glo2003.util.UUIDGenerator;
 
 import java.util.Objects;
@@ -13,11 +13,11 @@ public class OfferId {
     this.id = UUIDGenerator.generate();
   }
 
-  public OfferId(String offerId) throws InvalidProductIdException {
+  public OfferId(String offerId) throws InvalidOfferIdException {
     try {
       this.id = UUID.fromString(offerId);
     } catch (Exception e) {
-      throw new InvalidProductIdException();
+      throw new InvalidOfferIdException();
     }
   }
 

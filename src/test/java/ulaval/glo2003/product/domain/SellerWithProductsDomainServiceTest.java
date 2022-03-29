@@ -20,7 +20,8 @@ import static org.mockito.Mockito.verify;
 class SellerWithProductsDomainServiceTest {
 
   private Seller A_SELLER = new SellerBuilder().build();
-  private Product A_PRODUCT = new ProductBuilder().build();
+  private ProductId A_PRODUCT_ID = new ProductId();
+  private Product A_PRODUCT = new ProductBuilder().withProductId(A_PRODUCT_ID).build();
   private Offer A_OFFER = new OfferBuilder().build();
 
   @Mock
@@ -58,13 +59,13 @@ class SellerWithProductsDomainServiceTest {
 
     this.sellerWithProductsDomainService.getSellerWithProducts(this.A_SELLER);
 
-    verify(this.offerRepository).findByProduct(A_PRODUCT);
+    verify(this.offerRepository).findByProductId(A_PRODUCT_ID);
   }
 
   @Test
   public void givenASellerId_whenAssembleProductsWithOffersToSeller_thenShouldCallTheProductWithOffersFactory() {
     given(this.productRepository.findBySellerId(this.A_SELLER.getSellerId())).willReturn(this.getProducts());
-    given(this.offerRepository.findByProduct(A_PRODUCT)).willReturn(this.getOffers());
+    given(this.offerRepository.findByProductId(A_PRODUCT_ID)).willReturn(this.getOffers());
 
     this.sellerWithProductsDomainService.getSellerWithProducts(this.A_SELLER);
 

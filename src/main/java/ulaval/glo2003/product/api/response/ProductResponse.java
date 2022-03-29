@@ -44,7 +44,6 @@ public class ProductResponse {
             && createdAt.equals(that.createdAt)
             && title.equals(that.title) && description.equals(that.description)
             && offers.equals(that.offers) && categories.equals(that.categories)
-
             && seller.equals(that.seller);
   }
 
