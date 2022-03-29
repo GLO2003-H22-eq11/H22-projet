@@ -1,5 +1,7 @@
 package ulaval.glo2003.product.domain;
 
+import java.util.Objects;
+
 public class Buyer {
   private final String name;
   private final Email email;
@@ -21,5 +23,18 @@ public class Buyer {
 
   public String getPhoneNumber() {
     return this.phoneNumber.toString();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Buyer buyer = (Buyer) o;
+    return name.equals(buyer.name) && email.equals(buyer.email) && phoneNumber.equals(buyer.phoneNumber);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, email, phoneNumber);
   }
 }
