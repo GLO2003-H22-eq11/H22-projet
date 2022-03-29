@@ -2,7 +2,6 @@ package ulaval.glo2003.product.infrastructure.inMemory;
 
 import ulaval.glo2003.product.domain.Offer;
 import ulaval.glo2003.product.domain.OfferRepository;
-import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductId;
 
 import java.util.ArrayList;

@@ -1,5 +1,7 @@
 package ulaval.glo2003.product.domain;
 
+import java.util.Objects;
+
 public class OffersSummary {
 
   private Amount mean;
@@ -23,14 +25,14 @@ public class OffersSummary {
   }
 
   public Double getMaxAmount() {
-    if(this.max == null) {
+    if (this.max == null) {
       return null;
     }
     return this.max.getDoubleValue();
   }
 
   public Double getMinAmount() {
-    if(this.min == null) {
+    if (this.min == null) {
       return null;
     }
     return this.min.getDoubleValue();
@@ -53,5 +55,21 @@ public class OffersSummary {
       this.mean = offerAmount;
       this.count += 1;
     }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    OffersSummary that = (OffersSummary) o;
+    return Objects.equals(mean, that.mean)
+            && count.equals(that.count)
+            && Objects.equals(min, that.min)
+            && Objects.equals(max, that.max);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(mean, count, min, max);
   }
 }

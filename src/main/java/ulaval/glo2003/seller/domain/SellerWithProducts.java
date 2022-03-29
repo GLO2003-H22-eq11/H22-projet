@@ -3,6 +3,7 @@ package ulaval.glo2003.seller.domain;
 import ulaval.glo2003.product.domain.ProductWithOffers;
 
 import java.util.List;
+import java.util.Objects;
 
 public class SellerWithProducts {
 
@@ -43,5 +44,18 @@ public class SellerWithProducts {
 
   public String getBirthDate() {
     return this.seller.getStringBirthDate();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    SellerWithProducts that = (SellerWithProducts) o;
+    return seller.equals(that.seller) && products.equals(that.products);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(seller, products);
   }
 }

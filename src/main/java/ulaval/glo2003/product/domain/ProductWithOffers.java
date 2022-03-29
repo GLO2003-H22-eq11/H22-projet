@@ -2,6 +2,7 @@ package ulaval.glo2003.product.domain;
 
 
 import java.util.List;
+import java.util.Objects;
 
 public class ProductWithOffers {
 
@@ -46,5 +47,18 @@ public class ProductWithOffers {
 
   public String getProductCreatedAt() {
     return this.product.getStringCreatedAt();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ProductWithOffers that = (ProductWithOffers) o;
+    return product.equals(that.product) && offersInformation.equals(that.offersInformation);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(product, offersInformation);
   }
 }

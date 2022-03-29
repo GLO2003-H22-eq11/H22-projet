@@ -23,6 +23,8 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 class SellerServiceTest {
 
+  private static final SellerId A_SELLER_ID = new SellerId();
+
   @Mock
   private Seller seller;
 
@@ -61,33 +63,30 @@ class SellerServiceTest {
 
   @Test
   public void givenASellerId_whenGetSellerById_thenShouldFindById() throws GenericException {
-    SellerId aSellerId = new SellerId();
-    this.givenASeller(aSellerId);
+    this.givenASeller(A_SELLER_ID);
 
-    this.sellerService.getSellerById(aSellerId);
+    this.sellerService.getSellerById(A_SELLER_ID);
 
-    verify(this.sellerRepository).findById(aSellerId);
+    verify(this.sellerRepository).findById(A_SELLER_ID);
   }
 
   @Test
   public void givenASellerId_whenGetSellerById_thenShouldFindProductsBySellerId() throws GenericException {
-    SellerId aSellerId = new SellerId();
-    this.givenASeller(aSellerId);
+    this.givenASeller(A_SELLER_ID);
 
-    this.sellerService.getSellerById(aSellerId);
+    this.sellerService.getSellerById(A_SELLER_ID);
 
-    verify(this.productRepository).findBySellerId(aSellerId);
+    verify(this.productRepository).findBySellerId(A_SELLER_ID);
   }
 
   @Test
   public void givenASellerId_whenGetSellerById_thenShouldSetProductsToSeller() throws GenericException {
-    SellerId aSellerId = new SellerId();
-    this.givenASeller(aSellerId);
+    this.givenASeller(A_SELLER_ID);
     Product aProduct = new ProductBuilder().build();
     Product anotherProduct = new ProductBuilder().build();
-    given(this.productRepository.findBySellerId(aSellerId)).willReturn(List.of(aProduct, anotherProduct));
+    given(this.productRepository.findBySellerId(A_SELLER_ID)).willReturn(List.of(aProduct, anotherProduct));
 
-    this.sellerService.getSellerById(aSellerId);
+    this.sellerService.getSellerById(A_SELLER_ID);
 
     verify(this.seller).setProducts(List.of(aProduct, anotherProduct));
   }
@@ -95,33 +94,29 @@ class SellerServiceTest {
   @Test
   public void givenASellerId_whenGetSellerWithProductsOffers_thenShouldCallTheRepositoryToGetSeller()
           throws GenericException {
-    SellerId aSellerId = new SellerId();
+    this.sellerService.getSellerWithProductsById(A_SELLER_ID);
 
-    this.sellerService.getSellerWithProductsById(aSellerId);
-
-    verify(this.sellerRepository).findById(aSellerId);
+    verify(this.sellerRepository).findById(A_SELLER_ID);
   }
 
   @Test
   public void givenASellerId_whenGetSellerWithProductsOffers_thenShouldCallTheProductOfferDomainServiceToAssemble()
           throws GenericException {
-    SellerId aSellerId = new SellerId();
-    given(this.sellerRepository.findById(aSellerId)).willReturn(this.seller);
+    given(this.sellerRepository.findById(A_SELLER_ID)).willReturn(this.seller);
 
-    this.sellerService.getSellerWithProductsById(aSellerId);
+    this.sellerService.getSellerWithProductsById(A_SELLER_ID);
 
     verify(this.sellerWithProductsDomainService).getSellerWithProducts(this.seller);
   }
 
   @Test
-  public void givenASellerId_whenGetSellerWithProductsOffers_thenShouldReturnWhatTheDomainServiceReturn()
+  public void givenASellerId_whenGetSellerWithProductsById_thenShouldReturnSellerWithProducts()
           throws GenericException {
-    SellerId aSellerId = new SellerId();
-    given(this.sellerRepository.findById(aSellerId)).willReturn(this.seller);
+    given(this.sellerRepository.findById(A_SELLER_ID)).willReturn(this.seller);
     given(this.sellerWithProductsDomainService.getSellerWithProducts(this.seller))
             .willReturn(this.sellerWithProducts);
 
-    SellerWithProducts sellerWithProducts = this.sellerService.getSellerWithProductsById(aSellerId);
+    SellerWithProducts sellerWithProducts = this.sellerService.getSellerWithProductsById(A_SELLER_ID);
 
     assertEquals(sellerWithProducts, this.sellerWithProducts);
   }
