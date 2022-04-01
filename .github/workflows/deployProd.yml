@@ -36,5 +36,5 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "processus-equipe-22-production"
+          heroku_app_name: "processus-equipe-11-production"
           heroku_email: ${{secrets.HEROKU_EMAIL}}
