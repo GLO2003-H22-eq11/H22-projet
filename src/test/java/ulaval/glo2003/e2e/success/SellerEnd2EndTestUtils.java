@@ -5,15 +5,14 @@ import io.restassured.specification.RequestSpecification;
 import ulaval.glo2003.seller.api.SellerRequest;
 import ulaval.glo2003.seller.api.SellerResponse;
 
-import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
-import static ulaval.glo2003.e2e.End2EndConfig.APPLICATION_JSON;
-import static ulaval.glo2003.e2e.End2EndConfig.A_BIO;
-import static ulaval.glo2003.e2e.End2EndConfig.A_SELLER_DATE;
-import static ulaval.glo2003.e2e.End2EndConfig.A_SELLER_NAME;
-import static ulaval.glo2003.e2e.End2EndConfig.CONTENT_TYPE;
-import static ulaval.glo2003.e2e.End2EndConfig.LOCATION;
-import static ulaval.glo2003.e2e.End2EndConfig.SELLER_END_POINT;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
+
+import static io.restassured.RestAssured.*;
+import static ulaval.glo2003.e2e.End2EndConfig.*;
 import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.createProduct;
 
 public class SellerEnd2EndTestUtils {
@@ -48,6 +47,17 @@ public class SellerEnd2EndTestUtils {
 
   public static Response getSellerResponse(String sellerId) {
     return when().get(SELLER_END_POINT + "/" + sellerId);
+  }
+
+  public static Response getCurrentSellerResponse(String sellerId){
+
+    return given().urlEncodingEnabled(false)
+            .headers("X-Seller-Id", sellerId)
+            .get("http://localhost:8080/sellers/@me");
+  }
+
+  public static SellerResponse getCurrentSellerBody(String sellerId){
+    return getCurrentSellerResponse(sellerId).getBody().as(SellerResponse.class);
   }
 
   public static SellerResponse getSellerResponseBody(String sellerId) {

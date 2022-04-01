@@ -28,7 +28,7 @@ public class CreateSellerEnd2EndTest {
   }
 
   @Test
-  public void givenASellerNullName_whenCreateASeller_thenShouldReturnRightStatusCode() {
+  public void givenASellerNullName_whenCreateASeller_thenShouldReturn400StatusCode() {
     SellerRequest sellerRequest = givenASellerRequestWithoutName();
 
     postSellerWithSellerBody(sellerRequest)
@@ -37,7 +37,7 @@ public class CreateSellerEnd2EndTest {
   }
 
   @Test
-  public void givenASellerNullBio_whenCreateASeller_thenShouldReturnRightStatusCode() {
+  public void givenASellerNullBio_whenCreateASeller_thenShouldReturn400StatusCode() {
     SellerRequest sellerRequest = givenASellerRequestWithoutBio();
 
     postSellerWithSellerBody(sellerRequest)
@@ -45,7 +45,7 @@ public class CreateSellerEnd2EndTest {
   }
 
   @Test
-  public void givenASellerNullBirthDate_whenCreateASeller_thenShouldReturnRightStatusCode() {
+  public void givenASellerNullBirthDate_whenCreateASeller_thenShouldReturn400StatusCode() {
     SellerRequest sellerRequest = givenASellerRequestWithoutBirthDate();
 
     postSellerWithSellerBody(sellerRequest)
@@ -53,7 +53,7 @@ public class CreateSellerEnd2EndTest {
   }
 
   @Test
-  public void givenASellerBadBirthDate_whenCreateASeller_thenShouldReturnRightStatusCode() {
+  public void givenASellerBadBirthDate_whenCreateASeller_thenShouldReturn400StatusCode() {
     SellerRequest sellerRequest = givenASellerRequestWithBadBirthDate();
 
     postSellerWithSellerBody(sellerRequest)
@@ -61,7 +61,7 @@ public class CreateSellerEnd2EndTest {
   }
 
   @Test
-  public void givenASellerNullName_whenCreateASeller_thenShouldReturnRightBody() {
+  public void givenASellerNullName_whenCreateASeller_thenShouldReturnInvalidParameterBody() {
     SellerRequest sellerRequest = givenASellerRequestWithoutName();
 
     postSellerWithSellerBody(sellerRequest)
@@ -71,7 +71,7 @@ public class CreateSellerEnd2EndTest {
   }
 
   @Test
-  public void givenASellerNullBio_whenCreateASeller_thenShouldReturnRightBody() {
+  public void givenASellerNullBio_whenCreateASeller_thenShouldReturnMissingParameterBody() {
     SellerRequest sellerRequest = givenASellerRequestWithoutBio();
 
     postSellerWithSellerBody(sellerRequest)
@@ -81,7 +81,7 @@ public class CreateSellerEnd2EndTest {
   }
 
   @Test
-  public void givenASellerNullBirthDate_whenCreateASeller_thenShouldReturnRightBody() {
+  public void givenASellerNullBirthDate_whenCreateASeller_thenShouldReturnMissingParameterBody() {
     SellerRequest sellerRequest = givenASellerRequestWithoutBirthDate();
 
     postSellerWithSellerBody(sellerRequest)
@@ -91,7 +91,7 @@ public class CreateSellerEnd2EndTest {
   }
 
   @Test
-  public void givenASellerBadBirthDate_whenCreateASeller_thenShouldReturnRightBody() {
+  public void givenASellerBadBirthDate_whenCreateASeller_thenShouldReturnInvalidParameterBody() {
     SellerRequest sellerRequest = givenASellerRequestWithBadBirthDate();
 
     postSellerWithSellerBody(sellerRequest)
