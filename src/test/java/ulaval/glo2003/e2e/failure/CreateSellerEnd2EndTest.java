@@ -4,7 +4,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ulaval.glo2003.ApplicationMain;
-import ulaval.glo2003.seller.api.SellerRequest;
+import ulaval.glo2003.seller.api.request.SellerRequest;
 
 import static org.hamcrest.Matchers.equalTo;
 import static spark.Spark.stop;

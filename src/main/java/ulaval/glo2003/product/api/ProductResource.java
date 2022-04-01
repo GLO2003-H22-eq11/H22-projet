@@ -19,11 +19,13 @@ import ulaval.glo2003.product.api.response.ProductsResponse;
 import ulaval.glo2003.product.api.validator.OfferRequestValidator;
 import ulaval.glo2003.product.api.validator.ProductRequestValidator;
 import ulaval.glo2003.product.domain.Offer;
-import ulaval.glo2003.product.domain.OfferFactory;
+import ulaval.glo2003.product.domain.factory.OfferFactory;
 import ulaval.glo2003.product.domain.Product;
+import ulaval.glo2003.product.domain.factory.ProductFactory;
 import ulaval.glo2003.product.domain.ProductFilters;
+import ulaval.glo2003.product.domain.factory.ProductFiltersFactory;
 import ulaval.glo2003.product.domain.ProductId;
-import ulaval.glo2003.product.domain.ProductIdFactory;
+import ulaval.glo2003.product.domain.factory.ProductIdFactory;
 import ulaval.glo2003.product.domain.ProductWithSeller;
 import ulaval.glo2003.product.service.ProductService;
 
@@ -68,7 +70,13 @@ public class ProductResource {
     try {
       this.productRequestValidator.validate(productRequest);
 
-      Product product = this.productFactory.create(productRequest, sellerIdString);
+      Product product = this.productFactory.create(
+              sellerIdString,
+              productRequest.title,
+              productRequest.description,
+              productRequest.suggestedPrice,
+              productRequest.categories
+      );
 
       this.productService.addProduct(product);
 

@@ -10,6 +10,8 @@ import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.seller.api.exceptions.InvalidSellerBiographyException;
 import ulaval.glo2003.seller.api.exceptions.InvalidSellerBirthDateException;
 import ulaval.glo2003.seller.api.exceptions.InvalidSellerNameException;
+import ulaval.glo2003.seller.api.request.SellerRequest;
+import ulaval.glo2003.seller.api.validator.SellerRequestValidator;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;

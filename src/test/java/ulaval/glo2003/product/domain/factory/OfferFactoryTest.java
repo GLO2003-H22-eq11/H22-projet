@@ -1,8 +1,11 @@
-package ulaval.glo2003.product.domain;
+package ulaval.glo2003.product.domain.factory;
 
 import org.junit.jupiter.api.Test;
 import ulaval.glo2003.product.domain.exceptions.InvalidMessageException;
 import ulaval.glo2003.product.domain.exceptions.InvalidOfferNameException;
+import ulaval.glo2003.product.domain.factory.OfferFactory;
+import ulaval.glo2003.product.domain.factory.OfferIdFactory;
+import ulaval.glo2003.product.domain.factory.ProductIdFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 

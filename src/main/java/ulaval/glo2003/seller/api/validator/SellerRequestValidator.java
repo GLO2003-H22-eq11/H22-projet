@@ -1,10 +1,11 @@
-package ulaval.glo2003.seller.api;
+package ulaval.glo2003.seller.api.validator;
 
 import ulaval.glo2003.exception.ConstraintsValidator;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.seller.api.exceptions.InvalidSellerBiographyException;
 import ulaval.glo2003.seller.api.exceptions.InvalidSellerBirthDateException;
 import ulaval.glo2003.seller.api.exceptions.InvalidSellerNameException;
+import ulaval.glo2003.seller.api.request.SellerRequest;
 import ulaval.glo2003.util.DateParser;
 
 import java.time.LocalDate;

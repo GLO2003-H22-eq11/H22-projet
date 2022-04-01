@@ -11,13 +11,13 @@ import ulaval.glo2003.product.domain.Offer;
 import ulaval.glo2003.product.domain.OfferBuilder;
 import ulaval.glo2003.product.domain.OfferRepository;
 import ulaval.glo2003.product.domain.OffersInformation;
-import ulaval.glo2003.product.domain.OffersInformationFactory;
+import ulaval.glo2003.product.domain.factory.OffersInformationFactory;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductBuilder;
 import ulaval.glo2003.product.domain.ProductId;
 import ulaval.glo2003.product.domain.ProductRepository;
 import ulaval.glo2003.product.domain.ProductWithOffers;
-import ulaval.glo2003.product.domain.ProductWithOffersFactory;
+import ulaval.glo2003.product.domain.factory.ProductWithOffersFactory;
 
 import java.util.Collections;
 import java.util.List;

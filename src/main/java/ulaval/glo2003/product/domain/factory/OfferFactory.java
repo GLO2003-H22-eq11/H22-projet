@@ -1,6 +1,11 @@
-package ulaval.glo2003.product.domain;
+package ulaval.glo2003.product.domain.factory;
 
 import ulaval.glo2003.exception.GenericException;
+import ulaval.glo2003.product.domain.Amount;
+import ulaval.glo2003.product.domain.Buyer;
+import ulaval.glo2003.product.domain.Email;
+import ulaval.glo2003.product.domain.Offer;
+import ulaval.glo2003.product.domain.PhoneNumber;
 import ulaval.glo2003.product.domain.exceptions.InvalidOfferNameException;
 import ulaval.glo2003.product.domain.exceptions.InvalidMessageException;
 

@@ -1,10 +1,9 @@
-package ulaval.glo2003.product.api;
+package ulaval.glo2003.product.domain.factory;
 
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.domain.Amount;
-import ulaval.glo2003.product.domain.CategoriesFactory;
 import ulaval.glo2003.product.domain.ProductFilters;
-import ulaval.glo2003.seller.domain.SellerIdFactory;
+import ulaval.glo2003.seller.domain.factory.SellerIdFactory;
 
 import java.util.List;
 

@@ -7,10 +7,16 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
+import ulaval.glo2003.seller.api.assembler.SellerAssembler;
+import ulaval.glo2003.seller.api.request.SellerRequest;
+import ulaval.glo2003.seller.api.response.SellerResponse;
+import ulaval.glo2003.seller.api.response.SellerWithProductsResponse;
+import ulaval.glo2003.seller.api.validator.SellerRequestValidator;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerBuilder;
+import ulaval.glo2003.seller.domain.factory.SellerFactory;
 import ulaval.glo2003.seller.domain.SellerId;
-import ulaval.glo2003.seller.domain.SellerIdFactory;
+import ulaval.glo2003.seller.domain.factory.SellerIdFactory;
 import ulaval.glo2003.seller.domain.SellerWithProducts;
 import ulaval.glo2003.seller.domain.exceptions.InvalidSellerIdException;
 import ulaval.glo2003.seller.service.SellerService;
@@ -69,7 +75,9 @@ public class SellerResourceTest {
 
   @Test
   public void givenASellerRequest_whenCreateSeller_thenShouldAddSeller() throws GenericException {
-    given(this.sellerFactory.create(this.sellerRequest)).willReturn(this.seller);
+    given(this.sellerFactory.create(
+            this.sellerRequest.name, this.sellerRequest.bio, this.sellerRequest.birthDate
+    )).willReturn(this.seller);
 
     this.sellerResource.createSeller(this.sellerRequest);
 
@@ -78,7 +86,9 @@ public class SellerResourceTest {
 
   @Test
   public void givenASellerRequest_whenAddSeller_thenShouldCallTheSellerRequestValidator() throws GenericException {
-    given(this.sellerFactory.create(this.sellerRequest)).willReturn(this.seller);
+    given(this.sellerFactory.create(
+            this.sellerRequest.name, this.sellerRequest.bio, this.sellerRequest.birthDate
+    )).willReturn(this.seller);
 
     this.sellerResource.createSeller(this.sellerRequest);
 
@@ -86,7 +96,7 @@ public class SellerResourceTest {
   }
 
   @Test
-  public void givenASellerId_whenGetSellerById_thenShouldCreateSellerId() throws GenericException{
+  public void givenASellerId_whenGetSellerById_thenShouldCreateSellerId() throws GenericException {
     this.sellerResource.getSellerById(A_SELLER_STRING_ID);
 
     verify(this.sellerIdFactory).create(A_SELLER_STRING_ID);

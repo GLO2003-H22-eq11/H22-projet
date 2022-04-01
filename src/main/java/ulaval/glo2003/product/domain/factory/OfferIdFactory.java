@@ -1,5 +1,6 @@
-package ulaval.glo2003.product.domain;
+package ulaval.glo2003.product.domain.factory;
 
+import ulaval.glo2003.product.domain.OfferId;
 import ulaval.glo2003.product.domain.exceptions.InvalidOfferIdException;
 
 public class OfferIdFactory {

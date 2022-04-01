@@ -1,4 +1,7 @@
-package ulaval.glo2003.product.domain;
+package ulaval.glo2003.product.domain.factory;
+
+import ulaval.glo2003.product.domain.Categories;
+import ulaval.glo2003.product.domain.Category;
 
 import java.util.LinkedList;
 import java.util.List;

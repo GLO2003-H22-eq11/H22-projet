@@ -1,4 +1,4 @@
-package ulaval.glo2003.seller.api;
+package ulaval.glo2003.seller.api.response;
 
 
 import java.util.Objects;

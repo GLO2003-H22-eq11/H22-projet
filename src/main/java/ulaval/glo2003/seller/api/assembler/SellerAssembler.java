@@ -1,6 +1,8 @@
-package ulaval.glo2003.seller.api;
+package ulaval.glo2003.seller.api.assembler;
 
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
+import ulaval.glo2003.seller.api.response.SellerResponse;
+import ulaval.glo2003.seller.api.response.SellerWithProductsResponse;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerWithProducts;
 

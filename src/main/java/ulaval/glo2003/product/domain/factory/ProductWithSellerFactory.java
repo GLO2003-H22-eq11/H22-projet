@@ -1,5 +1,7 @@
-package ulaval.glo2003.product.domain;
+package ulaval.glo2003.product.domain.factory;
 
+import ulaval.glo2003.product.domain.Product;
+import ulaval.glo2003.product.domain.ProductWithSeller;
 import ulaval.glo2003.seller.domain.Seller;
 
 public class ProductWithSellerFactory {

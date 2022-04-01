@@ -1,16 +1,18 @@
-package ulaval.glo2003.product.api;
+package ulaval.glo2003.product.domain.factory;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.domain.Amount;
 import ulaval.glo2003.product.domain.Categories;
-import ulaval.glo2003.product.domain.CategoriesFactory;
 import ulaval.glo2003.product.domain.Category;
 import ulaval.glo2003.product.domain.ProductFilters;
+import ulaval.glo2003.product.domain.factory.CategoriesFactory;
+import ulaval.glo2003.product.domain.factory.ProductFiltersFactory;
 import ulaval.glo2003.seller.domain.SellerId;
-import ulaval.glo2003.seller.domain.SellerIdFactory;
+import ulaval.glo2003.seller.domain.factory.SellerIdFactory;
 
 
 import java.util.Collections;
@@ -83,7 +85,7 @@ public class ProductFiltersFactoryTest {
   public void givenAValidMinimumPrice_whenCreate_thenShouldCreateAProductFilterWithAMinimumPrice() throws GenericException{
     ProductFilters productFilters = this.productFiltersFactory.create(NULL_SELLER_ID, NULL_TITLE, NO_CATEGORIES, A_MINIMUM_PRICE, NULL_PRICE);
 
-    assertEquals(productFilters.getMinimalPrice(), Amount.fromDouble(A_MINIMUM_PRICE));
+    Assertions.assertEquals(productFilters.getMinimalPrice(), Amount.fromDouble(A_MINIMUM_PRICE));
   }
 
   @Test

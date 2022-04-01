@@ -10,9 +10,15 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import ulaval.glo2003.exception.GenericException;
+import ulaval.glo2003.seller.api.assembler.SellerAssembler;
+import ulaval.glo2003.seller.api.request.SellerRequest;
+import ulaval.glo2003.seller.api.response.SellerResponse;
+import ulaval.glo2003.seller.api.response.SellerWithProductsResponse;
+import ulaval.glo2003.seller.api.validator.SellerRequestValidator;
 import ulaval.glo2003.seller.domain.Seller;
+import ulaval.glo2003.seller.domain.factory.SellerFactory;
 import ulaval.glo2003.seller.domain.SellerId;
-import ulaval.glo2003.seller.domain.SellerIdFactory;
+import ulaval.glo2003.seller.domain.factory.SellerIdFactory;
 import ulaval.glo2003.seller.domain.SellerWithProducts;
 import ulaval.glo2003.seller.service.SellerService;
 
@@ -47,7 +53,7 @@ public class SellerResource {
     try {
       this.sellerRequestValidator.validate(sellerRequest);
 
-      Seller seller = this.sellerFactory.create(sellerRequest);
+      Seller seller = this.sellerFactory.create(sellerRequest.name, sellerRequest.bio, sellerRequest.birthDate);
       this.sellerService.addSeller(seller);
 
       URI uri = URI.create(ENDPOINT + "/" + seller.getStringId());

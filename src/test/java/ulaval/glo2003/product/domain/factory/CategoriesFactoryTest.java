@@ -1,6 +1,9 @@
-package ulaval.glo2003.product.domain;
+package ulaval.glo2003.product.domain.factory;
 
 import org.junit.jupiter.api.Test;
+import ulaval.glo2003.product.domain.Categories;
+import ulaval.glo2003.product.domain.Category;
+import ulaval.glo2003.product.domain.factory.CategoriesFactory;
 
 import java.util.List;
 

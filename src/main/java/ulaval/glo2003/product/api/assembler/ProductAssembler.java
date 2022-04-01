@@ -1,6 +1,6 @@
 package ulaval.glo2003.product.api.assembler;
 
-import ulaval.glo2003.product.api.ProductWithOffersResponse;
+import ulaval.glo2003.product.api.response.ProductWithOffersResponse;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductSellerResponse;
 import ulaval.glo2003.product.api.response.ProductsResponse;
@@ -8,7 +8,7 @@ import ulaval.glo2003.product.domain.Category;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductWithOffers;
 import ulaval.glo2003.product.domain.ProductWithSeller;
-import ulaval.glo2003.seller.api.SellerProductResponse;
+import ulaval.glo2003.seller.api.response.SellerProductResponse;
 
 import java.util.List;
 import java.util.stream.Collectors;
