@@ -8,9 +8,12 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.product.domain.Amount;
+import ulaval.glo2003.main.domain.Amount;
+import ulaval.glo2003.offer.domain.OfferBuilder;
 import ulaval.glo2003.product.domain.*;
-import ulaval.glo2003.product.domain.exceptions.ProductNotFoundException;
+import ulaval.glo2003.offer.domain.Offer;
+import ulaval.glo2003.offer.domain.OfferRepository;
+import ulaval.glo2003.product.domain.ProductRepository;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
 

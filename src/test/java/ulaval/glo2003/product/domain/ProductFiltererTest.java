@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
+import ulaval.glo2003.main.domain.Amount;
 import ulaval.glo2003.seller.domain.SellerId;
 
 import java.util.ArrayList;

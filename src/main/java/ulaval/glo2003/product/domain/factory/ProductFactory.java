@@ -1,8 +1,8 @@
 package ulaval.glo2003.product.domain.factory;
 
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.product.domain.Amount;
-import ulaval.glo2003.product.domain.OffersSummary;
+import ulaval.glo2003.main.domain.Amount;
+import ulaval.glo2003.offer.domain.OffersSummary;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.seller.domain.factory.SellerIdFactory;
 

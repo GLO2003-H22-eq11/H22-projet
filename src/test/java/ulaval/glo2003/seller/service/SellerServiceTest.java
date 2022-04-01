@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.domain.*;
+import ulaval.glo2003.product.domain.ProductRepository;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;

@@ -5,12 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.product.domain.Amount;
+import ulaval.glo2003.main.domain.Amount;
 import ulaval.glo2003.product.domain.Categories;
 import ulaval.glo2003.product.domain.Category;
 import ulaval.glo2003.product.domain.ProductFilters;
-import ulaval.glo2003.product.domain.factory.CategoriesFactory;
-import ulaval.glo2003.product.domain.factory.ProductFiltersFactory;
 import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.factory.SellerIdFactory;
 

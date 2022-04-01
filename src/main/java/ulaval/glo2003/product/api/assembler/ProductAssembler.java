@@ -1,5 +1,6 @@
 package ulaval.glo2003.product.api.assembler;
 
+import ulaval.glo2003.offer.api.assembler.OffersAssembler;
 import ulaval.glo2003.product.api.response.ProductWithOffersResponse;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductSellerResponse;

@@ -1,6 +1,8 @@
 package ulaval.glo2003.product.domain;
 
 
+import ulaval.glo2003.offer.domain.OffersInformation;
+
 import java.util.List;
 import java.util.Objects;
 

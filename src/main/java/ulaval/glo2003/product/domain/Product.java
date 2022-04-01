@@ -1,6 +1,8 @@
 package ulaval.glo2003.product.domain;
 
-import ulaval.glo2003.product.domain.exceptions.InvalidOfferPriceException;
+import ulaval.glo2003.main.domain.Amount;
+import ulaval.glo2003.offer.domain.exceptions.InvalidOfferPriceException;
+import ulaval.glo2003.offer.domain.OffersSummary;
 import ulaval.glo2003.seller.domain.SellerId;
 
 import java.time.Instant;
