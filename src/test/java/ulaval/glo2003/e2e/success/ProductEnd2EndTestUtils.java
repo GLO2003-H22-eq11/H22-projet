@@ -28,7 +28,7 @@ public class ProductEnd2EndTestUtils {
   private static final String A_RANDOM_CATEGORY = "random";
   private static final Double A_VALID_AMOUNT = 300.0;
   private static final String A_VALID_EMAIL = "covidoman@email.ca";
-  private static final String A_VALID_MESSAGE = "Bonjour je m'appelle marin jai pogné la covid a punta cana en frenchant des asiatiques un peu partout feque ca veut dire que je suis pas raciste et pas homophobe yavait meme des gars qui ont profité de mes talents";
+  private static final String A_VALID_MESSAGE = "Donec porttitor interdum lacus sed finibus. Nam pulvinar facilisis posuere. Maecenas vel lorem amet.";
   private static final String A_VALID_NAME = "MarinoCovido";
   private static final String A_VALID_PHONE_NUMBER = "14181234567";
 

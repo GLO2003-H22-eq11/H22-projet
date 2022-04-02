@@ -1,17 +1,16 @@
-package ulaval.glo2003.e2e.success;
+package ulaval.glo2003.e2e.failure;
 
-import io.restassured.response.Response;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ulaval.glo2003.ApplicationMain;
+import ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils;
+import ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils;
 
 import static spark.Spark.stop;
-import static ulaval.glo2003.e2e.End2EndConfig.OK_STATUS_CODE;
-import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.createOffer;
-import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.createSellerGetId;
 
 public class CreateOfferEndToEndTest {
+
   @BeforeAll
   public static void startServer() {
     try {
@@ -33,11 +32,17 @@ public class CreateOfferEndToEndTest {
   }
 
   @Test
-  public void givenAProductAndAnOfferRequest_whenCreateOffer_thenShouldReturn200StatusCode(){
-    String sellerId = createSellerGetId();
+  public void givenAnNonExistingProductAndAnOfferRequest_whenCreateOffer_thenShouldReturn404StatusCode(){
 
-    Response response = createOffer(sellerId);
+  }
 
-    response.then().assertThat().statusCode(OK_STATUS_CODE);
+  @Test
+  public void givenAProductAndAnOfferRequestWithAnInvalidField_whenCreateOffer_thenShouldReturn400StatusCode(){
+
+  }
+
+  @Test
+  public void givenAProductAndAnOfferRequestWithAnEmptyField_whenCreateOffer_thenShouldReturn400StatusCode(){
+
   }
 }

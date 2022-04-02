@@ -44,6 +44,13 @@ public class SellerEnd2EndTestUtils {
             .get(URL_SELLERS_END_POINT + "/" + sellerId);
   }
 
+  public static Response getCurrentSellerResponse(String sellerId){
+
+    return given().urlEncodingEnabled(false)
+            .headers("X-Seller-Id", sellerId)
+            .get("http://localhost:8080/sellers/@me");
+  }
+
   public static Response postSellerWithSellerBody(SellerRequest sellerRequest) {
     return given()
             .header(CONTENT_TYPE, APPLICATION_JSON)

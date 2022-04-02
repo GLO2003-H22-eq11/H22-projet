@@ -4,6 +4,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import ulaval.glo2003.seller.api.SellerRequest;
 import ulaval.glo2003.seller.api.SellerResponse;
+import ulaval.glo2003.seller.api.SellerWithProductsResponse;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -56,8 +57,8 @@ public class SellerEnd2EndTestUtils {
             .get("http://localhost:8080/sellers/@me");
   }
 
-  public static SellerResponse getCurrentSellerBody(String sellerId){
-    return getCurrentSellerResponse(sellerId).getBody().as(SellerResponse.class);
+  public static SellerWithProductsResponse getCurrentSellerBody(String sellerId){
+    return getCurrentSellerResponse(sellerId).getBody().as(SellerWithProductsResponse.class);
   }
 
   public static SellerResponse getSellerResponseBody(String sellerId) {
