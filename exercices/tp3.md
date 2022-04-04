@@ -218,7 +218,7 @@ envers les autres vendeurs.
 
 ### Requête
 
-`POST /sellers/fraudster/{fradeurSellerId}`
+`POST /sellers/fraudster/{fraudsterSellerId}`
 
 #### Headers
 
