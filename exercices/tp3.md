@@ -76,7 +76,7 @@ Nous avons donc en conséquence une grande confiance envers ceux-ci et croyons q
 
 Pour notre équipe, le pipeline CI n'apporte aucun point négatif. Cependant, nous pensons que le pipeline CI peut vite devenir dangereux si une équipe de développement 
 écrit des tests incomplets et que cette même équipe se fit totalement à son pipeline CI pour la vérification de son code. Dans ce cas, le pipeline CI ne pourra pas s'assurer le 
-bon fonctionnement complet de l'application et de ses composantes car les tests ne couvrent pas toute l'application.
+bon fonctionnement complet de l'application et de ses composantes car les tests ne couvrent pas tous les use case de l'application.
 Il peut donc devenir dangereux que l'application comporte plusieurs bugs sans que l'équipe 
 de développement soit au courant.
 
