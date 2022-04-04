@@ -48,11 +48,14 @@
 
 Nous avons implementé le pipeline de tests automatisés dès la première remise. Nous ne pouvons donc pas 
 précisé combien de temps nous avons passez à vérifiez et tester manuellement le code. Cependant, nous n'avions pas les tests End to End avant.
-On passait donc en conséquence toujours une journée avant la remise à tester manuellement l'application en vérifiant chaques cas d'utilisations possibles.
+On passait donc en conséquence toujours une journée avant la remise à tester manuellement l'application en vérifiant chaques cas d'utilisations possibles 
+des divers fonctionnalités.
 
 ### Combien de temps passiez-vous à faire ces vérifications après l'implantation du CI?
 
 Après l'implantation du CI, nous avons passée aucun de temps à tester et vérifier le code car nos tests automatisés s'occupait de cela pour nous.
+Nous avons mis beaucoup de temps à implémenter les tests de notre application, nous nous sommes assurer que ses tests couvrent l'entièreté de notre application, nous 
+avons donc en conséquence une grande confiance envers ceux-ci.
 
 ### Quels sont les points positifs que le CI a apporté à votre processus? Donnez-en au moins 3.
 
@@ -61,6 +64,11 @@ Après l'implantation du CI, nous avons passée aucun de temps à tester et vér
 3.  Vérification des tests End to End. On pouvait facilement si nos modifications brisaient le bon fonctionnement d'une fonctionnalité particulière.
 
 ### Le pipeline CI amène-t-il un élément qui pourrait devenir négatif ou dangeureux pour le processus, le produit et/ou l'équipe? Justifiez.
+
+Pour notre équipe, le pipeline CI n'apporte aucun point négatif. Cependant, nous pensons que le pipeline CI peut vite devenir dangereux si une équipe de développement 
+écrit des tests incomplets et que cet même équipe se fit totalement à son pipeline CI pour la vérification de son code. Dans ce cas, le pipeline CI ne pourra pas s'assurer le 
+bon fonctionnement complet de l'application et de ses composantes. Il peut donc devenir dangereux que l'application comporte plusieurs bugs sans que l'équipe 
+de développement soit au courant.
 
 
 ## Tests
