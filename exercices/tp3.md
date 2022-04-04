@@ -63,8 +63,8 @@ des divers fonctionnalités de Floppa.
 ### Combien de temps passiez-vous à faire ces vérifications après l'implantation du CI?
 
 Après l'implantation du CI, nous avons passé aucun temps à tester et vérifier le code car nos tests automatisés s'occupaient de cela pour nous.
-Nous avons mis beaucoup de temps à implémenter les tests de notre application en s'assurant que ses tests couvraient l'entièreté de notre application.
-Nous avons donc en conséquence une grande confiance envers ceux-ci et croyez que si notre CI passe, la totalité de notre code fonctionne sans problème.
+Nous avons mis beaucoup de temps à implémenter les tests de notre application en s'assurant que ceux-ci couvraient l'entièreté de la logique de notre application.
+Nous avons donc en conséquence une grande confiance envers ceux-ci et croyons que si notre CI passe, la totalité de notre code fonctionne sans problème.
 
 ### Quels sont les points positifs que le CI a apporté à votre processus? Donnez-en au moins 3.
 
