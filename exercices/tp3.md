@@ -118,7 +118,7 @@ Voici 3 solutions qui pourraient aider l'état actuel ( début TP2 ) des tests d
 
 # Stories
 
-# Story #1
+# Story 1
 ## Obtenir les trois plus grands acheteurs
 
 ## Description
@@ -196,7 +196,7 @@ En tant qu'utilisateur, je veux effectuer une recherche pour savoir qui sont les
 - `200 OK`
 
 
-# Story #2
+# Story 2
 ## Signalement de vendeurs fraudeux
 
 ## Description
@@ -237,7 +237,7 @@ envers les autres vendeurs.
 - `ITEM_NOT_FOUND` si le vendeur n'existe pas.
 
 
-# Story #3
+# Story 3
 ## Obtention moyenne du rendement des produits d'un vendeur
 
 ## Description
