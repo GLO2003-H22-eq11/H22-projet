@@ -39,7 +39,14 @@
 
 ### 1 pour votre arbre de commits et de branches (au moins 3 branches et/ou 10 commits visibles)
 
+Commit :
+
 ![image](https://user-images.githubusercontent.com/47373969/161583351-a12ae56f-0e1a-4c92-9d68-10f4fd5fc1b1.png)
+
+Branche : 
+
+![image](https://user-images.githubusercontent.com/47373969/161616992-79064dd3-8570-413f-88e9-64c0d9ffb04f.png)
+
 
 
 ## Pipeline CI
@@ -228,7 +235,7 @@ envers les autres vendeurs.
 
 
 # Story #3
-## Obtention moyenne de rendement des produits d'un vendeur
+## Obtention moyenne du rendement des produits d'un vendeur
 
 ## Description
 
