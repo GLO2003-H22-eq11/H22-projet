@@ -112,7 +112,7 @@ Voici 3 solutions qui pourraient aider l'état actuel ( début TP2 ) des tests d
 
 2. Ensuite, il faut mieux renommer le nom de nos tests pour que ceux-ci offrent une meilleure documentation aux développeurs sur ce que le test doit testé. 
 
-3. Dans chaque nouvelle pull-request, nous devons nous assurer que chaque nouvelles composantes est bien testés unitaires pour s'assurer son bon fonctionnement
+3. Dans chaque nouvelle pull-request, nous devons nous assurer que chaque nouvelle composante est bien testé unitairement pour s'assurer le bon fonctionnement de sa logique ainsi que d'éviter des bugs lors de futurs changement
 
 
 
