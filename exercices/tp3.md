@@ -1,5 +1,23 @@
 # TP3
 
+## Planification du travail sur Github
+
+### 1 pour le Project comprenant les colonnes et les issues associées
+
+
+
+### 1 pour le milestone comprenant le titre, la description et les issues associées
+
+### 3 pour les issues avec tous les éléments demandés visibles
+
+
+
+### 3 pour les PR avec tous les éléments demandés visibles
+
+
+### 1 pour votre arbre de commits et de branches (au moins 3 branches et/ou 10 commits visibles)
+
+
 <img width="1172" alt="image" src="https://user-images.githubusercontent.com/47373969/160435193-d5c55061-9c80-4b12-a42d-3c01c1ac7da0.png">
 
 ![image](https://user-images.githubusercontent.com/47373969/160616395-01c76573-410c-429f-aba4-07b1ce1d4c41.png)
