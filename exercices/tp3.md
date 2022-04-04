@@ -108,7 +108,7 @@ implémentés dans notre application depuis le début du projet. On croit que si
 
 Voici 3 solutions qui pourraient aider l'état actuel ( début TP2 ) des tests de notre équipe de développement.
 
-1. Premièrement, avoir une meilleur séparation de nos tests End to End. Il faut mieux séparer les tests d'échecs de nos tests du succès
+1. Premièrement, il faut regrouper les tests qui testent des fonctionnalités similaires ensemble pour que nos tests soient plus facile à maintenir et à lire.
 
 2. Ensuite, il faut mieux renommer le nom de nos tests pour que ceux-ci offrent une meilleure documentation aux développeurs sur ce que le test doit testé. 
 
@@ -218,7 +218,7 @@ envers les autres vendeurs.
 
 ### Requête
 
-`POST /sellers/fraudster/{fraudsterSellerId}`
+`POST /sellers/report/{sellerId}`
 
 #### Headers
 
@@ -258,14 +258,12 @@ avec l'offre la plus élevée de chacun de ses produits et en faire un pourcenta
 
 `GET /sellers/yield/{sellerId}`
 
-#### Payload
+#### Réponse
 
 ```ts
 {
   "name": string,
-  "email": Email,
-  "phoneNumber": PhoneNumber,
-  "yield": Amount | null    
+  "yield": Percentage | null    
 }
 ```
 
@@ -276,9 +274,7 @@ avec l'offre la plus élevée de chacun de ses produits et en faire un pourcenta
 ```json
 {
   "name": "John Doe",
-  "email": "john.doe@email.com",
-  "phoneNumber": "18191234567",
-  "yield": 145.0
+  "yield": 145
 }
 ```
 
@@ -286,13 +282,9 @@ avec l'offre la plus élevée de chacun de ses produits et en faire un pourcenta
 ```json
 {
   "name": "John Doe",
-  "email": "john.doe@email.com",
-  "phoneNumber": "18191234567",
   "yield": null
 }
 ```
-
-### Réponse
 
 #### Status
 
