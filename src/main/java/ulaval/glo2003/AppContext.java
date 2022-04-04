@@ -3,6 +3,7 @@ package ulaval.glo2003;
 import dev.morphia.Datastore;
 import ulaval.glo2003.context.DatastoreProvider;
 import ulaval.glo2003.exception.ConstraintsValidator;
+import ulaval.glo2003.health.infrastructure.DatabaseConnection;
 import ulaval.glo2003.offer.api.assembler.BuyerAssembler;
 import ulaval.glo2003.offer.api.validator.OfferRequestValidator;
 import ulaval.glo2003.offer.api.assembler.OffersAssembler;
@@ -107,4 +108,6 @@ public class AppContext {
   public final ProductRequestValidator productRequestValidator = new ProductRequestValidator(constraintsValidator);
   public final SellerRequestValidator sellerRequestValidator = new SellerRequestValidator(constraintsValidator);
   public final OfferRequestValidator offerRequestValidator = new OfferRequestValidator(constraintsValidator);
+
+  public final DatabaseConnection databaseConnection = new DatabaseConnection(datastore);
 }

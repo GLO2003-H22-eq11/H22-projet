@@ -34,7 +34,7 @@ public class ApplicationMain {
   }
 
   private static ResourceConfig setupResources() {
-    HealthResource healthResource = new HealthResource();
+    HealthResource healthResource = new HealthResource(appContext.databaseConnection);
     SellerResource sellerResource = createSellerResource();
     ProductResource productResource = createProductResource();
 

@@ -38,3 +38,6 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "processus-equipe-11-production"
           heroku_email: ${{secrets.HEROKU_EMAIL}}
+          healthcheck: ${{secrets.HEROKU_PROD_URL}}/health
+          delay: 60
+          rollbackonhealthcheckfailed: true
