@@ -248,28 +248,25 @@ En tant qu'acheteur, je veux effectuer une offre sur un produit afin de signaler
 
 
 # Story #3
-## Création d'offre sur un produit
+## Obtention moyenne du pourcentage de rendement des produits d'un vendeur
 
 ## Description
 
-En tant qu'acheteur, je veux effectuer une offre sur un produit afin de signaler mon intérêt d'achat.
+Je veux voir la moyenne du pourcentage de rendement sur les produits d'un vendeur en particulier, soit en comparant le prix de base 
+avec l'offre la plus élevée de chacun de ses produits et en faire une moyenne.
 
 ## Critères de succès
 
-1. L'offre est sauvegardée dans l'application.
-2. Les nouvelles offres aparaissent dans les informations du produit associé (tel que décrit dans [get product](https://github.com/glo2003/H22-Iteration2/blob/master/features/2.product-get.md) et [filter products](https://github.com/glo2003/H22-Iteration2/blob/master/features/3.products-get.md)).
-3. Les formats de email et de numéro de téléphones sont validés.
-4. Le montant de l'offre doit être supérieur ou égal au montant suggéré du produit.
-5. Un même client peut faire plusieurs offres. Celles-ci n'ont pas besoin d'être successivements plus élevées.
-6. Le message doit être d'au moins 100 caractères.
-7. Toutes les informations doivent être présentes et non-vides.
-8. Rien ne confirme que l'offre n'a pas été crée par le vendeur (il n'y a pas d'authentification pour la personne qui fait une offre).
+1. Toutes les informations doivent être présentes et non-vides.
+2. Le montant indiqué doit prendre en considération chaque produits du vendeurs avec au moins une offre
+3. On vérifie que le vendeur existe bien
+4. Rien ne confirme que la requête est fait par le vendeur
 
 ## Détails techniques
 
 ### Requête
 
-`POST /products/{productId}/offers`
+`GET /sellers/yield/{sellerId}`
 
 #### Payload
 
@@ -278,8 +275,7 @@ En tant qu'acheteur, je veux effectuer une offre sur un produit afin de signaler
   name: string,
   email: Email,
   phoneNumber: PhoneNumber,
-  amount: Amount,
-  message: string
+  yield: Amount | null    
 }
 ```
 
@@ -292,8 +288,17 @@ En tant qu'acheteur, je veux effectuer une offre sur un produit afin de signaler
   "name": "John Doe",
   "email": "john.doe@email.com",
   "phoneNumber": "18191234567",
-  "amount": 48.23,
-  "message": "Donec porttitor interdum lacus sed finibus. Nam pulvinar facilisis posuere. Maecenas vel lorem amet."
+  "yield": 145.0
+}
+```
+
+**Si le vendeur n'a pas d'offres ou de produits** 
+```json
+{
+  "name": "John Doe",
+  "email": "john.doe@email.com",
+  "phoneNumber": "18191234567",
+  "yield": null
 }
 ```
 
@@ -305,6 +310,6 @@ En tant qu'acheteur, je veux effectuer une offre sur un produit afin de signaler
 
 ### Exceptions
 
-- `ITEM_NOT_FOUND` si le produit n'existe pas.
+- `ITEM_NOT_FOUND` si le vendeur n'existe pas.
 - `INVALID_PARAMETER` si un des champs est invalide.
 - `MISSING_PARAMETER` si un des champs est manquant (`null`).
