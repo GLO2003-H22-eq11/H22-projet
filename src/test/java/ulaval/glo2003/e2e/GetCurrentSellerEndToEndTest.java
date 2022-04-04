@@ -11,6 +11,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static spark.Spark.stop;
 import static ulaval.glo2003.e2e.End2EndConfig.*;
+import static ulaval.glo2003.e2e.ProductEnd2EndTestUtils.*;
 import static ulaval.glo2003.e2e.SellerEnd2EndTestUtils.*;
 
 public class GetCurrentSellerEndToEndTest {
@@ -57,11 +58,42 @@ public class GetCurrentSellerEndToEndTest {
   }
 
   @Test
+  public void givenASellerId_whenGetCurrentSellerId_thenShouldReturnBodyWithProducts() {
+    String sellerId = createSellerGetId();
+    String productId = createProductAndGetId(sellerId);
+
+    SellerWithProductsResponse sellerWithProductsResponse = getCurrentSellerBody(sellerId);
+
+    assertEquals(sellerWithProductsResponse.id, sellerId);
+    assertEquals(sellerWithProductsResponse.bio, A_BIO);
+    assertEquals(sellerWithProductsResponse.name, A_SELLER_NAME);
+    assertEquals(sellerWithProductsResponse.birthDate, A_SELLER_DATE);
+    assertEquals(sellerWithProductsResponse.products.size(), 1);
+    assertEquals(sellerWithProductsResponse.products.get(0).id, productId);
+  }
+
+  @Test
+  public void givenASellerId_whenGetCurrentSellerId_thenShouldReturnBodyWithProductsAndOffers() {
+    String sellerId = createSellerGetId();
+    createProductAndOffer(sellerId);
+
+    SellerWithProductsResponse sellerWithProductsResponse = getCurrentSellerBody(sellerId);
+
+    assertEquals(sellerWithProductsResponse.id, sellerId);
+    assertEquals(sellerWithProductsResponse.bio, A_BIO);
+    assertEquals(sellerWithProductsResponse.name, A_SELLER_NAME);
+    assertEquals(sellerWithProductsResponse.birthDate, A_SELLER_DATE);
+    assertEquals(sellerWithProductsResponse.products.size(), 1);
+    assertEquals(sellerWithProductsResponse.products.get(0).offers.count, 1);
+  }
+
+  @Test
   public void givenANonExistingSellerId_whenGetSeller_thenShouldReturn404StatusCode() {
     getCurrentSellerResponse(A_VALID_UUID_FORMAT)
             .then().assertThat().statusCode(NOT_FOUND_STATUS_CODE);
 
   }
+
   @Test
   public void givenABadSellerId_whenGetSeller_thenShouldReturn400StatusCode() {
     getCurrentSellerResponse(A_NON_VALID_UUID_FORMAT)

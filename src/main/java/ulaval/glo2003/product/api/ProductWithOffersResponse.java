@@ -13,6 +13,9 @@ public class ProductWithOffersResponse {
   public List<String> categories;
   public OffersInformationResponse offers;
 
+  public ProductWithOffersResponse() {
+  }
+
   public ProductWithOffersResponse(String id, String title, String description, Double suggestedPrice,
                                    List<String> categories, OffersInformationResponse offersInformationResponse,
                                    String createdAt) {

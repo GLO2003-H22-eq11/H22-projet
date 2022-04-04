@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static spark.Spark.stop;
 import static ulaval.glo2003.e2e.End2EndConfig.*;
 import static ulaval.glo2003.e2e.End2EndConfig.AN_INVALID_PARAMETER_DESCRIPTION;
-import static ulaval.glo2003.e2e.ProductEnd2EndTestUtils.createOffer;
+import static ulaval.glo2003.e2e.ProductEnd2EndTestUtils.createProductAndOffer;
 import static ulaval.glo2003.e2e.ProductEnd2EndTestUtils.createOfferWithInvalidParams;
 import static ulaval.glo2003.e2e.SellerEnd2EndTestUtils.createSellerGetId;
 
@@ -40,7 +40,7 @@ public class CreateOfferEndToEndTest {
   public void givenAnOfferOnAnExistingProduct_whenCreateOffer_thenShouldReturn200StatusCode(){
     String sellerId = createSellerGetId();
 
-    Response response = createOffer(sellerId);
+    Response response = createProductAndOffer(sellerId);
 
     response.then().assertThat().statusCode(OK_STATUS_CODE);
   }

@@ -33,7 +33,7 @@ public class ProductEnd2EndTestUtils {
             .post(PRODUCTS_END_POINT);
   }
 
-  public static Response createOffer(String sellerId) {
+  public static Response createProductAndOffer(String sellerId) {
     String productId = createProductAndGetId(sellerId);
 
     OfferRequest offerRequest = new OfferRequest();
