@@ -87,7 +87,7 @@ de développement soit au courant.
 
 Nous essayons le plus possible d'écrire nos tests unitaires en même temps que notre code. Après quelques issues à écrire ses deux en même temps, on a pu 
 facilement comprendre que nous passons presque autant de temps à développer
-nos tests unitaires que de développer nos fonctionnalités. 
+nos tests unitaires que de développer nos fonctionnalités, car nous testons tous les use cases possibles de notre logique ainsi que les interactions entre les differentes classes pour s'assurer du comportement de notre application. 
 Cependant depuis le début des tests End to End, nous pouvons affirmer que nous passons plus de temps à implémenter nos tests que d'implémenter nos 
 fonctionnalités.
 
