@@ -37,7 +37,7 @@ public class CreateOfferEndToEndTest {
   }
 
   @Test
-  public void givenAProductAndAnOfferRequest_whenCreateOffer_thenShouldReturn200StatusCode(){
+  public void givenAnOfferOnAnExistingProduct_whenCreateOffer_thenShouldReturn200StatusCode(){
     String sellerId = createSellerGetId();
 
     Response response = createOffer(sellerId);
@@ -46,7 +46,7 @@ public class CreateOfferEndToEndTest {
   }
 
   @Test
-  public void givenAnNonExistingProductAndAnOfferRequest_whenCreateOffer_thenShouldReturn404StatusCode() {
+  public void givenAnOfferForANonExistingProduct_whenCreateOffer_thenShouldReturn404StatusCode() {
     Response response = createOfferWithInvalidParams(A_VALID_UUID_FORMAT,
             A_VALID_AMOUNT,
             A_VALID_EMAIL,
@@ -57,7 +57,7 @@ public class CreateOfferEndToEndTest {
   }
 
   @Test
-  public void givenAnNonValidProductAndAnOfferRequest_whenCreateOffer_thenShouldReturn400StatusCode() {
+  public void givenAnOfferForANonValidProduct_whenCreateOffer_thenShouldReturn400StatusCode() {
     Response response = createOfferWithInvalidParams(A_NON_VALID_UUID_FORMAT,
             A_VALID_AMOUNT,
             A_VALID_EMAIL,
@@ -68,7 +68,7 @@ public class CreateOfferEndToEndTest {
   }
 
   @Test
-  public void givenAProductAndAnOfferRequestWithAnInvalidField_whenCreateOffer_thenShouldReturn400StatusCode() {
+  public void givenAnOfferWithAnInvalidFieldForAProduct_whenCreateOffer_thenShouldReturn400StatusCode() {
     Response response = createOfferWithInvalidParams(A_NON_VALID_UUID_FORMAT,
             A_VALID_AMOUNT,
             A_NON_VALID_EMAIL,
@@ -79,7 +79,7 @@ public class CreateOfferEndToEndTest {
   }
 
   @Test
-  public void givenAProductAndAnOfferRequestWithAnEmptyField_whenCreateOffer_thenShouldReturn400StatusCode() {
+  public void givenAnOfferWithAnEmptyFieldForAProduct_whenCreateOffer_thenShouldReturn400StatusCode() {
     Response response = createOfferWithInvalidParams(A_NON_VALID_UUID_FORMAT,
             A_VALID_AMOUNT,
             null,
@@ -90,7 +90,7 @@ public class CreateOfferEndToEndTest {
   }
 
   @Test
-  public void givenAnNonExistingProductAndAnOfferRequest_whenCreateOffer_thenShouldReturnItemNotFoundBody() {
+  public void givenAnOfferForANonExistingProduct_whenCreateOffer_thenShouldReturnItemNotFoundBody() {
     Response response = createOfferWithInvalidParams(A_VALID_UUID_FORMAT,
             A_VALID_AMOUNT,
             A_VALID_EMAIL,
@@ -102,7 +102,7 @@ public class CreateOfferEndToEndTest {
   }
 
   @Test
-  public void givenAnNonValidProductAndAnOfferRequest_whenCreateOffer_thenShouldReturnInvalidParameterBody() {
+  public void givenAnOfferForANonValidProduct_whenCreateOffer_thenShouldReturnInvalidParameterBody() {
     Response response = createOfferWithInvalidParams(A_NON_VALID_UUID_FORMAT,
             A_VALID_AMOUNT,
             A_VALID_EMAIL,
@@ -114,7 +114,7 @@ public class CreateOfferEndToEndTest {
   }
 
   @Test
-  public void givenAProductAndAnOfferRequestWithAnInvalidEmail_whenCreateOffer_thenShouldReturnInvalidParameterBody() {
+  public void givenAnOfferWithAnInvalidEmailForAProduct_whenCreateOffer_thenShouldReturnInvalidParameterBody() {
     Response response = createOfferWithInvalidParams(A_NON_VALID_UUID_FORMAT,
             A_VALID_AMOUNT,
             A_NON_VALID_EMAIL,
@@ -126,7 +126,7 @@ public class CreateOfferEndToEndTest {
   }
 
   @Test
-  public void givenAProductAndAnOfferRequestWithAnEmptyEmail_whenCreateOffer_thenShouldReturnMissingParameterBody() {
+  public void givenAnOfferWithAnEmptyEmailForAProduct_whenCreateOffer_thenShouldReturnMissingParameterBody() {
     Response response = createOfferWithInvalidParams(A_NON_VALID_UUID_FORMAT,
             A_VALID_AMOUNT,
             null,
@@ -138,7 +138,7 @@ public class CreateOfferEndToEndTest {
   }
 
   @Test
-  public void givenAProductAndAnOfferRequestWithAnInvalidMessage_whenCreateOffer_thenShouldReturnInvalidParameterBody() {
+  public void givenAnOfferWithAnInvalidMessageForAProduct_whenCreateOffer_thenShouldReturnInvalidParameterBody() {
     Response response = createOfferWithInvalidParams(A_NON_VALID_UUID_FORMAT,
             A_VALID_AMOUNT,
             A_VALID_EMAIL,
@@ -150,7 +150,7 @@ public class CreateOfferEndToEndTest {
   }
 
   @Test
-  public void givenAProductAndAnOfferRequestWithAnEmptyMessage_whenCreateOffer_thenShouldReturnMissingParameterBody() {
+  public void givenAnOfferWithAnEmptyMessageForAProduct_whenCreateOffer_thenShouldReturnMissingParameterBody() {
     Response response = createOfferWithInvalidParams(A_NON_VALID_UUID_FORMAT,
             A_VALID_AMOUNT,
             A_VALID_EMAIL,
@@ -162,10 +162,10 @@ public class CreateOfferEndToEndTest {
   }
 
   @Test
-  public void givenAProductAndAnOfferRequestWithAnInvalidPhone_whenCreateOffer_thenShouldReturnInvalidParameterBody() {
+  public void givenAnOfferWithAnInvalidPhoneForAProduct_whenCreateOffer_thenShouldReturnInvalidParameterBody() {
     Response response = createOfferWithInvalidParams(A_NON_VALID_UUID_FORMAT,
             A_VALID_AMOUNT,
-            A_NON_VALID_EMAIL,
+            A_VALID_EMAIL,
             A_VALID_MESSAGE,
             A_NON_VALID_PHONE_NUMBER,
             A_VALID_NAME);
@@ -174,7 +174,7 @@ public class CreateOfferEndToEndTest {
   }
 
   @Test
-  public void givenAProductAndAnOfferRequestWithAnEmptyPhone_whenCreateOffer_thenShouldReturnMissingParameterBody() {
+  public void givenAnOfferWithAnEmptyPhoneForAProduct_whenCreateOffer_thenShouldReturnMissingParameterBody() {
     Response response = createOfferWithInvalidParams(A_NON_VALID_UUID_FORMAT,
             A_VALID_AMOUNT,
             A_NON_VALID_EMAIL,
@@ -186,10 +186,10 @@ public class CreateOfferEndToEndTest {
   }
 
   @Test
-  public void givenAProductAndAnOfferRequestWithAnInvalidName_whenCreateOffer_thenShouldReturnInvalidParameterBody() {
+  public void givenAnOfferWithAnInvalidNameForAProduct_whenCreateOffer_thenShouldReturnInvalidParameterBody() {
     Response response = createOfferWithInvalidParams(A_NON_VALID_UUID_FORMAT,
             A_VALID_AMOUNT,
-            A_NON_VALID_EMAIL,
+            A_VALID_EMAIL,
             A_VALID_MESSAGE,
             A_VALID_PHONE_NUMBER,
             A_NON_VALID_NAME);
@@ -198,7 +198,7 @@ public class CreateOfferEndToEndTest {
   }
 
   @Test
-  public void givenAProductAndAnOfferRequestWithAnEmptyName_whenCreateOffer_thenShouldReturnMissingParameterBody() {
+  public void givenAnOfferWithAnEmptyNameForAProduct_whenCreateOffer_thenShouldReturnMissingParameterBody() {
     Response response = createOfferWithInvalidParams(A_NON_VALID_UUID_FORMAT,
             A_VALID_AMOUNT,
             A_NON_VALID_EMAIL,
@@ -210,7 +210,7 @@ public class CreateOfferEndToEndTest {
   }
 
   @Test
-  public void givenAProductAndAnOfferRequestWithAnInvalidAmount_whenCreateOffer_thenShouldReturnInvalidParameterBody() {
+  public void givenAnOfferWithAnInvalidAmountForAProduct_whenCreateOffer_thenShouldReturnInvalidParameterBody() {
     Response response = createOfferWithInvalidParams(A_NON_VALID_UUID_FORMAT,
             A_NON_VALID_AMOUNT,
             A_NON_VALID_EMAIL,
