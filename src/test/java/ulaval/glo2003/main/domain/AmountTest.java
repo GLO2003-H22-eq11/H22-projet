@@ -72,4 +72,26 @@ class AmountTest {
 
     assertEquals(expectedAmount, resultAmount);
   }
+
+  @Test
+  public void givenAnAmountWithDecimalAndANumberToDivideBy_whenDivide_thenShouldDivide() {
+    Amount amount = Amount.fromDouble(53.65);
+    int aNumberToDivideBy = 2;
+
+    Amount expectedAmount = Amount.fromDouble(26.83);
+    Amount resultAmount = amount.divide(aNumberToDivideBy);
+
+    assertEquals(expectedAmount, resultAmount);
+  }
+
+  @Test
+  public void givenAnotherAmountWithDecimalAndANumberToDivideBy_whenDivide_thenShouldDivide() {
+    Amount amount = Amount.fromDouble(53.35);
+    int aNumberToDivideBy = 3;
+
+    Amount expectedAmount = Amount.fromDouble(17.78);
+    Amount resultAmount = amount.divide(aNumberToDivideBy);
+
+    assertEquals(expectedAmount, resultAmount);
+  }
 }

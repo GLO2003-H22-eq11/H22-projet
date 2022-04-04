@@ -45,7 +45,7 @@ public final class Amount {
   }
 
   public Amount divide(int number) {
-    BigDecimal newAmount = dollarAmount.divide(BigDecimal.valueOf(number), RoundingMode.FLOOR);
+    BigDecimal newAmount = dollarAmount.divide(BigDecimal.valueOf(number), RoundingMode.HALF_UP);
     return new Amount(newAmount);
   }
 
