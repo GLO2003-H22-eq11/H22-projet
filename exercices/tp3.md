@@ -171,16 +171,19 @@ En tant qu'utilisateur, je veux effectuer une recherche pour savoir qui sont les
     "first": {
       "name": "John Doe",
       "id": "5380911f-0399-4721-bdd7-382c9a500d8b",
+      "products": 32,
       "totalAmount": 580.23
     },
     "second": {
       "name": "John Deez",
       "id": "f122ba54-91f5-4dde-ba99-6aca40dd4d19",
+      "products": 27,
       "totalAmount": 540.50
     },
     "third": {
       "name": "John Deer",
       "id": "f122ba54-91f5-4dde-ba99-6aca40dd4d19",
+      "products": 24,
       "totalAmount": 480.83
     }
 ]
