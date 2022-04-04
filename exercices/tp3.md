@@ -75,11 +75,32 @@ de développement soit au courant.
 
 ### Quel proportion de temps passez-vous à faire l'implémentation du code fonctionnel versus celui des tests? Est-ce que cette proportion évolue au fil du temps? Pourquoi?
 
+Nous essayons le plus possible de respecté le principe du TDD, soit faire l'implémentation des tests et ensuite l'implémentation du code en itération.
+Comme notre équipe met une grande importance sur l'implémentation des tests de notre application à l'aide de la méthode du TDD,
+on peut facilement affirmer que depuis le début du projet, nous passons presque autant de temps à développer
+nos tests que de développer nos fonctionnalités. Depuis le début des tests d'intégrations, nous pouvons affirmer que nous passons plus de temps à implémenter nos tests que d'implémenter nos 
+fonctionnalités.
+
 ### L'implémentation de tests augmente naturellement la charge de travail. Comment cela a-t-il affecté votre processus? (ex : taille des issues/PRs, temps d'implémentation, planification, etc.)
+
+L'augmentation de la charge de travail a affecté notre processus courant en augmentant le temps d'implémentation de chaque pull-request. Cependant, nous nous sommes adaptés en mieux divisant les issues en de plus petites issues pour réduire la taille de ses issues et 
+leurs temps d'implémentation. Également, les tests End to End était implémenté dans une autre issue que les fonctionnalités, ce qui fait que les issues des fonctionalités n'étaient pas affectés pour 
+les tests End to End. 
 
 ### Avez-vous plus confiance en votre code maintenant que vous avez des tests? Justifiez.
 
+Comme mentionnées plus haut, nous avons mis énormement de temps et d'importance dans nos tests dès le début du projet. On a donc entièrement confiance en les tests
+implementés dans notre application depuis le début du projet. On croit que si nos tests passent, chaque fonctionnalité respecte ses critères de succès.
+
 ### Que pouvez-vous faire pour améliorer l'état actuel (début TP2) de vos tests? Donnez au moins 3 solutions.
+
+Voici 3 solutions qui pourraient aider l'état actuel ( début TP2 ) des tests de notre équipe de développement.
+
+1. Premièrement, avoir une meilleur séparation de nos tests End to End. Il faut mieux séparer les tests d'échecs de nos tests du succès
+
+2. Ensuite, il faut mieux renommer le nom de nos tests pour que ceux-ci offrent une meilleure documentation aux développeurs sur ce que le test doit testé. 
+
+3. Dans chaque nouvelle pull-request, nous devons nous assurer que chaque nouvelles composantes est bien testés unitaires pour s'assurer son bon fonctionnement
 
 
 
