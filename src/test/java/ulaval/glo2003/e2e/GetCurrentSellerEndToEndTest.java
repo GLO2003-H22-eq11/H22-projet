@@ -1,19 +1,17 @@
-package ulaval.glo2003.e2e.success;
+package ulaval.glo2003.e2e;
 
 import io.restassured.response.Response;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ulaval.glo2003.ApplicationMain;
-import ulaval.glo2003.seller.api.SellerResponse;
 import ulaval.glo2003.seller.api.SellerWithProductsResponse;
 
-import java.io.UnsupportedEncodingException;
-
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static spark.Spark.stop;
 import static ulaval.glo2003.e2e.End2EndConfig.*;
-import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.*;
+import static ulaval.glo2003.e2e.SellerEnd2EndTestUtils.*;
 
 public class GetCurrentSellerEndToEndTest {
 
@@ -56,5 +54,34 @@ public class GetCurrentSellerEndToEndTest {
     assertEquals(sellerWithProductsResponse.name, A_SELLER_NAME);
     assertEquals(sellerWithProductsResponse.birthDate, A_SELLER_DATE);
     assertEquals(sellerWithProductsResponse.products.size(), 0);
+  }
+
+  @Test
+  public void givenANonExistingSellerId_whenGetSeller_thenShouldReturn404StatusCode() {
+    getCurrentSellerResponse(A_VALID_UUID_FORMAT)
+            .then().assertThat().statusCode(NOT_FOUND_STATUS_CODE);
+
+  }
+  @Test
+  public void givenABadSellerId_whenGetSeller_thenShouldReturn400StatusCode() {
+    getCurrentSellerResponse(A_NON_VALID_UUID_FORMAT)
+            .then().assertThat().statusCode(BAD_STATUS_CODE);
+
+  }
+
+  @Test
+  public void givenABadSellerId_whenGetSeller_thenShouldReturnItemNotFoundBody() {
+    getCurrentSellerResponse(A_VALID_UUID_FORMAT)
+            .then().body(AN_ERROR, equalTo(AN_ITEM_NOT_FOUND))
+            .body(AN_ERROR_DESCRIPTION, equalTo(AN_ITEM_NOT_FOUND_DESCRIPTION));
+
+  }
+
+  @Test
+  public void givenANonExistingSellerId_whenGetSeller_thenShouldReturnInvalidParameterBody() {
+    getCurrentSellerResponse(A_NON_VALID_UUID_FORMAT)
+            .then().body(AN_ERROR, equalTo(AN_INVALID_PARAMETER))
+            .body(AN_ERROR_DESCRIPTION, equalTo(AN_INVALID_PARAMETER_DESCRIPTION));
+
   }
 }

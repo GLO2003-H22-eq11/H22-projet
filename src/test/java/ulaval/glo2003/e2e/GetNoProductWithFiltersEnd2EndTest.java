@@ -1,4 +1,4 @@
-package ulaval.glo2003.e2e.success;
+package ulaval.glo2003.e2e;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static spark.Spark.stop;
 import static ulaval.glo2003.e2e.End2EndConfig.OK_STATUS_CODE;
-import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.getProductsResponseBodyWithNonExistentValuesAsFilters;
-import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.getProductsResponseWithNonExistentValuesAsFilters;
-import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.createSellerWithProduct;
+import static ulaval.glo2003.e2e.ProductEnd2EndTestUtils.getProductsResponseBodyWithNonExistentValuesAsFilters;
+import static ulaval.glo2003.e2e.ProductEnd2EndTestUtils.getProductsResponseWithNonExistentValuesAsFilters;
+import static ulaval.glo2003.e2e.SellerEnd2EndTestUtils.createSellerWithProduct;
 
 public class GetNoProductWithFiltersEnd2EndTest {
 

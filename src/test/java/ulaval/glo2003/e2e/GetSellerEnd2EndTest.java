@@ -1,4 +1,4 @@
-package ulaval.glo2003.e2e.success;
+package ulaval.glo2003.e2e;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -6,14 +6,12 @@ import org.junit.jupiter.api.Test;
 import ulaval.glo2003.ApplicationMain;
 import ulaval.glo2003.seller.api.SellerResponse;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static spark.Spark.stop;
-import static ulaval.glo2003.e2e.End2EndConfig.A_BIO;
-import static ulaval.glo2003.e2e.End2EndConfig.A_SELLER_NAME;
-import static ulaval.glo2003.e2e.End2EndConfig.OK_STATUS_CODE;
-import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.createSellerWithProductAndGetSellerId;
-import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.getSellerResponse;
-import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.getSellerResponseBody;
+import static ulaval.glo2003.e2e.End2EndConfig.*;
+import static ulaval.glo2003.e2e.End2EndConfig.AN_INVALID_PARAMETER_DESCRIPTION;
+import static ulaval.glo2003.e2e.SellerEnd2EndTestUtils.*;
 
 public class GetSellerEnd2EndTest {
 
@@ -56,4 +54,34 @@ public class GetSellerEnd2EndTest {
     assertEquals(sellerResponse.name, A_SELLER_NAME);
     assertEquals(sellerResponse.products.size(), 1);
   }
+
+  @Test
+  public void givenANonExistingSellerId_whenGetSeller_thenShouldReturn404StatusCode() {
+    getSellerWithSellerId(A_VALID_UUID_FORMAT)
+            .then().assertThat().statusCode(NOT_FOUND_STATUS_CODE);
+
+  }
+  @Test
+  public void givenABadSellerId_whenGetSeller_thenShouldReturn400StatusCode() {
+    getSellerWithSellerId(A_NON_VALID_UUID_FORMAT)
+            .then().assertThat().statusCode(BAD_STATUS_CODE);
+
+  }
+
+  @Test
+  public void givenABadSellerId_whenGetSeller_thenShouldReturnItemNotFoundBody() {
+    getSellerWithSellerId(A_VALID_UUID_FORMAT)
+            .then().body(AN_ERROR, equalTo(AN_ITEM_NOT_FOUND))
+            .body(AN_ERROR_DESCRIPTION, equalTo(AN_ITEM_NOT_FOUND_DESCRIPTION));
+
+  }
+
+  @Test
+  public void givenANonExistingSellerId_whenGetSeller_thenShouldReturnInvalidParameterBody() {
+    getSellerWithSellerId(A_NON_VALID_UUID_FORMAT)
+            .then().body(AN_ERROR, equalTo(AN_INVALID_PARAMETER))
+            .body(AN_ERROR_DESCRIPTION, equalTo(AN_INVALID_PARAMETER_DESCRIPTION));
+
+  }
+
 }

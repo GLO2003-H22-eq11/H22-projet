@@ -43,6 +43,18 @@ public abstract class End2EndConfig {
   public static final String A_SELLER_DATE = "1999-07-08";
   public static final String A_BAD_SELLER_DATE = "2006-07-08";
 
+  public static final Double A_VALID_AMOUNT = 300.0;
+  public static final String A_VALID_EMAIL = "covidoman@email.ca";
+  public static final String A_VALID_MESSAGE = "Donec porttitor interdum lacus sed finibus. Nam pulvinar facilisis posuere. Maecenas vel lorem amet.";
+  public static final String A_VALID_NAME = "MarinoCovido";
+  public static final String A_VALID_PHONE_NUMBER = "14181234567";
+  public static final String A_NON_VALID_EMAIL = "covidomanemail.ca";
+  public static final String A_NON_VALID_MESSAGE = "Donec porttitor interdum lacus sed finibus. Nam pulvinar facilisis posuere.";
+  public static final String A_NON_VALID_NAME = "";
+  public static final String A_NON_VALID_PHONE_NUMBER = "1418123456";
+  public static final Double A_NON_VALID_AMOUNT = -300.0;
+
+
   public static final int CREATED_STATUS_CODE = 201;
   public static final int OK_STATUS_CODE = 200;
   public static final int BAD_STATUS_CODE = 400;

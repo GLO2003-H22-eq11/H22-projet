@@ -1,4 +1,4 @@
-package ulaval.glo2003.e2e.success;
+package ulaval.glo2003.e2e;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -6,17 +6,13 @@ import org.junit.jupiter.api.Test;
 import ulaval.glo2003.ApplicationMain;
 import ulaval.glo2003.product.api.response.ProductResponse;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static spark.Spark.stop;
-import static ulaval.glo2003.e2e.End2EndConfig.A_CATEGORIES;
-import static ulaval.glo2003.e2e.End2EndConfig.A_PRODUCT_DESCRIPTION;
-import static ulaval.glo2003.e2e.End2EndConfig.A_PRODUCT_TITLE;
-import static ulaval.glo2003.e2e.End2EndConfig.A_VALID_SUGGESTED_PRICE;
-import static ulaval.glo2003.e2e.End2EndConfig.OK_STATUS_CODE;
-import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.createProductAndGetId;
-import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.getProductResponse;
-import static ulaval.glo2003.e2e.success.ProductEnd2EndTestUtils.getProductResponseBody;
-import static ulaval.glo2003.e2e.success.SellerEnd2EndTestUtils.createSellerGetId;
+import static ulaval.glo2003.e2e.End2EndConfig.*;
+import static ulaval.glo2003.e2e.End2EndConfig.AN_ITEM_NOT_FOUND_DESCRIPTION;
+import static ulaval.glo2003.e2e.ProductEnd2EndTestUtils.*;
+import static ulaval.glo2003.e2e.SellerEnd2EndTestUtils.createSellerGetId;
 
 public class GetProductEnd2EndTest {
 
@@ -62,5 +58,35 @@ public class GetProductEnd2EndTest {
     assertEquals(productResponse.suggestedPrice, A_VALID_SUGGESTED_PRICE);
     assertEquals(productResponse.description, A_PRODUCT_DESCRIPTION);
     assertEquals(productResponse.categories, A_CATEGORIES);
+  }
+
+  @Test
+  public void givenAProductRequestWithBadId_whenGetProduct_thenShouldReturn400StatusCode() {
+    getProductWithProductId(A_NON_VALID_UUID_FORMAT)
+            .then().assertThat().statusCode(BAD_STATUS_CODE);
+
+  }
+
+  @Test
+  public void givenAProductRequestWithNonExistingId_whenGetProduct_thenShouldReturn404StatusCode() {
+    getProductWithProductId(A_VALID_NON_EXISTING_UUID_FORMAT)
+            .then().assertThat().statusCode(NOT_FOUND_STATUS_CODE);
+
+  }
+
+  @Test
+  public void givenAProductRequestWithBadId_whenGetProduct_thenShouldReturnInvalidParameterBody() {
+    getProductWithProductId(A_NON_VALID_UUID_FORMAT)
+            .then().body(AN_ERROR, equalTo(AN_INVALID_PARAMETER))
+            .body(AN_ERROR_DESCRIPTION, equalTo(AN_INVALID_PARAMETER_DESCRIPTION));
+
+  }
+
+  @Test
+  public void givenAProductRequestWithNonExistingId_whenGetProduct_thenShouldReturnItemNotFoundBody() {
+    getProductWithProductId(A_VALID_NON_EXISTING_UUID_FORMAT)
+            .then().body(AN_ERROR, equalTo(AN_ITEM_NOT_FOUND))
+            .body(AN_ERROR_DESCRIPTION, equalTo(AN_ITEM_NOT_FOUND_DESCRIPTION));
+
   }
 }
