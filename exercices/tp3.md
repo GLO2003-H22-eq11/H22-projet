@@ -111,44 +111,42 @@ Voici 3 solutions qui pourraient aider l'état actuel ( début TP2 ) des tests d
 
 ## Description
 
-En tant qu'utilisateur, je veux effectuer une recherche pour savoir qui sont les trois plus grands acheteurs de Floppa
+En tant qu'utilisateur, je veux effectuer une recherche pour savoir qui sont les trois plus grands vendeurs de Floppa
 
 ## Critères de succès
 
-1. L'offre est sauvegardée dans l'application.
-2. Les nouvelles offres aparaissent dans les informations du produit associé (tel que décrit dans [get product](https://github.com/glo2003/H22-Iteration2/blob/master/features/2.product-get.md) et [filter products](https://github.com/glo2003/H22-Iteration2/blob/master/features/3.products-get.md)).
-3. Les formats de email et de numéro de téléphones sont validés.
-4. Le montant de l'offre doit être supérieur ou égal au montant suggéré du produit.
-5. Un même client peut faire plusieurs offres. Celles-ci n'ont pas besoin d'être successivements plus élevées.
-6. Le message doit être d'au moins 100 caractères.
-7. Toutes les informations doivent être présentes et non-vides.
-8. Rien ne confirme que l'offre n'a pas été crée par le vendeur (il n'y a pas d'authentification pour la personne qui fait une offre).
+1. Toutes les informations doivent être présentes et non-vides.
+2. On doit afficher les vendeurs qui ont le plus de produits en vente.
+3. Pour chaque vendeur affiché, on doit afficher le montant total de ses produits combinées
 
 ## Détails techniques
 
 ### Requête
 
-`GET /sellers/top3`
+`GET /sellers/top`
 
 #### Réponse
 
 ```ts
 [
-    "first": {
+    {
         "name": string,
         "id": string,
+        "products": int,
         "totalAmount": Amount,
     },
-   "second": {
-        "name": string,
+   {
+    "name": string,
         "id": string,
+        "products": int,
         "totalAmount": Amount,
-   },
-   "third": {
-        "name": string,
+},
+   {
+    "name": string,
         "id": string,
+        "products": int,
         "totalAmount": Amount,
-   }
+}
 ]
 ```
 
@@ -184,54 +182,34 @@ En tant qu'utilisateur, je veux effectuer une recherche pour savoir qui sont les
 
 
 # Story #2
-## Création d'offre sur un produit
+## Signalement de vendeurs fraudeux
 
 ## Description
 
-En tant qu'acheteur, je veux effectuer une offre sur un produit afin de signaler mon intérêt d'achat.
+En tant que vendeur, je veux signaler les vendeurs qui fraudent les acheteurs ou qui ont des comportements qui manquent de respects 
+envers les autres vendeurs.
 
 ## Critères de succès
 
-1. L'offre est sauvegardée dans l'application.
-2. Les nouvelles offres aparaissent dans les informations du produit associé (tel que décrit dans [get product](https://github.com/glo2003/H22-Iteration2/blob/master/features/2.product-get.md) et [filter products](https://github.com/glo2003/H22-Iteration2/blob/master/features/3.products-get.md)).
-3. Les formats de email et de numéro de téléphones sont validés.
-4. Le montant de l'offre doit être supérieur ou égal au montant suggéré du produit.
-5. Un même client peut faire plusieurs offres. Celles-ci n'ont pas besoin d'être successivements plus élevées.
-6. Le message doit être d'au moins 100 caractères.
-7. Toutes les informations doivent être présentes et non-vides.
-8. Rien ne confirme que l'offre n'a pas été crée par le vendeur (il n'y a pas d'authentification pour la personne qui fait une offre).
+
+1. Un vendeur ne peut pas signaler le même vendeur plus qu'une fois.
+2. Si un vendeur obtient 10 signalements de vendeurs différents, il ne peut plus vendre de produits.
+3. Les signalements de vendeurs sont sauvegardée dans l'application.
+4. Les acheteurs ne peuvent pas signalés les vendeurs, seulement les vendeurs peuvent se signaler.
+5. Au début de chaque mois, les signalements d'un vendeur sont remis à 0 si celui-ci n'a pas obtenu 10 signalements dans le mois passée
+
 
 ## Détails techniques
 
 ### Requête
 
-`POST /products/{productId}/offers`
+`POST /sellers/fraudeux/{fradeurSellerId}`
 
-#### Payload
+#### Headers
 
-```ts
-{
-  name: string,
-  email: Email,
-  phoneNumber: PhoneNumber,
-  amount: Amount,
-  message: string
-}
-```
-
-#### Exemples
-
-**Valide**
-
-```json
-{
-  "name": "John Doe",
-  "email": "john.doe@email.com",
-  "phoneNumber": "18191234567",
-  "amount": 48.23,
-  "message": "Donec porttitor interdum lacus sed finibus. Nam pulvinar facilisis posuere. Maecenas vel lorem amet."
-}
-```
+- `X-Seller-Id` : `string`
+    - ID du vendeur.
+    
 
 ### Réponse
 
@@ -241,10 +219,7 @@ En tant qu'acheteur, je veux effectuer une offre sur un produit afin de signaler
 
 ### Exceptions
 
-- `ITEM_NOT_FOUND` si le produit n'existe pas.
-- `INVALID_PARAMETER` si un des champs est invalide.
-- `MISSING_PARAMETER` si un des champs est manquant (`null`).
-
+- `ITEM_NOT_FOUND` si le vendeur n'existe pas.
 
 
 # Story #3
@@ -252,7 +227,7 @@ En tant qu'acheteur, je veux effectuer une offre sur un produit afin de signaler
 
 ## Description
 
-Je veux voir la moyenne du pourcentage de rendement sur les produits d'un vendeur en particulier, soit en comparant le prix de base 
+En tant qu'utilisateur, je veux voir la moyenne du pourcentage de rendement sur les produits d'un vendeur en particulier, soit en comparant le prix de base 
 avec l'offre la plus élevée de chacun de ses produits et en faire une moyenne.
 
 ## Critères de succès
