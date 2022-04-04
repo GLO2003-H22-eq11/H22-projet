@@ -2,9 +2,9 @@ package ulaval.glo2003.e2e;
 
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import ulaval.glo2003.seller.api.SellerRequest;
-import ulaval.glo2003.seller.api.SellerResponse;
-import ulaval.glo2003.seller.api.SellerWithProductsResponse;
+import ulaval.glo2003.seller.api.request.SellerRequest;
+import ulaval.glo2003.seller.api.response.SellerResponse;
+import ulaval.glo2003.seller.api.response.SellerWithProductsResponse;
 
 import static io.restassured.RestAssured.*;
 import static ulaval.glo2003.e2e.End2EndConfig.*;

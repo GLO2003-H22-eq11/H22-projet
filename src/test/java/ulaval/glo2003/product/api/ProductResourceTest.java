@@ -8,20 +8,21 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
-import ulaval.glo2003.product.api.request.OfferRequest;
+import ulaval.glo2003.offer.api.request.OfferRequest;
 import ulaval.glo2003.product.api.request.ProductRequest;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductsResponse;
-import ulaval.glo2003.product.api.validator.OfferRequestValidator;
+import ulaval.glo2003.offer.api.validator.OfferRequestValidator;
 import ulaval.glo2003.product.api.validator.ProductRequestValidator;
-import ulaval.glo2003.product.domain.Offer;
-import ulaval.glo2003.product.domain.OfferFactory;
+import ulaval.glo2003.offer.domain.Offer;
+import ulaval.glo2003.offer.domain.factory.OfferFactory;
 import ulaval.glo2003.product.domain.Product;
+import ulaval.glo2003.product.domain.factory.ProductFactory;
 import ulaval.glo2003.product.domain.ProductFilters;
+import ulaval.glo2003.product.domain.factory.ProductFiltersFactory;
 import ulaval.glo2003.product.domain.ProductId;
-import ulaval.glo2003.product.domain.ProductIdFactory;
+import ulaval.glo2003.product.domain.factory.ProductIdFactory;
 import ulaval.glo2003.product.domain.ProductWithSeller;
-import ulaval.glo2003.product.infrastructure.mongodb.repository.MongoDBProductRepository;
 import ulaval.glo2003.product.service.ProductService;
 
 import java.net.URI;
@@ -88,9 +89,6 @@ class ProductResourceTest {
 
   @Mock
   private OfferFactory offerFactory;
-
-  @Mock
-  private MongoDBProductRepository mongoDBProductRepository;
 
   private ProductResource productResource;
 
@@ -198,7 +196,14 @@ class ProductResourceTest {
   }
 
   private void givenAProduct(ProductRequest productRequest) throws GenericException {
-    given(this.productFactory.create(productRequest, A_SELLER_STRING_ID)).willReturn(this.product);
+    given(this.productFactory.create(
+                    A_SELLER_STRING_ID,
+                    productRequest.title,
+                    productRequest.description,
+                    productRequest.suggestedPrice,
+                    productRequest.categories
+            )
+    ).willReturn(this.product);
     given(this.product.getStringId()).willReturn(A_SELLER_STRING_ID);
   }
 

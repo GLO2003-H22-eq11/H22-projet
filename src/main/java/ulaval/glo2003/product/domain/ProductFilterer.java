@@ -1,6 +1,7 @@
 package ulaval.glo2003.product.domain;
 
 import ulaval.glo2003.exception.GenericException;
+import ulaval.glo2003.main.domain.Amount;
 import ulaval.glo2003.seller.domain.SellerId;
 
 import java.util.List;

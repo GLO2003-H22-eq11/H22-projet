@@ -1,7 +1,7 @@
 package ulaval.glo2003.e2e;
 
 import io.restassured.response.Response;
-import ulaval.glo2003.product.api.request.OfferRequest;
+import ulaval.glo2003.offer.api.request.OfferRequest;
 import ulaval.glo2003.product.api.request.ProductRequest;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductsResponse;

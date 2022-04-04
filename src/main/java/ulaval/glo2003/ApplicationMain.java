@@ -31,11 +31,10 @@ public class ApplicationMain {
     }
     HttpServer server = GrizzlyHttpServerFactory.createHttpServer(uri, resourceConfig);
     server.start();
-
   }
 
   private static ResourceConfig setupResources() {
-    HealthResource healthResource = new HealthResource();
+    HealthResource healthResource = new HealthResource(appContext.databaseConnection);
     SellerResource sellerResource = createSellerResource();
     ProductResource productResource = createProductResource();
 

@@ -1,11 +1,13 @@
 package ulaval.glo2003.product.api.assembler;
 
 import org.junit.jupiter.api.Test;
-import ulaval.glo2003.product.api.response.OffersSummaryResponse;
+import ulaval.glo2003.offer.api.assembler.BuyerAssembler;
+import ulaval.glo2003.offer.api.assembler.OffersAssembler;
+import ulaval.glo2003.offer.api.response.OffersSummaryResponse;
 import ulaval.glo2003.product.api.response.ProductResponse;
 import ulaval.glo2003.product.api.response.ProductSellerResponse;
 import ulaval.glo2003.product.domain.Category;
-import ulaval.glo2003.product.domain.OffersSummary;
+import ulaval.glo2003.offer.domain.OffersSummary;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductBuilder;
 import ulaval.glo2003.product.domain.ProductWithSeller;

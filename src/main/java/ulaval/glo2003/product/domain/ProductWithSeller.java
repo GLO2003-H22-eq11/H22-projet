@@ -1,5 +1,6 @@
 package ulaval.glo2003.product.domain;
 
+import ulaval.glo2003.offer.domain.OffersSummary;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerId;
 

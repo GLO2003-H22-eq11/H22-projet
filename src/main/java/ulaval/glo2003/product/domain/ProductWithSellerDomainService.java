@@ -1,6 +1,7 @@
 package ulaval.glo2003.product.domain;
 
 import ulaval.glo2003.exception.GenericException;
+import ulaval.glo2003.product.domain.factory.ProductWithSellerFactory;
 import ulaval.glo2003.seller.domain.Seller;
 import ulaval.glo2003.seller.domain.SellerRepository;
 

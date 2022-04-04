@@ -1,12 +1,12 @@
 package ulaval.glo2003.seller.domain;
 
 import ulaval.glo2003.exception.GenericException;
-import ulaval.glo2003.product.domain.Offer;
-import ulaval.glo2003.product.domain.OfferRepository;
+import ulaval.glo2003.offer.domain.Offer;
+import ulaval.glo2003.offer.domain.OfferRepository;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductRepository;
 import ulaval.glo2003.product.domain.ProductWithOffers;
-import ulaval.glo2003.product.domain.ProductWithOffersFactory;
+import ulaval.glo2003.product.domain.factory.ProductWithOffersFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
