@@ -9,7 +9,7 @@ public class OffersInformationResponse {
   public Integer count;
   public List<OfferResponse> items;
 
-  public OffersInformationResponse(){
+  public OffersInformationResponse() {
   }
 
   public OffersInformationResponse(Double min, Double max, Double mean, Integer count, List<OfferResponse> items) {

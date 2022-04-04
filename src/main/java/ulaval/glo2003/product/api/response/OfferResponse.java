@@ -7,7 +7,7 @@ public class OfferResponse {
   public BuyerResponse buyer;
   public String createdAt;
 
-  public OfferResponse(){
+  public OfferResponse() {
   }
 
   public OfferResponse(String id, Double amount, String message, BuyerResponse buyer, String createdAt) {

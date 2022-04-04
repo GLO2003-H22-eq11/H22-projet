@@ -5,7 +5,7 @@ public class BuyerResponse {
   public String email;
   public String phoneNumber;
 
-  public BuyerResponse(){
+  public BuyerResponse() {
   }
 
   public BuyerResponse(String name, String email, String phoneNumber) {
