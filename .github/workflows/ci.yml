@@ -34,5 +34,5 @@ jobs:
       - name: MongoDB in GitHub Actions
         uses: supercharge/mongodb-github-action@1.7.0
 
-      - name: Run tests
+      - name: Run tests and verify security
         run: mvn verify
