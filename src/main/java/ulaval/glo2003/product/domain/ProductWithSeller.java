@@ -53,6 +53,10 @@ public class ProductWithSeller {
     return this.seller.getSellerId();
   }
 
+  public Integer getProductViews() {
+    return this.product.getViews();
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;

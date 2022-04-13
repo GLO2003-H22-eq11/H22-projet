@@ -105,6 +105,8 @@ class ProductServiceTest {
 
   @Test
   public void givenAProductId_whenGetProductWithSeller_thenShouldFindProduct() throws GenericException {
+    givenAProduct(A_PRODUCT_ID);
+
     this.productService.getProductWithSeller(A_PRODUCT_ID);
 
     verify(this.productRepository).findById(A_PRODUCT_ID);
@@ -131,6 +133,7 @@ class ProductServiceTest {
   public void givenProductFiltersWithASellerId_whenGetFilteredProducts_thenShouldVerifyThatSellerIdExists() throws GenericException {
     SellerId aSellerId = new SellerId();
     given(productFilters.getSellerId()).willReturn(aSellerId);
+
     this.productService.getFilteredProducts(productFilters);
 
     verify(this.sellerRepository).verifyIfSellerExists(aSellerId);
@@ -139,6 +142,7 @@ class ProductServiceTest {
   @Test
   public void givenProductFiltersWithNoSellerId_whenGetFilteredProducts_thenShouldNotVerifyThatSellerIdExists() throws GenericException {
     given(productFilters.getSellerId()).willReturn(null);
+
     this.productService.getFilteredProducts(productFilters);
 
     verify(this.sellerRepository, never()).verifyIfSellerExists(any(SellerId.class));
@@ -188,6 +192,24 @@ class ProductServiceTest {
     this.productService.createOffer(AN_OFFER);
 
     verify(this.offerRepository).save(AN_OFFER);
+  }
+
+  @Test
+  public void givenAProduct_whenGetProductWithSeller_thenShouldAddViewToProduct() throws GenericException {
+    givenAProduct(A_PRODUCT_ID);
+
+    this.productService.getProductWithSeller(A_PRODUCT_ID);
+
+    verify(this.product).addView();
+  }
+
+  @Test
+  public void givenAProduct_whenGetProductWithSeller_thenShouldSaveProduct() throws GenericException {
+    givenAProduct(A_PRODUCT_ID);
+
+    this.productService.getProductWithSeller(A_PRODUCT_ID);
+
+    verify(this.productRepository).save(product);
   }
 
   private void givenASellerId(SellerId sellerId) {

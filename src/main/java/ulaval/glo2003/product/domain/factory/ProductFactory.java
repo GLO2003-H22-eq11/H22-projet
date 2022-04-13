@@ -39,7 +39,8 @@ public class ProductFactory {
             Amount.fromDouble(suggestedPrice),
             new OffersSummary(),
             this.categoriesFactory.create(categories),
-            Instant.now()
+            Instant.now(),
+            0
     );
   }
 }

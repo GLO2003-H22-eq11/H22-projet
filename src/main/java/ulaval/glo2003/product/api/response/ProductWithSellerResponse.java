@@ -5,7 +5,7 @@ import ulaval.glo2003.offer.api.response.OffersSummaryResponse;
 import java.util.List;
 import java.util.Objects;
 
-public class ProductResponse {
+public class ProductWithSellerResponse {
   public String id;
   public String createdAt;
   public String title;
@@ -15,10 +15,10 @@ public class ProductResponse {
   public List<String> categories;
   public ProductSellerResponse seller;
 
-  public ProductResponse() {
+  public ProductWithSellerResponse() {
   };
 
-  public ProductResponse(
+  public ProductWithSellerResponse(
           String id,
           String createdAt,
           String title,
@@ -41,7 +41,7 @@ public class ProductResponse {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    ProductResponse that = (ProductResponse) o;
+    ProductWithSellerResponse that = (ProductWithSellerResponse) o;
     return Objects.equals(suggestedPrice, that.suggestedPrice) && id.equals(that.id)
             && createdAt.equals(that.createdAt)
             && title.equals(that.title) && description.equals(that.description)

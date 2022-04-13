@@ -18,6 +18,7 @@ public class Product {
   private final OffersSummary offersSummary;
   private final Categories categories;
   private final Instant createdAt;
+  private Integer views;
 
   public Product(
           SellerId sellerId,
@@ -27,7 +28,8 @@ public class Product {
           Amount suggestedPrice,
           OffersSummary offersSummary,
           Categories categories,
-          Instant createdAt
+          Instant createdAt,
+          Integer views
   ) {
     this.sellerId = sellerId;
     this.productId = productId;
@@ -37,6 +39,11 @@ public class Product {
     this.suggestedPrice = suggestedPrice;
     this.offersSummary = offersSummary;
     this.categories = categories;
+    this.views = views;
+  }
+
+  public void addView() {
+    this.views += 1;
   }
 
   public SellerId getSellerId() {
@@ -129,5 +136,13 @@ public class Product {
   @Override
   public int hashCode() {
     return Objects.hash(sellerId, productId, title, description, suggestedPrice, offersSummary, categories, createdAt);
+  }
+
+  public Integer getViews() {
+    return views;
+  }
+
+  public void setViews(Integer views) {
+    this.views = views;
   }
 }

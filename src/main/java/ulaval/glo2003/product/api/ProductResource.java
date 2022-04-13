@@ -14,8 +14,9 @@ import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
 import ulaval.glo2003.offer.api.request.OfferRequest;
 import ulaval.glo2003.product.api.request.ProductRequest;
-import ulaval.glo2003.product.api.response.ProductResponse;
-import ulaval.glo2003.product.api.response.ProductsResponse;
+import ulaval.glo2003.product.api.response.ProductWithSellerResponse;
+import ulaval.glo2003.product.api.response.ProductWithViewsResponse;
+import ulaval.glo2003.product.api.response.ProductsWithSellerResponse;
 import ulaval.glo2003.offer.api.validator.OfferRequestValidator;
 import ulaval.glo2003.product.api.validator.ProductRequestValidator;
 import ulaval.glo2003.offer.domain.Offer;
@@ -28,9 +29,12 @@ import ulaval.glo2003.product.domain.ProductId;
 import ulaval.glo2003.product.domain.factory.ProductIdFactory;
 import ulaval.glo2003.product.domain.ProductWithSeller;
 import ulaval.glo2003.product.service.ProductService;
+import ulaval.glo2003.seller.domain.SellerId;
+import ulaval.glo2003.seller.domain.factory.SellerIdFactory;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Path("/products")
 @Produces(MediaType.APPLICATION_JSON)
@@ -41,6 +45,7 @@ public class ProductResource {
   private final ProductAssembler productAssembler;
   private final ProductRequestValidator productRequestValidator;
   private final ProductIdFactory productIdFactory;
+  private final SellerIdFactory sellerIdFactory;
   private final ProductFiltersFactory productFiltersFactory;
   private final OfferFactory offerFactory;
   private final OfferRequestValidator offerRequestValidator;
@@ -51,7 +56,7 @@ public class ProductResource {
           ProductAssembler productAssembler,
           ProductIdFactory productIdFactory,
           ProductRequestValidator productRequestValidator,
-          ProductFiltersFactory productFiltersFactory,
+          SellerIdFactory sellerIdFactory, ProductFiltersFactory productFiltersFactory,
           OfferFactory offerFactory,
           OfferRequestValidator offerRequestValidator
   ) {
@@ -60,6 +65,7 @@ public class ProductResource {
     this.productAssembler = productAssembler;
     this.productIdFactory = productIdFactory;
     this.productRequestValidator = productRequestValidator;
+    this.sellerIdFactory = sellerIdFactory;
     this.productFiltersFactory = productFiltersFactory;
     this.offerFactory = offerFactory;
     this.offerRequestValidator = offerRequestValidator;
@@ -96,9 +102,28 @@ public class ProductResource {
 
       ProductWithSeller productWithSeller = this.productService.getProductWithSeller(productId);
 
-      ProductResponse productResponse = this.productAssembler.toResponse(productWithSeller);
+      ProductWithSellerResponse productWithSellerResponse = this.productAssembler
+              .toProductWithSellerResponse(productWithSeller);
 
-      return Response.ok().entity(productResponse).build();
+      return Response.ok().entity(productWithSellerResponse).build();
+    } catch (GenericException e) {
+      return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
+    }
+  }
+
+  @GET
+  @Path("/views")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response getSellerProductsViews(@HeaderParam("X-Seller-Id") String sellerIdString) {
+    try {
+      SellerId sellerId = this.sellerIdFactory.create(sellerIdString);
+
+      List<Product> products = this.productService.getProductsBySellerId(sellerId);
+
+      List<ProductWithViewsResponse> productWithViewResponses = products.stream()
+              .map(this.productAssembler::toProductWithViewsResponse).collect(Collectors.toList());
+
+      return Response.ok().entity(productWithViewResponses).build();
     } catch (GenericException e) {
       return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
     }
@@ -121,9 +146,9 @@ public class ProductResource {
 
       List<ProductWithSeller> products = this.productService.getFilteredProducts(productFilters);
 
-      ProductsResponse productsResponse = this.productAssembler.toProductsResponse(products);
+      ProductsWithSellerResponse productsWithSellerResponse = this.productAssembler.toProductsResponse(products);
 
-      return Response.ok().entity(productsResponse).build();
+      return Response.ok().entity(productsWithSellerResponse).build();
     } catch (GenericException e) {
       return Response.status(e.getStatus()).entity(e.getErrorResponse()).build();
     }

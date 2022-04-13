@@ -4,7 +4,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ulaval.glo2003.ApplicationMain;
-import ulaval.glo2003.product.api.response.ProductResponse;
+import ulaval.glo2003.product.api.response.ProductWithSellerResponse;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -51,13 +51,13 @@ public class GetProductEnd2EndTest {
     String sellerId = createSellerGetId();
     String productId = createProductAndGetId(sellerId);
 
-    ProductResponse productResponse = getProductResponseBody(productId);
+    ProductWithSellerResponse productWithSellerResponse = getProductResponseBody(productId);
 
-    assertEquals(productResponse.id, productId);
-    assertEquals(productResponse.title, A_PRODUCT_TITLE);
-    assertEquals(productResponse.suggestedPrice, A_VALID_SUGGESTED_PRICE);
-    assertEquals(productResponse.description, A_PRODUCT_DESCRIPTION);
-    assertEquals(productResponse.categories, A_CATEGORIES);
+    assertEquals(productWithSellerResponse.id, productId);
+    assertEquals(productWithSellerResponse.title, A_PRODUCT_TITLE);
+    assertEquals(productWithSellerResponse.suggestedPrice, A_VALID_SUGGESTED_PRICE);
+    assertEquals(productWithSellerResponse.description, A_PRODUCT_DESCRIPTION);
+    assertEquals(productWithSellerResponse.categories, A_CATEGORIES);
   }
 
   @Test

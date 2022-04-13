@@ -1,10 +1,11 @@
 package ulaval.glo2003.product.api.assembler;
 
 import ulaval.glo2003.offer.api.assembler.OffersAssembler;
+import ulaval.glo2003.product.api.response.ProductWithViewsResponse;
 import ulaval.glo2003.product.api.response.ProductWithOffersResponse;
-import ulaval.glo2003.product.api.response.ProductResponse;
+import ulaval.glo2003.product.api.response.ProductWithSellerResponse;
 import ulaval.glo2003.product.api.response.ProductSellerResponse;
-import ulaval.glo2003.product.api.response.ProductsResponse;
+import ulaval.glo2003.product.api.response.ProductsWithSellerResponse;
 import ulaval.glo2003.product.domain.Category;
 import ulaval.glo2003.product.domain.Product;
 import ulaval.glo2003.product.domain.ProductWithOffers;
@@ -34,8 +35,8 @@ public class ProductAssembler {
 
   }
 
-  public ProductResponse toResponse(ProductWithSeller productWithSeller) {
-    return new ProductResponse(
+  public ProductWithSellerResponse toProductWithSellerResponse(ProductWithSeller productWithSeller) {
+    return new ProductWithSellerResponse(
             productWithSeller.getProductStringId(),
             productWithSeller.getProductStringCreatedAt(),
             productWithSeller.getProductTitle(),
@@ -47,9 +48,23 @@ public class ProductAssembler {
             new ProductSellerResponse(productWithSeller.getSellerId().toString(), productWithSeller.getSellerName()));
   }
 
-  public ProductsResponse toProductsResponse(List<ProductWithSeller> productsWithSellers) {
-    return new ProductsResponse(
-            productsWithSellers.stream().map(this::toResponse).collect(Collectors.toList())
+  public ProductWithViewsResponse toProductWithViewsResponse(Product product) {
+    return new ProductWithViewsResponse(
+            product.getStringProductId(),
+            product.getStringCreatedAt(),
+            product.getTitle(),
+            product.getDescription(),
+            product.getSuggestedPriceAmountDoubleValue(),
+            this.offersAssembler.toResponse(product.getOffersSummary()),
+            product.getProductCategories().stream().
+                    map(Category::getCategoryName).collect(Collectors.toList()),
+            product.getViews()
+    );
+  }
+
+  public ProductsWithSellerResponse toProductsResponse(List<ProductWithSeller> productsWithSellers) {
+    return new ProductsWithSellerResponse(
+            productsWithSellers.stream().map(this::toProductWithSellerResponse).collect(Collectors.toList())
     );
   }
 

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import ulaval.glo2003.offer.api.assembler.BuyerAssembler;
 import ulaval.glo2003.offer.api.assembler.OffersAssembler;
 import ulaval.glo2003.offer.api.response.OffersSummaryResponse;
-import ulaval.glo2003.product.api.response.ProductResponse;
+import ulaval.glo2003.product.api.response.ProductWithSellerResponse;
 import ulaval.glo2003.product.api.response.ProductSellerResponse;
 import ulaval.glo2003.product.domain.Category;
 import ulaval.glo2003.offer.domain.OffersSummary;
@@ -33,7 +33,7 @@ class ProductAssemblerTest {
     List<String> expectedCategories = aProduct.getProductCategories().stream().map(Category::getCategoryName).collect(Collectors.toList());
     ProductSellerResponse expectedProductSellerResponse = new ProductSellerResponse(aSeller.getStringId(), aSeller.getName());
     OffersSummaryResponse expectedOffersSummaryResponse = new OffersSummaryResponse(aProduct.getOffersSummary().getMeanAmount(), aProduct.getOffersSummary().getCount());
-    ProductResponse expected = new ProductResponse(
+    ProductWithSellerResponse expected = new ProductWithSellerResponse(
             aProduct.getStringProductId(),
             aProduct.getStringCreatedAt(),
             aProduct.getTitle(),
@@ -44,7 +44,7 @@ class ProductAssemblerTest {
             expectedProductSellerResponse
     );
 
-    ProductResponse actual = this.productAssembler.toResponse(aProductWithSeller);
+    ProductWithSellerResponse actual = this.productAssembler.toProductWithSellerResponse(aProductWithSeller);
 
     assertEquals(expected, actual);
   }

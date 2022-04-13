@@ -10,6 +10,7 @@ import ulaval.glo2003.product.domain.ProductId;
 import ulaval.glo2003.product.domain.ProductRepository;
 import ulaval.glo2003.product.domain.ProductWithSellerDomainService;
 import ulaval.glo2003.product.domain.ProductWithSeller;
+import ulaval.glo2003.seller.domain.SellerId;
 import ulaval.glo2003.seller.domain.SellerRepository;
 
 import java.util.List;
@@ -38,7 +39,13 @@ public class ProductService {
 
   public ProductWithSeller getProductWithSeller(ProductId productId) throws GenericException {
     Product product = this.productRepository.findById(productId);
+    product.addView();
+    this.productRepository.save(product);
     return this.productSellerService.getProductWithSeller(product);
+  }
+
+  public List<Product> getProductsBySellerId(SellerId sellerId) throws GenericException {
+    return this.productRepository.findBySellerId(sellerId);
   }
 
   public void addProduct(Product product) throws GenericException {
@@ -62,6 +69,7 @@ public class ProductService {
     this.productRepository.save(product);
     this.offerRepository.save(offer);
   }
+
 
   public void deleteAll() {
     if (System.getenv("DATABASE_NAME").equals("floppa-dev")) {
