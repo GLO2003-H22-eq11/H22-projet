@@ -48,8 +48,9 @@ public class ProductAssembler {
             new ProductSellerResponse(productWithSeller.getSellerId().toString(), productWithSeller.getSellerName()));
   }
 
-  public ProductWithViewsResponse toProductWithViewsResponse(Product product) {
-    return new ProductWithViewsResponse(
+  public List<ProductWithViewsResponse> toProductsWithViewsResponse(List<Product> products) {
+    return products.stream()
+            .map(product ->  new ProductWithViewsResponse(
             product.getStringProductId(),
             product.getStringCreatedAt(),
             product.getTitle(),
@@ -58,8 +59,7 @@ public class ProductAssembler {
             this.offersAssembler.toResponse(product.getOffersSummary()),
             product.getProductCategories().stream().
                     map(Category::getCategoryName).collect(Collectors.toList()),
-            product.getViews()
-    );
+            product.getViews())).collect(Collectors.toList());
   }
 
   public ProductsWithSellerResponse toProductsResponse(List<ProductWithSeller> productsWithSellers) {

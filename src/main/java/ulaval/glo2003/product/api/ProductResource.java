@@ -34,7 +34,6 @@ import ulaval.glo2003.seller.domain.factory.SellerIdFactory;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Path("/products")
 @Produces(MediaType.APPLICATION_JSON)
@@ -120,8 +119,8 @@ public class ProductResource {
 
       List<Product> products = this.productService.getProductsBySellerId(sellerId);
 
-      List<ProductWithViewsResponse> productWithViewResponses = products.stream()
-              .map(this.productAssembler::toProductWithViewsResponse).collect(Collectors.toList());
+      List<ProductWithViewsResponse> productWithViewResponses =
+              this.productAssembler.toProductsWithViewsResponse(products);
 
       return Response.ok().entity(productWithViewResponses).build();
     } catch (GenericException e) {

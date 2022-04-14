@@ -118,6 +118,10 @@ public class Product {
     }
   }
 
+  public Integer getViews() {
+    return views;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -138,11 +142,4 @@ public class Product {
     return Objects.hash(sellerId, productId, title, description, suggestedPrice, offersSummary, categories, createdAt);
   }
 
-  public Integer getViews() {
-    return views;
-  }
-
-  public void setViews(Integer views) {
-    this.views = views;
-  }
 }
