@@ -16,7 +16,7 @@ public class ProductBuilder {
   private OffersSummary offersSummary;
   private Categories categories;
   private final Instant createdAt;
-  private final Integer views;
+  private Integer views;
 
   public ProductBuilder() {
     this.sellerId = new SellerId();
@@ -37,6 +37,11 @@ public class ProductBuilder {
 
   public ProductBuilder withAmount(Amount amount) {
     this.suggestedPrice = amount;
+    return this;
+  }
+
+  public ProductBuilder withViews(Integer views) {
+    this.views = views;
     return this;
   }
 

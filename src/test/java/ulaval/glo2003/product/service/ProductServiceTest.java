@@ -212,6 +212,15 @@ class ProductServiceTest {
     verify(this.productRepository).save(product);
   }
 
+  @Test
+  public void givenASellerId_whenGetProductsBySellerId_thenShouldFindBySellerId() throws GenericException {
+    SellerId aSellerId = new SellerId();
+
+    this.productService.getProductsBySellerId(aSellerId);
+
+    verify(this.productRepository).findBySellerId(aSellerId);
+  }
+
   private void givenASellerId(SellerId sellerId) {
     given(this.product.getSellerId()).willReturn(sellerId);
   }

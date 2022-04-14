@@ -18,6 +18,7 @@ class ProductTest {
 
   private final Product A_PRODUCT_WITH_A_TITLE = new ProductBuilder().withTitle(A_TITLE).build();
   private final Product A_PRODUCT_WITH_A_PRICE = new ProductBuilder().withAmount(A_PRICE).withOffers(PRODUCT_OFFERS).build();
+  private final Product A_PRODUCT_WITH_NO_VIEWS = new ProductBuilder().withViews(0).build();
 
   @Test
   public void givenAProductWithATitleAndAnotherSameTitle_whenIsInTitle_thenShouldReturnTrue() {
@@ -83,5 +84,13 @@ class ProductTest {
     Amount aLowerPrice = Amount.fromDouble(2.0);
 
     assertThrows(InvalidOfferPriceException.class, () -> A_PRODUCT_WITH_A_PRICE.addOfferAmount(aLowerPrice));
+  }
+
+  @Test
+  public void givenAProductWithNoViews_whenAddView_thenShouldAddView() {
+    A_PRODUCT_WITH_NO_VIEWS.addView();
+    Integer expectedViews = 1;
+
+    assertEquals(expectedViews, A_PRODUCT_WITH_NO_VIEWS.getViews());
   }
 }
