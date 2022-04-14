@@ -4,7 +4,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ulaval.glo2003.ApplicationMain;
-import ulaval.glo2003.product.api.response.ProductsResponse;
+import ulaval.glo2003.product.api.response.ProductsWithSellerResponse;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -49,7 +49,7 @@ public class GetNoProductWithFiltersEnd2EndTest {
   public void givenAProduct_whenGetProductsWithNonExistentValues_thenShouldNotReturnAnyProducts() {
     createSellerWithProduct();
 
-    ProductsResponse response = getProductsResponseBodyWithNonExistentValuesAsFilters();
+    ProductsWithSellerResponse response = getProductsResponseBodyWithNonExistentValuesAsFilters();
 
     assertTrue(response.products.isEmpty());
   }

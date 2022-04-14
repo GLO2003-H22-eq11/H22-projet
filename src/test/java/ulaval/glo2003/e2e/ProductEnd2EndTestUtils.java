@@ -3,8 +3,8 @@ package ulaval.glo2003.e2e;
 import io.restassured.response.Response;
 import ulaval.glo2003.offer.api.request.OfferRequest;
 import ulaval.glo2003.product.api.request.ProductRequest;
-import ulaval.glo2003.product.api.response.ProductResponse;
-import ulaval.glo2003.product.api.response.ProductsResponse;
+import ulaval.glo2003.product.api.response.ProductWithSellerResponse;
+import ulaval.glo2003.product.api.response.ProductsWithSellerResponse;
 
 import static io.restassured.RestAssured.given;
 import static ulaval.glo2003.e2e.End2EndConfig.*;
@@ -61,8 +61,8 @@ public class ProductEnd2EndTestUtils {
             .get(PRODUCTS_END_POINT + "/" + productId);
   }
 
-  public static ProductResponse getProductResponseBody(String productId) {
-    return getProductResponse(productId).getBody().as(ProductResponse.class);
+  public static ProductWithSellerResponse getProductResponseBody(String productId) {
+    return getProductResponse(productId).getBody().as(ProductWithSellerResponse.class);
   }
 
   public static Response getProductsResponseWithValidFilters(String sellerId) {
@@ -77,8 +77,8 @@ public class ProductEnd2EndTestUtils {
 
   }
 
-  public static ProductsResponse getProductsResponseBodyWithValidFilters(String sellerId) {
-    return getProductsResponseWithValidFilters(sellerId).getBody().as(ProductsResponse.class);
+  public static ProductsWithSellerResponse getProductsResponseBodyWithValidFilters(String sellerId) {
+    return getProductsResponseWithValidFilters(sellerId).getBody().as(ProductsWithSellerResponse.class);
   }
 
   public static Response getProductsResponseWithNonExistentValuesAsFilters() {
@@ -91,8 +91,8 @@ public class ProductEnd2EndTestUtils {
             .get(PRODUCTS_END_POINT);
   }
 
-  public static ProductsResponse getProductsResponseBodyWithNonExistentValuesAsFilters() {
-    return getProductsResponseWithNonExistentValuesAsFilters().getBody().as(ProductsResponse.class);
+  public static ProductsWithSellerResponse getProductsResponseBodyWithNonExistentValuesAsFilters() {
+    return getProductsResponseWithNonExistentValuesAsFilters().getBody().as(ProductsWithSellerResponse.class);
   }
 
   public static void clearProductsDatabase() {

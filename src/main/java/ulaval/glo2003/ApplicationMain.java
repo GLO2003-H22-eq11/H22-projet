@@ -51,6 +51,7 @@ public class ApplicationMain {
             appContext.productAssembler,
             appContext.productIdFactory,
             appContext.productRequestValidator,
+            appContext.sellerIdFactory,
             appContext.productFiltersFactory,
             appContext.offerFactory,
             appContext.offerRequestValidator

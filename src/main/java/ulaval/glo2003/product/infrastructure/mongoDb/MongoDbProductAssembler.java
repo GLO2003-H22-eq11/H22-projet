@@ -29,7 +29,8 @@ public class MongoDbProductAssembler {
                     product.getOffersSummary().getMaxAmount()
             ),
             product.getProductCategories().stream().map(Category::getCategoryName).collect(Collectors.toList()),
-            product.getStringCreatedAt()
+            product.getStringCreatedAt(),
+            product.getViews()
     );
   }
 
@@ -47,7 +48,8 @@ public class MongoDbProductAssembler {
                     Amount.fromDouble(productEntity.getOffers().getMax())
             ),
             new Categories(productEntity.getCategories().stream().map(Category::new).collect(Collectors.toList())),
-            Instant.parse(productEntity.getCreatedAt())
+            Instant.parse(productEntity.getCreatedAt()),
+            productEntity.getViews()
     );
   }
 }

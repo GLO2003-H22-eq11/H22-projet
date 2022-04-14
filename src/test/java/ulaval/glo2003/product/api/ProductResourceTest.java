@@ -10,8 +10,8 @@ import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.api.assembler.ProductAssembler;
 import ulaval.glo2003.offer.api.request.OfferRequest;
 import ulaval.glo2003.product.api.request.ProductRequest;
-import ulaval.glo2003.product.api.response.ProductResponse;
-import ulaval.glo2003.product.api.response.ProductsResponse;
+import ulaval.glo2003.product.api.response.ProductWithSellerResponse;
+import ulaval.glo2003.product.api.response.ProductsWithSellerResponse;
 import ulaval.glo2003.offer.api.validator.OfferRequestValidator;
 import ulaval.glo2003.product.api.validator.ProductRequestValidator;
 import ulaval.glo2003.offer.domain.Offer;
@@ -24,6 +24,9 @@ import ulaval.glo2003.product.domain.ProductId;
 import ulaval.glo2003.product.domain.factory.ProductIdFactory;
 import ulaval.glo2003.product.domain.ProductWithSeller;
 import ulaval.glo2003.product.service.ProductService;
+import ulaval.glo2003.seller.domain.SellerId;
+import ulaval.glo2003.seller.domain.exceptions.InvalidSellerIdException;
+import ulaval.glo2003.seller.domain.factory.SellerIdFactory;
 
 import java.net.URI;
 import java.util.List;
@@ -35,11 +38,11 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 class ProductResourceTest {
 
-  private final String A_SELLER_ID = "S@FG_F$GG$cgwre-fg";
-  private final String A_TITLE = "TITLE";
-  private final List<String> STRING_CATEGORIES = List.of("A", "B", "C");
-  private final Double MINIMUM_PRICE = 10.0;
-  private final Double MAXIMUM_PRICE = 15.0;
+  private static final String A_SELLER_ID = "S@FG_F$GG$cgwre-fg";
+  private static final String A_TITLE = "TITLE";
+  private static final List<String> STRING_CATEGORIES = List.of("A", "B", "C");
+  private static final Double MINIMUM_PRICE = 10.0;
+  private static final Double MAXIMUM_PRICE = 15.0;
   private static final String A_PRODUCT_ID = "Sqwevwerty";
   private static final String A_SELLER_STRING_ID = "5a3e3b0b-19a6-46cd-a0fe-bf16f42ba492";
   private static final String A_NAME = "A NAME";
@@ -47,15 +50,16 @@ class ProductResourceTest {
   private static final String A_PHONE_NUMBER = "14181234567";
   private static final Double AN_AMOUNT = 20.0;
   private static final String A_MESSAGE = "Donec porttitor interdum lacus sed finibus. Nam pulvinar facilisis posuere. Maecenas vel lorem amet.";
+  private static final SellerId AN_ID = new SellerId();
 
   private final OfferRequest AN_OFFER_REQUEST = this.givenAnOfferRequest(A_NAME, AN_EMAIL, A_PHONE_NUMBER, AN_AMOUNT, A_MESSAGE);
-  private final ProductFilters A_PRODUCT_FILTERS = new ProductFilters();
+  private static final ProductFilters A_PRODUCT_FILTERS = new ProductFilters();
 
   @Mock
   private Product product;
 
   @Mock
-  private ProductResponse productResponse;
+  private ProductWithSellerResponse productWithSellerResponse;
 
   @Mock
   private ProductWithSeller productWithSeller;
@@ -68,6 +72,9 @@ class ProductResourceTest {
 
   @Mock
   private ProductFactory productFactory;
+
+  @Mock
+  private SellerIdFactory sellerIdFactory;
 
   @Mock
   private ProductService productService;
@@ -101,9 +108,11 @@ class ProductResourceTest {
             this.productAssembler,
             this.productIdFactory,
             this.productRequestValidator,
+            this.sellerIdFactory,
             this.productFiltersFactory,
             this.offerFactory,
-            this.offerRequestValidator);
+            this.offerRequestValidator
+    );
   }
 
   @Test
@@ -160,10 +169,10 @@ class ProductResourceTest {
 
   @Test
   public void givenASellerIdATitleACategoriesAMinimumPriceAndAMaximumPrice_whenGetFilteredProducts_thenShouldReturnEntity() throws GenericException {
-    ProductsResponse aProductsResponse = new ProductsResponse(List.of(productResponse));
+    ProductsWithSellerResponse aProductsWithSellerResponse = new ProductsWithSellerResponse(List.of(productWithSellerResponse));
     this.givenAListOfProductsWithSeller(A_PRODUCT_FILTERS);
-    given(this.productAssembler.toProductsResponse(List.of(productWithSeller))).willReturn(aProductsResponse);
-    Response expected = Response.ok().entity(aProductsResponse).build();
+    given(this.productAssembler.toProductsResponse(List.of(productWithSeller))).willReturn(aProductsWithSellerResponse);
+    Response expected = Response.ok().entity(aProductsWithSellerResponse).build();
 
     Response actual = this.productResource.getFilteredProducts(A_SELLER_ID, A_TITLE, STRING_CATEGORIES, MINIMUM_PRICE, MAXIMUM_PRICE);
 
@@ -193,6 +202,15 @@ class ProductResourceTest {
     this.productResource.createOffer(AN_OFFER_REQUEST, A_PRODUCT_ID);
 
     verify(this.productService).createOffer(offer);
+  }
+
+  @Test
+  public void givenASellerId_whenGetSellerProductsViews_thenShouldGetProductsBySeller() throws GenericException {
+    given(this.sellerIdFactory.create(A_SELLER_STRING_ID)).willReturn(AN_ID);
+
+    this.productResource.getSellerProductsViews(A_SELLER_STRING_ID);
+
+    verify(this.productService).getProductsBySellerId(AN_ID);
   }
 
   private void givenAProduct(ProductRequest productRequest) throws GenericException {

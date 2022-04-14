@@ -18,6 +18,7 @@ public class ProductEntity {
   private OffersEntity offers;
   private List<String> categories;
   private String createdAt;
+  private Integer views;
 
   public ProductEntity() {
   }
@@ -30,8 +31,8 @@ public class ProductEntity {
           Double suggestedPrice,
           OffersEntity offers,
           List<String> categories,
-          String createdAt
-  ) {
+          String createdAt,
+          Integer views) {
     this.productId = productId;
     this.sellerId = sellerId;
     this.title = title;
@@ -40,6 +41,7 @@ public class ProductEntity {
     this.offers = offers;
     this.categories = categories;
     this.createdAt = createdAt;
+    this.views = views;
   }
 
   public String getSellerId() {
@@ -72,5 +74,9 @@ public class ProductEntity {
 
   public OffersEntity getOffers() {
     return this.offers;
+  }
+
+  public Integer getViews() {
+    return views;
   }
 }

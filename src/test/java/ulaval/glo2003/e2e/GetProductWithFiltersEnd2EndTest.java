@@ -4,8 +4,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ulaval.glo2003.ApplicationMain;
-import ulaval.glo2003.product.api.response.ProductResponse;
-import ulaval.glo2003.product.api.response.ProductsResponse;
+import ulaval.glo2003.product.api.response.ProductWithSellerResponse;
+import ulaval.glo2003.product.api.response.ProductsWithSellerResponse;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -52,14 +52,14 @@ public class GetProductWithFiltersEnd2EndTest {
   public void givenAProduct_whenGetProductWithInclusiveFiltersThatMatch_thenShouldReturnProduct() {
     String sellerId = createSellerWithProductAndGetSellerId();
 
-    ProductsResponse productsResponse = getProductsResponseBodyWithValidFilters(sellerId);
-    ProductResponse productResponse = productsResponse.products.get(0);
+    ProductsWithSellerResponse productsWithSellerResponse = getProductsResponseBodyWithValidFilters(sellerId);
+    ProductWithSellerResponse productWithSellerResponse = productsWithSellerResponse.products.get(0);
 
-    assertEquals(productResponse.title, A_PRODUCT_TITLE);
-    assertEquals(productResponse.seller.id, sellerId);
-    assertEquals(productResponse.categories, A_CATEGORIES);
-    assertEquals(productResponse.description, A_PRODUCT_DESCRIPTION);
-    assertEquals(productResponse.suggestedPrice, A_VALID_SUGGESTED_PRICE);
+    assertEquals(productWithSellerResponse.title, A_PRODUCT_TITLE);
+    assertEquals(productWithSellerResponse.seller.id, sellerId);
+    assertEquals(productWithSellerResponse.categories, A_CATEGORIES);
+    assertEquals(productWithSellerResponse.description, A_PRODUCT_DESCRIPTION);
+    assertEquals(productWithSellerResponse.suggestedPrice, A_VALID_SUGGESTED_PRICE);
   }
 
   @Test
