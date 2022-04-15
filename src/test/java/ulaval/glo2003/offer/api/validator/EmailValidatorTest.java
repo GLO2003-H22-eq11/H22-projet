@@ -28,5 +28,10 @@ class EmailValidatorTest {
     assertFalse(EmailValidator.validate(anInValidEmailString));
   }
 
+  @Test
+  public void givenAValidSmallEmailString_whenValidate_thenShouldReturnTrue() {
+    String aValidEmailString = "b@e.c";
 
+    assertTrue(EmailValidator.validate(aValidEmailString));
+  }
 }
