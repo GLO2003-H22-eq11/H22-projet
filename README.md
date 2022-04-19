@@ -10,7 +10,7 @@ Le meilleur site de vente anonyme au Québec!
 ## Setup
 
 ### Installer MongoDb sur votre machine
-####Mac
+### Mac
 
 ```
 brew install mongodb-community@5.0
