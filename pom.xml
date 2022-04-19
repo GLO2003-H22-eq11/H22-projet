@@ -18,50 +18,6 @@
         <checkstyle.config.location>config/checkstyle/config.xml</checkstyle.config.location>
         <checkstyle.suppressions.location>config/checkstyle/suppressions.xml</checkstyle.suppressions.location>
     </properties>
-<profiles>
-    <profile>
-        <id>check</id>
-        <build>
-            <pluginManagement>
-                <plugins>
-                    <plugin>
-                        <groupId>org.openhab.tools.sat</groupId>
-                        <artifactId>sat-plugin</artifactId>
-                        <version>${sat.version}</version>
-                        <executions>
-                            <execution>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>checkstyle</goal>
-                                    <goal>pmd</goal>
-                                    <goal>spotbugs</goal>
-                                    <goal>report</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </pluginManagement>
-        </build>
-    </profile>
-    <profile>
-        <id>check-bundles</id>
-        <activation>
-            <file>
-                <exists>src</exists>
-            </file>
-        </activation>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.openhab.tools.sat</groupId>
-                    <artifactId>sat-plugin</artifactId>
-                    <version>0.12.0</version>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-</profiles>
     <dependencyManagement>
         <dependencies>
             <dependency>
