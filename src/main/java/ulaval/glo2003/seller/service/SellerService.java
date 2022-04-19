@@ -29,7 +29,6 @@ public class SellerService {
   }
 
   public void addSeller(Seller seller) throws GenericException {
-    seller.verifyIfMajor();
     this.sellerRepository.save(seller);
   }
 

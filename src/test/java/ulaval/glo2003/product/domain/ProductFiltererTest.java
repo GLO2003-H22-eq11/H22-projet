@@ -52,7 +52,7 @@ class ProductFiltererTest {
   }
 
   @Test
-  public void givenAProductWithATitleAndAProductFiltersWithTheSameTitleAsProduct_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
+  public void givenAProductWithTitleProductFiltersSameTitleAsProduct_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
     A_PRODUCT_FILTERS.setTitle(A_PRODUCT_TITLE);
     PRODUCTS.add(A_PRODUCT_WITH_A_TITLE);
     givenProducts(PRODUCTS);
@@ -63,7 +63,7 @@ class ProductFiltererTest {
   }
 
   @Test
-  public void givenAProductWithATitleAndAProductFiltersWithSmallPartOfTheTitleAsProduct_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
+  public void givenAProductWithTitleProductFiltersWithSmallPartTitle_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
     String aSmallPartOfProductTitle = "MAR";
     A_PRODUCT_FILTERS.setTitle(aSmallPartOfProductTitle);
     PRODUCTS.add(A_PRODUCT_WITH_A_TITLE);
@@ -75,7 +75,7 @@ class ProductFiltererTest {
   }
 
   @Test
-  public void givenAProductWithATitleAndAProductFiltersWithSmallPartOfTheTitleAsProductWithDifferentCasing_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
+  public void givenAProductWithTitleProductFiltersWithPartTitle_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
     String aSmallPartOfProductTitle = "N_tiT";
     A_PRODUCT_FILTERS.setTitle(aSmallPartOfProductTitle);
     PRODUCTS.add(A_PRODUCT_WITH_A_TITLE);
@@ -87,7 +87,7 @@ class ProductFiltererTest {
   }
 
   @Test
-  public void givenAProductWithATitleAndAProductFiltersWithATitleNotInProductTitle_whenFindFilteredProducts_thenShouldNotFindProduct() throws GenericException {
+  public void givenAProductTitleProductFiltersWithTitleNotInProductTitle_whenFindFilteredProducts_thenShouldNotFind() throws GenericException {
     String aDifferentTitle = "yeeeee";
     A_PRODUCT_FILTERS.setTitle(aDifferentTitle);
     PRODUCTS.add(A_PRODUCT_WITH_A_TITLE);
@@ -99,7 +99,7 @@ class ProductFiltererTest {
   }
 
   @Test
-  public void givenTwoProductsWithSimilarTitlesAndAProductFiltersWithATitleCorrespondingToBothProducts_whenFindFilteredProducts_thenShouldFindProducts() throws GenericException {
+  public void givenTwoProductsWithSimilarTitles_whenFindFilteredProducts_thenShouldFindProducts() throws GenericException {
     String samePartOfTitle = "MARIN";
     A_PRODUCT_FILTERS.setTitle(samePartOfTitle);
     PRODUCTS.add(A_PRODUCT_WITH_A_TITLE);
@@ -125,7 +125,7 @@ class ProductFiltererTest {
   }
 
   @Test
-  public void givenAProductAndAProductFiltersWithDifferentProductId_whenFindFilteredProducts_thenShouldNotFindProduct() throws GenericException {
+  public void givenAProductProductFiltersWithDifferentProductId_whenFindFilteredProducts_thenShouldNotFindProduct() throws GenericException {
     A_PRODUCT_FILTERS.setSellerId(ANOTHER_SELLER_ID);
     PRODUCTS.add(A_PRODUCT_WITH_A_SELLER_ID);
     givenProducts(PRODUCTS);
@@ -136,7 +136,7 @@ class ProductFiltererTest {
   }
 
   @Test
-  public void givenAProductWithAPriceAndAMinimalPriceLowerThanProductPrice_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
+  public void givenAProductWithAMinimalPriceLowerThanProductPrice_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
     Product productWithHigherAmountThanMinimumAmount = new ProductBuilder().withAmount(AN_AMOUNT).build();
     A_PRODUCT_FILTERS.setMinimalPrice(A_MINIMAL_AMOUNT);
     PRODUCTS.add(productWithHigherAmountThanMinimumAmount);
@@ -148,7 +148,7 @@ class ProductFiltererTest {
   }
 
   @Test
-  public void givenAProductWithAPriceAndAMinimalPriceHigherThanProductPrice_whenFindFilteredProducts_thenShouldNotFindProduct() throws GenericException {
+  public void givenAProductWithAMinimalPriceHigherThanProduct_whenFindFilteredProducts_thenShouldNotFindProduct() throws GenericException {
     Double smallNumber = 2.0;
     Amount aVerySmallAmount = Amount.fromDouble(smallNumber);
     Product productWithLowerAmountThanMinimalAmount = new ProductBuilder().withAmount(aVerySmallAmount).build();
@@ -162,7 +162,7 @@ class ProductFiltererTest {
   }
 
   @Test
-  public void givenAProductWithAPriceAndAMaximumPriceLowerThanProductPrice_whenFindFilteredProducts_thenShouldNotFindProduct() throws GenericException {
+  public void givenAProductAndAMaximumPriceLowerThanProductPrice_whenFindFilteredProducts_thenShouldNotFindProduct() throws GenericException {
     Product productWithAHighPrice = new ProductBuilder().withAmount(A_MAXIMAL_AMOUNT).build();
     A_PRODUCT_FILTERS.setMaximumPrice(A_MINIMAL_AMOUNT);
     PRODUCTS.add(productWithAHighPrice);
@@ -174,7 +174,7 @@ class ProductFiltererTest {
   }
 
   @Test
-  public void givenAProductWithAPriceAndAMaximumPriceHigherThanProductPrice_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
+  public void givenAProductAndAMaximumPriceHigherThanProduct_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
     Product productWithALowPrice = new ProductBuilder().withAmount(A_MINIMAL_AMOUNT).build();
     A_PRODUCT_FILTERS.setMaximumPrice(A_MAXIMAL_AMOUNT);
     PRODUCTS.add(productWithALowPrice);
@@ -186,7 +186,7 @@ class ProductFiltererTest {
   }
 
   @Test
-  public void givenAProductWithAPriceAndAMinimumPriceWithSameValue_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
+  public void givenAProductAndAMinimumPriceWithSameValue_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
     Product aProduct = new ProductBuilder().withAmount(AN_AMOUNT).build();
     A_PRODUCT_FILTERS.setMinimalPrice(AN_AMOUNT);
     PRODUCTS.add(aProduct);
@@ -198,7 +198,7 @@ class ProductFiltererTest {
   }
 
   @Test
-  public void givenAProductWithAPriceAndAMaximumPriceWithSameValue_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
+  public void givenAProductAndAMaximumPriceWithSameValue_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
     Product aProduct = new ProductBuilder().withAmount(AN_AMOUNT).build();
     A_PRODUCT_FILTERS.setMaximumPrice(AN_AMOUNT);
     PRODUCTS.add(aProduct);
@@ -210,7 +210,7 @@ class ProductFiltererTest {
   }
 
   @Test
-  public void givenAProductWithTwoCategoriesAndOnlyOneOfThemCategoriesAsAFilter_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
+  public void givenAProductWithTwoCategoriesAndFilterWithOneCategory_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
     Categories filterCategories = new Categories(List.of(A_CATEGORY));
     A_PRODUCT_FILTERS.setCategories(filterCategories);
     PRODUCTS.add(A_PRODUCT_WITH_TWO_CATEGORIES);
@@ -222,7 +222,7 @@ class ProductFiltererTest {
   }
 
   @Test
-  public void givenAProductWithTwoCategoriesAndTwoThemCategoriesAsAFilter_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
+  public void givenAProductWithTwoCategoriesAndFilterWith2Category_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
     Categories filterCategories = new Categories(List.of(A_CATEGORY, ANOTHER_CATEGORY));
     A_PRODUCT_FILTERS.setCategories(filterCategories);
     PRODUCTS.add(A_PRODUCT_WITH_TWO_CATEGORIES);
@@ -247,7 +247,7 @@ class ProductFiltererTest {
   }
 
   @Test
-  public void givenAProductAndAFilterWithAPartOfTheProductTitleAMinimumPriceLowerThanProductPriceAndACategoryCorrespondingToProduct_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
+  public void givenAProductAndFilterWithAPartOfTitleAMinimumPriceLowerAndACategory_whenFindFilteredProducts_thenShouldFindProduct() throws GenericException {
     Categories productCategories = new Categories(List.of(A_CATEGORY, ANOTHER_CATEGORY));
     Product aProduct = new ProductBuilder().withTitle(A_PRODUCT_TITLE).withAmount(AN_AMOUNT).withCategories(productCategories).build();
     Categories filterCategories = new Categories(List.of(A_CATEGORY));

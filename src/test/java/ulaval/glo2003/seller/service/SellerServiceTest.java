@@ -49,20 +49,6 @@ class SellerServiceTest {
   }
 
   @Test
-  public void givenAMajorSeller_whenAddSeller_thenShouldAddTheSeller() throws GenericException {
-    this.sellerService.addSeller(this.seller);
-
-    verify(this.sellerRepository).save(this.seller);
-  }
-
-  @Test
-  public void givenAMinorSeller_whenAddSeller_thenShouldAddTheSeller() throws GenericException {
-    this.sellerService.addSeller(this.seller);
-
-    verify(this.seller).verifyIfMajor();
-  }
-
-  @Test
   public void givenASellerId_whenGetSellerById_thenShouldFindById() throws GenericException {
     this.givenASeller(A_SELLER_ID);
 

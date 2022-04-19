@@ -23,36 +23,6 @@ class OffersSummaryTest {
   }
 
   @Test
-  public void givenAnOffersSummaryWithANullMean_whenGetMeanAmount_thenShouldReturnNull() {
-    assertNull(offersSummaryWithNullMeanMinMax.getMeanAmount());
-  }
-
-  @Test
-  public void givenAnOffersSummaryWithANonNullMean_whenGetMeanAmount_thenShouldReturnMeanValue() {
-    assertEquals(A_VALUE, offersSummary.getMeanAmount());
-  }
-
-  @Test
-  public void givenAnOffersSummaryWithANullMin_whenGetMinAmount_thenShouldReturnNull() {
-    assertNull(offersSummaryWithNullMeanMinMax.getMinAmount());
-  }
-
-  @Test
-  public void givenAnOffersSummaryWithANonNullMin_whenGetMinAmount_thenShouldReturnMinValue() {
-    assertEquals(A_VALUE, offersSummary.getMinAmount());
-  }
-
-  @Test
-  public void givenAnOffersSummaryWithANullMax_whenGetMaxAmount_thenShouldReturnNull() {
-    assertNull(offersSummaryWithNullMeanMinMax.getMaxAmount());
-  }
-
-  @Test
-  public void givenAnOffersSummaryWithANonNullMax_whenGetMaxAmount_thenShouldReturnMaxValue() {
-    assertEquals(A_VALUE, offersSummary.getMaxAmount());
-  }
-
-  @Test
   public void givenAnOffersSummaryWithAnOffer_whenAddOfferAmount_thenShouldAdjustMeanAndCount() {
     int expectedCount = 2;
     Double expectedMeanAmount = 30.0;

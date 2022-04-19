@@ -47,7 +47,13 @@ public class ProductFiltersFactoryTest {
 
   @Test
   public void givenNoFilter_whenCreate_thenShouldCreateAProductFilterWithNullAttributes() throws GenericException {
-    ProductFilters productFilters = this.productFiltersFactory.create(NULL_SELLER_ID, NULL_TITLE, NO_CATEGORIES, NULL_PRICE, NULL_PRICE);
+    ProductFilters productFilters = this.productFiltersFactory.create(
+            NULL_SELLER_ID,
+            NULL_TITLE,
+            NO_CATEGORIES,
+            NULL_PRICE,
+            NULL_PRICE
+    );
 
     assertNull(productFilters.getCategories());
     assertNull(productFilters.getMaximumPrice());
@@ -58,7 +64,13 @@ public class ProductFiltersFactoryTest {
 
   @Test
   public void givenAValidCategories_whenCreate_thenShouldCreateAProductFilterWithCategories() throws GenericException {
-    ProductFilters productFilters = this.productFiltersFactory.create(NULL_SELLER_ID, NULL_TITLE, CATEGORIES, NULL_PRICE, NULL_PRICE);
+    ProductFilters productFilters = this.productFiltersFactory.create(
+            NULL_SELLER_ID,
+            NULL_TITLE,
+            CATEGORIES,
+            NULL_PRICE,
+            NULL_PRICE
+    );
 
     Categories actual = new Categories(List.of(new Category(A_CATEGORY_NAME)));
 
@@ -67,28 +79,52 @@ public class ProductFiltersFactoryTest {
 
   @Test
   public void givenAValidTitle_whenCreate_thenShouldCreateAProductFilterWithATitle() throws GenericException{
-    ProductFilters productFilters = this.productFiltersFactory.create(NULL_SELLER_ID, A_TITLE, NO_CATEGORIES, NULL_PRICE, NULL_PRICE);
+    ProductFilters productFilters = this.productFiltersFactory.create(
+            NULL_SELLER_ID,
+            A_TITLE,
+            NO_CATEGORIES,
+            NULL_PRICE,
+            NULL_PRICE
+    );
 
     assertEquals(productFilters.getTitle(), A_TITLE);
   }
 
   @Test
   public void givenAValidSellerId_whenCreate_thenShouldCreateAProductFilterWithASellerId() throws GenericException{
-    ProductFilters productFilters = this.productFiltersFactory.create(A_SELLER_ID, NULL_TITLE, NO_CATEGORIES, NULL_PRICE, NULL_PRICE);
+    ProductFilters productFilters = this.productFiltersFactory.create(
+            A_SELLER_ID,
+            NULL_TITLE,
+            NO_CATEGORIES,
+            NULL_PRICE,
+            NULL_PRICE
+    );
 
     assertEquals(productFilters.getSellerId(), new SellerId(A_SELLER_ID));
   }
 
   @Test
   public void givenAValidMinimumPrice_whenCreate_thenShouldCreateAProductFilterWithAMinimumPrice() throws GenericException{
-    ProductFilters productFilters = this.productFiltersFactory.create(NULL_SELLER_ID, NULL_TITLE, NO_CATEGORIES, A_MINIMUM_PRICE, NULL_PRICE);
+    ProductFilters productFilters = this.productFiltersFactory.create(
+            NULL_SELLER_ID,
+            NULL_TITLE,
+            NO_CATEGORIES,
+            A_MINIMUM_PRICE,
+            NULL_PRICE
+    );
 
     Assertions.assertEquals(productFilters.getMinimalPrice(), Amount.fromDouble(A_MINIMUM_PRICE));
   }
 
   @Test
   public void givenAnValidMaximum_whenCreate_thenShouldCreateAProductFilterWithAMaximumPrice() throws GenericException{
-    ProductFilters productFilters = this.productFiltersFactory.create(NULL_SELLER_ID, NULL_TITLE, NO_CATEGORIES, NULL_PRICE, A_MAXIMUM_PRICE);
+    ProductFilters productFilters = this.productFiltersFactory.create(
+            NULL_SELLER_ID,
+            NULL_TITLE,
+            NO_CATEGORIES,
+            NULL_PRICE,
+            A_MAXIMUM_PRICE
+    );
 
     assertEquals(productFilters.getMaximumPrice(), Amount.fromDouble(A_MAXIMUM_PRICE));
   }
@@ -96,7 +132,13 @@ public class ProductFiltersFactoryTest {
 
   @Test
   public void givenMultipleValidFilters_whenCreate_thenShouldCreateAValidProductFilter() throws GenericException{
-    ProductFilters productFilters = this.productFiltersFactory.create(A_SELLER_ID, NULL_TITLE, CATEGORIES, NULL_PRICE, A_MAXIMUM_PRICE);
+    ProductFilters productFilters = this.productFiltersFactory.create(
+            A_SELLER_ID,
+            NULL_TITLE,
+            CATEGORIES,
+            NULL_PRICE,
+            A_MAXIMUM_PRICE
+    );
 
     Categories actual = new Categories(List.of(new Category(A_CATEGORY_NAME)));
 

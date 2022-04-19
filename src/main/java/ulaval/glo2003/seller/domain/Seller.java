@@ -1,12 +1,9 @@
 package ulaval.glo2003.seller.domain;
 
-import ulaval.glo2003.exception.GenericException;
 import ulaval.glo2003.product.domain.Product;
-import ulaval.glo2003.seller.domain.exceptions.SellerIsMinorException;
 
 import java.time.Instant;
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.Objects;
 import java.util.List;
 
@@ -17,7 +14,6 @@ public class Seller {
   private final LocalDate birthDate;
   private final Instant createdAt;
   private List<Product> products;
-  private static final int MAJOR_AGE = 18;
 
   public Seller(
           SellerId sellerId,
@@ -43,18 +39,6 @@ public class Seller {
 
   public String getStringId() {
     return this.sellerId.toString();
-  }
-
-  private int getAge() {
-    Period period = Period.between(this.birthDate, LocalDate.now());
-
-    return period.getYears();
-  }
-
-  public void verifyIfMajor() throws GenericException {
-    if (!(this.getAge() >= MAJOR_AGE)) {
-      throw new SellerIsMinorException();
-    }
   }
 
   public String getName() {
