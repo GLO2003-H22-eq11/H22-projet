@@ -29,8 +29,7 @@ Dependancy bot :
 
 Sonarcloud :
 
-![image](https://user-images.githubusercontent.com/47373969/164242844-ae980435-7f06-437b-8d2e-a01549d42152.png)
-
+![image](https://user-images.githubusercontent.com/47373969/164267759-36466968-1fe7-4ae6-878f-df1b771cd969.png)
 
 ![image](https://user-images.githubusercontent.com/47373969/164242714-07a4357c-20fb-4456-ab56-ba40e9befa76.png)
 
