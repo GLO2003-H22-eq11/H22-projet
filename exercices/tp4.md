@@ -17,7 +17,7 @@ Nous avons utilisé SonarCube qui s'intègre directement avec notre CI à l'aide
 
 ### Outil de détection des failles de sécurités 
 
-Pour analyser la sécurité des dépendances externes, nous avons utilisés le DependacyBot qui s'intègre directement avec notre CI à l'aide du fichier `dependabot.yml`. Nous avons également encore fait utilisation de Sonarcloud pour détecter nos vulnérabilités et nos risques de sécurités, ou nous avons eu une quote de sécurité avec la note de A.
+Pour analyser la sécurité des dépendances externes, nous avons utilisés le DependacyBot qui s'intègre directement avec notre CI à l'aide du fichier `dependabot.yml`. Nous avons également encore fait utilisation de Sonarcloud pour détecter nos vulnérabilités et nos risques de sécurités, ou nous avons eu une cote de sécurité avec la note de A.
 
 Dependancy bot :
 
