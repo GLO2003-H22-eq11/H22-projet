@@ -52,3 +52,26 @@ Encore une fois, l'outil Sonarcloud nous donne notre test coverage globale.
 ![image](https://user-images.githubusercontent.com/47373969/164244404-225a0408-20fd-48f8-a51a-79fff84b3ebc.png)
 
 
+## Open source
+
+
+### Préparation 
+
+#### 1.Nommez 3 avantages à contribuer à des projets open source en tant qu'entreprise et justifiez en quoi cela peut être bénéfique pour tous.
+
+#### 2. Décrivez 3 défis qu'impose la mise en place d'un projet open source et justifiez.
+
+#### 3. Quelle information vous a-t-elle le plus surprise à propos de l'open source?
+
+### Éxecution
+
+#### Créer un fichier pour le "Code of conduct" en suivant les meilleures pratique. Si vous utilisez un template, vous devez en citer la source et expliquer pourquoi vous l'avez utilisé.
+
+#### Créer un fichier pour la licence en suivant les meilleures pratiques. Indiquez les 3 raisons principales (dans le fichier d'exercice) pour lesquelles vous avez choisi cette licence par rapport aux autres.
+
+#### Créer un fichier pour la contribution décrivant les meilleures pratiques de collaboration et de développement que vous voulez encourager au sein du projet. Si vous utilisez un template, vous devez en citer la source et expliquer pourquoi vous l'avez utilisé.
+
+
+#### Mettre à jour le README afin de décrire le projet, mettre en lien les différents fichiers pour l'open source, et ajouter les badges pour les pipelines CI (voir la documentation sur Github).
+
+
