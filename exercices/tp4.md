@@ -130,14 +130,20 @@ Bref, le code de conduite de "Contributor Convenant" encoure le comportement que
 
 #### Créer un fichier pour la licence en suivant les meilleures pratiques. Indiquez les 3 raisons principales (dans le fichier d'exercice) pour lesquelles vous avez choisi cette licence par rapport aux autres.
 
-Pour voir la licence, cliquer [ici](./LICENSE)
 
 Comme vous pouvez l'apercevoir, nous avons décidé de choisir la license MIT. 
 
-Comme nous développons un simple projet d'école, notre équipe était très ouvert à ce que les contributeurs externents puissent modifier et utiliser notre 
-code comme bon leur semble dans le futur. Nous avons donc choisir la license MIT car celle-ci est extrêmement simple et permet au développeur de modifier le code source de notre application
-selon leur préference. 
+Comme nous développons un simple projet d'école, notre équipe était très ouvert à ce que les contributeurs externes puissent modifier et utiliser notre 
+code comme bon leur semble dans le futur. Nous avons donc choisit la license MIT pour ses raisons :
 
+
+1. La licence MIT a une description extrêmement simple à comprendre, elle utilise moins de mots que "The Apache license" pour documenter ses règlementations.
+
+2. La licence MIT est bien connu dans le monde de l'open source. Les futurs développeurs désirant contribuer à notre projet n'auront donc pas 
+à se casser la tête à essayer de comprendre notre licence car fort probablement, ils connaisseront déjà la licence MIT ainsi que ses règlementations.
+
+3. Finalement, une autre raison de l'utilisation de celle-ci, comparément à la licence GPL par exemple, est que plus de gens peuvent utiliser notre logiciel.
+Comme plus de gens peuvent utiliser notre logiciel, on aura tendance à obtenir plus de contributions et donc de développer une meilleur communauté pour notre projet open source.
 
 
 #### Créer un fichier pour la contribution décrivant les meilleures pratiques de collaboration et de développement que vous voulez encourager au sein du projet. Si vous utilisez un template, vous devez en citer la source et expliquer pourquoi vous l'avez utilisé.
