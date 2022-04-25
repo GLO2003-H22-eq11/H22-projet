@@ -1,6 +1,15 @@
-# Floppa
+#  Floppa
 
 The best anonymous sales site in Quebec city ! 🇨🇦
+
+## Description 
+
+This open source project is a software in the form of a WEB API developed in Java allowing the management of product sales. 
+By using the API, you can create a seller account, sell your products and finally make offers on the different products available.
+It is also possible to see the different products of the sellers as well as the different sellers. 
+Finally, it is also possible to see product offers and see how many times a product has been viewed.
+
+This project was developed as part of a course at Laval University by 5 students
 
 ## 🕹 Required to run the app
 
@@ -51,15 +60,27 @@ Please go look at the documentation [here](https://www.mongodb.com/docs/manual/i
   <br />
 <hr />
 
+## 🌍 Open source documentation
+
+Every documentation to understand the guideline for this open source project is list here
+
+| Document   | 
+| --------- | 
+| [Licence](./LICENSE)   |
+| [Code of conduct](./CODE_OF_CONDUCT.md) |
+| [Contributing](./CONTRIBUTING.md) | 
+
+
 
 ## 🧩 Components
 
 Below is a list of our app with link to their live versions.
 
-| Component | Environment | Live URL                                                                    |
-| --------- | ----------- | --------------------------------------------------------------------------- |
-| API       | Staging     | https://processus-equipe-11-staging.herokuapp.com/                                       |
-| API       | Prod        | https://processus-equipe-11-production.herokuapp.com/    |
+| Component | Environment | Live URL                                                 | Badge |
+| --------- | ----------- | ---------------------------------------------------------|--------|
+| API       | Staging     | https://processus-equipe-11-staging.herokuapp.com/       | ![example workflow](https://github.com/GLO2003-H22-eq11/H22-projet/actions/workflows/deployStaging.yml/badge.svg) |
+| API       | Prod        | https://processus-equipe-11-production.herokuapp.com/    | ![example workflow](https://github.com/GLO2003-H22-eq11/H22-projet/actions/workflows/deployProd.yml/badge.svg)|
+
 
 
 ## ⚡️ Quickstart

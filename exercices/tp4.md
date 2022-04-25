@@ -116,15 +116,32 @@ logiciel en open source.
 
 #### Créer un fichier pour le "Code of conduct" en suivant les meilleures pratique. Si vous utilisez un template, vous devez en citer la source et expliquer pourquoi vous l'avez utilisé.
 
+Pour notre "Code of conduct", nous avons utiliser le template de "Contributor Covenant'. Celui-ci est un des templates offerts par github pour le "Code of conduct".
+
+Nous avons utilisés le "Code of conduct" de Contributor Covenant car nous trouvons que ce code de conduite prône une communauté agréable ouvert d'esprit qui n'accepte en 
+aucun cas les commentaires rabaissants ou autre type d'attaques personnels. En effet, le code de conduite que nous avons utilisé mentionne qu'il accepte tous les types
+d'individus peu importe la nationalité, la couleur de peau, la religion etc.. et qu'il prône le respect des individus sans accepter les commentaires discriminants entre contributeurs.
+Le code de conduite cherche vraiment a établir une communauté ou le développement logiciel est agréable. Nous avons également bien aimé le fait qu'il est mentionnée que les propriétaires du projets 
+peuvent prendre les mesures nécessaire pour retirer des personnes néfastes ou des commentaires haineux. Aussi, les directives d'applications
+sont extrêmement clairs et bien détaillées. 
+
+Bref, le code de conduite de "Contributor Convenant" encoure le comportement que l'on veut voir pour notre projet.
+
+
 #### Créer un fichier pour la licence en suivant les meilleures pratiques. Indiquez les 3 raisons principales (dans le fichier d'exercice) pour lesquelles vous avez choisi cette licence par rapport aux autres.
 
-Nous avons décidé de choisir la license MIT.
+Pour voir la licence, cliquer [ici](./LICENSE)
+
+Comme vous pouvez l'apercevoir, nous avons décidé de choisir la license MIT. 
+
+Comme nous développons un simple projet d'école, notre équipe était très ouvert à ce que les contributeurs externents puissent modifier et utiliser notre 
+code comme bon leur semble dans le futur. Nous avons donc choisir la license MIT car celle-ci est extrêmement simple et permet au développeur de modifier le code source de notre application
+selon leur préference. 
 
 
 
 #### Créer un fichier pour la contribution décrivant les meilleures pratiques de collaboration et de développement que vous voulez encourager au sein du projet. Si vous utilisez un template, vous devez en citer la source et expliquer pourquoi vous l'avez utilisé.
 
 
-#### Mettre à jour le README afin de décrire le projet, mettre en lien les différents fichiers pour l'open source, et ajouter les badges pour les pipelines CI (voir la documentation sur Github).
 
 
