@@ -59,9 +59,41 @@ Encore une fois, l'outil Sonarcloud nous donne notre test coverage globale.
 
 #### 1.Nommez 3 avantages à contribuer à des projets open source en tant qu'entreprise et justifiez en quoi cela peut être bénéfique pour tous.
 
+#### 3 avantages à contribuer à des projets open source en tant qu'entreprise 
+
+Le première avantage que nous avons discuté est qu'une entreprise fesant utilisation d'un logiciel open source a la possibilité 
+d'embaucher un développeur logiciel pour qu'il puisse apporter des améliorations personnalisées au logiciel plutôt que de se fier aux décisions d'un 
+fournissuer d'une source privée ou la contribution externe n'est pas possible.
+
+Le deuxième avantage que nous avons discuté en équipe est qu'une entreprise qui contribue à des projets open source peut cibler des développeurs 
+contribuant habilement au logiciel open source et ainsi potentiellement leur offrir un emploi dans la compagnie. Contribuez au projet open source peut
+donc être une certaine manière de recruter des développeurs logiciels compétants.
+
+Le troisième avantage est de réduire le coût total d'utilisation des produits logiciels de l'entreprise. En effet, ce qui rend les projets open source
+unique est qu'un organisation peut utiliser le projet open source comme bon lui semble sans payez de frais d'utilisations ou de frais de propriété
+intellectuelle. Une entreprise peut donc faire l'utilisation d'un projet open source plutôt de payer un produit à frais élevée.
+
+#### Justifiez en quoi cela peut être bénéfique pour tous
+
+
+
 #### 2. Décrivez 3 défis qu'impose la mise en place d'un projet open source et justifiez.
 
+1. Savoir dire non au contribution pas voulu  // unwanted contributions in the first place
+
+2. Avoir une vision claire et documentée vous permet de rester concentré et vous aide à éviter la « dérive de la portée » des contributions des autres
+
+
+
 #### 3. Quelle information vous a-t-elle le plus surprise à propos de l'open source?
+
+Plusieurs informations nous ont grandement surpris lors de l'apprentissage de l'open source. Tout d'abord, nous avons été très surpris de voir que 
+n'importe qui a les droits de contribuer au projet open source comme bon il le semble. Nous pensions que c'était seulement une certaine catégorie 
+de développeur qui pouvait contribuer ou bien qu'il fallait avoir un "rôle" dans le projet open source en question pour y contribuer.
+
+Sur un autre niveau, ce qui nous a le plus surpris est que certaines des plus grosses compagnies au monde comme IBM, Adobe, SAP participe activement dans la communauté de l'open source. 
+Aussi, de voir que même des compagnies comme Microsoft, qui a la base s'opposait contre les avancements de l'open source, sont rendu à mettre la majortié de leur principal 
+logiciel en open source.
 
 ### Éxecution
 
