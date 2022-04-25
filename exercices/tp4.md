@@ -74,7 +74,14 @@ unique est qu'un organisation peut utiliser le projet open source comme bon lui 
 intellectuelle. Une entreprise peut donc faire l'utilisation d'un projet open source plutôt de payer un produit à frais élevée.
 
 #### Justifiez en quoi cela peut être bénéfique pour tous
-La contribution des compagnies aggrandient la communauté opensource !!!
+La contribution des compagnies est bénéfique pour tous étant donnée qu'une même compagnie regroupe plusieurs développeurs, donc si une compagnie décide de contribuer aux projets open
+ source, cela veut dire que plusieurs développeurs vont contribuer. Cela fait donc en sorte que la contribution des compagnies 
+dans le domaine de l'open source aggrandie grandement la communauté de l'open source. Aussi, les grosses organisations technologiques ont énormement de pouvoir sur les différents
+mouvements technologiques, donc si les grosses compagnies comme Microsoft, Adobe décident de se tourner au open source, cela va grandement contribuer à l'avance
+de l'open source ainsi qu'à ses développements. Il aura donc plus de logiciels open source disponible pour nous tous.
+
+Aussi, si c'est une compagnie contribue fortement à un projet open source, un développeur peut se faire remarquer par la compagnie en apportant des 
+contributions importantes au projet. Cela peut donc devenir un potentiel futur emploie pour le développeur contribuant au projet open source.
 
 
 #### 2. Décrivez 3 défis qu'impose la mise en place d'un projet open source et justifiez.
@@ -110,6 +117,10 @@ logiciel en open source.
 #### Créer un fichier pour le "Code of conduct" en suivant les meilleures pratique. Si vous utilisez un template, vous devez en citer la source et expliquer pourquoi vous l'avez utilisé.
 
 #### Créer un fichier pour la licence en suivant les meilleures pratiques. Indiquez les 3 raisons principales (dans le fichier d'exercice) pour lesquelles vous avez choisi cette licence par rapport aux autres.
+
+Nous avons décidé de choisir la license MIT.
+
+
 
 #### Créer un fichier pour la contribution décrivant les meilleures pratiques de collaboration et de développement que vous voulez encourager au sein du projet. Si vous utilisez un template, vous devez en citer la source et expliquer pourquoi vous l'avez utilisé.
 
