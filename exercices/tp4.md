@@ -74,15 +74,25 @@ unique est qu'un organisation peut utiliser le projet open source comme bon lui 
 intellectuelle. Une entreprise peut donc faire l'utilisation d'un projet open source plutôt de payer un produit à frais élevée.
 
 #### Justifiez en quoi cela peut être bénéfique pour tous
-
+La contribution des compagnies aggrandient la communauté opensource !!!
 
 
 #### 2. Décrivez 3 défis qu'impose la mise en place d'un projet open source et justifiez.
 
-1. Savoir dire non au contribution pas voulu  // unwanted contributions in the first place
+1. Un premier défi est d'avoir une bonne définition des objectifs du projet à l'aide des divers outils de documentation 
+lors de la mise en place du produit pour que les futurs contributeurs comprennent bien le vision du projet 
+et ainsi pour qu'ils puissent apporter des contributions en lien avec le but du projet.
 
-2. Avoir une vision claire et documentée vous permet de rester concentré et vous aide à éviter la « dérive de la portée » des contributions des autres
+2. Un autre défi lors de la mise en place d'un projet open source est de savoir dire non aux contribueurs apportant des contributions éloignant le projet
+de sa raison d'être. Un projet open source va éventuellement avoir de nombreuses contributions externes, et certaines contributions ne correspondront pas aux critères du projet. 
+Un défi sera alors de cibler ses contributions et ensuite politement expliquer la situation au contributeur pour lui mentionner la raison qui amène le rejet de
+sa contribution.
 
+3. Le dernier défi lors de la mise en place d'un projet open source est l'acceptation d'une licence commune pour que les contributeurs sachent 
+comment ils peuvent contribuer au projet. En effet, chaque projet logiciel open source doit avoir une licence quelqconque car c'est 
+cette licence qui définit les politques de contributions et les méthodes d'utilisation du logiciel. On peut donc mentionner qu'un défi lors de la mise en place
+d'un projet open source est de bien choisir la licence pour que les contributeurs ont les droits de contributions et d'utilisation selon les désirs 
+du créateur.
 
 
 #### 3. Quelle information vous a-t-elle le plus surprise à propos de l'open source?
