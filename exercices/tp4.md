@@ -10,7 +10,6 @@
 
 ![image](https://user-images.githubusercontent.com/47373969/165154585-c16e2967-4dbb-421a-b8e2-7ad1c8e02da6.png)
 
-
 ### 3 pour les issues avec tous les éléments demandés visibles
 
 #### Feature de compteur de vues sur les produits 
@@ -306,3 +305,4 @@ des déploiements et des tests, soit principlement l'utilisation d'un CI et d'un
 nous a permis de deployer automatiquement lors de l'ajout d'une nouvelle fonctionnalités ou d'un autre changement, ce qui simplifie grandement le processus des déploiements.
 Aussi, l'ajout d'un CI nous a permis de savoir si l'ajout d'un changement amenait des bris dans notre code à l'aide de l'automatisation des tests dans le CI. Cela était donc très utile pour savoir ou les nouveaux bugs se trouvait. 
 Le CI nous permettait aussi de vérifier que le formattage du nouveau code respectait bien les standarts établis dans notre projet.
+
