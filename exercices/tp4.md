@@ -239,11 +239,19 @@ que nous avons établis en équipe pour notre projet soit bien mentionnée dans 
 
 ### Quels sont les bons coups de votre équipe? De quelles parties êtes-vous fiers? Nommez-en 3.
 
-- issues très bien détaillées
+- Un premier bon coup de notre équipe est que nous avons vraiment bien détaillés les différents récits utilisateurs à faire pour chaque livrables.
+Nous nous sommes assurées de suivre les recommandations de la matière du cours pour la création de nos récits utilisateurs, soit que celle-ci soit indépendantes, testables,
+fermables ainsi que petits pour pas qu'elle ne soit pas trop longue à implementé. Le fait de bien faire les récits utilisateurs à grandement faciliter la tâche des développeurs de notre 
+équipe car chacun d'entre nous savait ce qu'il devait faire lorsqu'il commencait l'implémentation d'un récit utilisateur.
 
-- Review efficaces
+- Un deuxième bon coup de notre équipe est que les reviews dans nos pull-requests était très efficaces et instructifs. 
+En effet, les reviewers de notre équipe n'essayaient pas simplement de corriger les erreurs de synthaxe du code, mais on essayait de 
+voir au dela des lignes de code et essayer de réflechir sur l'architecture qui a été développé dans la pull request et ainsi s'assurer que 
+le code respectait bien les principes Solid-t et les lignes directives du Clean code.
 
-- Bonne distribution des tâches
+- Finalement, notre troisième bon coup de notre équipe est que nous avons établit une architecture logicielle limitant les effets d'avalanches des changements
+dès la première itération. Il était beaucoupl plus facile implémenté les nouvelles fonctionnalités dans les livrables précèdants.
+
 
 ### Quel conseil donneriez-vous aux prochains étudiants qui doivent faire ce projet?
 
