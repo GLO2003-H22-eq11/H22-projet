@@ -237,19 +237,39 @@ que nous avons établis en équipe pour notre projet soit bien mentionnée dans 
 
 1. Récit utilisateurs manquent quelques informations desfois, perdu des points à cause de cela.
 
-2. Erreur de typo dans la synthaxe des noms de branches et commits, il faudrait un outils pour vérifier que les noms des branhces/commits soient conformes à notre convention.
+2. Comme notre processus contient une règlementation très strict pour nos noms de branches ainsi que nos noms de commits, il est arrivée  à quelques reprises
+que nous fesions une erreur de synthaxe lors de l'écriture des différentes branches de notre projet. Pour résoudre cet problématique, il aurait été bien de mettre un prehook commit qui 
+vérifie que le nom de la branche est conforme à nos critères de nom de branches avant de push la branche à notre base de code.
+
+
+Erreur de typo dans la synthaxe des noms de branches et commits, il faudrait un outils pour vérifier que les noms des branhces/commits soient conformes à notre convention.
 
 ### Décrivez la démarche que vous aviez entrepris afin d'intégrer de nouveaux outils technologiques. Quelles étaient les étapes du processus? Comment avez-vous réagis aux différents bogues? Exploriez-vous à l'aide de tests unitaires ou manuels? Qu'avez-vous appris suite à cette démarche?
 
-1. Lire divers outils possible
+Voici la démarche utilisés pour l'intégration de nouveaux outils technologiques à l'intérieur de notre projet
 
-2. Choisir outils
+1. En premier lieu, on s'assurait de bien comprendre qu'elle était le problème qu'on voulait résoudre avec l'outils ( Outils pour qualité de tests, sécurité etc.. )
 
-3. Lire documentation pour avoir une bonne compréhension globale de l'outils
+2. Ensuite, on fesait une analyse des différents outils disponibles pour combler nos besoins.
 
-4. Intégration de l'outils dans une branche appart
+3. Après une lecture des différents outils, on fesait le choix d'un outil selon lui qui semblait le mieux adapté pour nos besoins.
 
-5. Une fois l'outils intégrée, création pull request avec explication de l'outils et spécification
+4. Après l'outil choisi, on lisait la documentation pour bien comprendre l'utilisation global de l'outil en question. 
+
+5. Lors d'une bonne compréhension de l'outils, on se créait une branche de "test" et on commencait l'installation ainsi que l'intégration de notre différent outil.
+
+6. Pour s'assurer que notre outil marchait bien, on fesait des tests manuels pour voir si l'outil générait les bonnes choses.
+
+7. Une fois l'outils integré dans notre application, on intégrait celui-ci pour que l'outil fasse son analyse lors du déclanchement de notre CI, bref on s'assurait que l'outil
+était bien integré avec notre CI.
+
+8. Une fois l'outils intégrée avec le CI, on créait la pull request avec une explication claire de l'outils et et des spécifications de son utilisation.
+
+Cette technique nous a été très utile pour l'intégration des différents outils de notre projet. Nous avons rencontrés aucun bugs lors de l'intégration des outils
+et avons rencontrée aucun problème grace à cet technique qui nous encouragait a bien comprendre l'outil avec de faire son intégration dans notre code.
+
+Nous avons donc appris qu'il est toujours mieux de bien comprendre un logiciel avant de faire son utilisation, cela permet d'éviter de passer du temps 
+à "debugger" par manque de connaissances ou par mauvaise implémentation.
 
 ### Quels sont les bons coups de votre équipe? De quelles parties êtes-vous fiers? Nommez-en 3.
 
