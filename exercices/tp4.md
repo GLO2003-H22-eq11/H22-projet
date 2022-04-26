@@ -277,6 +277,12 @@ pour que tout soit clair pour les développeurs et que les tests d'acceptions so
 
 ### Quels apprentissages, trucs ou techniques appris dans ce projet croyez-vous pouvoir utiliser plus tard? Décrivez-en au moins 2. Cela peut être des apprentissages techniques, pratiques, sur le travail d'équipe ou encore par rapport au processus.
 
-1. Planification du travail à l'aide de github ou un autre outil de gestion des tâches, sauve beaucoup de temps et clairfie l'itération
+1. La première technique que nous avons appris que nous croyons utiliser plus tard est toute la planification du travail 
+à l'aide de github, soit à l'aide de création de projet, d'issue ainsi que de milestones. L'utilisation de cette technique nous a permis d'avoir un meilleur suivi de l'avancement 
+du projet et nous a permis de bien clarifier chaque tâche qui devait être implémenté lors des itérations.
 
-2. Utilisations de plus d'outils pour faire de l'automatisation du code, soit CI, CD, outils de qualité du code etc.. 
+2. Le deuxième truc que nous avons appris que nous croyons fortement que nous allons utilisé plus tard est l'utilisation d'outils permettant l'automatisation 
+des déploiements et des tests, soit principlement l'utilisation d'un CI et d'un CD. En effet, le fait d'intégrer un CD dans notre code
+nous a permis de deployer automatiquement lors de l'ajout d'une nouvelle fonctionnalités ou d'un autre changement, ce qui simplifie grandement le processus des déploiements.
+Aussi, l'ajout d'un CI nous a permis de savoir si l'ajout d'un changement amenait des bris dans notre code à l'aide de l'automatisation des tests dans le CI. Cela était donc très utile pour savoir ou les nouveaux bugs se trouvait. 
+Le CI nous permettait aussi de vérifier que le formattage du nouveau code respectait bien les standarts établis dans notre projet.
