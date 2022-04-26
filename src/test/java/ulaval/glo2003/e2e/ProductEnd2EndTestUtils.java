@@ -1,10 +1,14 @@
 package ulaval.glo2003.e2e;
 
+import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.Response;
 import ulaval.glo2003.offer.api.request.OfferRequest;
 import ulaval.glo2003.product.api.request.ProductRequest;
 import ulaval.glo2003.product.api.response.ProductWithSellerResponse;
+import ulaval.glo2003.product.api.response.ProductWithViewsResponse;
 import ulaval.glo2003.product.api.response.ProductsWithSellerResponse;
+
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static ulaval.glo2003.e2e.End2EndConfig.*;
@@ -61,8 +65,19 @@ public class ProductEnd2EndTestUtils {
             .get(PRODUCTS_END_POINT + "/" + productId);
   }
 
+  public static Response getProductViews(String xSellerId){
+    return given()
+            .header(CONTENT_TYPE, APPLICATION_JSON)
+            .header(X_SELLER_ID_HEADERS_PARAMS, xSellerId)
+            .get(PRODUCTS_END_POINT + "/" + "views");
+  }
+
   public static ProductWithSellerResponse getProductResponseBody(String productId) {
     return getProductResponse(productId).getBody().as(ProductWithSellerResponse.class);
+  }
+
+  public static List<ProductWithViewsResponse> getProductsWithViewsResponseBody(String sellerId) {
+    return getProductViews(sellerId).getBody().as(new TypeRef<>() {});
   }
 
   public static Response getProductsResponseWithValidFilters(String sellerId) {

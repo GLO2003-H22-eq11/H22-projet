@@ -14,6 +14,9 @@ public class ProductWithViewsResponse {
   public List<String> categories;
   public Integer views;
 
+  public ProductWithViewsResponse() {
+  }
+
   public ProductWithViewsResponse(
           String id,
           String createdAt,
