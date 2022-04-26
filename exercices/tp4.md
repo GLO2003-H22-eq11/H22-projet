@@ -239,7 +239,19 @@ que nous avons établis en équipe pour notre projet soit bien mentionnée dans 
 
 ### Quels sont les bons coups de votre équipe? De quelles parties êtes-vous fiers? Nommez-en 3.
 
+- issues très bien détaillées
+
+- Review efficaces
+
+- Bonne distribution des tâches
+
 ### Quel conseil donneriez-vous aux prochains étudiants qui doivent faire ce projet?
+
+On conseillerait aux prochains étudiants de faire une rencontre au début de chaque livrable avec toutes les membres de l'équipe
+pour bien faire la planification de leur itération sur github. 
+En effet, on leur conseille principalement de bien faire la séparation de toutes les récits utilisateurs dès le début de l'itération
+et de s'assurer que les récits utilisateurs soient implémentés selon les bons critères qu'on a vu dans la matière du cours
+pour que tout soit clair pour les développeurs et que les tests d'acceptions soient bien définis.
 
 ### Quels apprentissages, trucs ou techniques appris dans ce projet croyez-vous pouvoir utiliser plus tard? Décrivez-en au moins 2. Cela peut être des apprentissages techniques, pratiques, sur le travail d'équipe ou encore par rapport au processus.
 
