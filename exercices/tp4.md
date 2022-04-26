@@ -87,7 +87,7 @@ contributions importantes au projet. Cela peut donc devenir un potentiel futur e
 #### 2. Décrivez 3 défis qu'impose la mise en place d'un projet open source et justifiez.
 
 1. Un premier défi est d'avoir une bonne définition des objectifs du projet à l'aide des divers outils de documentation 
-lors de la mise en place du produit pour que les futurs contributeurs comprennent bien le vision du projet 
+lors de la mise en place du produit pour que les futurs contributeurs comprennent bien la vision du projet 
 et ainsi pour qu'ils puissent apporter des contributions en lien avec le but du projet.
 
 2. Un autre défi lors de la mise en place d'un projet open source est de savoir dire non aux contribueurs apportant des contributions éloignant le projet
