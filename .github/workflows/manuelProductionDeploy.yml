@@ -1,16 +1,17 @@
-name: Deploy to production manually
-
+name: Manually triggered workflow
 on:
   workflow_dispatch:
     inputs:
-      git-ref:
-        description: Git Ref (Optional)
-        required: false
+      job:
+        description: 'Job to run.'
+        required: true
+        default: 'prod-deploy'
 
 jobs:
-  deploy:
-    name: Deploy to production
+  test:
+    name: validate and test code
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -19,28 +20,3 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-
-      - name: Cache the Maven packages to speed up build
-        uses: actions/cache@v1
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-
-      - name: Checkstyle
-        run: mvn checkstyle:checkstyle
-
-      - name: MongoDB in GitHub Actions
-        uses: supercharge/mongodb-github-action@1.7.0
-
-      - name: Run tests
-        run: mvn verify
-
-      - uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "processus-equipe-11-production"
-          heroku_email: ${{secrets.HEROKU_EMAIL}}
-          healthcheck: ${{secrets.HEROKU_PROD_URL}}/health
-          delay: 60
-          rollbackonhealthcheckfailed: true
