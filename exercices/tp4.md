@@ -149,12 +149,20 @@ Comme plus de gens peuvent utiliser notre logiciel, on aura tendance à obtenir 
 #### Créer un fichier pour la contribution décrivant les meilleures pratiques de collaboration et de développement que vous voulez encourager au sein du projet. Si vous utilisez un template, vous devez en citer la source et expliquer pourquoi vous l'avez utilisé.
 
 Pour le fichier de contributation, nous avons pris le [template suivant](https://github.com/auth0/open-source-template/blob/master/GENERAL-CONTRIBUTING.md). 
+Cependant, nous avons apporté des modifications à ce fichier de contribution pour que celui ci soit mieux adapté à notre projet.
 
-Nous avons pris ce template car nous avons grandement apprecié que le fichier indique clairement que tout contributeur doit discuter avec nous
-avant d'apporter des modifications au projet. Cela va donc réduire le risque d'avoir des contributions non-désirées à l'intérieur de notre projet open source.
+Nous avons pris ce template pour plusieurs raisons. 
 
-Aussi, le proccessus des pull request est simple, bien défini et respecte bien les
-techinques et normes que nous avons vu dans la matière du cours ainsi que les critères que nous avons établis pour notre projet.
+Premièrement, nous avons bien aimé le texte d'accueil au début du fichier de contribution. On trouve que cette petite description décrit 
+un environnement de développement "user-friendly", ce qui va encourager les développeurs a contribué à notre projet davantage.
+
+Ensuite, on trouve que ce template est extrêmement bien réparti, on découpe bien la section Issue, la section Pull request, 
+on indique bien comment un développeur peut demande de l'aide ainsi qu'on mentionne clairement que chaque contributeur doit accepter les critères de notre code de conduite.
+
+
+Finalement, le proccessus des pull request et des issues est simple, bien défini et respecte bien les
+techniques et normes que nous avons vu dans la matière du cours. Nous avons également modifié un peu ses partis pour que les critères 
+que nous avons établis en équipe pour notre projet soit bien mentionnée dans la section pull-request et issue.
 
 
 
