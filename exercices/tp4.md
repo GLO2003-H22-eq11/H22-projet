@@ -148,7 +148,7 @@ Comme plus de gens peuvent utiliser notre logiciel, on aura tendance à obtenir 
 
 #### Créer un fichier pour la contribution décrivant les meilleures pratiques de collaboration et de développement que vous voulez encourager au sein du projet. Si vous utilisez un template, vous devez en citer la source et expliquer pourquoi vous l'avez utilisé.
 
-Pour le fichier de contributation, nous avons pris ... a compléter ....
+Pour le fichier de contributation, nous avons pris le [template suivant](https://github.com/auth0/open-source-template/blob/master/GENERAL-CONTRIBUTING.md). 
 
 Nous avons pris ce template car nous avons grandement apprecié que le fichier indique clairement que tout contributeur doit discuter avec nous
 avant d'apporter des modifications au projet. Cela va donc réduire le risque d'avoir des contributions non-désirées à l'intérieur de notre projet open source.
