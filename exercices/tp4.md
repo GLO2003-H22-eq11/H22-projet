@@ -235,7 +235,21 @@ que nous avons établis en équipe pour notre projet soit bien mentionnée dans 
 
 ### Décrivez 2 problématiques que possèdent votre processus et développer 2 plans distincts afin de les résoudres. Soyez constructifs dans vos critiques et évitez de mettre la faute sur une ou un groupe de personne en particulier.
 
+1. Récit utilisateurs manquent quelques informations desfois, perdu des points à cause de cela.
+
+2. Erreur de typo dans la synthaxe des noms de branches et commits, il faudrait un outils pour vérifier que les noms des branhces/commits soient conformes à notre convention.
+
 ### Décrivez la démarche que vous aviez entrepris afin d'intégrer de nouveaux outils technologiques. Quelles étaient les étapes du processus? Comment avez-vous réagis aux différents bogues? Exploriez-vous à l'aide de tests unitaires ou manuels? Qu'avez-vous appris suite à cette démarche?
+
+1. Lire divers outils possible
+
+2. Choisir outils
+
+3. Lire documentation pour avoir une bonne compréhension globale de l'outils
+
+4. Intégration de l'outils dans une branche appart
+
+5. Une fois l'outils intégrée, création pull request avec explication de l'outils et spécification
 
 ### Quels sont les bons coups de votre équipe? De quelles parties êtes-vous fiers? Nommez-en 3.
 
@@ -263,3 +277,6 @@ pour que tout soit clair pour les développeurs et que les tests d'acceptions so
 
 ### Quels apprentissages, trucs ou techniques appris dans ce projet croyez-vous pouvoir utiliser plus tard? Décrivez-en au moins 2. Cela peut être des apprentissages techniques, pratiques, sur le travail d'équipe ou encore par rapport au processus.
 
+1. Planification du travail à l'aide de github ou un autre outil de gestion des tâches, sauve beaucoup de temps et clairfie l'itération
+
+2. Utilisations de plus d'outils pour faire de l'automatisation du code, soit CI, CD, outils de qualité du code etc.. 
