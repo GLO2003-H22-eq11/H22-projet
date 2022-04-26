@@ -61,7 +61,7 @@ Encore une fois, l'outil Sonarcloud nous donne notre test coverage globale.
 
 #### 3 avantages à contribuer à des projets open source en tant qu'entreprise 
 
-Le première avantage que nous avons discuté est qu'une entreprise fesant utilisation d'un logiciel open source a la possibilité 
+Le première avantage que nous avons discuté est qu'une entreprise faisant utilisation d'un logiciel open source a la possibilité 
 d'embaucher un développeur logiciel pour qu'il puisse apporter des améliorations personnalisées au logiciel plutôt que de se fier aux décisions d'un 
 fournissuer d'une source privée ou la contribution externe n'est pas possible.
 
