@@ -235,15 +235,15 @@ que nous avons établis en équipe pour notre projet soit bien mentionnée dans 
 
 ### Décrivez 2 problématiques que possèdent votre processus et développer 2 plans distincts afin de les résoudres. Soyez constructifs dans vos critiques et évitez de mettre la faute sur une ou un groupe de personne en particulier.
 
-1. Récit utilisateurs manquent quelques informations desfois, perdu des points à cause de cela.
+1. La première problèmatique principal de notre processus était que certaines pull-requests étaient beaucoup trop longue, ce qui fesait en sorte que la review était plus longue
+que désirée et que c'était donc en conséquence moins efficace pour repèrer les différentes anomalies ou modification à faire dans la pull-request. 
+Une manière pour résoudre se problème serait en fait de faire une meilleure division des récits utilisateurs pour que ceux-ci soient plus petits, tout en restant indépendant des un des autres.
 
 2. Comme notre processus contient une règlementation très strict pour nos noms de branches ainsi que nos noms de commits, il est arrivée  à quelques reprises
 que nous fesions une erreur de synthaxe lors de l'écriture des différentes branches de notre projet. Pour résoudre cet problématique, il aurait été bien de mettre un prehook commit qui 
 vérifie que le nom de la branche est conforme à nos critères de nom de branches avant de push la branche à notre base de code.
 
-
-Erreur de typo dans la synthaxe des noms de branches et commits, il faudrait un outils pour vérifier que les noms des branhces/commits soient conformes à notre convention.
-
+   
 ### Décrivez la démarche que vous aviez entrepris afin d'intégrer de nouveaux outils technologiques. Quelles étaient les étapes du processus? Comment avez-vous réagis aux différents bogues? Exploriez-vous à l'aide de tests unitaires ou manuels? Qu'avez-vous appris suite à cette démarche?
 
 Voici la démarche utilisés pour l'intégration de nouveaux outils technologiques à l'intérieur de notre projet
