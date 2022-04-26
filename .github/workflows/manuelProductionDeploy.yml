@@ -1,22 +1,19 @@
 name: Manually triggered workflow
+
 on:
   workflow_dispatch:
     inputs:
-      job:
-        description: 'Job to run.'
+      logLevel:
+        description: 'Log level'
         required: true
-        default: 'prod-deploy'
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'
 
 jobs:
-  test:
-    name: validate and test code
+  printInputs:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup java JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
+      - run: |
+          echo "Log level: ${{ github.event.inputs.logLevel }}"
+          echo "Tags: ${{ github.event.inputs.tags }}"
