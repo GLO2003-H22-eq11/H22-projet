@@ -79,7 +79,7 @@ Below is a list of our app with link to their live versions.
 | Component | Environment | Live URL                                                 | Badge |
 | --------- | ----------- | ---------------------------------------------------------|--------|
 | API       | Staging     | https://processus-equipe-11-staging.herokuapp.com/       | ![example workflow](https://github.com/GLO2003-H22-eq11/H22-projet/actions/workflows/deployStaging.yml/badge.svg) |
-| API       | Prod        | https://processus-equipe-11-production.herokuapp.com/    | ![example workflow](https://github.com/GLO2003-H22-eq11/H22-projet/actions/workflows/deployProd.yml/badge.svg?branch=tag)|
+| API       | Prod        | https://processus-equipe-11-production.herokuapp.com/    | ![example workflow](https://github.com/GLO2003-H22-eq11/H22-projet/actions/workflows/deployProd.yml/badge.svg)|
 
 
 
