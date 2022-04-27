@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static spark.Spark.stop;
 import static ulaval.glo2003.e2e.End2EndConfig.*;
 import static ulaval.glo2003.e2e.ProductEnd2EndTestUtils.*;
-import static ulaval.glo2003.e2e.SellerEnd2EndTestUtils.createSellerGetId;
+import static ulaval.glo2003.e2e.SellerEnd2EndTestUtils.createSellerAndGetId;
 
 public class GetViewsEndToEndTest {
 
@@ -40,7 +40,7 @@ public class GetViewsEndToEndTest {
 
   @Test
   public void givenASerllerId_whenGetViews_thenShouldReturn200StatusCode(){
-    String sellerId = createSellerGetId();
+    String sellerId = createSellerAndGetId();
     String productId = createProductAndGetId(sellerId);
 
     getProductResponse(productId);
@@ -53,7 +53,7 @@ public class GetViewsEndToEndTest {
   @Test
   public void givenASerllerId_whenGetViews_thenShouldReturnMatchingBody(){
     Integer expectedNumbersOfViews = 1;
-    String sellerId = createSellerGetId();
+    String sellerId = createSellerAndGetId();
     String productId = createProductAndGetId(sellerId);
 
     getProductResponse(productId);
@@ -70,7 +70,7 @@ public class GetViewsEndToEndTest {
 
   @Test
   public void givenASerllerId_whenGetViews_thenShouldReturn400StatusCode(){
-    String sellerId = createSellerGetId();
+    String sellerId = createSellerAndGetId();
     String productId = createProductAndGetId(sellerId);
 
     getProductResponse(productId);
@@ -82,7 +82,7 @@ public class GetViewsEndToEndTest {
 
   @Test
   public void givenASerllerId_whenGetViews_thenShouldReturnInvalidParameterBody(){
-    String sellerId = createSellerGetId();
+    String sellerId = createSellerAndGetId();
     String productId = createProductAndGetId(sellerId);
 
     getProductResponse(productId);

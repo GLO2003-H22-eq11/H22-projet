@@ -9,7 +9,6 @@ import ulaval.glo2003.seller.api.response.SellerWithProductsResponse;
 import static io.restassured.RestAssured.*;
 import static ulaval.glo2003.e2e.End2EndConfig.*;
 import static ulaval.glo2003.e2e.ProductEnd2EndTestUtils.createProduct;
-import static ulaval.glo2003.e2e.ProductEnd2EndTestUtils.createProductAndGetId;
 
 public class SellerEnd2EndTestUtils {
 
@@ -24,25 +23,18 @@ public class SellerEnd2EndTestUtils {
   }
 
   public static String createSellerWithProductAndGetSellerId() {
-    String sellerId = createSellerGetId();
+    String sellerId = createSellerAndGetId();
     createProduct(sellerId);
 
     return sellerId;
   }
 
-  public static String createSellerWithProductAndGetProductId() {
-    String sellerId = createSellerGetId();
-    String productId = createProductAndGetId(sellerId);
-
-    return productId;
-  }
-
   public static Response createSellerWithProduct() {
-    String sellerId = createSellerGetId();
+    String sellerId = createSellerAndGetId();
     return createProduct(sellerId);
   }
 
-  public static String createSellerGetId() {
+  public static String createSellerAndGetId() {
     Response response = createSeller();
     String locationHeader = response.getHeader(LOCATION);
     return locationHeader.substring(locationHeader.lastIndexOf("/") + 1);

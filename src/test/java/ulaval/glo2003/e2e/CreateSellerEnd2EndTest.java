@@ -11,7 +11,6 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.*;
 import static spark.Spark.stop;
 import static ulaval.glo2003.e2e.End2EndConfig.*;
-import static ulaval.glo2003.e2e.End2EndConfig.AN_INVALID_PARAMETER_DESCRIPTION;
 import static ulaval.glo2003.e2e.SellerEnd2EndTestUtils.*;
 
 public class CreateSellerEnd2EndTest {
@@ -45,7 +44,7 @@ public class CreateSellerEnd2EndTest {
 
   @Test
   public void givenSellerInformation_whenCreateASeller_thenShouldReturnSellerId() {
-    String sellerId = createSellerGetId();
+    String sellerId = createSellerAndGetId();
 
     assertTrue(sellerId.matches(UUID_REGEX));
   }

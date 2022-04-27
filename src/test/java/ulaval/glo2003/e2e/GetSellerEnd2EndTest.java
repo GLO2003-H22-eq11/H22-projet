@@ -10,7 +10,6 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static spark.Spark.stop;
 import static ulaval.glo2003.e2e.End2EndConfig.*;
-import static ulaval.glo2003.e2e.End2EndConfig.AN_INVALID_PARAMETER_DESCRIPTION;
 import static ulaval.glo2003.e2e.SellerEnd2EndTestUtils.*;
 
 public class GetSellerEnd2EndTest {

@@ -16,7 +16,7 @@ public class ProductWithSellerResponse {
   public ProductSellerResponse seller;
 
   public ProductWithSellerResponse() {
-  };
+  }
 
   public ProductWithSellerResponse(
           String id,

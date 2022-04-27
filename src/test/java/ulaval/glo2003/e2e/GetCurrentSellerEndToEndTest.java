@@ -37,7 +37,7 @@ public class GetCurrentSellerEndToEndTest {
 
   @Test
   public void givenASellerId_whenGetCurrentSellerId_thenShouldReturn200StatusCode() {
-    String sellerId = createSellerGetId();
+    String sellerId = createSellerAndGetId();
 
     Response response = getCurrentSellerResponse(sellerId);
 
@@ -46,7 +46,7 @@ public class GetCurrentSellerEndToEndTest {
 
   @Test
   public void givenASellerId_whenGetCurrentSellerId_thenShouldReturnBodyWithoutProducts() {
-    String sellerId = createSellerGetId();
+    String sellerId = createSellerAndGetId();
 
     SellerWithProductsResponse sellerWithProductsResponse = getCurrentSellerBody(sellerId);
 
@@ -59,7 +59,7 @@ public class GetCurrentSellerEndToEndTest {
 
   @Test
   public void givenASellerId_whenGetCurrentSellerId_thenShouldReturnBodyWithProducts() {
-    String sellerId = createSellerGetId();
+    String sellerId = createSellerAndGetId();
     String productId = createProductAndGetId(sellerId);
 
     SellerWithProductsResponse sellerWithProductsResponse = getCurrentSellerBody(sellerId);
@@ -74,7 +74,7 @@ public class GetCurrentSellerEndToEndTest {
 
   @Test
   public void givenASellerId_whenGetCurrentSellerId_thenShouldReturnBodyWithProductsAndOffers() {
-    String sellerId = createSellerGetId();
+    String sellerId = createSellerAndGetId();
     createProductAndOffer(sellerId);
 
     SellerWithProductsResponse sellerWithProductsResponse = getCurrentSellerBody(sellerId);

@@ -4,7 +4,6 @@ import ulaval.glo2003.product.domain.Product;
 
 import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

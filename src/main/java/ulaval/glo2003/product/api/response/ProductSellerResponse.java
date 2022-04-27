@@ -7,7 +7,7 @@ public class ProductSellerResponse {
   public String name;
 
   public ProductSellerResponse() {
-  };
+  }
 
   public ProductSellerResponse(String id, String name) {
     this.id = id;

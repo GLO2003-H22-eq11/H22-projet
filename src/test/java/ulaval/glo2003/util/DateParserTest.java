@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import ulaval.glo2003.util.exceptions.InvalidDateFormatException;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 import static org.junit.jupiter.api.Assertions.*;
 

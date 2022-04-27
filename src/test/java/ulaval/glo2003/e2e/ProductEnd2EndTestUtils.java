@@ -201,8 +201,6 @@ public class ProductEnd2EndTestUtils {
 
   public static Response createOfferWithInvalidParams(String UUID, double amount, String email, String message,
                                                       String phoneNumber, String name) {
-    String productId = UUID;
-
     OfferRequest offerRequest = new OfferRequest();
     offerRequest.amount = amount;
     offerRequest.email = email;
@@ -213,6 +211,6 @@ public class ProductEnd2EndTestUtils {
     return given()
             .body(offerRequest)
             .header(CONTENT_TYPE, APPLICATION_JSON)
-            .post(PRODUCTS_END_POINT + "/" + productId + "/" + "offers");
+            .post(PRODUCTS_END_POINT + "/" + UUID + "/" + "offers");
   }
 }

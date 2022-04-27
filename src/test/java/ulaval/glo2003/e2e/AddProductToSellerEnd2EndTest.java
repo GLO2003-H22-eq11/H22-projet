@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static spark.Spark.stop;
 import static ulaval.glo2003.e2e.End2EndConfig.*;
 import static ulaval.glo2003.e2e.ProductEnd2EndTestUtils.*;
-import static ulaval.glo2003.e2e.SellerEnd2EndTestUtils.createSellerGetId;
+import static ulaval.glo2003.e2e.SellerEnd2EndTestUtils.createSellerAndGetId;
 
 public class AddProductToSellerEnd2EndTest {
 
@@ -38,7 +38,7 @@ public class AddProductToSellerEnd2EndTest {
 
   @Test
   public void givenASellerIdAndAProductRequest_whenCreateProduct_thenShouldReturn201StatusCode() {
-    String sellerId = createSellerGetId();
+    String sellerId = createSellerAndGetId();
 
     Response response = createProduct(sellerId);
 
@@ -47,7 +47,7 @@ public class AddProductToSellerEnd2EndTest {
 
   @Test
   public void givenASellerIdAndAProductRequest_whenCreateProduct_thenShouldReturnAProductId() {
-    String sellerId = createSellerGetId();
+    String sellerId = createSellerAndGetId();
 
     String productId = createProductAndGetId(sellerId);
 
