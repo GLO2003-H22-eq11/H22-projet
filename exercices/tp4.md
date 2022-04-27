@@ -14,7 +14,10 @@
 
 #### Feature de compteur de vues sur les produits 
 
-![image](https://user-images.githubusercontent.com/47373969/165155756-cc8b57c0-0de4-4f16-bd6c-e2734923d0ba.png)
+<img width="1355" alt="image" src="https://user-images.githubusercontent.com/47373969/165546721-54a65ccb-433a-4189-b140-8326e2a15151.png">
+
+<img width="1407" alt="image" src="https://user-images.githubusercontent.com/47373969/165546832-f83394a4-0845-4384-a63d-8700ad48f507.png">
+
 
 <img width="1375" alt="image" src="https://user-images.githubusercontent.com/47373969/165545624-810200a2-efa8-4b8e-a553-9e9b38839736.png">
 
