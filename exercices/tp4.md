@@ -263,8 +263,8 @@ que désirée et que c'était donc en conséquence moins efficace pour repérer 
 Une manière de résoudre ce problème serait en fait de faire une meilleure division des récits utilisateurs pour que ceux-ci soient plus petits, tout en restant indépendants les uns des autres.
 
 2. Comme notre processus contient une règlementation très stricte pour nos noms de branches ainsi que nos noms de commits, il est arrivé  à quelques reprises
-que nous ayons fait une erreur de syntaxe lors de l'écriture des différentes branches de notre projet. Pour résoudre cette problématique, il aurait été bien de mettre un prehook commit qui 
-vérifie que le nom de la branche est conforme à nos critères de nom de branches avant de push la branche à notre base de code.
+que nous ayons fait une erreur de syntaxe lors de l'écriture des différentes branches de notre projet. Pour résoudre cette problématique, il aurait été bien de 
+mettre un prehook commit qui vérifie que le nom de la branche est conforme à nos critères de nom de branches avant de push la branche à notre base de code.
 
    
 ### Décrivez la démarche que vous aviez entrepris afin d'intégrer de nouveaux outils technologiques. Quelles étaient les étapes du processus? Comment avez-vous réagis aux différents bogues? Exploriez-vous à l'aide de tests unitaires ou manuels? Qu'avez-vous appris suite à cette démarche?
@@ -275,11 +275,11 @@ Voici la démarche utilisée pour l'intégration de nouveaux outils technologiqu
 
 2. Ensuite, on faisait une analyse des différents outils disponibles pour combler nos besoins.
 
-3. Après une lecture des différents outils, on faisait le choix d'un outil selon lui qui semblait le mieux adapté pour nos besoins.
+3. Après une lecture des différents outils, on faisait le choix d'un outil selon lui qui semblait le mieux adapté pour nos besoins tout en restant simple.
 
 4. Après l'outil choisi, on lisait la documentation pour bien comprendre l'utilisation globale de l'outil en question. 
 
-5. Lors d'une bonne compréhension de l'outil, on se créait une branche de "test" et on commençait l'installation ainsi que l'intégration de notre différent outil.
+5. Lors d'une bonne compréhension de l'outil, on se créait une branche de "test" et on commençait l'installation ainsi que l'intégration de notre outil.
 
 6. Pour s'assurer que notre outil marchait bien, on faisait des tests manuels pour voir si l'outil générait les bonnes choses.
 
@@ -289,7 +289,7 @@ Voici la démarche utilisée pour l'intégration de nouveaux outils technologiqu
 8. Une fois l'outil intégré avec le CI, on créait la pull request avec une explication claire de l'outil et et des spécifications de son utilisation.
 
 Cette technique nous a été très utile pour l'intégration des différents outils de notre projet. Nous n’avons rencontré aucun bugs lors de l'intégration des outils
-et n’avons rencontré aucun problème grâce à cette technique qui nous encourageait à bien comprendre l'outil avec de faire son intégration dans notre code.
+et n’avons rencontré aucun problème grâce à cette technique qui nous encourageait à bien comprendre l'outil avant de faire son intégration dans notre code.
 
 Nous avons donc appris qu'il est toujours mieux de bien comprendre un logiciel avant de faire son utilisation, cela permet d'éviter de passer du temps 
 à "debugger" par manque de connaissances ou par mauvaise implémentation.
@@ -298,8 +298,8 @@ Nous avons donc appris qu'il est toujours mieux de bien comprendre un logiciel a
 
 - Un premier bon coup de notre équipe est que nous avons vraiment bien détaillé les différents récits utilisateurs à faire pour chaque livrable.
 Nous nous sommes assuré de suivre les recommandations de la matière du cours pour la création de nos récits utilisateurs, soit que celle-ci soit indépendantes, testables,
-fermables ainsi que petits pour pas qu'elle ne soit pas trop longue à implémenté. Le fait de bien faire les récits utilisateurs à grandement faciliter la tâche des développeurs de notre 
-équipe, car chacun d'entre nous savait ce qu'il devait faire lorsqu'il commençait l'implémentation d'un récit utilisateur.
+fermables ainsi que petits pour pas qu'elle ne soit pas trop longue à implémenté. Le fait de bien faire les récits utilisateurs à grandement faciliter la tâche des
+développeurs de notre équipe, car chacun d'entre nous savait ce qu'il devait faire lorsqu'il commençait l'implémentation d'un récit utilisateur.
 
 - Un deuxième bon coup de notre équipe est que les reviews dans nos pull-requests était très efficaces et instructifs. 
 En effet, les reviewers de notre équipe n'essayaient pas simplement de corriger les erreurs de syntaxe du code, mais on essayait de 
@@ -316,16 +316,18 @@ On conseillerait aux prochains étudiants de faire une rencontre au début de ch
 pour bien faire la planification de leur itération sur github. 
 En effet, on leur conseille principalement de bien faire la séparation de tous les récits utilisateurs dès le début de l'itération
 et de s'assurer que les récits utilisateurs soient implémentés selon les bons critères vus dans la matière du cours
-pour que tout soit clair pour les développeurs et que les tests d'acceptions soient bien définis.
+pour que tout soit clair pour les développeurs et que les tests d'acceptions soient bien définis ainsi que les détails.
 
 ### Quels apprentissages, trucs ou techniques appris dans ce projet croyez-vous pouvoir utiliser plus tard? Décrivez-en au moins 2. Cela peut être des apprentissages techniques, pratiques, sur le travail d'équipe ou encore par rapport au processus.
 
 1. La première technique que nous avons appris que nous croyons utiliser plus tard est toute la planification du travail 
-à l'aide de github, soit à l'aide de création de projet, d'issue ainsi que de milestones. L'utilisation de cette technique nous a permis d'avoir un meilleur suivi de l'avancement 
-du projet et nous a permis de bien clarifier chaque tâche qui devait être implémentée lors des itérations.
+à l'aide de github, soit à l'aide de création de projet, d'issue ainsi que de milestones. L'utilisation de cette technique nous a permis d'avoir
+un meilleur suivi de l'avancement du projet et nous a permis de bien clarifier chaque tâche qui devait être implémentée lors des itérations.
 
-2. Le deuxième truc que nous avons appris que nous croyons fortement que nous allons utilisé plus tard est l'utilisation d'outils permettant l'automatisation
+2. Le deuxième truc que nous avons appris que nous croyons fortement utilisé plus tard est l'utilisation d'outils permettant l'automatisation
 des déploiements et des tests, soit principalement l'utilisation d'un CI et d'un CD. En effet, le fait d'intégrer un CD dans notre code
 nous a permis de déployer automatiquement lors de l'ajout d'une nouvelle fonctionnalité ou d'un autre changement, ce qui simplifie grandement le processus des déploiements.
-Aussi, l'ajout d'un CI nous a permis de savoir si l'ajout d'un changement amenait des bris dans notre code à l'aide de l'automatisation des tests dans le CI. Cela était donc très utile pour savoir ou les nouveaux bugs se trouvaient. 
+
+Aussi, l'ajout d'un CI nous a permis de savoir si l'ajout d'un changement amenait des bris dans notre code à l'aide de l'automatisation 
+des tests dans le CI. Cela était donc très utile pour savoir ou les nouveaux bugs se trouvaient. 
 Le CI nous permettait aussi de vérifier que le formatage du nouveau code respectait bien les standards établis dans notre projet.
