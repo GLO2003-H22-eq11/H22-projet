@@ -16,6 +16,9 @@
 
 ![image](https://user-images.githubusercontent.com/47373969/165155756-cc8b57c0-0de4-4f16-bd6c-e2734923d0ba.png)
 
+<img width="1375" alt="image" src="https://user-images.githubusercontent.com/47373969/165545624-810200a2-efa8-4b8e-a553-9e9b38839736.png">
+
+
 #### Outils de métrique 
 
 ![image](https://user-images.githubusercontent.com/47373969/165155998-2e3fa344-fbc0-4947-951d-2fd8283d56af.png)
