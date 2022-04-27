@@ -214,9 +214,10 @@ Pour notre "Code of conduct", nous avons utilisé le template de "Contributor Co
 Nous avons utilisé le "Code of conduct" de Contributor Covenant car nous trouvons que ce code de conduite prône une communauté agréable ouverte d'esprit qui n'accepte en 
 aucun cas les commentaires rabaissants ou autre type d'attaques personnelles. En effet, le code de conduite que nous avons utilisé mentionne qu'il accepte tous les types
 d'individus, peu importe la nationalité, la couleur de peau, la religion, etc., et qu'il prône le respect des individus sans accepter les commentaires discriminants entre contributeurs.
-Le code de conduite cherche vraiment à établir une communauté ou le développement logiciel est agréable. Nous avons également bien aimé le fait qu'il est mentionné que les propriétaires du projet 
-peuvent prendre les mesures nécessaires pour retirer des personnes néfastes ou des commentaires haineux. Aussi, les directives d'applications
-sont extrêmement claires et bien détaillées. 
+Le code de conduite cherche vraiment à établir une communauté ou le développement logiciel est agréable et c'est exactement ce que notre équipe cherche.
+Nous avons également bien aimé le fait qu'il est mentionné que les propriétaires du projet 
+peuvent prendre les mesures nécessaires pour retirer des personnes néfastes ou des commentaires haineux. 
+Aussi, les directives d'applications sont extrêmement claires et bien détaillées. 
 
 Bref, le code de conduite de "Contributor Convenant" encourage les comportements que l'on veut voir pour notre projet.
 
@@ -236,7 +237,7 @@ code comme bon leur semble dans le futur. Nous avons donc choisi la licence MIT 
 à se casser la tête à essayer de comprendre notre licence car, fort probablement, ils connaîtront déjà la licence MIT ainsi que ses règlementations.
 
 3. Finalement, une autre raison de l'utilisation de celle-ci, comparativement à la licence GPL par exemple, est que plus de gens peuvent utiliser notre logiciel.
-Comme plus de gens peuvent utiliser notre logiciel, on aura tendance à obtenir plus de contributions et donc de développer une meilleure communauté pour notre projet open source.
+Comme plus de gens peuvent utiliser notre logiciel, on aura tendance à obtenir plus de contributions et donc d'obtenir une meilleure communauté pour notre projet open source.
 
 
 #### Créer un fichier pour la contribution décrivant les meilleures pratiques de collaboration et de développement que vous voulez encourager au sein du projet. Si vous utilisez un template, vous devez en citer la source et expliquer pourquoi vous l'avez utilisé.
@@ -247,7 +248,8 @@ Cependant, nous avons apporté des modifications à ce fichier de contribution p
 Nous avons pris ce template pour plusieurs raisons. 
 
 Premièrement, nous avons bien aimé le texte d'accueil au début du fichier de contribution. On trouve que cette petite description décrit 
-un environnement de développement "user-friendly", ce qui va encourager les développeurs a contribué à notre projet davantage.
+un environnement de développement "user-friendly", ce qui va encourager les développeurs a contribué à notre projet davantage et ainsi avoir
+une meilleur communauté dans notre projet.
 
 Ensuite, on trouve que ce template est extrêmement bien réparti, on découpe bien la section Issue, la section Pull request, 
 on indique bien comment un développeur peut demande de l'aide ainsi qu'on mentionne clairement que chaque contributeur doit accepter les critères de notre code de conduite.
