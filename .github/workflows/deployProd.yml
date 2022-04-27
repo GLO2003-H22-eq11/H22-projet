@@ -1,10 +1,9 @@
-name: DeployProduction
+name: Deploy Production
 
 on:
   push:
     tags:
       - '*'
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
