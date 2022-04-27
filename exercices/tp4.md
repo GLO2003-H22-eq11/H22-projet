@@ -113,6 +113,9 @@ Sonarcloud nous a donnée la cote de A pour la sécurité, qui est la meilleure 
 #### Résumé des analyses de sécurités
 ![image](https://user-images.githubusercontent.com/47373969/164267759-36466968-1fe7-4ae6-878f-df1b771cd969.png)
 
+<img width="734" alt="image" src="https://user-images.githubusercontent.com/47373969/165554054-ee875265-d83d-4db5-86f1-c3f73695f28c.png">
+
+
 ![image](https://user-images.githubusercontent.com/47373969/164242714-07a4357c-20fb-4456-ab56-ba40e9befa76.png)
 
 
@@ -124,6 +127,18 @@ Pour l'outil de mesurage de notre couverture de tests, nous avons encore fait ut
 
 Celui-ci nous donnait tout ce que nous avions besoin pour faire une bonne couverture des tests, voici quelques exemples.
 
+#### Page global pour la couverture de test, on apercoit qu'on a une couverte de 86.7%
+<img width="718" alt="image" src="https://user-images.githubusercontent.com/47373969/165553895-3852c3b8-da45-4763-9753-1323c96ba435.png">
+
+
+<img width="735" alt="image" src="https://user-images.githubusercontent.com/47373969/165554334-df7e8ef6-44a4-4157-b35d-85f26450d93a.png">
+
+
+#### Ici, on peut voir que notre classe `ProductResource` a une couverture de test de 95.7%
+<img width="718" alt="image" src="https://user-images.githubusercontent.com/47373969/165554517-a808c549-4812-47ca-9b29-83b107156e9c.png">
+
+#### Ici, on peut voir que notre classe `SellerWithProducsDomainService` a une couverture de test de 100%
+<img width="719" alt="image" src="https://user-images.githubusercontent.com/47373969/165554797-afbbe8af-adba-4b73-87bb-97b11f8805df.png">
 
 
 
