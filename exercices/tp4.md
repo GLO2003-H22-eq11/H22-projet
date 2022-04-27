@@ -153,7 +153,7 @@ Celui-ci nous donnait tout ce que nous avions besoin pour faire une bonne couver
 
 Le premier avantage que nous avons discuté est qu'une entreprise faisant utilisation d'un logiciel open source a la possibilité 
 d'embaucher un développeur logiciel pour qu'il puisse apporter des améliorations personnalisées au logiciel plutôt que de se fier aux décisions d'un
-fournisseur d'une source privée ou la contribution externe n'est pas possible.
+fournisseur d'une source privée où la contribution externe n'est pas possible.
 
 Le deuxième avantage que nous avons discuté en équipe est qu'une entreprise qui contribue à des projets open source peut cibler des développeurs 
 contribuant habilement au logiciel open source et ainsi potentiellement leur offrir un emploi dans la compagnie. Contribuez au projet open source peut
@@ -161,16 +161,18 @@ donc être une certaine manière de recruter des développeurs logiciels compét
 
 Le troisième avantage est de réduire le coût total d'utilisation des produits logiciels de l'entreprise. En effet, ce qui rend les projets open source
 unique est qu'une organisation peut utiliser le projet open source comme bon lui semble sans payez de frais d'utilisations ou de frais de propriété
-intellectuelle. Une entreprise peut donc faire l'utilisation d'un projet open source plutôt de payer un produit à frais élevé.
+intellectuelle. Une entreprise peut donc faire l'utilisation d'un projet open source plutôt de payer que de payer un système logiciel à frais élevé.
 
 #### Justifiez en quoi cela peut être bénéfique pour tous
 La contribution des compagnies est bénéfique pour tous étant donné qu'une même compagnie regroupe plusieurs développeurs, donc si une compagnie décide de contribuer aux projets open
  source, cela veut dire que plusieurs développeurs vont contribuer. Cela fait donc en sorte que la contribution des compagnies 
-dans le domaine de l'open source agrandit grandement la communauté de l'open source. Aussi, les grosses organisations technologiques ont énormément de pouvoir sur les différents
-mouvements technologiques, donc si les grosses compagnies comme Microsoft et Adobe décident de se tourner au open source, cela va grandement contribuer à l'avance
+dans le domaine de l'open source agrandit grandement la communauté de l'open source.
+
+Aussi, les grosses organisations technologiques ont énormément de pouvoir sur les différents
+mouvements technologiques, donc si les grosses compagnies comme Microsoft et Adobe décident de se tourner au open source, cela va grandement contribuer à l'avancement
 de l'open source ainsi qu'à ses développements. Il aura donc plus de logiciels open source disponible pour nous tous.
 
-Aussi, si c'est une compagnie contribue fortement à un projet open source, un développeur peut se faire remarquer par la compagnie en apportant des 
+Aussi, si une compagnie contribue fortement à un projet open source, un développeur peut se faire remarquer par la compagnie en apportant des 
 contributions importantes au projet. Cela peut donc devenir un potentiel futur emploie pour le développeur contribuant au projet open source.
 
 
@@ -186,7 +188,7 @@ Un défi sera alors de cibler ces contributions et ensuite poliment expliquer la
 sa contribution.
 
 3. Le dernier défi lors de la mise en place d'un projet open source est l'acceptation d'une licence commune pour que les contributeurs sachent 
-comment ils peuvent contribuer au projet. En effet, chaque projet logiciel open source doit avoir une licence quelconque, car c'est 
+comment ils peuvent contribuer au projet et l'utiliser comme bon leur semble. En effet, chaque projet logiciel open source doit avoir une licence quelconque, car c'est 
 cette licence qui définit les politiques de contributions et les méthodes d'utilisation du logiciel. On peut donc mentionner qu'un défi lors de la mise en place
 d'un projet open source est de bien choisir la licence pour que les contributeurs aient les droits de contributions et d'utilisation selon les désirs 
 du créateur.
@@ -198,8 +200,10 @@ Plusieurs informations nous ont grandement surpris lors de l'apprentissage de l'
 n'importe qui a les droits de contribuer au projet open source comme bon il le semble. Nous pensions que c'était seulement une certaine catégorie 
 de développeur qui pouvait contribuer ou bien qu'il fallait avoir un "rôle" dans le projet open source en question pour y contribuer.
 
-Sur un autre niveau, ce qui nous a le plus surpris est que certaines des plus grosses compagnies au monde comme IBM, Adobe, SAP participent activement dans la communauté de l'open source. 
-Aussi, de voir que même des compagnies comme Microsoft, qui à la base s'opposait contre les avancements de l'open source, sont rendues à mettre la majorité de leurs principaux logiciels  en open source.
+Sur un autre niveau, ce qui nous a le plus surpris est que certaines des plus grosses compagnies au monde comme IBM, Adobe, SAP participent activement dans la communauté de l'open source, nous pensions que c'était simplement
+des développeurs autonomes qui contribuaient principalemetn aux projets open source.
+
+Aussi, de voir que même des compagnies comme Microsoft, qui à la base s'opposaient contre les avancements de l'open source, sont rendues à mettre la majorité de leurs principaux logiciels  en open source nous a grandement étonné.
 
 ### Éxecution
 
